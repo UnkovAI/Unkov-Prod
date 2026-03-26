@@ -1,4 +1,5 @@
 {
+  "version": 2,
   "buildCommand": "cd client && pnpm install && pnpm run build",
   "outputDirectory": "dist",
   "installCommand": "pnpm install",
