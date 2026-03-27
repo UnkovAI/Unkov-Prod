@@ -1,6 +1,8 @@
+import { useLocation } from "wouter";
 import { ArrowRight, Shield, Zap, Users } from "lucide-react";
 
 export default function Hero() {
+  const [, navigate] = useLocation(); {
   return (
     <section style={{
       paddingTop: "7rem",
@@ -31,11 +33,11 @@ export default function Hero() {
             </p>
 
             <div style={{ display: "flex", gap: "0.875rem", flexWrap: "wrap", marginBottom: "3rem" }}>
-              <button onClick={() => window.location.href = "/early-access"} className="btn-primary"
+              <button onClick={() => navigate = "/early-access"} className="btn-primary"
                 style={{ fontSize: "0.9375rem", padding: "0.8rem 1.875rem" }}>
                 Apply for Pilot <ArrowRight style={{ width: 16, height: 16 }} />
               </button>
-              <button onClick={() => window.location.href = "/demo/dashboard"}
+              <button onClick={() => navigate = "/demo/dashboard"}
                 style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.5rem", borderRadius: "9999px", border: "1.5px solid rgba(255,255,255,0.3)", backgroundColor: "rgba(255,255,255,0.08)", color: "#fff", fontWeight: 600, fontSize: "0.9375rem", cursor: "pointer", transition: "all 0.15s", backdropFilter: "blur(4px)" }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(255,255,255,0.16)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.5)"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.3)"; }}>

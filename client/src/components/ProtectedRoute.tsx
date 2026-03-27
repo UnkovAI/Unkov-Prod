@@ -12,6 +12,11 @@ export default function ProtectedRoute({ children, requiredRole }: Props) {
   const { user, loading, dashboardPath } = useAuth();
   const [, navigate] = useLocation();
 
+  if (!loading && !user) {
+    navigate('/login');
+    return null;
+  }
+
   // If Supabase isn't wired up at all, show a clear config error instead of a blank page
   if (!isSupabaseConfigured) {
     return (

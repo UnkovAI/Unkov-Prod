@@ -128,8 +128,8 @@ export default function Header() {
 
           {/* Logo */}
           <button onClick={() => go("/")} style={{ display: "flex", alignItems: "center", gap: "0.625rem", flexShrink: 0, background: "none", border: "none", cursor: "pointer", padding: 0 }}>
-            <LogoMark size={40} />
-            <span style={{ fontWeight: 700, fontSize: "1.25rem", color: "#0a0f1e", letterSpacing: "-0.025em" }}>
+            <LogoMark size={50} />
+            <span style={{ fontWeight: 700, fontSize: "1.5rem", color: "#0a0f1e", letterSpacing: "-0.025em" }}>
               <span style={{ color: "#00c6e0" }}>U</span>nkov
             </span>
           </button>
@@ -271,7 +271,7 @@ export default function Header() {
       {/* ── Mobile menu ───────────────────────────────────────────── */}
       {mobileOpen && (
         <div style={{ position: "fixed", top: NAV_H, left: 0, right: 0, bottom: 0, backgroundColor: "#faf9f7", zIndex: 998, overflowY: "auto", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
-          <div style={{ padding: "0.25rem 1.25rem 3rem" }}>
+          <div style={{ padding: "0.25rem 1.5rem 3rem" }}>
             {nav.map(group => (
               <div key={group.label} style={{ borderBottom: "1px solid #ece8e2" }}>
                 <button onClick={() => setMobileGroup(mobileGroup === group.label ? null : group.label)}
