@@ -1,180 +1,109 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { useLocation } from "wouter";
-import { Lock, Eye, EyeOff, ArrowRight, Shield } from "lucide-react";
-import { LogoMark } from "../components/LogoMark";
+import { validateInvestorToken } from "../lib/supabase";
+import { Shield, Lock, ArrowRight, AlertCircle } from "lucide-react";
+import Header from "@/components/Header";
 
-const SESSION_KEY = "unkov_investor_auth";
-
-/**
- * InvestorGate — server-validated access codes.
- *
- * No hash function. No salt. No validation logic.
- * The browser only ever sends the code the investor typed
- * to /api/validate-investor-code and receives {"valid": true/false}.
- *
- * The entire validation happens in api/validate-investor-code.ts,
- * which reads INVESTOR_SALT from Vercel's server environment —
- * a variable that never reaches the browser under any circumstances.
- */
 export default function InvestorGate() {
-  const [code, setCode]         = useState("");
-  const [showCode, setShowCode] = useState(false);
-  const [error, setError]       = useState("");
-  const [loading, setLoading]   = useState(false);
-  const [shaking, setShaking]   = useState(false);
-  const [, navigate]            = useLocation();
-  const inputRef                = useRef<HTMLInputElement>(null);
+  const [email, setEmail] = useState("");
+  const [token, setToken] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [, navigate] = useLocation();
 
-  useEffect(() => { inputRef.current?.focus(); }, []);
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!code.trim() || loading) return;
-
     setLoading(true);
     setError("");
 
     try {
-      const res = await fetch("/api/validate-investor-code", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code: code.trim() }),
-      });
-
-      const data = await res.json();
-
-      if (res.status === 429) {
-        // Rate limited
-        setError(data.error || "Too many attempts. Please wait and try again.");
-        setShaking(true);
-        setTimeout(() => setShaking(false), 600);
-        setCode("");
-        return;
-      }
-
-      if (!res.ok) {
-        setError("Something went wrong. Please try again or email info@unkov.com.");
-        return;
-      }
-
-      if (data.valid) {
-        sessionStorage.setItem(SESSION_KEY, "true");
-        const redirect = sessionStorage.getItem("unkov_post_auth_redirect") || "/for-investors";
+      const isValid = await validateInvestorToken(email, token);
+      
+      if (isValid) {
+        // 1. Use the exact key the PitchDeck.tsx is looking for
+        sessionStorage.setItem("unkov_investor_auth", "true"); 
+        
+        // 2. Check if we should go to pitch deck or a default page
+        const redirect = sessionStorage.getItem("unkov_post_auth_redirect") || "/pitch-deck";
+        
+        // 3. Clear the redirect memory and go
         sessionStorage.removeItem("unkov_post_auth_redirect");
         navigate(redirect);
       } else {
-        setError("Incorrect access code. Request access via info@unkov.com.");
-        setShaking(true);
-        setTimeout(() => setShaking(false), 600);
-        setCode("");
+        setError("Invalid, expired, or revoked access token.");
       }
-    } catch {
-      setError("Network error. Please check your connection and try again.");
+    } catch (err: any) {
+      console.error("Login Error:", err);
+      setError("System error. Please verify your connection.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#0a0f1e", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "2rem", fontFamily: "system-ui, -apple-system, sans-serif" }}>
-      <div style={{ position: "fixed", top: "40%", left: "50%", transform: "translate(-50%,-50%)", width: 600, height: 400, background: "radial-gradient(ellipse,rgba(0,41,122,0.18) 0%,transparent 70%)", pointerEvents: "none" }} />
-
-      <div style={{ marginBottom: "2.5rem", textAlign: "center" }}>
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: "1rem" }}>
-          <LogoMark size={48} bgColor="#0a0f1e" />
-        </div>
-        <div style={{ fontSize: "1.25rem", fontWeight: 700, color: "#f1f5f9", letterSpacing: "-0.02em" }}>Unkov</div>
-      </div>
-
-      <div style={{ width: "100%", maxWidth: 420, backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 18, padding: "2.5rem", backdropFilter: "blur(12px)", animation: shaking ? "shake 0.5s ease" : "none" }}>
-        <div style={{ width: 48, height: 48, backgroundColor: "rgba(0,97,212,0.12)", border: "1px solid rgba(0,97,212,0.25)", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.5rem" }}>
-          <Lock style={{ width: 20, height: 20, color: "#60a5fa" }} />
-        </div>
-
-        <h1 style={{ fontSize: "1.4rem", fontWeight: 800, color: "#f1f5f9", marginBottom: "0.5rem" }}>Investor Access</h1>
-        <p style={{ fontSize: "0.875rem", color: "#94a3b8", marginBottom: "2rem", lineHeight: 1.7 }}>
-          This area contains confidential investor materials including financial projections, funding terms, and the data room. Enter your access code to continue.
-        </p>
-
-        <form onSubmit={handleSubmit}>
-          <label style={{ display: "block", fontSize: "0.875rem", fontWeight: 600, color: "#94a3b8", textTransform: "uppercase" as const, letterSpacing: "0.1em", marginBottom: "0.5rem" }}>
-            Access Code
-          </label>
-          <div style={{ position: "relative", marginBottom: "1rem" }}>
-            <input
-              ref={inputRef}
-              type={showCode ? "text" : "password"}
-              value={code}
-              onChange={e => { setCode(e.target.value); setError(""); }}
-              placeholder="e.g. UNK-ABC123"
-              autoComplete="off"
-              spellCheck={false}
-              disabled={loading}
-              style={{ width: "100%", padding: "0.75rem 3rem 0.75rem 1rem", backgroundColor: "rgba(255,255,255,0.05)", border: `1px solid ${error ? "#ef4444" : "rgba(255,255,255,0.1)"}`, borderRadius: 10, color: "#f1f5f9", fontSize: "0.95rem", outline: "none", letterSpacing: "0.1em", boxSizing: "border-box" as const, opacity: loading ? 0.6 : 1 }}
-            />
-            <button
-              type="button"
-              onClick={() => setShowCode(s => !s)}
-              style={{ position: "absolute", right: "0.875rem", top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "#64748b", padding: "0.25rem" }}
-            >
-              {showCode ? <EyeOff style={{ width: 16, height: 16 }} /> : <Eye style={{ width: 16, height: 16 }} />}
-            </button>
+    <div className="min-h-screen bg-[#0a0f1e] text-white flex flex-col">
+      <Header />
+      <div className="flex-1 flex items-center justify-center p-6">
+        <div className="w-full max-w-md bg-white/5 border border-white/10 p-8 rounded-2xl backdrop-blur-xl">
+          <div className="flex justify-center mb-6">
+            <div className="p-3 bg-blue-500/10 rounded-full">
+              <Shield className="text-blue-400" size={32} />
+            </div>
           </div>
+          
+          <h1 className="text-2xl font-bold text-center mb-2">Investor Portal</h1>
+          <p className="text-slate-400 text-center text-sm mb-8">
+            Please enter your credentials to view secure documents.
+          </p>
 
-          {error && (
-            <p style={{ fontSize: "0.875rem", color: "#ef4444", marginBottom: "1rem", marginTop: "-0.5rem" }}>
-              {error}
-            </p>
-          )}
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label className="text-xs font-semibold text-slate-500 uppercase ml-1">
+                Email Address
+              </label>
+              <input 
+                type="email" 
+                required
+                className="w-full mt-1 bg-black/40 border border-white/10 p-3 rounded-lg focus:border-blue-500 outline-none transition-colors"
+                placeholder="investor@firm.com"
+                value={email} 
+                onChange={e => setEmail(e.target.value)}
+              />
+            </div>
 
-          <button
-            type="submit"
-            disabled={loading || !code.trim()}
-            style={{ width: "100%", padding: "0.875rem", backgroundColor: loading || !code.trim() ? "#334155" : "#0061d4", border: "none", borderRadius: 10, color: loading || !code.trim() ? "#64748b" : "#fff", fontWeight: 700, fontSize: "0.95rem", cursor: loading || !code.trim() ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem", transition: "background .15s" }}
-            onMouseEnter={e => { if (!loading && code.trim()) (e.currentTarget as HTMLElement).style.backgroundColor = "#0052b3"; }}
-            onMouseLeave={e => { if (!loading && code.trim()) (e.currentTarget as HTMLElement).style.backgroundColor = "#0061d4"; }}
-          >
-            {loading ? (
-              <>
-                <span style={{ width: 15, height: 15, border: "2px solid rgba(255,255,255,0.2)", borderTopColor: "#94a3b8", borderRadius: "50%", animation: "spin .7s linear infinite", display: "inline-block" }} />
-                Verifying…
-              </>
-            ) : (
-              <>Access Investor Materials <ArrowRight style={{ width: 16, height: 16 }} /></>
+            <div>
+              <label className="text-xs font-semibold text-slate-500 uppercase ml-1">
+                Access Token
+              </label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-3.5 text-slate-500" size={18} />
+                <input 
+                  type="password" 
+                  required
+                  className="w-full mt-1 bg-black/40 border border-white/10 p-3 pl-10 rounded-lg focus:border-blue-500 outline-none transition-colors"
+                  placeholder="Paste token here..."
+                  value={token} 
+                  onChange={e => setToken(e.target.value)}
+                />
+              </div>
+            </div>
+
+            {error && (
+              <div className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm">
+                <AlertCircle size={16} /> {error}
+              </div>
             )}
-          </button>
-        </form>
 
-        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", margin: "1.75rem 0 1.5rem" }}>
-          <div style={{ flex: 1, height: 1, backgroundColor: "rgba(255,255,255,0.06)" }} />
-          <span style={{ fontSize: "0.875rem", color: "#94a3b8", textTransform: "uppercase" as const, letterSpacing: "0.1em" }}>No code?</span>
-          <div style={{ flex: 1, height: 1, backgroundColor: "rgba(255,255,255,0.06)" }} />
+            <button 
+              type="submit" 
+              disabled={loading}
+              className="w-full bg-blue-600 hover:bg-blue-500 disabled:opacity-50 py-3 rounded-lg font-bold flex items-center justify-center gap-2 transition-all mt-4"
+            >
+              {loading ? "Verifying..." : "Access Portal"} <ArrowRight size={18} />
+            </button>
+          </form>
         </div>
-
-        <a
-          href="mailto:info@unkov.com?subject=Investor Access Request"
-          style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem", width: "100%", padding: "0.75rem", backgroundColor: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, color: "#94a3b8", fontWeight: 600, fontSize: "0.85rem", textDecoration: "none", boxSizing: "border-box" as const }}
-          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(255,255,255,0.07)"; (e.currentTarget as HTMLElement).style.color = "#e2e8f0"; }}
-          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(255,255,255,0.04)"; (e.currentTarget as HTMLElement).style.color = "#94a3b8"; }}
-        >
-          Request access — info@unkov.com
-        </a>
       </div>
-
-      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginTop: "2rem", fontSize: "0.875rem", color: "#64748b" }}>
-        <Shield style={{ width: 12, height: 12 }} />
-        Confidential materials. Not for distribution. © Unkov 2026
-      </div>
-
-      <style>{`
-        @keyframes shake {
-          0%,100%{transform:translateX(0)}
-          15%{transform:translateX(-8px)} 30%{transform:translateX(8px)}
-          45%{transform:translateX(-6px)} 60%{transform:translateX(6px)}
-          75%{transform:translateX(-3px)} 90%{transform:translateX(3px)}
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-      `}</style>
     </div>
   );
 }
