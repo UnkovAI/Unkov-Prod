@@ -128,8 +128,8 @@ export default function Header() {
 
           {/* Logo */}
           <button onClick={() => go("/")} style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexShrink: 0, background: "none", border: "none", cursor: "pointer", padding: 0 }}>
-            <LogoMark size={26} />
-            <span style={{ fontWeight: 700, fontSize: "0.9375rem", color: "#0a0f1e", letterSpacing: "-0.025em" }}>
+            <LogoMark size={32} />
+            <span style={{ fontWeight: 700, fontSize: "1.0625rem", color: "#0a0f1e", letterSpacing: "-0.025em" }}>
               <span style={{ color: "#00c6e0" }}>U</span>nkov
             </span>
           </button>
@@ -144,7 +144,7 @@ export default function Header() {
                   style={{
                     display: "flex", alignItems: "center", gap: "0.25rem",
                     padding: "0.4rem 0.75rem",
-                    fontSize: "0.8125rem", fontWeight: activeGroup === group.label ? 600 : 450,
+                    fontSize: "0.875rem", fontWeight: activeGroup === group.label ? 600 : 450,
                     color: activeGroup === group.label ? "#00297a" : "#3d3d52",
                     backgroundColor: activeGroup === group.label ? "#eeeae4" : "transparent",
                     borderRadius: "0.5rem", border: "none", cursor: "pointer",
@@ -177,20 +177,20 @@ export default function Header() {
           {/* Right CTAs */}
           <div className="hidden md:flex" style={{ alignItems: "center", gap: "0.25rem", flexShrink: 0 }}>
             <button onClick={() => go(user ? dashboardPath : "/login")}
-              style={{ display: "flex", alignItems: "center", gap: "0.3rem", fontSize: "0.8rem", fontWeight: 500, color: "#6b7280", backgroundColor: "transparent", padding: "0.35rem 0.625rem", borderRadius: "0.5rem", border: "none", cursor: "pointer", whiteSpace: "nowrap", transition: "color 0.12s, background-color 0.12s" }}
+              style={{ display: "flex", alignItems: "center", gap: "0.3rem", fontSize: "0.875rem", fontWeight: 500, color: "#6b7280", backgroundColor: "transparent", padding: "0.35rem 0.625rem", borderRadius: "0.5rem", border: "none", cursor: "pointer", whiteSpace: "nowrap", transition: "color 0.12s, background-color 0.12s" }}
               onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#0a0f1e"; el.style.backgroundColor = "#eeeae4"; }}
               onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#6b7280"; el.style.backgroundColor = "transparent"; }}>
               <LogIn style={{ width: 12, height: 12 }} />
               {user ? user.avatarInitials : "Log in"}
             </button>
-            <button onClick={() => go("/demo/dashboard")}
-              style={{ fontSize: "0.8rem", fontWeight: 500, color: "#0061d4", padding: "0.35rem 0.875rem", borderRadius: "9999px", border: "1px solid #c0d7f5", backgroundColor: "transparent", cursor: "pointer", whiteSpace: "nowrap", transition: "background-color 0.12s, border-color 0.12s" }}
+            <button onClick={() => go("/login")}
+              style={{ fontSize: "0.875rem", fontWeight: 500, color: "#0061d4", padding: "0.4rem 1rem", borderRadius: "9999px", border: "1px solid #c0d7f5", backgroundColor: "transparent", cursor: "pointer", whiteSpace: "nowrap", transition: "background-color 0.12s, border-color 0.12s" }}
               onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = "#e8f0fe"; el.style.borderColor = "#93c2f0"; }}
               onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = "transparent"; el.style.borderColor = "#c0d7f5"; }}>
               Live demo
             </button>
             <button onClick={() => go("/early-access")}
-              style={{ fontSize: "0.8rem", fontWeight: 600, color: "#ffffff", padding: "0.4rem 1rem", borderRadius: "9999px", border: "none", backgroundColor: "#00297a", cursor: "pointer", whiteSpace: "nowrap", transition: "background-color 0.12s" }}
+              style={{ fontSize: "0.875rem", fontWeight: 600, color: "#ffffff", padding: "0.5rem 1.125rem", borderRadius: "9999px", border: "none", backgroundColor: "#00297a", cursor: "pointer", whiteSpace: "nowrap", transition: "background-color 0.12s" }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "#001f5c"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "#00297a"; }}>
               Apply for pilot

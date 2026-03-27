@@ -5,7 +5,7 @@ import { LogoMark } from "@/components/LogoMark";
 import { Eye, EyeOff, ArrowRight, AlertCircle, Lock } from "lucide-react";
 
 export default function Login() {
-  const { login, user, dashboardPath, loading, usingTestAccounts } = useAuth();
+  const { login, user, dashboardPath, loading } = useAuth();
   const [, navigate] = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,7 +13,6 @@ export default function Login() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
-  // Already logged in — redirect to correct dashboard
   useEffect(() => {
     if (!loading && user) navigate(dashboardPath);
   }, [user, loading, dashboardPath, navigate]);
@@ -25,11 +24,21 @@ export default function Login() {
     setSubmitting(true);
     const result = await login(email, password);
     setSubmitting(false);
-    if (result.ok) {
-      // dashboardPath will update via context, useEffect will redirect
-    } else {
-      setError(result.error || "Login failed.");
+    if (!result.ok) setError(result.error || "Login failed.");
+  };
+
+  const handleForgotPassword = async () => {
+    if (!email.trim()) {
+      setError("Enter your email address above, then click Forgot password.");
+      return;
     }
+    const { supabase } = await import("@/lib/supabase");
+    if (!supabase) { setError("Auth service unavailable."); return; }
+    await supabase.auth.resetPasswordForEmail(email.trim(), {
+      redirectTo: `${window.location.origin}/login`,
+    });
+    setError("");
+    alert(`Password reset email sent to ${email}. Check your inbox.`);
   };
 
   const inp: React.CSSProperties = {
@@ -44,12 +53,16 @@ export default function Login() {
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#faf9f7", display: "flex", flexDirection: "column" }}>
       {/* Top bar */}
-      <div style={{ height: 64, borderBottom: "1px solid #dcd6ce", display: "flex", alignItems: "center", padding: "0 2rem", backgroundColor: "rgba(250,249,247,0.97)" }}>
+      <div style={{ height: 64, borderBottom: "1px solid #dcd6ce", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 2rem", backgroundColor: "rgba(250,249,247,0.97)" }}>
         <button onClick={() => navigate("/")} style={{ display: "flex", alignItems: "center", gap: "0.5rem", background: "none", border: "none", cursor: "pointer", padding: 0 }}>
-          <LogoMark size={28} />
-          <span style={{ fontWeight: 700, fontSize: "1.05rem", color: "#1a1a2e", letterSpacing: "-0.02em" }}>
+          <LogoMark size={32} />
+          <span style={{ fontWeight: 700, fontSize: "1.125rem", color: "#1a1a2e", letterSpacing: "-0.02em" }}>
             <span style={{ color: "#00c6e0" }}>U</span>nkov
           </span>
+        </button>
+        <button onClick={() => navigate("/")}
+          style={{ fontSize: "0.8125rem", fontWeight: 500, color: "#6b7280", background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: "0.375rem" }}>
+          ← Back to home
         </button>
       </div>
 
@@ -69,12 +82,6 @@ export default function Login() {
               <p style={{ fontSize: "0.9rem", color: "#6b7280" }}>
                 Pilot and production customers
               </p>
-              {usingTestAccounts && (
-                <div style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem", marginTop: "0.625rem", padding: "0.25rem 0.75rem", backgroundColor: "#fef3c7", border: "1px solid #fde68a", borderRadius: 9999, fontSize: "0.75rem", fontWeight: 600, color: "#92400e" }}>
-                  <span style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: "#f59e0b", display: "inline-block" }} />
-                  Test mode — using local accounts
-                </div>
-              )}
             </div>
 
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
@@ -94,7 +101,7 @@ export default function Login() {
               <div>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.375rem" }}>
                   <label style={{ fontSize: "0.875rem", fontWeight: 600, color: "#374151" }}>Password</label>
-                  <button type="button" onClick={() => {}} style={{ fontSize: "0.8125rem", color: "#0061d4", background: "none", border: "none", cursor: "pointer", fontWeight: 500 }}>
+                  <button type="button" onClick={handleForgotPassword} style={{ fontSize: "0.8125rem", color: "#0061d4", background: "none", border: "none", cursor: "pointer", fontWeight: 500 }}>
                     Forgot password?
                   </button>
                 </div>
@@ -147,45 +154,6 @@ export default function Login() {
               </p>
             </div>
           </div>
-
-          {/* Test credentials hint — only shown in local dev when Supabase is not configured */}
-          {usingTestAccounts && (() => {
-            const pilotEmail = import.meta.env.VITE_DEV_PILOT_EMAIL as string;
-            const pilotPass  = import.meta.env.VITE_DEV_PILOT_PASS  as string;
-            const adminEmail = import.meta.env.VITE_DEV_ADMIN_EMAIL as string;
-            const adminPass  = import.meta.env.VITE_DEV_ADMIN_PASS  as string;
-            if (!pilotEmail || !adminEmail) return (
-              <div style={{ marginTop: "1.25rem", padding: "1rem 1.25rem", backgroundColor: "#f8f7f4", border: "1px solid #dcd6ce", borderRadius: 12 }}>
-                <div style={{ fontSize: "0.75rem", fontWeight: 700, color: "#9ca3af", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "0.5rem" }}>Local dev mode</div>
-                <p style={{ fontSize: "0.8125rem", color: "#6b7280", lineHeight: 1.6 }}>
-                  Supabase is not configured. Set <code style={{ fontSize: "0.75rem", backgroundColor: "#f0ece6", padding: "1px 4px", borderRadius: 4 }}>VITE_DEV_PILOT_EMAIL</code> and <code style={{ fontSize: "0.75rem", backgroundColor: "#f0ece6", padding: "1px 4px", borderRadius: 4 }}>VITE_DEV_PILOT_PASS</code> in your <code style={{ fontSize: "0.75rem", backgroundColor: "#f0ece6", padding: "1px 4px", borderRadius: 4 }}>.env</code> to enable local login.
-                </p>
-              </div>
-            );
-            const accounts = [
-              { label: "Pilot customer", email: pilotEmail, pw: pilotPass, badge: "Demo dashboard", bc: "#fef3c7", tc: "#92400e" },
-              { label: "Admin", email: adminEmail, pw: adminPass, badge: "Admin access", bc: "#e0f2fe", tc: "#0369a1" },
-            ];
-            return (
-              <div style={{ marginTop: "1.25rem", padding: "1rem 1.25rem", backgroundColor: "#f8f7f4", border: "1px solid #dcd6ce", borderRadius: 12 }}>
-                <div style={{ fontSize: "0.75rem", fontWeight: 700, color: "#9ca3af", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "0.625rem" }}>Local dev accounts</div>
-                {accounts.map(a => (
-                  <button key={a.email} type="button"
-                    onClick={() => { setEmail(a.email); setPassword(a.pw); setError(""); }}
-                    style={{ width: "100%", display: "flex", alignItems: "center", gap: "0.625rem", padding: "0.5rem 0.625rem", borderRadius: 8, border: "none", backgroundColor: "transparent", cursor: "pointer", textAlign: "left", marginBottom: "0.25rem", transition: "background .12s" }}
-                    onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#ebe8e2")}
-                    onMouseLeave={e => (e.currentTarget.style.backgroundColor = "transparent")}>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: "0.8125rem", fontWeight: 600, color: "#374151" }}>{a.label}</div>
-                      <div style={{ fontSize: "0.72rem", color: "#9ca3af" }}>{a.email}</div>
-                    </div>
-                    <span style={{ fontSize: "0.7rem", fontWeight: 700, padding: "2px 8px", borderRadius: 9999, backgroundColor: a.bc, color: a.tc, whiteSpace: "nowrap" }}>{a.badge}</span>
-                  </button>
-                ))}
-                <p style={{ fontSize: "0.72rem", color: "#d1d5db", marginTop: "0.375rem" }}>Click to auto-fill · credentials from your .env file</p>
-              </div>
-            );
-          })()}
         </div>
       </div>
       <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>

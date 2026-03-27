@@ -660,6 +660,7 @@ export default function DemoDashboard() {
                 <div style={{ width:28, height:28, borderRadius:"50%", backgroundColor:"rgba(245,158,11,0.2)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"0.7rem", fontWeight:700, color:"#fbbf24" }}>
                   {user.avatarInitials}
                 </div>
+                <button onClick={()=>navigate("/")} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer", marginRight:"0.25rem" }}>← Home</button>
                 <button onClick={()=>{logout();navigate("/login");}} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer" }}>Sign out</button>
               </div>
             )}

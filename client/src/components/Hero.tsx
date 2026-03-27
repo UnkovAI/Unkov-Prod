@@ -21,9 +21,9 @@ export default function Hero() {
               <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#00297a", letterSpacing: "0.06em", textTransform: "uppercase" }}>AI Identity Governance</span>
             </div>
 
-            <h1 style={{ fontSize: "clamp(1.875rem, 3.5vw, 2.875rem)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.035em", color: "#0a0f1e", marginBottom: "1.375rem" }}>
+            <h1 style={{ fontSize: "clamp(2.25rem, 4vw, 3.5rem)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.035em", color: "#0a0f1e", marginBottom: "1.375rem" }}>
               The identity gate between<br />
-              <span style={{ background: "linear-gradient(90deg, #0061d4 0%, #00297a 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>every human, AI agent, and everything they can touch.</span>
+              <span style={{ background: "linear-gradient(90deg, #0061d4 0%, #00297a 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>humans, AI agents, and everything they can touch.</span>
             </h1>
 
             <p style={{ fontSize: "1.0625rem", color: "#3d4759", lineHeight: 1.75, marginBottom: "2.25rem", maxWidth: "30rem" }}>
