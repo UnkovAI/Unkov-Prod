@@ -10,9 +10,10 @@ const SUPABASE_URL  = import.meta.env.VITE_SUPABASE_URL  as string;
 const SUPABASE_ANON = (import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.meta.env.VITE_SUPABASE_ANON_KEY) as string;
 
 if (!SUPABASE_URL || !SUPABASE_ANON) {
-  console.warn(
-    "[Unkov] Supabase env vars not set — auth will use test accounts.\n" +
-    "Set VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY in your .env file."
+  console.error(
+    "[Unkov] CRITICAL: Supabase env vars not set.\n" +
+    "Set VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY in your Vercel project settings.\n" +
+    "Without these, ALL authentication and protected routes will fail."
   );
 }
 

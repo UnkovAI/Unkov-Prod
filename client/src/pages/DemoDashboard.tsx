@@ -655,15 +655,22 @@ export default function DemoDashboard() {
             <button style={{ padding:"0.375rem", backgroundColor:"rgba(255,255,255,0.05)", border:`1px solid ${S.border}`, borderRadius:8, color:S.soft, cursor:"pointer" }}>
               <Bell style={{width:14,height:14}}/>
             </button>
-            {user && (
-              <div style={{ display:"flex", alignItems:"center", gap:"0.5rem" }}>
-                <div style={{ width:28, height:28, borderRadius:"50%", backgroundColor:"rgba(245,158,11,0.2)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"0.7rem", fontWeight:700, color:"#fbbf24" }}>
-                  {user.avatarInitials}
-                </div>
-                <button onClick={()=>navigate("/")} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer", marginRight:"0.25rem" }}>← Home</button>
-                <button onClick={()=>{logout();navigate("/login");}} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer" }}>Sign out</button>
-              </div>
-            )}
+            <div style={{ display:"flex", alignItems:"center", gap:"0.5rem" }}>
+              {user ? (
+                <>
+                  <div style={{ width:28, height:28, borderRadius:"50%", backgroundColor:"rgba(245,158,11,0.2)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"0.7rem", fontWeight:700, color:"#fbbf24" }}>
+                    {user.avatarInitials}
+                  </div>
+                  <button onClick={()=>navigate("/")} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer", marginRight:"0.25rem" }}>← Home</button>
+                  <button onClick={()=>{logout();navigate("/login");}} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer" }}>Sign out</button>
+                </>
+              ) : (
+                <>
+                  <button onClick={()=>navigate("/")} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer" }}>← Home</button>
+                  <button onClick={()=>navigate("/login")} style={{ fontSize:"0.75rem", fontWeight:600, color:"#60a5fa", background:"rgba(0,97,212,0.15)", border:"1px solid rgba(0,97,212,0.35)", borderRadius:8, cursor:"pointer", padding:"0.3rem 0.75rem" }}>Sign in</button>
+                </>
+              )}
+            </div>
           </div>
         </div>
 

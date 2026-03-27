@@ -22,7 +22,7 @@ interface AuthContextType {
   logout: () => void;
   upgradeToProduction: (userId: string) => Promise<void>;
   dashboardPath: string;
-  usingTestAccounts: false; // always false — Supabase is always used
+  usingTestAccounts: boolean; // always false — Supabase is always used
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);

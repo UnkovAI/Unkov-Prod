@@ -127,9 +127,9 @@ export default function Header() {
         <div className="container" style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem" }}>
 
           {/* Logo */}
-          <button onClick={() => go("/")} style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexShrink: 0, background: "none", border: "none", cursor: "pointer", padding: 0 }}>
-            <LogoMark size={32} />
-            <span style={{ fontWeight: 700, fontSize: "1.0625rem", color: "#0a0f1e", letterSpacing: "-0.025em" }}>
+          <button onClick={() => go("/")} style={{ display: "flex", alignItems: "center", gap: "0.625rem", flexShrink: 0, background: "none", border: "none", cursor: "pointer", padding: 0 }}>
+            <LogoMark size={40} />
+            <span style={{ fontWeight: 700, fontSize: "1.25rem", color: "#0a0f1e", letterSpacing: "-0.025em" }}>
               <span style={{ color: "#00c6e0" }}>U</span>nkov
             </span>
           </button>

@@ -46,9 +46,8 @@ export default function SignUp() {
   const [success,    setSuccess]    = useState(false);
 
   // Redirect to login if Supabase isn't configured
-  useEffect(() => {
-    if (!isSupabaseConfigured) navigate("/login");
-  }, []);
+  // No redirect needed — if Supabase is not configured the submit handler
+  // will show an inline error rather than silently bouncing the user away.
 
   const strength = pwStrength(password);
   const pwMatch  = confirm.length > 0 && password === confirm;
