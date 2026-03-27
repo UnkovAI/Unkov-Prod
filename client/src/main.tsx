@@ -1,4 +1,5 @@
 import { createRoot } from "react-dom/client";
+import { Router } from "wouter"; // 1. Add this import
 import App from "./App";
 import "./index.css";
 
@@ -6,4 +7,9 @@ import "./index.css";
 const preLoad = document.getElementById("pre-load");
 if (preLoad) preLoad.style.display = "none";
 
-createRoot(document.getElementById("root")!).render(<App />);
+// 2. Wrap <App /> in <Router>
+createRoot(document.getElementById("root")!).render(
+  <Router>
+    <App />
+  </Router>
+);
