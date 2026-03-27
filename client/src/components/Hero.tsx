@@ -2,7 +2,9 @@ import { useLocation } from "wouter";
 import { ArrowRight, Shield, Zap, Users } from "lucide-react";
 
 export default function Hero() {
-  const [, navigate] = useLocation(); {
+  const [, navigate] = useLocation(); 
+
+  // Removed the extra { that was here
   return (
     <section style={{
       paddingTop: "7rem",
@@ -16,7 +18,7 @@ export default function Hero() {
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "clamp(2rem,4vw,4rem)", alignItems: "center" }} className="grid-hero">
 
-          {/* Left */}
+          {/* Left Content */}
           <div>
             <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.3rem 0.875rem", borderRadius: "9999px", backgroundColor: "#e8f0fe", border: "1px solid #bfcfee", marginBottom: "1.75rem" }}>
               <div style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: "#0061d4" }} />
@@ -33,16 +35,18 @@ export default function Hero() {
             </p>
 
             <div style={{ display: "flex", gap: "0.875rem", flexWrap: "wrap", marginBottom: "3rem" }}>
-              <button onClick={() => navigate = "/early-access"} className="btn-primary"
+              {/* FIXED: Changed navigate = to navigate() */}
+              <button onClick={() => navigate("/early-access")} className="btn-primary"
                 style={{ fontSize: "0.9375rem", padding: "0.8rem 1.875rem" }}>
                 Apply for Pilot <ArrowRight style={{ width: 16, height: 16 }} />
               </button>
-              <button onClick={() => navigate = "/demo/dashboard"}
-                style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.5rem", borderRadius: "9999px", border: "1.5px solid rgba(255,255,255,0.3)", backgroundColor: "rgba(255,255,255,0.08)", color: "#fff", fontWeight: 600, fontSize: "0.9375rem", cursor: "pointer", transition: "all 0.15s", backdropFilter: "blur(4px)" }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(255,255,255,0.16)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.5)"; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(255,255,255,0.08)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.3)"; }}>
+              
+              {/* FIXED: Changed navigate = to navigate() */}
+              <button onClick={() => navigate("/demo/dashboard")}
+                style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.5rem", borderRadius: "9999px", border: "1.5px solid #0061d4", backgroundColor: "#0061d4", color: "#fff", fontWeight: 600, fontSize: "0.9375rem", cursor: "pointer", transition: "all 0.15s" }}>
                 See live demo
               </button>
+
               <button onClick={() => document.getElementById("solution")?.scrollIntoView({ behavior: "smooth" })} className="btn-ghost"
                 style={{ fontSize: "0.9375rem", padding: "0.8rem 1.875rem" }}>
                 See How It Works
@@ -70,7 +74,7 @@ export default function Hero() {
           </div>
 
           {/* Right — dashboard widget */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }} className="hidden md:flex">
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
             <div style={{ backgroundColor: "#ffffff", border: "1px solid #d8dde6", borderRadius: "1.25rem", padding: "1.75rem", boxShadow: "0 20px 60px rgba(0,41,122,0.1), 0 4px 16px rgba(0,0,0,0.04)" }}>
               <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: "1.25rem" }}>
                 <div>
@@ -91,19 +95,6 @@ export default function Hero() {
                 <span style={{ fontSize: "0.6875rem", color: "#d1d5db" }}>Today</span>
               </div>
             </div>
-
-            {[
-              { label: "Ghost bots purged",           val: "12",  color: "#059669", bg: "#d1fae5", border: "#6ee7b7" },
-              { label: "Toxic combinations resolved",  val: "3",   color: "#0061d4", bg: "#e8f0fe", border: "#bfcfee" },
-              { label: "Non-human identities governed",val: "100+", color: "#00297a", bg: "#dbeafe", border: "#93c5fd" },
-            ].map(item => (
-              <div key={item.label} style={{ backgroundColor: "#ffffff", border: "1px solid #e5e7eb", borderRadius: "0.875rem", padding: "0.875rem 1.125rem", display: "flex", alignItems: "center", justifyContent: "space-between", boxShadow: "0 2px 8px rgba(0,0,0,0.04)", transition: "box-shadow 0.2s, transform 0.15s" }}
-                onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.08)"; e.currentTarget.style.transform = "translateY(-1px)"; }}
-                onMouseLeave={e => { e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.04)"; e.currentTarget.style.transform = "none"; }}>
-                <span style={{ fontSize: "0.875rem", color: "#374151", fontWeight: 500 }}>{item.label}</span>
-                <span style={{ fontSize: "0.9375rem", fontWeight: 800, color: item.color, backgroundColor: item.bg, border: `1px solid ${item.border}`, padding: "0.125rem 0.625rem", borderRadius: "0.625rem" }}>{item.val}</span>
-              </div>
-            ))}
           </div>
 
         </div>
