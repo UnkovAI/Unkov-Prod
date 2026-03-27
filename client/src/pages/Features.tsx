@@ -17,7 +17,7 @@ const modules = [
     title: "Identity Gate",
     sub: "The inline authorization layer",
     anchorId: "identity-gate",
-    desc: "Unkov sits inline between every AI agent and everything it can touch. No agent calls an API, accesses data, or triggers a workflow without passing through the gate and presenting a verified identity. No token — no action.",
+    desc: "Every AI agent in your environment passes through Unkov before it can act. No API call, no data access, no workflow trigger without a verified identity. If the agent isn't authorized, the action doesn't happen.",
     caps: [
       "Inline agent interception before every execution",
       "Real-time identity graph — every human, bot, AI agent mapped",
@@ -118,7 +118,7 @@ export default function Features() {
               Every AI agent passes through Unkov before it acts. What happens in between — discovery, analysis, enforcement, and compliance — is the platform.
             </p>
             <button onClick={() => navigate("/early-access")} className="btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-              Become a design partner <ArrowRight style={{ width: 16, height: 16 }} />
+              Apply for early access <ArrowRight style={{ width: 16, height: 16 }} />
             </button>
           </div>
         </section>
@@ -244,10 +244,10 @@ export default function Features() {
               See your real AI agent footprint.
             </h2>
             <p style={{ fontSize: "1rem", color: S, lineHeight: 1.75, marginBottom: "2rem" }}>
-              We're onboarding design partners in BFSI and healthcare. 30-minute deployment, your real environment, defined success metrics from day one.
+              We're onboarding pilot customers in BFSI and healthcare. 30-minute deployment, your real environment, defined success metrics from day one.
             </p>
             <button onClick={() => navigate("/early-access")} className="btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-              Become a design partner <ArrowRight style={{ width: 16, height: 16 }} />
+              Apply for early access <ArrowRight style={{ width: 16, height: 16 }} />
             </button>
           </div>
         </section>

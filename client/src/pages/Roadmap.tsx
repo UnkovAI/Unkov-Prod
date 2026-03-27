@@ -13,8 +13,8 @@ const moats = [
 const items = [
   {
     q: "Now — Q2 2026", phase: "Design Partner Phase", status: "current",
-    title: "Identity gate live — onboarding design partners",
-    desc: "The identity gate is live. Every human and AI agent passes through Unkov before acting. We are now running structured 60-day pilots with BFSI and healthcare design partners. Zero-touch deployment delivers a live identity dashboard in under 30 minutes. Pilot success metrics agreed upfront — no pilot purgatory.",
+    title: "Identity gate live — onboarding pilot customers",
+    desc: "The identity gate is live. Every human and AI agent passes through Unkov before acting. We are now running structured 60-day pilots with BFSI and healthcare organizations. Zero-touch deployment delivers a live identity dashboard in under 30 minutes. Pilot success metrics agreed upfront — no pilot purgatory.",
     features: [
       "Identity gate — inline authorization layer, every agent verified before acting (Moat 1 active)",
       "Identity graph — discovers every human, AI agent, bot, and service account",
@@ -24,7 +24,7 @@ const items = [
       "60-day structured pilot — $7,500 fee credited to Year 1",
       "Pilot success metrics framework — defined before deployment starts",
     ],
-    milestone: "First 3 paying design partners",
+    milestone: "First 3 paying customers",
     cta: { label: "Apply for pilot", href: "/early-access" },
   },
   {
@@ -112,10 +112,10 @@ export default function Roadmap() {
           <div className="container mx-auto px-10" style={{ maxWidth: "900px" }}>
             <span className="section-label" style={{ marginBottom: "1.25rem", display: "inline-block" }}>Roadmap</span>
             <h1 style={{ fontSize: "clamp(2.25rem,5vw,3.25rem)", fontWeight: 600, color: "#111827", letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "1.25rem" }}>
-              From design partner to scale.
+              From pilot to scale.
             </h1>
             <p className="section-sub" style={{ marginBottom: "2rem" }}>
-              Four structural moats — each one making the identity gate harder to displace with every new customer. We are in the design partner phase now. The gate is live.
+              Four structural advantages — each one making the identity gate stronger with every new customer. We are in the pilot phase now. The gate is live.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {moats.map((m) => (
@@ -223,7 +223,7 @@ export default function Roadmap() {
           <div className="container mx-auto px-10" style={{ maxWidth: "760px" }}>
             <div style={{ backgroundColor: "#00297a", borderRadius: "1rem", padding: "clamp(1.75rem,4vw,3rem)", textAlign: "center" }}>
               <h2 style={{ fontSize: "clamp(1.25rem,3vw,1.75rem)", fontWeight: 700, color: "#ffffff", marginBottom: "0.75rem" }}>
-                We're in the design partner phase now.
+                We're in the pilot phase now.
               </h2>
               <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.75, marginBottom: "2rem", maxWidth: "32rem", margin: "0 auto 2rem" }}>
                 60-day pilot. Your real environment. $7,500 — credited to Year 1. If we don't hit the metrics we agreed on, you have no obligation to continue.

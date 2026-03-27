@@ -42,10 +42,10 @@ export default function EarlyAccess() {
           <div className="container mx-auto px-10" style={{ position: "relative", zIndex: 1, maxWidth: "760px", textAlign: "center" }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.3rem 1rem", borderRadius: "9999px", backgroundColor: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.25)", marginBottom: "1.5rem" }}>
               <div style={{ width: 7, height: 7, borderRadius: "50%", backgroundColor: "#6ee7b7" }} />
-              <span style={{ fontSize: "0.8125rem", fontWeight: 600, color: "rgba(255,255,255,0.9)" }}>Now onboarding BFSI & healthcare design partners</span>
+              <span style={{ fontSize: "0.8125rem", fontWeight: 600, color: "rgba(255,255,255,0.9)" }}>Now onboarding BFSI & healthcare pilot customers</span>
             </div>
             <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.25rem)", fontWeight: 700, color: "#ffffff", letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "1.25rem" }}>
-              Become a design partner.<br />Be the first to gate your AI agents.
+              Apply for early access.<br />Be the first to gate your AI agents.
             </h1>
             <p style={{ fontSize: "1.125rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.75, maxWidth: "36rem", margin: "0 auto 2rem" }}>
               We're running structured 60-day pilots with BFSI and healthcare teams. See your full AI agent footprint, your real governance gaps, your actual identity risk — in your real environment, not a sandbox. Pilot fee credited to Year 1.

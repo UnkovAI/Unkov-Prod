@@ -65,7 +65,7 @@ export default function Company() {
               <div className="space-y-5 text-[#3d4759] leading-relaxed" style={{ fontSize: "0.9375rem" }}>
                 <p>Unkov was founded to address a structural gap in enterprise security. Legacy IAM solutions like Okta and SailPoint were built for a world where humans controlled identity governance — defined by flat relational databases and manual approval queues. That world no longer exists.</p>
                 <p>With AI agents proliferating across enterprises at ratios as high as 5.2:1, the traditional human-in-the-loop model breaks down completely. You cannot manually review and approve access for thousands of AI agents. You need autonomous governance — and that's exactly what we built.</p>
-                <p>Unkov is the identity gate between every human, AI agent, and everything they can touch. No agent acts without Unkov's permission — every identity verified, every action authorized, every decision audited. Unlike Okta (human-only, reactive), Entro/Astrix (detection without enforcement), or Zscaler (network-layer, not identity-native), Unkov sits inline as the authorization layer — hardware-rooted identity, cross-sector intelligence, and compliance system of record built in from day one.</p>
+                <p>Unkov is the identity gate between every human, AI agent, and everything they can touch. No agent acts without a verified identity and an explicit authorization. Every decision is logged and audit-ready from day one — so your security, compliance, and IT teams always know what's happening, and regulators get what they need without a fire drill.</p>
                 <p className="text-[#3d4759] italic text-sm border-l-2 border-[#c2d4f8] pl-4">
                   The core Identity Graph engine and Zero-Touch Observation Mode are production-ready, delivering a live Identity Drift dashboard within 30 minutes of deployment.
                 </p>
@@ -179,7 +179,7 @@ export default function Company() {
                 <p className="text-sm text-[#3d4759] leading-relaxed mb-5">Unkov is building what we call Autonomous Identity Orchestration — the intelligence layer between your existing IAM tools and the continuously shifting identity landscape of the agentic enterprise.</p>
                 <div className="space-y-2">
                   {[
-                    ["Today",      "Identity Gate live — design partner pilots running in BFSI and healthcare"],
+                    ["Today",      "Identity Gate live — pilot customers running in BFSI and healthcare"],
                     ["Near-term",  "Bot Reputation Network + Compliance System of Record"],
                     ["Long-term",  "Hardware TPM identity + SEC/HHS System of Record + Patient Data Lineage + Global 2000 standard"],
                   ].map(([y, d]) => (

@@ -5,14 +5,14 @@ const moats = [
   {
     number: "01", color: "#0061d4", bg: "#eff6ff", border: "#bfcfee",
     title: "Inline, not a sidecar",
-    outcome: "Operationally impossible to remove",
-    body: "Every other tool discovers, alerts, or reports. Unkov sits between every AI agent and everything it can touch — inline, at the authorization layer. Once embedded, removing Unkov means your entire AI workforce stops. That's lock-in through architecture, not contracts.",
+    outcome: "Works before problems happen, not after",
+    body: "Most security tools sit on the side — they watch, alert, and report after something happens. Unkov sits between your AI agents and the systems they need access to. Every request is checked in real time, before it goes through. Your security team sees everything. Your agents stay productive. And your compliance team stops running manual reviews.",
   },
   {
     number: "02", color: "#059669", bg: "#f0fdf4", border: "#6ee7b7",
     title: "Network intelligence that compounds",
     outcome: "Gets smarter with every customer",
-    body: "When a threat pattern emerges at one organization, every organization is protected automatically. This cross-sector intelligence is impossible to replicate from scratch. A new entrant with one customer cannot compete with a network of hundreds.",
+    body: "When a threat pattern emerges at one organization, every Unkov customer is protected automatically — no manual update required. The more organizations on the network, the sharper the intelligence gets. A vendor you onboard today already carries the learned patterns from every deployment before yours.",
   },
   {
     number: "03", color: "#7c3aed", bg: "#faf5ff", border: "#c4b5fd",
@@ -43,9 +43,9 @@ export default function WhyUnkov() {
       <div className="container mx-auto px-10">
         <div style={{ maxWidth: "560px", marginBottom: "3rem" }}>
           <span className="section-label">Why Unkov</span>
-          <h2 className="section-heading">Built differently.<br />Positioned to stay.</h2>
+          <h2 className="section-heading">One control point.<br />Every AI agent, every action.</h2>
           <p style={{ fontSize: "1rem", color: "#4b5563", lineHeight: 1.8, marginTop: "0.875rem" }}>
-            The market has discovery tools, alert tools, and policy tools. Unkov is the enforcement layer — the one place every AI agent must pass through before it acts. That is a different architecture, and a different moat.
+            Most security tools discover problems after the fact — they alert, report, and recommend. Unkov is different: it sits before the action, not after. Every AI agent in your environment must pass through Unkov to get access. That means faster response, cleaner audits, and a security posture that keeps up with how your AI teams actually move.
           </p>
         </div>
 
@@ -98,7 +98,7 @@ export default function WhyUnkov() {
             style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", fontSize: "0.9375rem", fontWeight: 600, color: "#00297a", background: "none", border: "none", cursor: "pointer", padding: 0, transition: "opacity 0.15s" }}
             onMouseEnter={e => (e.currentTarget.style.opacity = "0.65")}
             onMouseLeave={e => (e.currentTarget.style.opacity = "1")}>
-            Become a design partner <ArrowRight style={{ width: 15, height: 15 }} />
+            Apply for early access <ArrowRight style={{ width: 15, height: 15 }} />
           </button>
         </div>
       </div>

@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     q: "What stage is Unkov at?",
-    a: "Unkov is pre-revenue and actively onboarding design partners in BFSI and healthcare. The identity gate engine is in active development for Q2 2026 pilot deployments. We are building with our first design partners, not for a theoretical market.",
+    a: "Unkov is actively onboarding pilot customers in BFSI and healthcare. The identity gate engine is in active development for Q2 2026 deployments. We are building with our first customers, not for a theoretical market.",
   },
   {
     q: "Which compliance frameworks does Unkov support?",
@@ -24,7 +24,7 @@ const faqs = [
   },
   {
     q: "How does Unkov handle AI agents and service accounts?",
-    a: "Unkov sits inline between every AI agent and everything it can touch. Every agent is verified before it acts — service accounts, API keys, CI/CD credentials, AI agent tokens all governed with the same rigor as human identities. Anomalous behavior triggers automated revocation instantly, no ticket required.",
+    a: "Every AI agent in your environment passes through Unkov before it can act. Service accounts, API keys, CI/CD credentials, and AI agent tokens are all governed with the same rigor as human identities. If something looks wrong, Unkov revokes access automatically — no ticket, no delay.",
   },
 ];
 

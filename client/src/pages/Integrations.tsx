@@ -898,7 +898,7 @@ export default function Integrations() {
               Missing an integration?
             </h2>
             <p style={{ fontSize: "1rem", color: "#4a5568", lineHeight: 1.75, marginBottom: "2rem" }}>
-              If you're a design partner, tell us which system you need first. The roadmap is shaped by real customer environments.
+              If you're a pilot customer, tell us which system you need first. The roadmap is shaped by real customer environments.
             </p>
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <button onClick={() => navigate("/early-access")}

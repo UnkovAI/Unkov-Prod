@@ -11,7 +11,7 @@ import { LogoMark } from "./LogoMark";
 
 const nav = [
   {
-    label: "Product",
+    label: "Features",
     wide: false,
     sections: [
       {
@@ -40,12 +40,12 @@ const nav = [
         ],
       },
       {
-        heading: "By Use Case",
+        heading: "By Team",
         items: [
-          { icon: Bot,       label: "AI Agent Governance", desc: "Built for 5:1+ NHI-to-human environments", href: "/features", tag: null },
-          { icon: Building2, label: "Mid-Market IT Teams", desc: "Cut 120+ hrs/quarter of manual review",     href: "/features", tag: null },
+          { icon: Bot,       label: "Security & IT Teams",  desc: "Full visibility into every AI agent action",     href: "/features", tag: null },
+          { icon: Building2, label: "Compliance Officers",  desc: "One-click audit exports for SEC, HHS, PCI DSS", href: "/features", tag: null },
         ],
-        cta: { label: "How it works", href: "/features" },
+        cta: { label: "See all features", href: "/features" },
       },
     ],
   },
@@ -67,7 +67,7 @@ const nav = [
         items: [
           { icon: Users,    label: "About Us",      desc: "Mission, values, and the team",                href: "/company",        tag: null   },
           { icon: Gauge,    label: "For Investors", desc: "Pitch deck, data room, roadmap",               href: "/investor-gate",  tag: null   },
-          { icon: Activity, label: "Live Demo",     desc: "Pilot-mode dashboard — real data format",      href: "/demo/dashboard", tag: "Demo" },
+          { icon: Activity, label: "Live Demo",     desc: "Pilot-mode dashboard — real data format",      href: "/login",          tag: "Demo" },
         ],
         cta: { label: "Apply for pilot", href: "/early-access" },
       },
@@ -75,7 +75,7 @@ const nav = [
   },
 ];
 
-const NAV_H = 60;
+const NAV_H = 72;
 
 export default function Header() {
   const [mobileOpen,  setMobileOpen]  = useState(false);
@@ -314,7 +314,7 @@ export default function Header() {
               </div>
             ))}
             <div style={{ paddingTop: "1.5rem", display: "flex", flexDirection: "column", gap: "0.625rem" }}>
-              <button onClick={() => go("/demo/dashboard")} style={{ width: "100%", textAlign: "center", fontSize: "0.9375rem", fontWeight: 500, color: "#0061d4", border: "1px solid #c0d7f5", backgroundColor: "transparent", cursor: "pointer", padding: "0.75rem", borderRadius: "9999px" }}>Live demo</button>
+              <button onClick={() => go("/login")} style={{ width: "100%", textAlign: "center", fontSize: "0.9375rem", fontWeight: 500, color: "#0061d4", border: "1px solid #c0d7f5", backgroundColor: "transparent", cursor: "pointer", padding: "0.75rem", borderRadius: "9999px" }}>Live demo</button>
               <button onClick={() => go(user ? dashboardPath : "/login")} style={{ width: "100%", textAlign: "center", fontSize: "0.9375rem", fontWeight: 500, color: "#4a4a5e", border: "1px solid #d8d3cc", backgroundColor: "transparent", cursor: "pointer", padding: "0.75rem", borderRadius: "9999px" }}>{user ? "Open dashboard" : "Log in"}</button>
               <button onClick={() => go("/early-access")} style={{ width: "100%", textAlign: "center", fontSize: "0.9375rem", fontWeight: 600, color: "#ffffff", border: "none", backgroundColor: "#00297a", cursor: "pointer", padding: "0.75rem", borderRadius: "9999px" }}>Apply for pilot</button>
             </div>

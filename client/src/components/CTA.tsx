@@ -10,14 +10,14 @@ export default function CTA() {
       <div className="container" style={{ position: "relative", zIndex: 1, textAlign: "center" }}>
         <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.3rem 1rem", borderRadius: "9999px", backgroundColor: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.18)", marginBottom: "1.5rem" }}>
           <div style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: "#6ee7b7" }} />
-          <span style={{ fontSize: "0.8125rem", fontWeight: 600, color: "rgba(255,255,255,0.9)", letterSpacing: "0.03em" }}>Now onboarding design partners in BFSI & healthcare</span>
+          <span style={{ fontSize: "0.8125rem", fontWeight: 600, color: "rgba(255,255,255,0.9)", letterSpacing: "0.03em" }}>Now onboarding pilot customers in BFSI & healthcare</span>
         </div>
 
         <h2 style={{ fontSize: "clamp(1.875rem, 4vw, 2.875rem)", fontWeight: 700, color: "#ffffff", letterSpacing: "-0.035em", marginBottom: "1rem", lineHeight: 1.1 }}>
           Nothing touches your data<br />without passing through Unkov.
         </h2>
         <p style={{ fontSize: "1.0625rem", color: "rgba(255,255,255,0.7)", marginBottom: "2.5rem", maxWidth: "34rem", marginLeft: "auto", marginRight: "auto", lineHeight: 1.75 }}>
-          See your real AI agent footprint in 30 minutes. Defined success metrics from day one — no pilot purgatory. We're currently onboarding BFSI and healthcare design partners.
+          See your real AI agent footprint in 30 minutes. Defined success metrics from day one — no pilot purgatory. We're currently onboarding BFSI and healthcare organizations.
         </p>
 
         <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>

@@ -93,8 +93,14 @@ function Router() {
         )}
       </Route>
 
-      {/* ── Demo dashboard — publicly accessible ────────────── */}
-      <Route path="/demo/dashboard" component={DemoDashboard} />
+      {/* ── Protected: Pilot customers + admin ─────────────── */}
+      <Route path="/demo/dashboard">
+        {() => (
+          <ProtectedRoute requiredRole="pilot_customer">
+            <DemoDashboard />
+          </ProtectedRoute>
+        )}
+      </Route>
       {/* ── Legacy redirects ───────────────────────────────── */}
       <Route path="/demo">
         {() => <Redirect to="/login" />}

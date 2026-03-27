@@ -28,7 +28,7 @@ export default function Contact() {
               Get in touch.
             </h1>
             <p style={{ fontSize: "1.125rem", color: "#6b7280", lineHeight: 1.75, maxWidth: "36rem" }}>
-              Whether you're evaluating the identity gate for your BFSI or healthcare environment, want to explore a design partnership, or just have questions — we respond within one business day.
+              Whether you're evaluating Unkov for your BFSI or healthcare environment, want to start a pilot, or just have questions — we respond within one business day.
             </p>
           </div>
         </section>
@@ -121,7 +121,7 @@ export default function Contact() {
                 <div style={{ backgroundColor: "#f0ece6", borderRadius: "1rem", padding: "1.5rem", border: "1px solid #dcd6ce" }}>
                   <div style={{ fontSize: "0.875rem", fontWeight: 700, color: "#111827", marginBottom: "0.5rem" }}>Design partner program</div>
                   <p style={{ fontSize: "0.875rem", color: "#4a5568", lineHeight: 1.7, marginBottom: "1rem" }}>
-                    We're currently onboarding BFSI and healthcare organizations as design partners. 30-minute deployment, your real environment, defined success metrics from day one.
+                    We're currently onboarding BFSI and healthcare organizations as pilot customers. 30-minute deployment, your real environment, defined success metrics from day one.
                   </p>
                   <a href="/early-access" style={{ fontSize: "0.875rem", fontWeight: 600, color: "#00297a", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.375rem" }}>
                     Apply for pilot <ArrowRight style={{ width: 13, height: 13 }} />

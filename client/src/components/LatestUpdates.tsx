@@ -1,7 +1,7 @@
 import { useLocation } from 'wouter';
 const updates = [
   { date: 'Mar 2026', tag: 'Status', title: 'Now Onboarding Design Partners', desc: 'We are actively working with BFSI and healthcare organizations on structured pilots. If you are evaluating AI agent governance, we want to talk.' },
-  { date: 'Q1 2026', tag: 'Building', title: 'Identity Gate Engine in Development', desc: 'The core inline authorization layer is in active development. Pilot deployments start in Q2 2026 with design partners.' },
+  { date: 'Q1 2026', tag: 'Building', title: 'Identity Gate Engine in Development', desc: 'The core authorization layer is in active development. Pilot deployments start in Q2 2026 with our first customers.' },
   { date: 'Q2 2026', tag: 'Roadmap', title: 'Cross-Sector Intelligence Coming', desc: 'The network effect moat — anonymized threat intelligence shared across all customers — is on the roadmap for H2 2026.' },
 ];
 export default function LatestUpdates() {

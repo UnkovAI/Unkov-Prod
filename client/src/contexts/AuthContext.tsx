@@ -96,19 +96,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       .eq("id", authId)
       .maybeSingle();
 
-    // ✅ FALLBACK USER (CRITICAL FIX)
     if (error || !data) {
-      console.warn("[Unkov] Using fallback user");
-
-      setUser({
-        id: authId,
-        email: "user@unkov.com",
-        name: "User",
-        company: "",
-        role: "admin", // 🔥 full access
-        avatarInitials: "U",
-      });
-
+      console.error("[Unkov] Failed to load user profile:", error?.message ?? "no profile row found");
       return;
     }
 
