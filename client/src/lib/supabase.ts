@@ -56,3 +56,47 @@ export const supabase = SUPABASE_URL && SUPABASE_ANON
   : null;
 
 export const isSupabaseConfigured = !!supabase;
+
+// Function to generate a new token
+export const createInvestorToken = async (name: string, email: string, hours: number = 24) => {
+  if (!supabase) throw new Error("Supabase is not configured");
+  
+  const { data, error } = await supabase.rpc('create_investor_token', {
+    p_name: name,
+    p_email: email,
+    p_hours_valid: hours
+  });
+  if (error) throw error;
+  return data; 
+};
+
+// Function to revoke tokens
+export const revokeInvestorToken = async (email: string) => {
+  if (!supabase) throw new Error("Supabase is not configured");
+
+  const { data, error } = await supabase.rpc('revoke_investor_token', {
+    p_email: email
+  });
+  if (error) throw error;
+  return data; 
+};
+export const validateInvestorToken = async (email: string, token: string) => {
+  if (!supabase) throw new Error("Supabase not configured");
+  const { data, error } = await supabase.rpc('validate_investor_token', {
+    p_email: email,
+    p_token: token
+  });
+  if (error) throw error;
+  return data as boolean; // returns true if valid, false if not
+};
+
+export const getRecentInvestorTokens = async () => {
+  if (!supabase) throw new Error("Supabase not configured");
+  const { data, error } = await supabase
+    .from('active_investor_tokens') // Using the view we created in Migration 2
+    .select('*')
+    .limit(5);
+  
+  if (error) throw error;
+  return data;
+};

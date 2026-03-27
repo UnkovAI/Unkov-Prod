@@ -61,8 +61,11 @@ BEGIN
     NEW.email,
     COALESCE(NEW.raw_user_meta_data->>'name', split_part(NEW.email, '@', 1)),
     COALESCE(NEW.raw_user_meta_data->>'role', 'pilot_customer'),
-    UPPER(LEFT(COALESCE(NEW.raw_user_meta_data->>'name', NEW.email), 1) ||
-          COALESCE(SPLIT_PART(NEW.raw_user_meta_data->>'name', ' ', 2), '')[1]),
+    -- Corrected initials logic:
+    UPPER(
+      LEFT(COALESCE(NEW.raw_user_meta_data->>'name', NEW.email), 1) ||
+      LEFT(COALESCE(SPLIT_PART(NEW.raw_user_meta_data->>'name', ' ', 2), ''), 1)
+    ),
     now()
   )
   ON CONFLICT (id) DO NOTHING;

@@ -41,3 +41,7 @@ export default function PitchDeck() {
     </div>
   );
 }
+useEffect(() => {
+  const hasAccess = sessionStorage.getItem("investor_access");
+  if (!hasAccess) navigate("/investor-gate");
+}, []);
