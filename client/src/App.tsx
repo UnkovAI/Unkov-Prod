@@ -94,11 +94,7 @@ function Router() {
       </Route>
 
       {/* ── Demo dashboard — publicly accessible ────────────── */}
-      <Route path="/demo/dashboard">
-        <ProtectedRoute>
-          <DemoDashboard />
-        </ProtectedRoute>
-      </Route>
+      <Route path="/demo/dashboard" component={DemoDashboard} />
       {/* ── Legacy redirects ───────────────────────────────── */}
       <Route path="/demo">
         {() => <Redirect to="/login" />}
