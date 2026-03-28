@@ -32,7 +32,7 @@ export default function Hero() {
             </h1>
 
             <p style={{ fontSize: "1.0625rem", color: "#3d4759", lineHeight: 1.75, marginBottom: "2.25rem", maxWidth: "30rem" }}>
-              Before any AI agent calls an API, reads a record, or triggers a workflow — Unkov checks it. Real-time authorization, cryptographic identity, and a complete audit trail. Built for organizations running AI at scale.
+              Before any AI agent acts, Unkov verifies it for you — authorizing every request in real time and logging it automatically so you stay in control of every identity at scale.
             </p>
 
             <div style={{ display: "flex", gap: "0.875rem", flexWrap: "wrap", marginBottom: "3rem" }}>

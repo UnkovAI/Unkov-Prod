@@ -133,13 +133,13 @@ export default function Features() {
               ))}
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "clamp(1rem,2.5vw,2.5rem)", alignItems: "start" }}>
-              {/* Nav */}
+              {/* Nav — each button has the module's anchorId so hash links land here */}
               <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
                 {modules.map((m, i) => {
                   const MIcon = m.icon;
                   const isActive = i === active;
                   return (
-                    <button key={i} onClick={() => { setActive(i); setPaused(true); }}
+                    <button key={i} id={m.anchorId} onClick={() => { setActive(i); setPaused(true); }}
                       style={{ textAlign: "left", padding: "1rem 1.25rem", borderRadius: "0.75rem", border: "1px solid", borderColor: isActive ? "#0061d440" : "transparent", backgroundColor: isActive ? W : "transparent", cursor: "pointer", transition: "all 0.2s", display: "flex", alignItems: "center", gap: "1rem" }}>
                       <div style={{ width: 36, height: 36, borderRadius: "0.875rem", backgroundColor: isActive ? A : "#e8e4de", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "background-color 0.2s" }}>
                         <MIcon style={{ width: 16, height: 16, color: isActive ? W : "#6b7280" }} />

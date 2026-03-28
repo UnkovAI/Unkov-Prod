@@ -47,6 +47,14 @@ const DEMO_ACCESS = [
   { id:"bot: report-gen",type:"bot",     res:"HR System",        risk:"high",   status:"blocked",       peers:"0/31",  conf:99, reason:"Zero peer precedent. Toxic combination: Ops→HR cross-dept access." },
 ];
 
+// ─── Computed constants from demo data ───────────────────────────
+const kTotal    = DEMO_IDENTITIES.length + 37; // 10 visible + 37 discovered by scanner
+const kOrphans  = 47;  // ghost bots with Admin scope (from scan event)
+const kAIAgents = DEMO_IDENTITIES.filter(d => d.type === "ai_agent" && d.status === "flagged").length;
+const kToxic    = 1;   // toxic combination detected
+const kRatio    = "5:1"; // NHI-to-human ratio in demo environment
+const activeIds = DEMO_IDENTITIES;
+
 // ─── Shared helpers ───────────────────────────────────────────────
 function dlCSV(name: string, rows: Record<string,unknown>[]) {
   if (!rows.length) return;
@@ -235,7 +243,7 @@ function DiscoverView({ events }: { events: typeof DEMO_EVENTS }) {
                       <span style={{ fontWeight:700, color:id.risk>=70?"#ef4444":id.risk>=40?"#f59e0b":"#34d399" }}>{id.risk}</span>
                     </div>
                   </td>
-                  <td style={{ padding:"0.75rem 0.875rem", color:S.muted }}>{id.permissions.length} rights</td>
+                  <td style={{ padding:"0.75rem 0.875rem", color:S.muted }}>{id.accessCount} rights</td>
                   <td style={{ padding:"0.75rem 0.875rem", color:id.lastActive.includes("d ago")?"#ef4444":S.soft, fontWeight:id.lastActive.includes("d ago")?700:400 }}>{id.lastActive}</td>
                   <td style={{ padding:"0.75rem 0.875rem" }}>
                     <Badge color={id.status==="active"?"#34d399":id.status==="orphan"?"#ef4444":"#f59e0b"}>{id.status}</Badge>
