@@ -64,7 +64,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    // Load existing session — with 8s timeout so loading never hangs forever
+    // Load existing session — 8s timeout so loading never hangs forever
     const sessionTimeout = setTimeout(() => setLoading(false), 8000);
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       clearTimeout(sessionTimeout);

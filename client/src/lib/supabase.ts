@@ -52,9 +52,7 @@ export const supabase = SUPABASE_URL && SUPABASE_ANON
         persistSession: true,
         autoRefreshToken: true,
         detectSessionInUrl: true,
-        // Disable the Web Lock API to prevent "lock stolen" crashes.
-        // This bug occurs when multiple requests race to refresh the token.
-        // Without locks the client falls back to localStorage directly — safe for SPA use.
+        // Bypass Web Lock API — prevents "lock stolen" crash on concurrent requests
         lock: async (_name: string, _acquireTimeout: number, fn: () => Promise<unknown>) => fn(),
       },
     })

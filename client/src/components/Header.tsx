@@ -144,7 +144,7 @@ export default function Header() {
                   style={{
                     display: "flex", alignItems: "center", gap: "0.25rem",
                     padding: "0.4rem 0.75rem",
-                    fontSize: "0.875rem", fontWeight: activeGroup === group.label ? 600 : 450,
+                    fontSize: "0.9375rem", fontWeight: activeGroup === group.label ? 600 : 500,
                     color: activeGroup === group.label ? "#00297a" : "#3d3d52",
                     backgroundColor: activeGroup === group.label ? "#eeeae4" : "transparent",
                     borderRadius: "0.5rem", border: "none", cursor: "pointer",
@@ -166,7 +166,7 @@ export default function Header() {
             {/* Direct links */}
             {[{ label: "Pricing", href: "/pricing" }, { label: "Integrations", href: "/integrations" }].map(link => (
               <button key={link.label} onClick={() => go(link.href)}
-                style={{ padding: "0.4rem 0.75rem", fontSize: "0.8125rem", fontWeight: 450, color: "#3d3d52", backgroundColor: "transparent", borderRadius: "0.5rem", border: "none", cursor: "pointer", whiteSpace: "nowrap", transition: "color 0.12s, background-color 0.12s", letterSpacing: "-0.01em" }}
+                style={{ padding: "0.4rem 0.75rem", fontSize: "0.9375rem", fontWeight: 500, color: "#3d3d52", backgroundColor: "transparent", borderRadius: "0.5rem", border: "none", cursor: "pointer", whiteSpace: "nowrap", transition: "color 0.12s, background-color 0.12s", letterSpacing: "-0.01em" }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#00297a"; el.style.backgroundColor = "#eeeae4"; el.style.fontWeight = "600"; }}
                 onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#3d3d52"; el.style.backgroundColor = "transparent"; el.style.fontWeight = "450"; }}>
                 {link.label}

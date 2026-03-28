@@ -4,22 +4,20 @@ import { useAuth } from "@/contexts/AuthContext";
 import { LogoMark } from "@/components/LogoMark";
 import { Eye, EyeOff, ArrowRight, AlertCircle, Zap, Shield } from "lucide-react";
 
-// ── Shared input style ────────────────────────────────────────────
-const inp = (focused: boolean): React.CSSProperties => ({
+const INP: React.CSSProperties = {
   width: "100%", padding: "0.75rem 1rem", fontSize: "0.9375rem",
-  border: `1px solid ${focused ? "#0061d4" : "#dcd6ce"}`, borderRadius: "0.75rem",
+  border: "1px solid #dcd6ce", borderRadius: "0.75rem",
   backgroundColor: "#fafafa", color: "#1d1d1f", outline: "none",
   transition: "border-color .15s", boxSizing: "border-box",
-});
+};
 
-// ── Login form (shared between both panels) ───────────────────────
-function LoginForm({ mode }: { mode: "pilot" | "production" }) {
-  const { login, user, dashboardPath, loading } = useAuth();
+function LoginForm({ accent }: { accent: string }) {
+  const { login } = useAuth();
   const [, navigate] = useLocation();
+  const { user, dashboardPath, loading } = useAuth();
   const [email, setEmail]       = useState("");
   const [password, setPassword] = useState("");
   const [showPw, setShowPw]     = useState(false);
-  const [focusedField, setFocused] = useState<"email" | "pw" | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError]       = useState("");
 
@@ -39,7 +37,7 @@ function LoginForm({ mode }: { mode: "pilot" | "production" }) {
     setSubmitting(true);
     const result = await login(email, password);
     setSubmitting(false);
-    if (!result.ok) setError(result.error || "Login failed.");
+    if (!result.ok) setError(result.error || "Login failed. Check your email and password.");
   };
 
   const handleForgotPassword = async () => {
@@ -53,21 +51,16 @@ function LoginForm({ mode }: { mode: "pilot" | "production" }) {
     alert(`Password reset email sent to ${email}. Check your inbox.`);
   };
 
-  const accent = mode === "pilot" ? "#0061d4" : "#00297a";
-
   return (
     <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
       <div>
         <label style={{ display: "block", fontSize: "0.875rem", fontWeight: 600, color: "#374151", marginBottom: "0.375rem" }}>
           Email address
         </label>
-        <input
-          type="email" value={email} onChange={e => setEmail(e.target.value)}
-          placeholder="you@yourcompany.com" autoComplete="email" required
-          style={inp(focusedField === "email")}
-          onFocus={() => setFocused("email")}
-          onBlur={() => setFocused(null)}
-        />
+        <input type="email" value={email} onChange={e => setEmail(e.target.value)}
+          placeholder="you@yourcompany.com" autoComplete="email" required style={INP}
+          onFocus={e => (e.currentTarget.style.borderColor = accent)}
+          onBlur={e  => (e.currentTarget.style.borderColor = "#dcd6ce")} />
       </div>
 
       <div>
@@ -79,14 +72,12 @@ function LoginForm({ mode }: { mode: "pilot" | "production" }) {
           </button>
         </div>
         <div style={{ position: "relative" }}>
-          <input
-            type={showPw ? "text" : "password"} value={password}
+          <input type={showPw ? "text" : "password"} value={password}
             onChange={e => setPassword(e.target.value)}
             placeholder="••••••••" autoComplete="current-password" required
-            style={{ ...inp(focusedField === "pw"), paddingRight: "2.75rem" }}
-            onFocus={() => setFocused("pw")}
-            onBlur={() => setFocused(null)}
-          />
+            style={{ ...INP, paddingRight: "2.75rem" }}
+            onFocus={e => (e.currentTarget.style.borderColor = accent)}
+            onBlur={e  => (e.currentTarget.style.borderColor = "#dcd6ce")} />
           <button type="button" onClick={() => setShowPw(v => !v)}
             style={{ position: "absolute", right: "0.875rem", top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "#9ca3af", padding: 0 }}>
             {showPw ? <EyeOff style={{ width: 16, height: 16 }} /> : <Eye style={{ width: 16, height: 16 }} />}
@@ -110,7 +101,7 @@ function LoginForm({ mode }: { mode: "pilot" | "production" }) {
           cursor: (submitting || !email || !password) ? "not-allowed" : "pointer",
           transition: "background .15s",
         }}
-        onMouseEnter={e => { if (!submitting && email && password) (e.currentTarget as HTMLElement).style.backgroundColor = "#00195a"; }}
+        onMouseEnter={e => { if (!submitting && email && password) (e.currentTarget as HTMLElement).style.backgroundColor = "#001060"; }}
         onMouseLeave={e => { if (!submitting && email && password) (e.currentTarget as HTMLElement).style.backgroundColor = accent; }}>
         {submitting ? (
           <>
@@ -125,7 +116,6 @@ function LoginForm({ mode }: { mode: "pilot" | "production" }) {
   );
 }
 
-// ── Main login page ────────────────────────────────────────────────
 export default function Login() {
   const { loading } = useAuth();
   const [, navigate] = useLocation();
@@ -140,6 +130,13 @@ export default function Login() {
     );
   }
 
+  const accent = mode === "pilot" ? "#0061d4" : "#00297a";
+
+  const panels = [
+    { id: "pilot"      as const, label: "Pilot access",     icon: Zap,    desc: "30-day structured pilot" },
+    { id: "production" as const, label: "Production access", icon: Shield, desc: "Full platform account"   },
+  ];
+
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#faf9f7", display: "flex", flexDirection: "column" }}>
       {/* Top bar */}
@@ -150,41 +147,32 @@ export default function Login() {
             <span style={{ color: "#00c6e0" }}>U</span>nkov
           </span>
         </button>
-        <button onClick={() => navigate("/")}
-          style={{ fontSize: "0.8125rem", fontWeight: 500, color: "#6b7280", background: "none", border: "none", cursor: "pointer" }}>
+        <button onClick={() => navigate("/")} style={{ fontSize: "0.8125rem", fontWeight: 500, color: "#6b7280", background: "none", border: "none", cursor: "pointer" }}>
           ← Back to home
         </button>
       </div>
 
-      {/* Main */}
       <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem 1rem" }}>
         <div style={{ width: "100%", maxWidth: 460 }}>
 
           {/* Mode toggle */}
-          <div style={{ display: "flex", gap: "0.75rem", marginBottom: "1.75rem" }}>
-            {([
-              { id: "pilot",      label: "Pilot access",      icon: Zap,    desc: "30-day structured pilot" },
-              { id: "production", label: "Production access",  icon: Shield, desc: "Full platform account" },
-            ] as const).map(({ id, label, icon: Icon, desc }) => {
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem", marginBottom: "1.75rem" }}>
+            {panels.map(({ id, label, icon: Icon, desc }) => {
               const active = mode === id;
+              const col = id === "pilot" ? "#0061d4" : "#00297a";
               return (
-                <button key={id} onClick={() => setMode(id)}
-                  style={{
-                    flex: 1, display: "flex", flexDirection: "column", alignItems: "flex-start",
-                    gap: "0.25rem", padding: "1rem 1.125rem", borderRadius: "0.875rem",
-                    border: `1.5px solid ${active ? (id === "pilot" ? "#0061d4" : "#00297a") : "#dcd6ce"}`,
-                    backgroundColor: active ? (id === "pilot" ? "#eff6ff" : "#f0f4ff") : "#fff",
-                    cursor: "pointer", transition: "all 0.15s", textAlign: "left",
-                  }}>
+                <button key={id} onClick={() => setMode(id)} style={{
+                  display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "0.25rem",
+                  padding: "1rem 1.125rem", borderRadius: "0.875rem", cursor: "pointer", textAlign: "left",
+                  border: `1.5px solid ${active ? col : "#dcd6ce"}`,
+                  backgroundColor: active ? (id === "pilot" ? "#eff6ff" : "#eef0ff") : "#fff",
+                  transition: "all 0.15s",
+                }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "0.375rem" }}>
-                    <Icon style={{ width: 14, height: 14, color: active ? (id === "pilot" ? "#0061d4" : "#00297a") : "#9ca3af" }} />
-                    <span style={{ fontSize: "0.875rem", fontWeight: 700, color: active ? (id === "pilot" ? "#0061d4" : "#00297a") : "#374151" }}>
-                      {label}
-                    </span>
+                    <Icon style={{ width: 14, height: 14, color: active ? col : "#9ca3af" }} />
+                    <span style={{ fontSize: "0.875rem", fontWeight: 700, color: active ? col : "#374151" }}>{label}</span>
                   </div>
-                  <span style={{ fontSize: "0.75rem", color: active ? (id === "pilot" ? "#3b82f6" : "#4b5dc8") : "#9ca3af" }}>
-                    {desc}
-                  </span>
+                  <span style={{ fontSize: "0.75rem", color: active ? col : "#9ca3af", opacity: active ? 0.75 : 1 }}>{desc}</span>
                 </button>
               );
             })}
@@ -203,22 +191,20 @@ export default function Login() {
               </p>
             </div>
 
-            <LoginForm mode={mode} />
+            <LoginForm accent={accent} />
 
-            <div style={{ marginTop: "1.5rem", paddingTop: "1.5rem", borderTop: "1px solid #f3f4f6" }}>
+            <div style={{ marginTop: "1.5rem", paddingTop: "1.5rem", borderTop: "1px solid #f3f4f6", textAlign: "center" }}>
               {mode === "pilot" ? (
-                <p style={{ textAlign: "center", fontSize: "0.875rem", color: "#6b7280" }}>
+                <p style={{ fontSize: "0.875rem", color: "#6b7280" }}>
                   Not in the pilot yet?{" "}
-                  <button onClick={() => navigate("/early-access")}
-                    style={{ color: "#0061d4", fontWeight: 600, background: "none", border: "none", cursor: "pointer" }}>
+                  <button onClick={() => navigate("/early-access")} style={{ color: "#0061d4", fontWeight: 600, background: "none", border: "none", cursor: "pointer" }}>
                     Apply for access →
                   </button>
                 </p>
               ) : (
-                <p style={{ textAlign: "center", fontSize: "0.875rem", color: "#6b7280" }}>
+                <p style={{ fontSize: "0.875rem", color: "#6b7280" }}>
                   Need help?{" "}
-                  <button onClick={() => navigate("/contact")}
-                    style={{ color: "#00297a", fontWeight: 600, background: "none", border: "none", cursor: "pointer" }}>
+                  <button onClick={() => navigate("/contact")} style={{ color: "#00297a", fontWeight: 600, background: "none", border: "none", cursor: "pointer" }}>
                     Contact support →
                   </button>
                 </p>
