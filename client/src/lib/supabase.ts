@@ -52,7 +52,7 @@ export const supabase = SUPABASE_URL && SUPABASE_ANON
         persistSession: true,
         autoRefreshToken: true,
         detectSessionInUrl: true,
-        // Bypass Web Lock API — prevents "lock stolen" crash on concurrent requests
+        // Bypass Web Lock API — prevents "lock stolen by another request" crash
         lock: async (_name: string, _acquireTimeout: number, fn: () => Promise<unknown>) => fn(),
       },
     })

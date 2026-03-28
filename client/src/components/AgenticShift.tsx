@@ -15,7 +15,7 @@ export default function AgenticShift() {
             The identity gate your<br />AI agents cannot bypass.
           </h2>
           <p style={{ fontSize: "1.0625rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.8, maxWidth: "480px", margin: "0 auto 3.5rem" }}>
-            Unkov sits between your AI agents and everything they can touch. Before a request executes, Unkov verifies the identity, checks the authorization, and writes the log. No configuration required from your security team — it's automatic from the moment you connect.
+            Every AI agent in your environment passes through Unkov before it can act. No action without a verified identity. No resource access without an explicit, real-time authorization. Every decision is logged automatically — becoming your compliance system of record as a byproduct of normal operation.
           </p>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", backgroundColor: "rgba(255,255,255,0.1)", borderRadius: "1rem", overflow: "hidden" }}>
