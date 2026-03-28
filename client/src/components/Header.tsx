@@ -42,8 +42,8 @@ const nav = [
       {
         heading: "By Team",
         items: [
-          { icon: Bot,       label: "Security & IT Teams",  desc: "Full visibility into every AI agent action",     href: "/features", tag: null },
-          { icon: Building2, label: "Compliance Officers",  desc: "One-click audit exports for SEC, HHS, PCI DSS", href: "/features", tag: null },
+          { icon: Bot,       label: "Security & IT Teams",  desc: "Full visibility into every AI agent action",     href: "/features#identity-gate",  tag: null },
+          { icon: Building2, label: "Compliance Officers",  desc: "One-click audit exports for SEC, HHS, PCI DSS", href: "/features#compliance",      tag: null },
         ],
         cta: { label: "See all features", href: "/features" },
       },

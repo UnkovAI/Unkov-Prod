@@ -13,7 +13,7 @@ export default function ProtectedRoute({ children, requiredRole }: Props) {
   const { user, loading, dashboardPath } = useAuth();
   const [, navigate] = useLocation();
 
-  // Supabase not configured — redirect to login which will show the error
+  // Supabase not configured — send to login; it will surface the error
   if (!isSupabaseConfigured) return <SafeRedirect to="/login" navigate={navigate} />;
 
   // ── Session still resolving — show spinner, never redirect yet ──

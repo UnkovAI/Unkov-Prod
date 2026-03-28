@@ -64,10 +64,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    // Load existing session — 8s timeout prevents infinite loading spinner
-    const sessionTimeout = setTimeout(() => { setLoading(false); }, 8000);
+    // 8s timeout — loading never hangs if Supabase is slow or misconfigured
+    const _t = setTimeout(() => setLoading(false), 8000);
     supabase.auth.getSession().then(async ({ data: { session } }) => {
-      clearTimeout(sessionTimeout);
+      clearTimeout(_t);
       if (session?.user) {
         await loadUserProfile(session.user.id);
       }

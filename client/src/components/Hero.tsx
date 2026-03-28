@@ -1,4 +1,4 @@
-import { ArrowRight, Shield, Zap, Users } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useLocation } from "wouter";
 
 export default function Hero() {
@@ -32,7 +32,7 @@ export default function Hero() {
             </h1>
 
             <p style={{ fontSize: "1.0625rem", color: "#3d4759", lineHeight: 1.75, marginBottom: "2.25rem", maxWidth: "30rem" }}>
-              Unkov is the identity gate. It sits inline between every AI agent and everything it can touch — authorizing each action at machine speed, before it executes. Purpose-built for enterprises where agents outnumber humans 100:1.
+              Before any AI agent calls an API, reads a record, or triggers a workflow — Unkov checks it. Real-time authorization, cryptographic identity, and a complete audit trail. Built for organizations running AI at scale.
             </p>
 
             <div style={{ display: "flex", gap: "0.875rem", flexWrap: "wrap", marginBottom: "3rem" }}>
@@ -48,24 +48,7 @@ export default function Hero() {
               </button>
             </div>
 
-            {/* Trust strip */}
-            <div style={{ display: "flex", alignItems: "center", gap: "1.75rem", paddingTop: "1.75rem", borderTop: "1px solid #d8dde6", flexWrap: "wrap" }}>
-              {[
-                { icon: Zap,    label: "< 30 min",  sub: "Time to first live dashboard" },
-                { icon: Shield, label: "100:1",      sub: "Agents to humans at most enterprises" },
-                { icon: Users,  label: "16 min",     sub: "Avg. time to compromise AI system" },
-              ].map(({ icon: Icon, label, sub }) => (
-                <div key={sub} style={{ display: "flex", alignItems: "center", gap: "0.625rem" }}>
-                  <div style={{ width: 32, height: 32, borderRadius: "0.625rem", backgroundColor: "#e8f0fe", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                    <Icon style={{ width: 14, height: 14, color: "#0061d4" }} />
-                  </div>
-                  <div>
-                    <div style={{ fontSize: "0.9375rem", fontWeight: 700, color: "#00297a", letterSpacing: "-0.02em", lineHeight: 1 }}>{label}</div>
-                    <div style={{ fontSize: "0.6875rem", color: "#6b7280", marginTop: "0.125rem" }}>{sub}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+
           </div>
 
           {/* Right — dashboard widget */}
