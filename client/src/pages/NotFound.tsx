@@ -1,49 +1,54 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { AlertCircle, Home } from "lucide-react";
 import { useLocation } from "wouter";
+import { LogoMark } from "@/components/LogoMark";
+import { Home, ArrowRight } from "lucide-react";
 
 export default function NotFound() {
-  const [, setLocation] = useLocation();
-
-  const handleGoHome = () => {
-    setLocation("/");
-  };
+  const [, navigate] = useLocation();
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
-      <Card className="w-full max-w-lg mx-4 shadow-lg border-0 bg-[#ffffff]/80 backdrop-blur-sm">
-        <CardContent className="pt-8 pb-8 text-center">
-          <div className="flex justify-center mb-6">
-            <div className="relative">
-              <div className="absolute inset-0 bg-red-100 rounded-full animate-pulse" />
-              <AlertCircle className="relative h-16 w-16 text-red-500" />
-            </div>
+    <div style={{ minHeight: "100vh", backgroundColor: "#faf9f7", display: "flex", flexDirection: "column" }}>
+      {/* Top bar */}
+      <div style={{ height: 64, borderBottom: "1px solid #dcd6ce", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 2rem", backgroundColor: "rgba(250,249,247,0.97)" }}>
+        <button onClick={() => navigate("/")} style={{ display: "flex", alignItems: "center", gap: "0.5rem", background: "none", border: "none", cursor: "pointer", padding: 0 }}>
+          <LogoMark size={34} />
+          <span style={{ fontWeight: 700, fontSize: "1.125rem", color: "#1a1a2e", letterSpacing: "-0.02em" }}>
+            <span style={{ color: "#00c6e0" }}>U</span>nkov
+          </span>
+        </button>
+      </div>
+
+      {/* Body */}
+      <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem 1rem" }}>
+        <div style={{ textAlign: "center", maxWidth: 480 }}>
+          <div style={{ fontSize: "5rem", fontWeight: 800, color: "#e5e7eb", letterSpacing: "-0.05em", lineHeight: 1, marginBottom: "0.5rem" }}>
+            404
           </div>
-
-          <h1 className="text-2xl font-bold text-[#1d1d1f] mb-2">404</h1>
-
-          <h2 className="text-xl font-semibold text-[#3d4759] mb-4">
-            Page Not Found
-          </h2>
-
-          <p className="text-[#3d4759] mb-8 leading-relaxed">
-            Sorry, the page you are looking for doesn't exist.
-            <br />
-            It may have been moved or deleted.
+          <h1 style={{ fontSize: "1.5rem", fontWeight: 700, color: "#1d1d1f", marginBottom: "0.75rem", letterSpacing: "-0.025em" }}>
+            Page not found
+          </h1>
+          <p style={{ fontSize: "1rem", color: "#6b7280", lineHeight: 1.7, marginBottom: "2rem" }}>
+            The page you're looking for doesn't exist or may have been moved.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button
-              onClick={handleGoHome}
-              className="bg-[#00297a] hover:bg-[#001f5c] text-white px-6 py-2.5 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+          <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}>
+            <button
+              onClick={() => navigate("/")}
+              style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.5rem", backgroundColor: "#00297a", color: "#fff", border: "none", borderRadius: "9999px", cursor: "pointer", fontWeight: 600, fontSize: "0.9375rem", transition: "background .15s" }}
+              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#001f5c")}
+              onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#00297a")}
             >
-              <Home className="w-4 h-4 mr-2" />
-              Go Home
-            </Button>
+              <Home style={{ width: 15, height: 15 }} /> Go home
+            </button>
+            <button
+              onClick={() => navigate("/login")}
+              style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.5rem", backgroundColor: "transparent", color: "#0061d4", border: "1.5px solid #c0d7f5", borderRadius: "9999px", cursor: "pointer", fontWeight: 600, fontSize: "0.9375rem", transition: "all .15s" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "#e8f0fe"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "transparent"; }}
+            >
+              Sign in <ArrowRight style={{ width: 15, height: 15 }} />
+            </button>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }

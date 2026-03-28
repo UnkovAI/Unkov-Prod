@@ -25,7 +25,6 @@ export default function Footer() {
       { label: "Apply for Pilot",  href: "/early-access" },
       { label: "Features",         href: "/features" },
       { label: "Documentation",     href: "/docs" },
-      { label: "How It Works",     href: "/features" },
       { label: "Pricing",          href: "/pricing" },
       { label: "Integrations",     href: "/integrations" },
     ]},

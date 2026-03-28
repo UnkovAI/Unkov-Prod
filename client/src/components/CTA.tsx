@@ -21,7 +21,7 @@ export default function CTA() {
         </p>
 
         <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-          <button onClick={() => navigate("/demo/dashboard")}
+          <button onClick={() => navigate("/login")}
             style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.75rem", borderRadius: "9999px", border: "1.5px solid rgba(255,255,255,0.35)", backgroundColor: "rgba(255,255,255,0.1)", color: "#fff", fontWeight: 600, fontSize: "1rem", cursor: "pointer", marginBottom: "0.75rem", transition: "all 0.15s" }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(255,255,255,0.18)"; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(255,255,255,0.1)"; }}>

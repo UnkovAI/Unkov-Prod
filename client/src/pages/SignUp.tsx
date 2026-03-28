@@ -4,7 +4,7 @@ import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { LogoMark } from "@/components/LogoMark";
 import {
   Eye, EyeOff, ArrowRight, CheckCircle, AlertCircle,
-  Mail, Lock, User, Building2, Loader2
+  Mail, Lock, User, Building2, Loader2, AlertTriangle
 } from "lucide-react";
 
 // ── Shared input style ─────────────────────────────────────────────
@@ -155,6 +155,22 @@ export default function SignUp() {
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#faf9f7", display: "flex", flexDirection: "column" }}>
       <TopBar onHome={() => navigate("/")} />
+
+      {/* Supabase not configured warning */}
+      {!isSupabaseConfigured && (
+        <div style={{ backgroundColor: "#fffbeb", borderBottom: "1px solid #fde68a", padding: "0.875rem 2rem", display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
+          <AlertTriangle style={{ width: 18, height: 18, color: "#d97706", flexShrink: 0, marginTop: 1 }} />
+          <div>
+            <div style={{ fontWeight: 700, fontSize: "0.875rem", color: "#92400e", marginBottom: "0.25rem" }}>
+              Authentication not configured — account creation will not work
+            </div>
+            <div style={{ fontSize: "0.8125rem", color: "#78350f", lineHeight: 1.6 }}>
+              Add <code style={{ backgroundColor: "#fef3c7", padding: "1px 5px", borderRadius: 4 }}>VITE_SUPABASE_URL</code> and{" "}
+              <code style={{ backgroundColor: "#fef3c7", padding: "1px 5px", borderRadius: 4 }}>VITE_SUPABASE_PUBLISHABLE_KEY</code> to Vercel project settings, then <strong>redeploy</strong>.
+            </div>
+          </div>
+        </div>
+      )}
 
       <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem 1rem" }}>
         <div style={{ width: "100%", maxWidth: 440 }}>
@@ -337,12 +353,16 @@ export default function SignUp() {
 // ── Sub-components ───────────────────────────────────────────────
 function TopBar({ onHome }: { onHome: () => void }) {
   return (
-    <div style={{ height: 64, borderBottom: "1px solid #dcd6ce", display: "flex", alignItems: "center", padding: "0 2rem", backgroundColor: "rgba(250,249,247,0.97)" }}>
+    <div style={{ height: 64, borderBottom: "1px solid #dcd6ce", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 2rem", backgroundColor: "rgba(250,249,247,0.97)" }}>
       <button onClick={onHome} style={{ display: "flex", alignItems: "center", gap: "0.5rem", background: "none", border: "none", cursor: "pointer", padding: 0 }}>
-        <LogoMark size={28} />
-        <span style={{ fontWeight: 700, fontSize: "1.05rem", color: "#1a1a2e", letterSpacing: "-0.02em" }}>
+        <LogoMark size={34} />
+        <span style={{ fontWeight: 700, fontSize: "1.125rem", color: "#1a1a2e", letterSpacing: "-0.02em" }}>
           <span style={{ color: "#00c6e0" }}>U</span>nkov
         </span>
+      </button>
+      <button onClick={onHome}
+        style={{ fontSize: "0.8125rem", fontWeight: 500, color: "#6b7280", background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: "0.375rem" }}>
+        ← Back to home
       </button>
     </div>
   );

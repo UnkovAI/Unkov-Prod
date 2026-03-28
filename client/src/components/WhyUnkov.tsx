@@ -45,7 +45,7 @@ export default function WhyUnkov() {
           <span className="section-label">Why Unkov</span>
           <h2 className="section-heading">One control point.<br />Every AI agent, every action.</h2>
           <p style={{ fontSize: "1rem", color: "#4b5563", lineHeight: 1.8, marginTop: "0.875rem" }}>
-            Most security tools discover problems after the fact — they alert, report, and recommend. Unkov is different: it sits before the action, not after. Every AI agent in your environment must pass through Unkov to get access. That means faster response, cleaner audits, and a security posture that keeps up with how your AI teams actually move.
+            Most security tools sit on the side — they watch, report, and alert after something has already happened. Unkov enforces before the action, not after. Four structural advantages make that defensible at scale and impossible to remove once embedded.
           </p>
         </div>
 

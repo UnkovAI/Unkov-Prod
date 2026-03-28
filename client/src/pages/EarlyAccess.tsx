@@ -118,12 +118,12 @@ export default function EarlyAccess() {
                       We'll be in touch within one business day to set up your Zero-Touch Observation Mode. Check your email client — your request has been pre-filled.
                     </p>
                     <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "1rem" }}>
-                      <a href="/demo/dashboard" style={{ display: "block", textAlign: "center", padding: "0.75rem 1.5rem", backgroundColor: "#0061d4", color: "#fff", fontWeight: 700, fontSize: "0.9375rem", borderRadius: "0.75rem", textDecoration: "none", transition: "background .15s" }}
+                      <a href="/login" style={{ display: "block", textAlign: "center", padding: "0.75rem 1.5rem", backgroundColor: "#0061d4", color: "#fff", fontWeight: 700, fontSize: "0.9375rem", borderRadius: "0.75rem", textDecoration: "none", transition: "background .15s" }}
                         onMouseEnter={e => (e.currentTarget.style.backgroundColor="#00297a")}
                         onMouseLeave={e => (e.currentTarget.style.backgroundColor="#0061d4")}>
-                        Preview the demo dashboard →
+                        Sign in to view the live dashboard →
                       </a>
-                      <p style={{ fontSize: "0.8rem", color: "#9ca3af", textAlign: "center" }}>See exactly what you'll see in your real pilot — live in your browser now.</p>
+                      <p style={{ fontSize: "0.8rem", color: "#9ca3af", textAlign: "center" }}>Sign in with your pilot credentials to access the live dashboard.</p>
                     </div>
                     <button onClick={() => setSubmitted(false)} style={{ fontSize: "0.875rem", color: "#0061d4", fontWeight: 600, background: "none", border: "none", cursor: "pointer" }}>
                       Submit another request

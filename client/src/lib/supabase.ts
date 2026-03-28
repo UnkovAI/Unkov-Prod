@@ -49,9 +49,13 @@ export interface Database {
 export const supabase = SUPABASE_URL && SUPABASE_ANON
   ? createClient<Database>(SUPABASE_URL, SUPABASE_ANON, {
       auth: {
-        persistSession: true,         // stores session in localStorage
-        autoRefreshToken: true,       // refreshes JWT automatically
-        detectSessionInUrl: true,     // handles magic link / OAuth callbacks
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
+        // Disable the Web Lock API to prevent "lock stolen" crashes.
+        // This bug occurs when multiple requests race to refresh the token.
+        // Without locks the client falls back to localStorage directly — safe for SPA use.
+        lock: async (_name: string, _acquireTimeout: number, fn: () => Promise<unknown>) => fn(),
       },
     })
   : null;
