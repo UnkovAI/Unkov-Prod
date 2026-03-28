@@ -11,21 +11,23 @@ const INP: React.CSSProperties = {
   transition: "border-color .15s", boxSizing: "border-box",
 };
 
-function LoginForm({ accent }: { accent: string }) {
-  const { login } = useAuth();
+export default function Login() {
+  const { login, user, dashboardPath, loading } = useAuth();  // single call — all from one context
   const [, navigate] = useLocation();
-  const { user, dashboardPath, loading } = useAuth();
-  const [email, setEmail]       = useState("");
-  const [password, setPassword] = useState("");
-  const [showPw, setShowPw]     = useState(false);
+  const [mode, setMode] = useState<"pilot" | "production">("pilot");
+  const [email, setEmail]         = useState("");
+  const [password, setPassword]   = useState("");
+  const [showPw, setShowPw]       = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError]       = useState("");
+  const [error, setError]         = useState("");
 
+  // Parse optional ?next= so we land on the right page after login
   const nextPath =
     typeof window !== "undefined"
       ? new URLSearchParams(window.location.search).get("next") || dashboardPath
       : dashboardPath;
 
+  // Redirect once authenticated
   useEffect(() => {
     if (!loading && user) navigate(nextPath);
   }, [user, loading, nextPath]);
@@ -51,76 +53,7 @@ function LoginForm({ accent }: { accent: string }) {
     alert(`Password reset email sent to ${email}. Check your inbox.`);
   };
 
-  return (
-    <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      <div>
-        <label style={{ display: "block", fontSize: "0.875rem", fontWeight: 600, color: "#374151", marginBottom: "0.375rem" }}>
-          Email address
-        </label>
-        <input type="email" value={email} onChange={e => setEmail(e.target.value)}
-          placeholder="you@yourcompany.com" autoComplete="email" required style={INP}
-          onFocus={e => (e.currentTarget.style.borderColor = accent)}
-          onBlur={e  => (e.currentTarget.style.borderColor = "#dcd6ce")} />
-      </div>
-
-      <div>
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.375rem" }}>
-          <label style={{ fontSize: "0.875rem", fontWeight: 600, color: "#374151" }}>Password</label>
-          <button type="button" onClick={handleForgotPassword}
-            style={{ fontSize: "0.8125rem", color: accent, background: "none", border: "none", cursor: "pointer", fontWeight: 500 }}>
-            Forgot password?
-          </button>
-        </div>
-        <div style={{ position: "relative" }}>
-          <input type={showPw ? "text" : "password"} value={password}
-            onChange={e => setPassword(e.target.value)}
-            placeholder="••••••••" autoComplete="current-password" required
-            style={{ ...INP, paddingRight: "2.75rem" }}
-            onFocus={e => (e.currentTarget.style.borderColor = accent)}
-            onBlur={e  => (e.currentTarget.style.borderColor = "#dcd6ce")} />
-          <button type="button" onClick={() => setShowPw(v => !v)}
-            style={{ position: "absolute", right: "0.875rem", top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "#9ca3af", padding: 0 }}>
-            {showPw ? <EyeOff style={{ width: 16, height: 16 }} /> : <Eye style={{ width: 16, height: 16 }} />}
-          </button>
-        </div>
-      </div>
-
-      {error && (
-        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1rem", backgroundColor: "#fef2f2", border: "1px solid #fecaca", borderRadius: "0.75rem" }}>
-          <AlertCircle style={{ width: 15, height: 15, color: "#ef4444", flexShrink: 0 }} />
-          <span style={{ fontSize: "0.875rem", color: "#b91c1c" }}>{error}</span>
-        </div>
-      )}
-
-      <button type="submit" disabled={submitting || !email || !password}
-        style={{
-          display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem",
-          padding: "0.8125rem", marginTop: "0.25rem", borderRadius: "0.75rem", border: "none",
-          backgroundColor: (submitting || !email || !password) ? "#9ca3af" : accent,
-          color: "#fff", fontWeight: 700, fontSize: "1rem",
-          cursor: (submitting || !email || !password) ? "not-allowed" : "pointer",
-          transition: "background .15s",
-        }}
-        onMouseEnter={e => { if (!submitting && email && password) (e.currentTarget as HTMLElement).style.backgroundColor = "#001060"; }}
-        onMouseLeave={e => { if (!submitting && email && password) (e.currentTarget as HTMLElement).style.backgroundColor = accent; }}>
-        {submitting ? (
-          <>
-            <span style={{ width: 16, height: 16, border: "2px solid rgba(255,255,255,0.3)", borderTopColor: "#fff", borderRadius: "50%", animation: "spin .7s linear infinite", display: "inline-block" }} />
-            Signing in…
-          </>
-        ) : (
-          <>Sign in <ArrowRight style={{ width: 16, height: 16 }} /></>
-        )}
-      </button>
-    </form>
-  );
-}
-
-export default function Login() {
-  const { loading } = useAuth();
-  const [, navigate] = useLocation();
-  const [mode, setMode] = useState<"pilot" | "production">("pilot");
-
+  // Show spinner while session resolves — never a blank page
   if (loading) {
     return (
       <div style={{ minHeight: "100vh", backgroundColor: "#faf9f7", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -133,8 +66,8 @@ export default function Login() {
   const accent = mode === "pilot" ? "#0061d4" : "#00297a";
 
   const panels = [
-    { id: "pilot"      as const, label: "Pilot access",     icon: Zap,    desc: "30-day structured pilot" },
-    { id: "production" as const, label: "Production access", icon: Shield, desc: "Full platform account"   },
+    { id: "pilot"      as const, label: "Pilot access",      icon: Zap,    desc: "30-day structured pilot" },
+    { id: "production" as const, label: "Production access",  icon: Shield, desc: "Full platform account"   },
   ];
 
   return (
@@ -191,7 +124,68 @@ export default function Login() {
               </p>
             </div>
 
-            <LoginForm accent={accent} />
+            {/* Form — inline, no sub-component, single useAuth() */}
+            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              <div>
+                <label style={{ display: "block", fontSize: "0.875rem", fontWeight: 600, color: "#374151", marginBottom: "0.375rem" }}>
+                  Email address
+                </label>
+                <input type="email" value={email} onChange={e => setEmail(e.target.value)}
+                  placeholder="you@yourcompany.com" autoComplete="email" required style={INP}
+                  onFocus={e => (e.currentTarget.style.borderColor = accent)}
+                  onBlur={e  => (e.currentTarget.style.borderColor = "#dcd6ce")} />
+              </div>
+
+              <div>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.375rem" }}>
+                  <label style={{ fontSize: "0.875rem", fontWeight: 600, color: "#374151" }}>Password</label>
+                  <button type="button" onClick={handleForgotPassword}
+                    style={{ fontSize: "0.8125rem", color: accent, background: "none", border: "none", cursor: "pointer", fontWeight: 500 }}>
+                    Forgot password?
+                  </button>
+                </div>
+                <div style={{ position: "relative" }}>
+                  <input type={showPw ? "text" : "password"} value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    placeholder="••••••••" autoComplete="current-password" required
+                    style={{ ...INP, paddingRight: "2.75rem" }}
+                    onFocus={e => (e.currentTarget.style.borderColor = accent)}
+                    onBlur={e  => (e.currentTarget.style.borderColor = "#dcd6ce")} />
+                  <button type="button" onClick={() => setShowPw(v => !v)}
+                    style={{ position: "absolute", right: "0.875rem", top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "#9ca3af", padding: 0 }}>
+                    {showPw ? <EyeOff style={{ width: 16, height: 16 }} /> : <Eye style={{ width: 16, height: 16 }} />}
+                  </button>
+                </div>
+              </div>
+
+              {error && (
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1rem", backgroundColor: "#fef2f2", border: "1px solid #fecaca", borderRadius: "0.75rem" }}>
+                  <AlertCircle style={{ width: 15, height: 15, color: "#ef4444", flexShrink: 0 }} />
+                  <span style={{ fontSize: "0.875rem", color: "#b91c1c" }}>{error}</span>
+                </div>
+              )}
+
+              <button type="submit" disabled={submitting || !email || !password}
+                style={{
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem",
+                  padding: "0.8125rem", marginTop: "0.25rem", borderRadius: "0.75rem", border: "none",
+                  backgroundColor: (submitting || !email || !password) ? "#9ca3af" : accent,
+                  color: "#fff", fontWeight: 700, fontSize: "1rem",
+                  cursor: (submitting || !email || !password) ? "not-allowed" : "pointer",
+                  transition: "background .15s",
+                }}
+                onMouseEnter={e => { if (!submitting && email && password) (e.currentTarget as HTMLElement).style.backgroundColor = "#001060"; }}
+                onMouseLeave={e => { if (!submitting && email && password) (e.currentTarget as HTMLElement).style.backgroundColor = accent; }}>
+                {submitting ? (
+                  <>
+                    <span style={{ width: 16, height: 16, border: "2px solid rgba(255,255,255,0.3)", borderTopColor: "#fff", borderRadius: "50%", animation: "spin .7s linear infinite", display: "inline-block" }} />
+                    Signing in…
+                  </>
+                ) : (
+                  <>Sign in <ArrowRight style={{ width: 16, height: 16 }} /></>
+                )}
+              </button>
+            </form>
 
             <div style={{ marginTop: "1.5rem", paddingTop: "1.5rem", borderTop: "1px solid #f3f4f6", textAlign: "center" }}>
               {mode === "pilot" ? (
