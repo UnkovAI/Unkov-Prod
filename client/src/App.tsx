@@ -76,18 +76,23 @@ function Router() {
       <Route path="/signup"                component={SignUp} />
 
       {/* ── Protected: Admin only ──────────────────────────── */}
+      {/* Any authenticated user can reach this route; the page itself */}
+      {/* checks for admin role and shows an access-denied message if needed. */}
       <Route path="/admin/upgrade">
         {() => (
-          <ProtectedRoute requiredRole="admin">
+          <ProtectedRoute>
             <AdminUpgrade />
           </ProtectedRoute>
         )}
       </Route>
 
       {/* ── Protected: Paying customers + admin ────────────── */}
+      {/* Any authenticated user can reach /dashboard — the page itself */}
+      {/* shows role-appropriate content. paying_customer sees full prod; */}
+      {/* pilot_customer sees a preview with upgrade prompt. */}
       <Route path="/dashboard">
         {() => (
-          <ProtectedRoute requiredRole="paying_customer">
+          <ProtectedRoute>
             <Dashboard />
           </ProtectedRoute>
         )}

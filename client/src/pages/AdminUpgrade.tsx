@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { getRecentInvestorTokens } from "../lib/supabase";
-import { Clock, ShieldCheck, ShieldAlert, History, Home } from "lucide-react";
+import { Clock, ShieldCheck, ShieldAlert, History, Home, Lock } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function AdminUpgrade() {
   const [, navigate] = useLocation();
+  const { user } = useAuth();
   const [recentTokens, setRecentTokens] = useState<any[]>([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -21,6 +23,25 @@ export default function AdminUpgrade() {
   };
 
   useEffect(() => { fetchTokens(); }, []);
+
+  // Non-admin users see a clear access-denied screen instead of a redirect loop
+  if (user && user.role !== "admin") {
+    return (
+      <div style={{ minHeight: "100vh", backgroundColor: "#0a0f1e", color: "#e2e8f0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "2rem", textAlign: "center" }}>
+        <div style={{ width: 56, height: 56, borderRadius: "50%", backgroundColor: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.25)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.25rem" }}>
+          <Lock style={{ width: 24, height: 24, color: "#f87171" }} />
+        </div>
+        <h2 style={{ fontSize: "1.25rem", fontWeight: 700, color: "#f87171", marginBottom: "0.625rem" }}>Admin access required</h2>
+        <p style={{ color: "#64748b", maxWidth: 380, lineHeight: 1.7, marginBottom: "1.75rem", fontSize: "0.9rem" }}>
+          Your account (<strong style={{ color: "#94a3b8" }}>{user.email}</strong>) has role <code style={{ backgroundColor: "rgba(255,255,255,0.06)", padding: "1px 6px", borderRadius: 4, fontSize: "0.8em" }}>{user.role}</code>. Contact an Unkov admin to grant access.
+        </p>
+        <button onClick={() => navigate("/")}
+          style={{ padding: "0.625rem 1.5rem", backgroundColor: "#0061d4", color: "#fff", border: "none", borderRadius: "9999px", cursor: "pointer", fontWeight: 600, fontSize: "0.9rem" }}>
+          ← Back to home
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#0a0f1e", color: "#e2e8f0", padding: "2rem" }}>

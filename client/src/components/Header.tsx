@@ -183,7 +183,7 @@ export default function Header() {
               <LogIn style={{ width: 12, height: 12 }} />
               {user ? user.avatarInitials : "Log in"}
             </button>
-            <button onClick={() => go("/login")}
+            <button onClick={() => go("/demo/dashboard")}
               style={{ fontSize: "0.875rem", fontWeight: 500, color: "#0061d4", padding: "0.4rem 1rem", borderRadius: "9999px", border: "1px solid #c0d7f5", backgroundColor: "transparent", cursor: "pointer", whiteSpace: "nowrap", transition: "background-color 0.12s, border-color 0.12s" }}
               onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = "#e8f0fe"; el.style.borderColor = "#93c2f0"; }}
               onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = "transparent"; el.style.borderColor = "#c0d7f5"; }}>
@@ -314,7 +314,7 @@ export default function Header() {
               </div>
             ))}
             <div style={{ paddingTop: "1.5rem", display: "flex", flexDirection: "column", gap: "0.625rem" }}>
-              <button onClick={() => go("/login")} style={{ width: "100%", textAlign: "center", fontSize: "0.9375rem", fontWeight: 500, color: "#0061d4", border: "1px solid #c0d7f5", backgroundColor: "transparent", cursor: "pointer", padding: "0.75rem", borderRadius: "9999px" }}>Live demo</button>
+              <button onClick={() => go("/demo/dashboard")} style={{ width: "100%", textAlign: "center", fontSize: "0.9375rem", fontWeight: 500, color: "#0061d4", border: "1px solid #c0d7f5", backgroundColor: "transparent", cursor: "pointer", padding: "0.75rem", borderRadius: "9999px" }}>Live demo</button>
               <button onClick={() => go(user ? dashboardPath : "/login")} style={{ width: "100%", textAlign: "center", fontSize: "0.9375rem", fontWeight: 500, color: "#4a4a5e", border: "1px solid #d8d3cc", backgroundColor: "transparent", cursor: "pointer", padding: "0.75rem", borderRadius: "9999px" }}>{user ? "Open dashboard" : "Log in"}</button>
               <button onClick={() => go("/early-access")} style={{ width: "100%", textAlign: "center", fontSize: "0.9375rem", fontWeight: 600, color: "#ffffff", border: "none", backgroundColor: "#00297a", cursor: "pointer", padding: "0.75rem", borderRadius: "9999px" }}>Apply for pilot</button>
             </div>
