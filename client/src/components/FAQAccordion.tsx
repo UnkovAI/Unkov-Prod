@@ -24,7 +24,7 @@ const faqs = [
   },
   {
     q: "How does Unkov handle AI agents and service accounts?",
-    a: "Every AI agent in your environment passes through Unkov before it can act. Service accounts, API keys, CI/CD credentials, and AI agent tokens are all governed with the same rigor as human identities. If something looks wrong, Unkov revokes access automatically — no ticket, no delay.",
+    a: "Each AI agent and service account gets a cryptographic identity token on first connection. Unkov tracks every resource that token touches, scores drift in real time, and revokes access automatically the moment behaviour falls outside the peer-clone baseline — no ticket, no manual review, no delay.",
   },
 ];
 

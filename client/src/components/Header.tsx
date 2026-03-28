@@ -38,14 +38,7 @@ const nav = [
           { icon: Landmark,    label: "Banking & Financial Services", desc: "Access governance for fintech and BFSI",  href: "/solutions/bfsi",      tag: null },
           { icon: Stethoscope, label: "Healthcare & Life Sciences",   desc: "HIPAA-automated audit trails",            href: "/solutions/healthcare", tag: null },
         ],
-      },
-      {
-        heading: "By Team",
-        items: [
-          { icon: Bot,       label: "Security & IT Teams",  desc: "Full visibility into every AI agent action",     href: "/features#identity-gate",  tag: null },
-          { icon: Building2, label: "Compliance Officers",  desc: "One-click audit exports for SEC, HHS, PCI DSS", href: "/features#compliance",      tag: null },
-        ],
-        cta: { label: "See all features", href: "/features" },
+        cta: { label: "Explore all features", href: "/features" },
       },
     ],
   },
