@@ -8,9 +8,9 @@ import {
 } from "../lib/supabase";
 import { useAuth } from "@/contexts/AuthContext";
 import {
-  ShieldCheck, ShieldAlert, Home, Lock,
-  Users, RefreshCw, Plus, Trash2, Key,
-  AlertTriangle, CheckCircle, UserCog, Activity,
+  Home,
+  Users,
+  Key,
 } from "lucide-react";
 
 const D = {
@@ -18,9 +18,9 @@ const D = {
   panel: "rgba(255,255,255,0.03)",
   border: "rgba(255,255,255,0.07)",
   text: "#e2e8f0",
-  muted: "#64748b",
-  soft: "#94a3b8",
 };
+
+/* ================= UI ================= */
 
 function Card({ children, style }: any) {
   return (
@@ -33,21 +33,6 @@ function Card({ children, style }: any) {
       }}
     >
       {children}
-    </div>
-  );
-}
-
-function Toast({ msg }: any) {
-  if (!msg) return null;
-  return (
-    <div style={{
-      padding: "0.75rem 1rem",
-      borderRadius: 8,
-      marginBottom: "1rem",
-      backgroundColor: msg.ok ? "rgba(52,211,153,0.1)" : "rgba(239,68,68,0.1)",
-      color: msg.ok ? "#34d399" : "#f87171",
-    }}>
-      {msg.text}
     </div>
   );
 }
@@ -71,18 +56,24 @@ function UsersTab() {
   const fetchUsers = useCallback(async () => {
     if (!supabase) return;
     setLoading(true);
-    const { data } = await supabase.from("users").select("*");
-    setUsers(data || []);
+
+    const { data, error } = await supabase
+      .from("users")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (!error) setUsers(data || []);
+
     setLoading(false);
   }, []);
 
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, [fetchUsers]);
 
   return (
     <Card style={{ padding: 20 }}>
-      {loading && "Loading..."}
+      {loading && "Loading users..."}
       {!loading &&
         users.map((u) => (
           <div key={u.id}>
@@ -97,21 +88,30 @@ function UsersTab() {
 
 function TokensTab() {
   const [tokens, setTokens] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchTokens = useCallback(async () => {
-    const data = await getRecentInvestorTokens();
-    setTokens(data || []);
+    setLoading(true);
+    try {
+      const data = await getRecentInvestorTokens();
+      setTokens(data || []);
+    } catch {
+      setTokens([]);
+    }
+    setLoading(false);
   }, []);
 
   useEffect(() => {
     fetchTokens();
-  }, []);
+  }, [fetchTokens]);
 
   return (
     <Card style={{ padding: 20 }}>
-      {tokens.map((t) => (
-        <div key={t.id}>{t.investor_email}</div>
-      ))}
+      {loading && "Loading tokens..."}
+      {!loading &&
+        tokens.map((t) => (
+          <div key={t.id}>{t.investor_email}</div>
+        ))}
     </Card>
   );
 }
@@ -124,8 +124,32 @@ export default function AdminUpgrade() {
 
   const [tab, setTab] = useState<"users" | "tokens">("users");
 
-  /* 🔥 FIX 1: WAIT FOR AUTH TO LOAD */
-  if (loading) {
+  // 🔥 NEW: role from DB
+  const [role, setRole] = useState<string | null>(null);
+  const [roleLoading, setRoleLoading] = useState(true);
+
+  /* ✅ FETCH ROLE FROM DB */
+  useEffect(() => {
+    const fetchRole = async () => {
+      if (!user || !supabase) return;
+
+      const { data, error } = await supabase
+        .from("users")
+        .select("role")
+        .eq("id", user.id)
+        .single();
+
+      if (!error && data) setRole(data.role);
+      else setRole(null);
+
+      setRoleLoading(false);
+    };
+
+    fetchRole();
+  }, [user]);
+
+  /* 🔥 AUTH LOADING */
+  if (loading || roleLoading) {
     return (
       <div style={{ color: "white", padding: 40 }}>
         Loading...
@@ -133,7 +157,7 @@ export default function AdminUpgrade() {
     );
   }
 
-  /* 🔥 FIX 2: NOT LOGGED IN */
+  /* 🔥 NOT LOGGED IN */
   if (!user) {
     return (
       <div style={{ color: "white", padding: 40 }}>
@@ -145,12 +169,13 @@ export default function AdminUpgrade() {
     );
   }
 
-  /* 🔥 FIX 3: FORCE ADMIN ONLY */
-  if (user.role !== "admin") {
+  /* 🔥 ADMIN CHECK (FIXED) */
+  if (role !== "admin") {
     return (
       <div style={{ color: "white", padding: 40 }}>
         <h2>Admin only</h2>
         <p>{user.email}</p>
+        <p style={{ opacity: 0.6 }}>Role: {role || "unknown"}</p>
       </div>
     );
   }
@@ -159,15 +184,16 @@ export default function AdminUpgrade() {
     <div style={{ minHeight: "100vh", background: D.bg, color: D.text }}>
       
       {/* HEADER */}
-      <div style={{
-        display: "flex",
-        justifyContent: "space-between",
-        padding: 20,
-        borderBottom: `1px solid ${D.border}`,
-      }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          padding: 20,
+          borderBottom: `1px solid ${D.border}`,
+        }}
+      >
         <div>Admin Console</div>
 
-        {/* 🔥 FIX 4: ALWAYS SHOW SIGN OUT */}
         <div style={{ display: "flex", gap: 10 }}>
           <button onClick={() => navigate("/dashboard")}>
             Dashboard
@@ -186,11 +212,18 @@ export default function AdminUpgrade() {
 
       {/* TABS */}
       <div style={{ padding: 20 }}>
-        <button onClick={() => setTab("users")}>Users</button>
-        <button onClick={() => setTab("tokens")}>Tokens</button>
+        <button onClick={() => setTab("users")}>
+          <Users size={14} /> Users
+        </button>
 
-        {tab === "users" && <UsersTab />}
-        {tab === "tokens" && <TokensTab />}
+        <button onClick={() => setTab("tokens")}>
+          <Key size={14} /> Tokens
+        </button>
+
+        <div style={{ marginTop: 20 }}>
+          {tab === "users" && <UsersTab />}
+          {tab === "tokens" && <TokensTab />}
+        </div>
       </div>
     </div>
   );
