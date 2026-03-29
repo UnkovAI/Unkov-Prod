@@ -196,10 +196,10 @@ function UsersTab({ users, onRefresh, loading }: { users: any[]; onRefresh: () =
   const upgradeRole = async (userId: string, newRole: string) => {
     if (!supabase) return;
     setUpgrading(userId);
-    const { error } = await supabase.rpc("set_user_role", {
-      p_user_id: userId,
-      p_role: newRole,
-    });
+    const { error } = await supabase
+      .from("users")
+      .update({ role: newRole })
+      .eq("id", userId);
     if (error) {
       console.error("Role update failed:", error);
       alert(`Failed to update role: ${error.message}`);

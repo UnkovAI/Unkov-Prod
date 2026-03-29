@@ -672,9 +672,10 @@ export default function DemoDashboard() {
             {user ? (
               <>
                 <div
-                  title={user.email}
-                  style={{ width:30, height:30, borderRadius:"50%", backgroundColor:"rgba(245,158,11,0.2)", border:"1px solid rgba(245,158,11,0.35)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"0.72rem", fontWeight:700, color:"#fbbf24", flexShrink:0, userSelect:"none" as const }}>
-                  {(user.avatarInitials && user.avatarInitials !== "??") ? user.avatarInitials : user.email.slice(0,2).toUpperCase()}
+                  title={`${user.email} — click to go to ${user.role === "admin" ? "admin console" : "dashboard"}`}
+                  onClick={() => navigate(user.role === "admin" ? "/admin/upgrade" : "/dashboard")}
+                  style={{ width:30, height:30, borderRadius:"50%", backgroundColor:"rgba(245,158,11,0.2)", border:"1px solid rgba(245,158,11,0.35)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"0.72rem", fontWeight:700, color:"#fbbf24", flexShrink:0, userSelect:"none" as const, cursor:"pointer" }}>
+                  {user.name ? user.name.split(" ").map((n: string) => n[0]).join("").toUpperCase().slice(0,2) : user.email.slice(0,2).toUpperCase()}
                 </div>
                 <Btn onClick={()=>navigate("/")} variant="ghost" size="sm">← Home</Btn>
                 <Btn onClick={async()=>{await logout();navigate("/login");}} variant="default" size="sm">Sign out</Btn>
