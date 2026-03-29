@@ -196,7 +196,14 @@ function UsersTab({ users, onRefresh, loading }: { users: any[]; onRefresh: () =
   const upgradeRole = async (userId: string, newRole: string) => {
     if (!supabase) return;
     setUpgrading(userId);
-    await supabase.from("users").update({ role: newRole }).eq("id", userId);
+    const { error } = await supabase.rpc("set_user_role", {
+      p_user_id: userId,
+      p_role: newRole,
+    });
+    if (error) {
+      console.error("Role update failed:", error);
+      alert(`Failed to update role: ${error.message}`);
+    }
     await onRefresh();
     setUpgrading(null);
   };
@@ -300,7 +307,19 @@ function TokensTab({ tokens, onRefresh, loading }: { tokens: any[]; onRefresh: (
 
   const handleRevoke = async (email: string) => {
     setRevoking(email);
-    try { await revokeInvestorToken(email); await onRefresh(); } catch (e) { console.error("Revoke error:", e); }
+    try {
+      await revokeInvestorToken(email);
+      // Optimistically mark as revoked in local state so it shows immediately,
+      // since the view (active_investor_tokens) will no longer return it after revoke.
+      setTokens(prev => prev.map(t =>
+        t.investor_email === email
+          ? { ...t, expires_at: new Date(0).toISOString() } // force expired
+          : t
+      ));
+    } catch (e) {
+      console.error("Revoke error:", e);
+      alert("Failed to revoke token. Check console for details.");
+    }
     setRevoking(null);
   };
 
@@ -484,13 +503,34 @@ export default function AdminUpgrade() {
     if (!supabase) return;
     setDataLoading(true);
     try {
-      const [{ data: u }, t] = await Promise.all([
-        supabase.rpc("get_all_users"),
-        getRecentInvestorTokens().catch(() => []),
-      ]);
+      // get_all_users uses SECURITY DEFINER to bypass RLS
+      const { data: u, error: uErr } = await supabase.rpc("get_all_users");
+      if (uErr) console.error("Users fetch error:", uErr);
+
+      // Query investor_tokens table directly (not the active_investor_tokens view)
+      // so we can see all tokens including revoked ones in the admin panel.
+      // Falls back to the view if the table query is blocked by RLS.
+      let tokenData: any[] = [];
+      const { data: t, error: tErr } = await supabase
+        .from("investor_tokens")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (!tErr && t) {
+        tokenData = t;
+      } else {
+        // Fallback to the view
+        const { data: tv } = await supabase
+          .from("active_investor_tokens")
+          .select("*")
+          .limit(50);
+        tokenData = tv || [];
+      }
+
       setUsers(u || []);
-      setTokens(t || []);
-    } catch (e) { console.error("Admin data fetch error:", e); }
+      setTokens(tokenData);
+    } catch (e) {
+      console.error("Admin data fetch error:", e);
+    }
     setDataLoading(false);
   }, []);
 
