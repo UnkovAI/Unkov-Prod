@@ -661,6 +661,13 @@ export default function DemoDashboard() {
           <PhaseStepper activePhase={activePhase}/>
           <div style={{ display:"flex", gap:"0.5rem", alignItems:"center" }}>
             <DeployTimer startTime={startTime}/>
+            {/* Global export buttons */}
+            <Btn onClick={()=>dlCSV("pilot-identities.csv", DEMO_IDENTITIES.map(id=>({id:id.id,name:id.name,type:id.type,dept:id.dept,risk:id.risk,status:id.status,lastActive:id.lastActive,accessCount:id.accessCount})))} variant="default" size="sm">
+              <Download style={{width:11,height:11}}/> CSV
+            </Btn>
+            <Btn onClick={()=>dlJSON("pilot-export.json", {identities:DEMO_IDENTITIES,auditLog:DEMO_EVENTS,accessDecisions:DEMO_ACCESS,exportedAt:new Date().toISOString()})} variant="default" size="sm">
+              <Download style={{width:11,height:11}}/> JSON
+            </Btn>
             <button style={{ padding:"0.375rem", backgroundColor:"rgba(255,255,255,0.05)", border:`1px solid ${S.border}`, borderRadius:8, color:S.soft, cursor:"pointer" }}>
               <Bell style={{width:14,height:14}}/>
             </button>

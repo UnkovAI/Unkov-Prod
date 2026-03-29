@@ -1432,32 +1432,39 @@ export default function Dashboard() {
       <Header/>
       <div style={{ paddingTop:68, minHeight:"100vh" }}>
         {/* Top bar */}
-        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"0.75rem 2rem", borderBottom:`1px solid ${S.border}`, flexWrap:"wrap", gap:"0.5rem" }}>
-          <div>
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"0.75rem 1.5rem", borderBottom:`1px solid ${S.border}`, gap:"1rem", flexWrap:"wrap" }}>
+          {/* Left: title */}
+          <div style={{ minWidth:0 }}>
             <div style={{ fontSize:"0.72rem", color:S.muted, textTransform:"uppercase", letterSpacing:"0.12em" }}>Identity Command Center</div>
-            <h1 style={{ fontSize:"1.25rem", fontWeight:800, color:"#f1f5f9", marginTop:2 }}>{user?.company ?? "Identity Command Center"}</h1>
+            <h1 style={{ fontSize:"1.125rem", fontWeight:800, color:"#f1f5f9", marginTop:2, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{user?.company ?? "Identity Command Center"}</h1>
           </div>
-          <div style={{ display:"flex", gap:"0.5rem", alignItems:"center", flexWrap:"wrap" }}>
-            <div style={{ display:"flex", alignItems:"center", gap:"0.5rem", padding:"0.3rem 0.875rem", backgroundColor:"rgba(52,211,153,0.1)", border:"1px solid rgba(52,211,153,0.25)", borderRadius:9999, fontSize:"0.8125rem", color:"#34d399" }}>
-              <div style={{ width:6, height:6, borderRadius:"50%", backgroundColor:"#34d399", animation:"pulse2 2s infinite" }}/>
-              All systems nominal
+
+          {/* Right: actions — all on one row, no wrap */}
+          <div style={{ display:"flex", alignItems:"center", gap:"0.5rem", flexShrink:0 }}>
+            {/* Status pill */}
+            <div style={{ display:"flex", alignItems:"center", gap:"0.375rem", padding:"0.3rem 0.75rem", backgroundColor:"rgba(52,211,153,0.1)", border:"1px solid rgba(52,211,153,0.25)", borderRadius:9999, fontSize:"0.75rem", color:"#34d399", whiteSpace:"nowrap" }}>
+              <div style={{ width:5, height:5, borderRadius:"50%", backgroundColor:"#34d399", animation:"pulse2 2s infinite" }}/>
+              Live
             </div>
+            {/* Export buttons */}
             <Btn onClick={()=>dlJSON("full-dashboard-export.json",{identities:ctxValue.identities,auditLog:ctxValue.auditLog,incidents:ctxValue.incidents,integrations:ctxValue.integrations,policies:INITIAL_POLICIES,tenants:TENANTS,summary:ctxValue.summary,isLive:ctxValue.isLive})} variant="default" size="sm">
-              <Download style={{width:12,height:12}}/> Full export
+              <Download style={{width:11,height:11}}/> JSON
             </Btn>
             <Btn onClick={()=>dlCSV("full-dashboard-export.csv",ctxValue.identities.map(id=>({id:id.id,name:id.name,type:id.type,dept:id.dept,risk:id.risk,status:id.status})))} variant="default" size="sm">
-              <Download style={{width:12,height:12}}/> Export CSV
+              <Download style={{width:11,height:11}}/> CSV
             </Btn>
-            <button style={{ padding:"0.375rem", backgroundColor:"rgba(255,255,255,0.05)", border:`1px solid ${S.border}`, borderRadius:8, color:S.soft, cursor:"pointer" }}>
-              <Bell style={{width:14,height:14}}/>
+            {/* Bell */}
+            <button style={{ padding:"0.3rem", backgroundColor:"rgba(255,255,255,0.05)", border:`1px solid ${S.border}`, borderRadius:7, color:S.soft, cursor:"pointer", display:"flex", alignItems:"center" }}>
+              <Bell style={{width:13,height:13}}/>
             </button>
+            {/* User controls */}
             {user && (
-              <div style={{ display:"flex", alignItems:"center", gap:"0.5rem" }}>
-                <div style={{ width:28, height:28, borderRadius:"50%", backgroundColor:"rgba(0,97,212,0.3)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"0.7rem", fontWeight:700, color:"#60a5fa", cursor:"pointer" }} onClick={()=>navigate("/admin/upgrade")}>
+              <div style={{ display:"flex", alignItems:"center", gap:"0.375rem", paddingLeft:"0.25rem", borderLeft:`1px solid ${S.border}` }}>
+                <div style={{ width:26, height:26, borderRadius:"50%", backgroundColor:"rgba(0,97,212,0.3)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"0.65rem", fontWeight:700, color:"#60a5fa", cursor:"pointer", flexShrink:0 }} onClick={()=>navigate("/admin/upgrade")}>
                   {user.avatarInitials}
                 </div>
-                <button onClick={()=>navigate("/")} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer", marginRight:"0.25rem" }}>← Home</button>
-                <button onClick={()=>{logout();navigate("/login");}} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer" }}>Sign out</button>
+                <button onClick={()=>navigate("/")} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer", whiteSpace:"nowrap" }}>← Home</button>
+                <button onClick={()=>{logout();navigate("/login");}} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer", whiteSpace:"nowrap" }}>Sign out</button>
               </div>
             )}
           </div>
