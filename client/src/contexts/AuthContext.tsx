@@ -162,7 +162,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const dashboardPath = user?.role === "pilot_customer" ? "/demo/dashboard" : "/dashboard";
+  const dashboardPath =
+    user?.role === "admin"           ? "/admin/upgrade"  :
+    user?.role === "pilot_customer"  ? "/demo/dashboard" :
+    "/dashboard";
 
   return (
     <AuthContext.Provider value={{ user, loading, login, logout, upgradeToProduction, dashboardPath, usingTestAccounts: false }}>
