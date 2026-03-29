@@ -59,7 +59,9 @@ function sessionToUser(authUser: SupabaseAuthUser): User {
     email,
     name,
     company: (authUser.user_metadata?.company as string) || "",
-    role: "pilot_customer", // safe default; upgrade via admin panel
+    role: (authUser.user_metadata?.role as string) === "admin" ? "admin" :
+           (authUser.user_metadata?.role as string) === "paying_customer" ? "paying_customer" :
+           "pilot_customer", // safe default; upgrade via admin panel
     avatarInitials: initials,
   };
 }
