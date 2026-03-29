@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useCallback } from "react";
 import { useLocation } from "wouter";
 import {
@@ -8,11 +7,7 @@ import {
   getRecentInvestorTokens,
 } from "../lib/supabase";
 import { useAuth } from "@/contexts/AuthContext";
-import {
-  Home,
-  Users,
-  Key,
-} from "lucide-react";
+import { Home, Users, Key } from "lucide-react";
 
 const D = {
   bg: "#0a0f1e",
@@ -56,6 +51,7 @@ function UsersTab() {
 
   const fetchUsers = useCallback(async () => {
     if (!supabase) return;
+
     setLoading(true);
 
     const { data, error } = await supabase
@@ -64,6 +60,7 @@ function UsersTab() {
       .order("created_at", { ascending: false });
 
     if (!error) setUsers(data || []);
+    else console.error("Users fetch error:", error);
 
     setLoading(false);
   }, []);
@@ -96,7 +93,8 @@ function TokensTab() {
     try {
       const data = await getRecentInvestorTokens();
       setTokens(data || []);
-    } catch {
+    } catch (e) {
+      console.error("Token fetch error:", e);
       setTokens([]);
     }
     setLoading(false);
@@ -125,11 +123,11 @@ export default function AdminUpgrade() {
 
   const [tab, setTab] = useState<"users" | "tokens">("users");
 
-  // 🔥 NEW: role from DB
+  // ✅ role from DB
   const [role, setRole] = useState<string | null>(null);
   const [roleLoading, setRoleLoading] = useState(true);
 
-  /* ✅ FETCH ROLE FROM DB */
+  /* ✅ FIXED ROLE FETCH (EMAIL, NOT ID) */
   useEffect(() => {
     const fetchRole = async () => {
       if (!user || !supabase) return;
@@ -137,11 +135,15 @@ export default function AdminUpgrade() {
       const { data, error } = await supabase
         .from("users")
         .select("role")
-        .eq("id", user.id)
+        .eq("email", user.email) // 🔥 FIX HERE
         .single();
 
-      if (!error && data) setRole(data.role);
-      else setRole(null);
+      if (!error && data) {
+        setRole(data.role);
+      } else {
+        console.error("Role fetch failed:", error);
+        setRole(null);
+      }
 
       setRoleLoading(false);
     };
@@ -149,7 +151,7 @@ export default function AdminUpgrade() {
     fetchRole();
   }, [user]);
 
-  /* 🔥 AUTH LOADING */
+  /* 🔥 LOADING */
   if (loading || roleLoading) {
     return (
       <div style={{ color: "white", padding: 40 }}>
@@ -170,7 +172,7 @@ export default function AdminUpgrade() {
     );
   }
 
-  /* 🔥 ADMIN CHECK (FIXED) */
+  /* 🔥 ADMIN CHECK */
   if (role !== "admin") {
     return (
       <div style={{ color: "white", padding: 40 }}>
