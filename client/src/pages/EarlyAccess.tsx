@@ -27,7 +27,9 @@ export default function EarlyAccess() {
     e.preventDefault();
     if (!canSubmit) return;
     setLoading(true);
-        setSubmitted(true);
+    // Simulate async submission (replace with real API call)
+    await new Promise(r => setTimeout(r, 800));
+    setSubmitted(true);
     setLoading(false);
   };
 

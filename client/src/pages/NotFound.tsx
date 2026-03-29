@@ -1,6 +1,7 @@
 import { useLocation } from "wouter";
 import { LogoMark } from "@/components/LogoMark";
 import { Home, ArrowRight } from "lucide-react";
+import Footer from "@/components/Footer";
 
 export default function NotFound() {
   const [, navigate] = useLocation();
@@ -49,6 +50,7 @@ export default function NotFound() {
           </div>
         </div>
       </div>
+    <Footer />
     </div>
   );
 }

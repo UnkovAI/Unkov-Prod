@@ -35,15 +35,8 @@ export default function DemoRequest() {
 
   const handleSubmit = () => {
     if (!form.name || !form.email || !form.company) return;
-    const body = [
-      `Name: ${form.name}`,
-      `Company: ${form.company}`,
-      `Role: ${form.role || "Not specified"}`,
-      `Team Size: ${teamSize || "Not specified"}`,
-      `Use Case: ${selectedUseCase || "Not specified"}`,
-      `Demo Areas: ${selectedDemos.join(", ") || "Not specified"}`,
-      `Notes: ${form.notes || "None"}`,
-    ].join("\n");
+    // In production: POST this payload to your CRM/API
+    // const payload = { ...form, teamSize, selectedUseCase, selectedDemos };
     setSubmitted(true);
   };
 

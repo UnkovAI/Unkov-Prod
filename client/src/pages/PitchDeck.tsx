@@ -36,7 +36,7 @@ export default function PitchDeck() {
   return (
     <div style={{
       minHeight: "100vh", 
-      backgroundColor: "#0a0f1e",
+      backgroundColor: "#080d1a",
       display: "flex", 
       alignItems: "center", 
       justifyContent: "center",
@@ -48,8 +48,8 @@ export default function PitchDeck() {
       <div style={{ 
         width: 40, 
         height: 40, 
-        border: "3px solid #00e5ff", 
-        borderTopColor: "transparent", 
+        border: "3px solid rgba(0,97,212,0.3)", 
+        borderTopColor: "#0061d4", 
         borderRadius: "50%", 
         animation: "spin 0.8s linear infinite" 
       }} />

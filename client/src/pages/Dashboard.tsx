@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLocation } from "wouter";
-import { Shield, Users, Bot, AlertTriangle, Clock, Bell, Settings, Download, Upload, Search, ChevronDown, CheckCircle, FileText, Lock, Zap, Eye, X, ArrowUpRight, ArrowDownRight, ExternalLink, Activity, TrendingDown, Plus, RefreshCw, Terminal, Globe, Filter } from "lucide-react";
+import { Shield, Users, Bot, AlertTriangle, Clock,  Settings, Download, Upload, Search, ChevronDown, CheckCircle, FileText, Lock, Zap, Eye, X, ArrowUpRight, ArrowDownRight, ExternalLink, Activity, TrendingDown, Plus, RefreshCw, Terminal, Globe, Filter } from "lucide-react";
 
 // ─── Types ───────────────────────────────────────────────────────
 interface Identity {
@@ -1451,13 +1451,20 @@ export default function Dashboard() {
             {/* User controls */}
             {user && (
               <div style={{ display:"flex", alignItems:"center", gap:"0.5rem" }}>
-                {/* Avatar — links to admin if admin role */}
-                <div
-                  title={user.role === "admin" ? "Admin console" : user.email}
-                  onClick={()=>{ if(user.role==="admin") navigate("/admin/upgrade"); }}
-                  style={{ width:28, height:28, borderRadius:"50%", backgroundColor:"rgba(0,97,212,0.25)", border:"1px solid rgba(0,97,212,0.4)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"0.7rem", fontWeight:700, color:"#60a5fa", cursor:user.role==="admin"?"pointer":"default", flexShrink:0, userSelect:"none" }}>
-                  {user.avatarInitials}
-                </div>
+                {/* Avatar — derive initials from email if name missing */}
+                {(() => {
+                  const initials = (user.avatarInitials && user.avatarInitials !== "??")
+                    ? user.avatarInitials
+                    : user.email.split("@")[0].slice(0,2).toUpperCase();
+                  return (
+                    <div
+                      title={user.role === "admin" ? "Admin console" : user.email}
+                      onClick={()=>{ if(user.role==="admin") navigate("/admin/upgrade"); }}
+                      style={{ width:28, height:28, borderRadius:"50%", backgroundColor:"rgba(0,97,212,0.25)", border:"1px solid rgba(0,97,212,0.4)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"0.7rem", fontWeight:700, color:"#60a5fa", cursor:user.role==="admin"?"pointer":"default", flexShrink:0, userSelect:"none" }}>
+                      {initials}
+                    </div>
+                  );
+                })()}
                 <Btn onClick={()=>navigate("/")} variant="ghost" size="sm">← Home</Btn>
                 <Btn onClick={async()=>{await logout();navigate("/login");}} variant="default" size="sm">Sign out</Btn>
               </div>

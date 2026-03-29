@@ -309,13 +309,7 @@ function TokensTab({ tokens, onRefresh, loading }: { tokens: any[]; onRefresh: (
     setRevoking(email);
     try {
       await revokeInvestorToken(email);
-      // Optimistically mark as revoked in local state so it shows immediately,
-      // since the view (active_investor_tokens) will no longer return it after revoke.
-      setTokens(prev => prev.map(t =>
-        t.investor_email === email
-          ? { ...t, expires_at: new Date(0).toISOString() } // force expired
-          : t
-      ));
+      await onRefresh();
     } catch (e) {
       console.error("Revoke error:", e);
       alert("Failed to revoke token. Check console for details.");

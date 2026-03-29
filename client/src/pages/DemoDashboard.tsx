@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useAuth } from "@/contexts/AuthContext";
 import { useDashboardData } from "@/hooks/useDashboardData";
-import { Shield, Users, Bot, AlertTriangle, Clock, Bell, Download, Search, ChevronDown, CheckCircle, FileText, Lock as LockIcon, Zap, Eye, X, ArrowDownRight, ExternalLink, Activity, TrendingDown, RefreshCw, Play, ChevronRight, Settings } from "lucide-react";
+import { Shield, Users, Bot, AlertTriangle, Clock,  Download, Search, ChevronDown, CheckCircle, FileText, Lock as LockIcon, Zap, Eye, X, ArrowDownRight, ExternalLink, Activity, TrendingDown, RefreshCw, Play, ChevronRight, Settings } from "lucide-react";
 
 // ─── Design tokens ───────────────────────────────────────────────
 const S = {
@@ -661,32 +661,29 @@ export default function DemoDashboard() {
           <PhaseStepper activePhase={activePhase}/>
           <div style={{ display:"flex", gap:"0.5rem", alignItems:"center" }}>
             <DeployTimer startTime={startTime}/>
-            {/* Global export buttons */}
             <Btn onClick={()=>dlCSV("pilot-identities.csv", DEMO_IDENTITIES.map(id=>({id:id.id,name:id.name,type:id.type,dept:id.dept,risk:id.risk,status:id.status,lastActive:id.lastActive,accessCount:id.accessCount})))} variant="default" size="sm">
               <Download style={{width:11,height:11}}/> CSV
             </Btn>
             <Btn onClick={()=>dlJSON("pilot-export.json", {identities:DEMO_IDENTITIES,auditLog:DEMO_EVENTS,accessDecisions:DEMO_ACCESS,exportedAt:new Date().toISOString()})} variant="default" size="sm">
               <Download style={{width:11,height:11}}/> JSON
             </Btn>
-            <button style={{ padding:"0.375rem", backgroundColor:"rgba(255,255,255,0.05)", border:`1px solid ${S.border}`, borderRadius:8, color:S.soft, cursor:"pointer" }}>
-              <Bell style={{width:14,height:14}}/>
-            </button>
-            <div style={{ display:"flex", alignItems:"center", gap:"0.5rem" }}>
-              {user ? (
-                <>
-                  <div style={{ width:28, height:28, borderRadius:"50%", backgroundColor:"rgba(245,158,11,0.2)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"0.7rem", fontWeight:700, color:"#fbbf24" }}>
-                    {user.avatarInitials}
-                  </div>
-                  <button onClick={()=>navigate("/")} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer", marginRight:"0.25rem" }}>← Home</button>
-                  <button onClick={async()=>{await logout();navigate("/login");}} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer" }}>Sign out</button>
-                </>
-              ) : (
-                <>
-                  <button onClick={()=>navigate("/")} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer" }}>← Home</button>
-                  <button onClick={()=>navigate("/login")} style={{ fontSize:"0.75rem", fontWeight:600, color:"#60a5fa", background:"rgba(0,97,212,0.15)", border:"1px solid rgba(0,97,212,0.35)", borderRadius:8, cursor:"pointer", padding:"0.3rem 0.75rem" }}>Sign in</button>
-                </>
-              )}
-            </div>
+            <div style={{ width:1, height:20, backgroundColor:"rgba(255,255,255,0.1)" }}/>
+            {user ? (
+              <>
+                <div
+                  title={user.email}
+                  style={{ width:30, height:30, borderRadius:"50%", backgroundColor:"rgba(245,158,11,0.2)", border:"1px solid rgba(245,158,11,0.35)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"0.72rem", fontWeight:700, color:"#fbbf24", flexShrink:0, userSelect:"none" as const }}>
+                  {user.avatarInitials || user.email.slice(0,2).toUpperCase()}
+                </div>
+                <Btn onClick={()=>navigate("/")} variant="ghost" size="sm">← Home</Btn>
+                <Btn onClick={async()=>{await logout();navigate("/login");}} variant="default" size="sm">Sign out</Btn>
+              </>
+            ) : (
+              <>
+                <Btn onClick={()=>navigate("/")} variant="ghost" size="sm">← Home</Btn>
+                <Btn onClick={()=>navigate("/login")} variant="primary" size="sm">Sign in</Btn>
+              </>
+            )}
           </div>
         </div>
 

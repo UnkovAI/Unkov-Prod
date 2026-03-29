@@ -1,11 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
 
-// ─── Environment variables ────────────────────────────────────────
-// Add these to your .env file (copy from .env.example):
-//   VITE_SUPABASE_URL=https://xxxxxxxxxxxx.supabase.co
-//   VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
-//
-// Get both values from: supabase.com → your project → Settings → API
 const SUPABASE_URL  = import.meta.env.VITE_SUPABASE_URL  as string;
 const SUPABASE_ANON = (import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.meta.env.VITE_SUPABASE_ANON_KEY) as string;
 
@@ -17,8 +11,6 @@ if (!SUPABASE_URL || !SUPABASE_ANON) {
   );
 }
 
-// ─── Typed database schema ────────────────────────────────────────
-// Mirrors the users table created by supabase/migrations/001_users.sql
 export interface DbUser {
   id: string;
   email: string;
@@ -43,16 +35,12 @@ export interface Database {
   };
 }
 
-// ─── Exported client ──────────────────────────────────────────────
-// Safe to call even when env vars are missing — returns null client
-// that triggers fallback to test accounts in AuthContext.
 export const supabase = SUPABASE_URL && SUPABASE_ANON
   ? createClient<Database>(SUPABASE_URL, SUPABASE_ANON, {
       auth: {
         persistSession: true,
         autoRefreshToken: true,
         detectSessionInUrl: true,
-        // Bypass Web Lock API — prevents "lock stolen" crash on concurrent requests
         lock: async (_name: string, _acquireTimeout: number, fn: () => Promise<unknown>) => fn(),
       },
     })
@@ -60,29 +48,26 @@ export const supabase = SUPABASE_URL && SUPABASE_ANON
 
 export const isSupabaseConfigured = !!supabase;
 
-// Function to generate a new token
 export const createInvestorToken = async (name: string, email: string, hours: number = 24) => {
   if (!supabase) throw new Error("Supabase is not configured");
-  
   const { data, error } = await supabase.rpc('create_investor_token', {
     p_name: name,
     p_email: email,
     p_hours_valid: hours
   });
   if (error) throw error;
-  return data; 
+  return data;
 };
 
-// Function to revoke tokens
 export const revokeInvestorToken = async (email: string) => {
   if (!supabase) throw new Error("Supabase is not configured");
-
   const { data, error } = await supabase.rpc('revoke_investor_token', {
     p_email: email
   });
   if (error) throw error;
-  return data; 
+  return data;
 };
+
 export const validateInvestorToken = async (email: string, token: string) => {
   if (!supabase) throw new Error("Supabase not configured");
   const { data, error } = await supabase.rpc('validate_investor_token', {
@@ -90,16 +75,32 @@ export const validateInvestorToken = async (email: string, token: string) => {
     p_token: token
   });
   if (error) throw error;
-  return data as boolean; // returns true if valid, false if not
+  return data as boolean;
 };
 
+// Fetches ALL investor tokens (active + expired) — no limit of 5, no view filter.
+// Falls back to the active_investor_tokens view if the raw table isn't accessible.
 export const getRecentInvestorTokens = async () => {
   if (!supabase) throw new Error("Supabase not configured");
+
+  // Try the raw table first — shows all tokens including expired ones
   const { data, error } = await supabase
-    .from('active_investor_tokens') // Using the view we created in Migration 2
+    .from('investor_tokens')
     .select('*')
-    .limit(5);
-  
+    .order('created_at', { ascending: false })
+    .limit(100);
+
+  // If raw table doesn't exist (42P01 = undefined_table), fall back to the view
+  if (error?.code === '42P01') {
+    const { data: viewData, error: viewError } = await supabase
+      .from('active_investor_tokens')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(100);
+    if (viewError) throw viewError;
+    return viewData;
+  }
+
   if (error) throw error;
   return data;
 };

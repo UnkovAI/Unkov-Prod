@@ -134,7 +134,6 @@ export default function Pricing() {
           <div className="container mx-auto px-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch max-w-4xl mx-auto">
               {plans.map((plan, idx) => {
-                const Icon = plan.icon;
                 return (
                   <div
                     key={idx}
@@ -149,12 +148,6 @@ export default function Pricing() {
                       </div>
                     )}
                     <div className="p-6 flex flex-col flex-1">
-                      {/* Icon for special tiers */}
-                      {Icon && (
-                        <div className="p-2 rounded-lg w-fit mb-3" style={{ backgroundColor: "#edf1ff" }}>
-                          <Icon className="w-4 h-4" style={{ color: "#00297a" }} />
-                        </div>
-                      )}
 
                       <h3 className="text-base font-bold text-[#1d1d1f] mb-1">{plan.name}</h3>
                       <p className="text-xs font-mono text-[#3d4759] mb-4">{plan.nodes}</p>

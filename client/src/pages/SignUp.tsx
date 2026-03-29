@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { LogoMark } from "@/components/LogoMark";
+import Footer from "@/components/Footer";
 import {
   Eye, EyeOff, ArrowRight, CheckCircle, AlertCircle,
   Mail, Lock, User, Building2, Loader2, AlertTriangle
@@ -100,7 +101,7 @@ export default function SignUp() {
       if (data.user) {
         // The trigger `on_auth_user_created` will insert the row.
         // We do a soft upsert in case the trigger is not yet set up.
-        await supabase.from("profiles" as any).upsert({
+        await supabase.from("users").upsert({
           id:      data.user.id,
           email:   email.trim().toLowerCase(),
           name:    name.trim(),
@@ -147,7 +148,8 @@ export default function SignUp() {
             </button>
           </div>
         </div>
-      </div>
+      <Footer />
+    </div>
     );
   }
 
@@ -346,6 +348,7 @@ export default function SignUp() {
           </p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

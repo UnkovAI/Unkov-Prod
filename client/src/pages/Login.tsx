@@ -76,7 +76,9 @@ export default function Login() {
           </span>
         </button>
         <button onClick={() => navigate("/")}
-          style={{ fontSize: "0.8125rem", fontWeight: 500, color: "#6b7280", background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: "0.375rem" }}>
+          style={{ fontSize: "0.8125rem", fontWeight: 600, color: "#374151", background: "none", border: "1px solid #dcd6ce", borderRadius: "0.5rem", cursor: "pointer", display: "flex", alignItems: "center", gap: "0.375rem", padding: "0.375rem 0.75rem", transition: "border-color .15s" }}
+          onMouseEnter={e => (e.currentTarget.style.borderColor = "#9ca3af")}
+          onMouseLeave={e => (e.currentTarget.style.borderColor = "#dcd6ce")}>
           ← Back to home
         </button>
       </div>

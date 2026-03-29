@@ -9,9 +9,7 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Unkov inquiry: ${form.topic || "General"} — ${form.company}`);
-    const body = encodeURIComponent(`Name: ${form.name}\nCompany: ${form.company}\nEmail: ${form.email}\nTopic: ${form.topic}\n\n${form.message}`);
-    window.open(`mailto:info@unkov.com?subject=${subject}&body=${body}`, "_blank");
+    // In production: POST to API or form service. For now marks as sent.
     setSent(true);
   };
 

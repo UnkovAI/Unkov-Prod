@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useLocation } from "wouter";
 import { validateInvestorToken } from "../lib/supabase";
 import { Shield, Lock, ArrowRight, AlertCircle } from "lucide-react";
-import Header from "@/components/Header";
+import { LogoMark } from "@/components/LogoMark";
 
 export default function InvestorGate() {
   const [email, setEmail] = useState("");
@@ -42,7 +42,15 @@ export default function InvestorGate() {
 
   return (
     <div className="min-h-screen bg-[#0a0f1e] text-white flex flex-col">
-      <Header />
+      <div style={{ height: 60, borderBottom: "1px solid rgba(255,255,255,0.08)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 2rem", backgroundColor: "rgba(8,13,26,0.95)", backdropFilter: "blur(12px)", position: "sticky", top: 0, zIndex: 50 }}>
+        <button onClick={() => navigate("/")} style={{ display: "flex", alignItems: "center", gap: "0.5rem", background: "none", border: "none", cursor: "pointer", padding: 0 }}>
+          <LogoMark size={30} bgColor="#0a0f1e" />
+          <span style={{ fontWeight: 700, fontSize: "1.0625rem", color: "#f1f5f9", letterSpacing: "-0.02em" }}>
+            <span style={{ color: "#00c6e0" }}>U</span>nkov
+          </span>
+        </button>
+        <button onClick={() => navigate("/")} style={{ fontSize: "0.8125rem", color: "rgba(255,255,255,0.5)", background: "none", border: "none", cursor: "pointer" }}>← Back to home</button>
+      </div>
       <div className="flex-1 flex items-center justify-center p-6">
         <div className="w-full max-w-md bg-white/5 border border-white/10 p-8 rounded-2xl backdrop-blur-xl">
           <div className="flex justify-center mb-6">
