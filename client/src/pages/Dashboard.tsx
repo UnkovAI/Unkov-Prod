@@ -1446,13 +1446,6 @@ export default function Dashboard() {
               <div style={{ width:5, height:5, borderRadius:"50%", backgroundColor:"#34d399", animation:"pulse2 2s infinite" }}/>
               Live
             </div>
-            {/* Single export dropdown area — CSV + JSON once, not duplicated per tab */}
-            <Btn onClick={()=>dlJSON("dashboard-export.json",{identities:ctxValue.identities,auditLog:ctxValue.auditLog,incidents:ctxValue.incidents,integrations:ctxValue.integrations,policies:INITIAL_POLICIES,tenants:TENANTS,summary:ctxValue.summary})} variant="default" size="sm">
-              <Download style={{width:11,height:11}}/> JSON
-            </Btn>
-            <Btn onClick={()=>dlCSV("dashboard-export.csv",ctxValue.identities.map(id=>({id:id.id,name:id.name,type:id.type,dept:id.dept,risk:id.risk,status:id.status})))} variant="default" size="sm">
-              <Download style={{width:11,height:11}}/> CSV
-            </Btn>
             {/* Divider */}
             <div style={{ width:1, height:20, backgroundColor:S.border }}/>
             {/* User controls */}
