@@ -108,17 +108,17 @@ function DeployTimer({ startTime }: { startTime: number }) {
     <div style={{ display:"flex", alignItems:"center", gap:"0.875rem", padding:"0.5rem 1.25rem", backgroundColor:done?"rgba(52,211,153,0.1)":"rgba(0,97,212,0.1)", border:`1px solid ${done?"rgba(52,211,153,0.3)":"rgba(0,97,212,0.3)"}`, borderRadius:10 }}>
       <div style={{ textAlign:"center" as const, minWidth:52 }}>
         <div style={{ fontSize:"1.375rem", fontWeight:800, color:done?"#34d399":"#60a5fa", letterSpacing:"-0.04em", fontFamily:"monospace" }}>{mm}:{ss}</div>
-        <div style={{ fontSize:"0.65rem", color:S.muted, textTransform:"uppercase" as const, letterSpacing:"0.08em" }}>elapsed</div>
+        <div style={{ fontSize:"0.65rem", color:S.muted, textTransform:"uppercase" as const, letterSpacing:"0.08em" }}>demo timer</div>
       </div>
       <div style={{ flex:1, minWidth:140 }}>
         <div style={{ display:"flex", justifyContent:"space-between", marginBottom:4 }}>
-          <span style={{ fontSize:"0.75rem", fontWeight:600, color:done?"#34d399":S.soft }}>{done?"Identity Drift dashboard live":"Deploying…"}</span>
+          <span style={{ fontSize:"0.75rem", fontWeight:600, color:done?"#34d399":S.soft }}>{done?"Simulation complete":"Demo simulation running…"}</span>
           <span style={{ fontSize:"0.72rem", color:S.muted }}>{pct}%</span>
         </div>
         <div style={{ height:4, backgroundColor:"rgba(255,255,255,0.08)", borderRadius:9999, overflow:"hidden" }}>
           <div style={{ height:"100%", width:`${pct}%`, backgroundColor:done?"#34d399":"#0061d4", borderRadius:9999, transition:"width .8s ease" }}/>
         </div>
-        <div style={{ fontSize:"0.65rem", color:S.muted, marginTop:3 }}>Target: &lt; 30 min · Zero professional services</div>
+        <div style={{ fontSize:"0.65rem", color:S.muted, marginTop:3 }}>This simulates a real 30-min onboarding deployment</div>
       </div>
       <div style={{ textAlign:"center" as const }}>
         <div style={{ fontSize:"1.125rem", fontWeight:800, color:"#34d399" }}>30m</div>
@@ -678,7 +678,7 @@ export default function DemoDashboard() {
                     {user.avatarInitials}
                   </div>
                   <button onClick={()=>navigate("/")} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer", marginRight:"0.25rem" }}>← Home</button>
-                  <button onClick={()=>{logout();navigate("/login");}} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer" }}>Sign out</button>
+                  <button onClick={async()=>{await logout();navigate("/login");}} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer" }}>Sign out</button>
                 </>
               ) : (
                 <>

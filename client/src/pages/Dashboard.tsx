@@ -1464,7 +1464,7 @@ export default function Dashboard() {
                   {user.avatarInitials}
                 </div>
                 <button onClick={()=>navigate("/")} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer", whiteSpace:"nowrap" }}>← Home</button>
-                <button onClick={()=>{logout();navigate("/login");}} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer", whiteSpace:"nowrap" }}>Sign out</button>
+                <button onClick={async()=>{await logout();navigate("/login");}} style={{ fontSize:"0.75rem", color:S.muted, background:"none", border:"none", cursor:"pointer", whiteSpace:"nowrap" }}>Sign out</button>
               </div>
             )}
           </div>
