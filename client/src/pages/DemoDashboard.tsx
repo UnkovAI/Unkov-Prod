@@ -574,7 +574,7 @@ function UpgradeBanner() {
         <div style={{ fontSize:"0.9375rem", fontWeight:700, color:"#60a5fa", marginBottom:"0.25rem" }}>Pilot active — 5 advanced tabs locked</div>
         <div style={{ fontSize:"0.8125rem", color:S.muted }}>Audit trail · Policies · Integrations · Incidents · ROI &amp; MSP — unlocked when you sign.</div>
       </div>
-      <Btn variant="cta" size="md" onClick={()=>window.open("mailto:info@unkov.com?subject=Unkov Pilot — Ready to Sign","_blank")}>
+      <Btn variant="cta" size="md" onClick={()=>navigate("/early-access")}>
         Request contract <ChevronRight style={{width:14,height:14}}/>
       </Btn>
     </div>
@@ -655,6 +655,7 @@ export default function DemoDashboard() {
             <div style={{ display:"flex", alignItems:"center", gap:"0.625rem" }}>
               <div style={{ fontSize:"0.72rem", color:S.muted, textTransform:"uppercase" as const, letterSpacing:"0.12em" }}>Identity Command Center</div>
               <span style={{ fontSize:"0.7rem", fontWeight:700, padding:"2px 8px", borderRadius:9999, backgroundColor:"rgba(0,97,212,0.2)", color:"#60a5fa", border:"1px solid rgba(0,97,212,0.35)" }}>PILOT MODE</span>
+              <span style={{ display:"flex", alignItems:"center", gap:"0.3rem", fontSize:"0.7rem", fontWeight:700, padding:"2px 8px", borderRadius:9999, backgroundColor:"rgba(52,211,153,0.15)", color:"#34d399", border:"1px solid rgba(52,211,153,0.3)" }}><span style={{ width:5, height:5, borderRadius:"50%", backgroundColor:"#34d399", display:"inline-block", animation:"pulse2 2s infinite" }}/> Live</span>
             </div>
             <h1 style={{ fontSize:"1.25rem", fontWeight:800, color:"#f1f5f9", marginTop:2 }}>Acme Financial Corp</h1>
           </div>
@@ -673,7 +674,7 @@ export default function DemoDashboard() {
                 <div
                   title={user.email}
                   style={{ width:30, height:30, borderRadius:"50%", backgroundColor:"rgba(245,158,11,0.2)", border:"1px solid rgba(245,158,11,0.35)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"0.72rem", fontWeight:700, color:"#fbbf24", flexShrink:0, userSelect:"none" as const }}>
-                  {user.avatarInitials || user.email.slice(0,2).toUpperCase()}
+                  {(user.avatarInitials && user.avatarInitials !== "??") ? user.avatarInitials : user.email.slice(0,2).toUpperCase()}
                 </div>
                 <Btn onClick={()=>navigate("/")} variant="ghost" size="sm">← Home</Btn>
                 <Btn onClick={async()=>{await logout();navigate("/login");}} variant="default" size="sm">Sign out</Btn>

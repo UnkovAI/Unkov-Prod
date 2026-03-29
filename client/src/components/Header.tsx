@@ -174,7 +174,7 @@ export default function Header() {
               onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#0a0f1e"; el.style.backgroundColor = "#eeeae4"; }}
               onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#6b7280"; el.style.backgroundColor = "transparent"; }}>
               <LogIn style={{ width: 12, height: 12 }} />
-              {user ? user.avatarInitials : "Log in"}
+              {user ? (user.avatarInitials && user.avatarInitials !== "??" ? user.avatarInitials : user.email.slice(0,2).toUpperCase()) : "Log in"}
             </button>
             <button onClick={() => go("/demo/dashboard")}
               style={{ fontSize: "0.875rem", fontWeight: 500, color: "#0061d4", padding: "0.4rem 1rem", borderRadius: "9999px", border: "1px solid #c0d7f5", backgroundColor: "transparent", cursor: "pointer", whiteSpace: "nowrap", transition: "background-color 0.12s, border-color 0.12s" }}
