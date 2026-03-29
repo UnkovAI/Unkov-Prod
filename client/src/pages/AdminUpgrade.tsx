@@ -7,7 +7,7 @@ import {
   getRecentInvestorTokens,
 } from "../lib/supabase";
 import { useAuth } from "@/contexts/AuthContext";
-import { Home, Users, Key } from "lucide-react";
+import { Users, Key } from "lucide-react";
 
 const D = {
   bg: "#0a0f1e",
@@ -54,10 +54,8 @@ function UsersTab() {
 
     setLoading(true);
 
-    const { data, error } = await supabase
-      .from("users")
-      .select("*")
-      .order("created_at", { ascending: false });
+    // Uses SECURITY DEFINER function to bypass RLS for admins
+    const { data, error } = await supabase.rpc("get_all_users");
 
     if (!error) setUsers(data || []);
     else console.error("Users fetch error:", error);
@@ -74,7 +72,7 @@ function UsersTab() {
       {loading && "Loading users..."}
       {!loading &&
         users.map((u) => (
-          <div key={u.id}>
+          <div key={u.id} style={{ padding: "8px 0", borderBottom: `1px solid ${D.border}` }}>
             {u.email} — <RoleBadge role={u.role} />
           </div>
         ))}
@@ -109,7 +107,9 @@ function TokensTab() {
       {loading && "Loading tokens..."}
       {!loading &&
         tokens.map((t) => (
-          <div key={t.id}>{t.investor_email}</div>
+          <div key={t.id} style={{ padding: "8px 0", borderBottom: `1px solid ${D.border}` }}>
+            {t.investor_email}
+          </div>
         ))}
     </Card>
   );
@@ -123,36 +123,12 @@ export default function AdminUpgrade() {
 
   const [tab, setTab] = useState<"users" | "tokens">("users");
 
-  // ✅ role from DB
-  const [role, setRole] = useState<string | null>(null);
-  const [roleLoading, setRoleLoading] = useState(true);
+  // ✅ Use role directly from AuthContext — no second DB fetch needed.
+  // AuthContext.resolveUser() already queried public.users by id and set the role.
+  const role = user?.role ?? null;
 
-  /* ✅ FIXED ROLE FETCH (EMAIL, NOT ID) */
-  useEffect(() => {
-    const fetchRole = async () => {
-      if (!user || !supabase) return;
-
-      const { data, error } = await supabase
-        .from("users")
-        .select("role")
-        .eq("email", user.email) // 🔥 FIX HERE
-        .single();
-
-      if (!error && data) {
-        setRole(data.role);
-      } else {
-        console.error("Role fetch failed:", error);
-        setRole(null);
-      }
-
-      setRoleLoading(false);
-    };
-
-    fetchRole();
-  }, [user]);
-
-  /* 🔥 LOADING */
-  if (loading || roleLoading) {
+  /* LOADING */
+  if (loading) {
     return (
       <div style={{ color: "white", padding: 40 }}>
         Loading...
@@ -160,19 +136,17 @@ export default function AdminUpgrade() {
     );
   }
 
-  /* 🔥 NOT LOGGED IN */
+  /* NOT LOGGED IN */
   if (!user) {
     return (
       <div style={{ color: "white", padding: 40 }}>
         <h2>Sign in required</h2>
-        <button onClick={() => navigate("/login")}>
-          Sign in
-        </button>
+        <button onClick={() => navigate("/login")}>Sign in</button>
       </div>
     );
   }
 
-  /* 🔥 ADMIN CHECK */
+  /* ADMIN CHECK */
   if (role !== "admin") {
     return (
       <div style={{ color: "white", padding: 40 }}>
@@ -185,7 +159,7 @@ export default function AdminUpgrade() {
 
   return (
     <div style={{ minHeight: "100vh", background: D.bg, color: D.text }}>
-      
+
       {/* HEADER */}
       <div
         style={{
