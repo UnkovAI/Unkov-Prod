@@ -314,9 +314,9 @@ function TokensTab({ tokens, onRefresh, loading }: { tokens: any[]; onRefresh: (
     try {
       await revokeInvestorToken(email);
       await onRefresh();
-    } catch (e) {
+    } catch (e: any) {
       console.error("Revoke error:", e);
-      alert("Failed to revoke token. Check console for details.");
+      flash(e?.message ?? "Failed to revoke token. The revoke_investor_token function may not exist in Supabase — check SQL Editor.", false);
     }
     setRevoking(null);
   };
@@ -355,24 +355,32 @@ function TokensTab({ tokens, onRefresh, loading }: { tokens: any[]; onRefresh: (
                 <CheckCircle style={{ width: 15, height: 15, color: D.green, flexShrink: 0 }} />
                 <span style={{ fontSize: "0.875rem", fontWeight: 700, color: "#86efac" }}>Token created — copy it now. It will never be shown again.</span>
               </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-                <code style={{ flex: 1, padding: "8px 12px", backgroundColor: "rgba(0,0,0,0.4)", borderRadius: 6, fontSize: "0.75rem", color: "#e2e8f0", fontFamily: "monospace", wordBreak: "break-all" as const }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+                <code style={{ flex: 1, padding: "8px 12px", backgroundColor: "rgba(0,0,0,0.4)", borderRadius: 6, fontSize: "0.78rem", color: "#e2e8f0", fontFamily: "monospace", wordBreak: "break-all", letterSpacing: "0.04em" }}>
                   {newTokenValue}
                 </code>
-                <Btn variant="primary" size="sm" onClick={() => { navigator.clipboard.writeText(newTokenValue!); setCopied(true); setTimeout(() => setCopied(false), 2000); }}>
+                <Btn variant="primary" size="sm" onClick={() => {
+                  navigator.clipboard.writeText(newTokenValue);
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2000);
+                }}>
                   {copied ? "Copied!" : "Copy token"}
                 </Btn>
               </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-                <span style={{ fontSize: "0.75rem", color: D.muted, flexShrink: 0 }}>Login link:</span>
-                <code style={{ flex: 1, padding: "6px 10px", backgroundColor: "rgba(0,0,0,0.3)", borderRadius: 6, fontSize: "0.7rem", color: "#94a3b8", fontFamily: "monospace", wordBreak: "break-all" as const }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <span style={{ fontSize: "0.78rem", color: D.muted }}>Investor login link:</span>
+                <code style={{ flex: 1, padding: "6px 10px", backgroundColor: "rgba(0,0,0,0.3)", borderRadius: 6, fontSize: "0.72rem", color: "#94a3b8", fontFamily: "monospace", wordBreak: "break-all" }}>
                   {`${window.location.origin}/investor-gate?email=${encodeURIComponent(newTokenEmail)}&token=${newTokenValue}`}
                 </code>
-                <Btn variant="ghost" size="sm" onClick={() => { navigator.clipboard.writeText(`${window.location.origin}/investor-gate?email=${encodeURIComponent(newTokenEmail)}&token=${newTokenValue}`); setCopied(true); setTimeout(() => setCopied(false), 2000); }}>
+                <Btn variant="ghost" size="sm" onClick={() => {
+                  navigator.clipboard.writeText(`${window.location.origin}/investor-gate?email=${encodeURIComponent(newTokenEmail)}&token=${newTokenValue}`);
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2000);
+                }}>
                   {copied ? "✓" : "Copy link"}
                 </Btn>
               </div>
-              <div style={{ textAlign: "right" as const }}>
+              <div style={{ marginTop: 10, textAlign: "right" as const }}>
                 <Btn variant="ghost" size="xs" onClick={() => { setNewTokenValue(null); setNewTokenEmail(""); }}>Dismiss</Btn>
               </div>
             </div>
@@ -392,7 +400,7 @@ function TokensTab({ tokens, onRefresh, loading }: { tokens: any[]; onRefresh: (
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr style={{ borderBottom: `1px solid ${D.border}` }}>
-              {["Investor", "Email", "Created", "Expires", "Status", ""].map(h => (
+              {["Investor", "Email", "Created", "Expires", "Status", "Token prefix", ""].map(h => (
                 <th key={h} style={{ padding: "10px 20px", textAlign: "left" as const, fontSize: "0.7rem", color: D.muted, fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>{h}</th>
               ))}
             </tr>
@@ -421,6 +429,11 @@ function TokensTab({ tokens, onRefresh, loading }: { tokens: any[]; onRefresh: (
                     {t.expires_at ? new Date(t.expires_at).toLocaleString() : "—"}
                   </td>
                   <td style={{ padding: "12px 20px" }}><Badge color={expired ? D.red : D.green}>{expired ? "Expired" : "Active"}</Badge></td>
+                  <td style={{ padding: "12px 20px" }}>
+                    {t.token_hash
+                      ? <code style={{ fontSize: "0.72rem", color: D.muted, fontFamily: "monospace", letterSpacing: "0.04em" }}>{t.token_hash.slice(0,12)}…</code>
+                      : <span style={{ fontSize: "0.72rem", color: D.muted }}>—</span>}
+                  </td>
                   <td style={{ padding: "12px 20px" }}>
                     <Btn variant="danger" size="xs" disabled={revoking === t.investor_email} onClick={() => handleRevoke(t.investor_email)}>
                       <Trash2 style={{ width: 11, height: 11 }} />{revoking === t.investor_email ? "Revoking…" : "Revoke"}

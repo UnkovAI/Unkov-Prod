@@ -159,9 +159,9 @@ export default function Header() {
             {/* Direct links */}
             {[{ label: "Pricing", href: "/pricing" }, { label: "Integrations", href: "/integrations" }].map(link => (
               <button key={link.label} onClick={() => go(link.href)}
-                style={{ padding: "0.4rem 0.75rem", fontSize: "0.8125rem", fontWeight: 450, color: "#3d3d52", backgroundColor: "transparent", borderRadius: "0.5rem", border: "none", cursor: "pointer", whiteSpace: "nowrap", transition: "color 0.12s, background-color 0.12s", letterSpacing: "-0.01em" }}
+                style={{ padding: "0.4rem 0.75rem", fontSize: "0.9375rem", fontWeight: 500, color: "#3d3d52", backgroundColor: "transparent", borderRadius: "0.5rem", border: "none", cursor: "pointer", whiteSpace: "nowrap", transition: "color 0.12s, background-color 0.12s", letterSpacing: "-0.01em" }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#00297a"; el.style.backgroundColor = "#eeeae4"; el.style.fontWeight = "600"; }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#3d3d52"; el.style.backgroundColor = "transparent"; el.style.fontWeight = "450"; }}>
+                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#3d3d52"; el.style.backgroundColor = "transparent"; el.style.fontWeight = "500"; }}>
                 {link.label}
               </button>
             ))}
