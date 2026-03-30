@@ -292,19 +292,16 @@ function TokensTab({ tokens, onRefresh, loading }: { tokens: any[]; onRefresh: (
   const [newHours, setNewHours] = useState(24);
   const [createError, setCreateError] = useState("");
   const [createSuccess, setCreateSuccess] = useState("");
-  const [newTokenValue, setNewTokenValue] = useState<string | null>(null);
-  const [newTokenEmail, setNewTokenEmail] = useState("");
-  const [copied, setCopied] = useState(false);
 
   const handleCreate = async () => {
     if (!newName.trim() || !newEmail.trim()) { setCreateError("Name and email are required."); return; }
     setCreateError(""); setCreating(true);
     try {
-      const rawToken = await createInvestorToken(newName.trim(), newEmail.trim(), newHours);
-      setNewTokenValue(rawToken as string);
-      setNewTokenEmail(newEmail.trim());
+      await createInvestorToken(newName.trim(), newEmail.trim(), newHours);
+      setCreateSuccess(`Token created for ${newEmail}`);
       setNewName(""); setNewEmail(""); setNewHours(24);
       await onRefresh();
+      setTimeout(() => setCreateSuccess(""), 4000);
     } catch (e: any) { setCreateError(e?.message ?? "Failed to create token."); }
     setCreating(false);
   };
@@ -314,9 +311,9 @@ function TokensTab({ tokens, onRefresh, loading }: { tokens: any[]; onRefresh: (
     try {
       await revokeInvestorToken(email);
       await onRefresh();
-    } catch (e: any) {
+    } catch (e) {
       console.error("Revoke error:", e);
-      flash(e?.message ?? "Failed to revoke token. The revoke_investor_token function may not exist in Supabase — check SQL Editor.", false);
+      alert("Failed to revoke token. Check console for details.");
     }
     setRevoking(null);
   };
@@ -349,40 +346,10 @@ function TokensTab({ tokens, onRefresh, loading }: { tokens: any[]; onRefresh: (
               <span style={{ fontSize: "0.8125rem", color: "#fca5a5" }}>{createError}</span>
             </div>
           )}
-          {newTokenValue && (
-            <div style={{ backgroundColor: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.3)", borderRadius: 10, padding: 16, marginBottom: 12 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
-                <CheckCircle style={{ width: 15, height: 15, color: D.green, flexShrink: 0 }} />
-                <span style={{ fontSize: "0.875rem", fontWeight: 700, color: "#86efac" }}>Token created — copy it now. It will never be shown again.</span>
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
-                <code style={{ flex: 1, padding: "8px 12px", backgroundColor: "rgba(0,0,0,0.4)", borderRadius: 6, fontSize: "0.78rem", color: "#e2e8f0", fontFamily: "monospace", wordBreak: "break-all", letterSpacing: "0.04em" }}>
-                  {newTokenValue}
-                </code>
-                <Btn variant="primary" size="sm" onClick={() => {
-                  navigator.clipboard.writeText(newTokenValue);
-                  setCopied(true);
-                  setTimeout(() => setCopied(false), 2000);
-                }}>
-                  {copied ? "Copied!" : "Copy token"}
-                </Btn>
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <span style={{ fontSize: "0.78rem", color: D.muted }}>Investor login link:</span>
-                <code style={{ flex: 1, padding: "6px 10px", backgroundColor: "rgba(0,0,0,0.3)", borderRadius: 6, fontSize: "0.72rem", color: "#94a3b8", fontFamily: "monospace", wordBreak: "break-all" }}>
-                  {`${window.location.origin}/investor-gate?email=${encodeURIComponent(newTokenEmail)}&token=${newTokenValue}`}
-                </code>
-                <Btn variant="ghost" size="sm" onClick={() => {
-                  navigator.clipboard.writeText(`${window.location.origin}/investor-gate?email=${encodeURIComponent(newTokenEmail)}&token=${newTokenValue}`);
-                  setCopied(true);
-                  setTimeout(() => setCopied(false), 2000);
-                }}>
-                  {copied ? "✓" : "Copy link"}
-                </Btn>
-              </div>
-              <div style={{ marginTop: 10, textAlign: "right" as const }}>
-                <Btn variant="ghost" size="xs" onClick={() => { setNewTokenValue(null); setNewTokenEmail(""); }}>Dismiss</Btn>
-              </div>
+          {createSuccess && (
+            <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 12px", backgroundColor: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.25)", borderRadius: 8, marginBottom: 12 }}>
+              <CheckCircle style={{ width: 14, height: 14, color: D.green, flexShrink: 0 }} />
+              <span style={{ fontSize: "0.8125rem", color: "#86efac" }}>{createSuccess}</span>
             </div>
           )}
           <Btn onClick={handleCreate} variant="primary" size="sm" disabled={creating}>
@@ -400,7 +367,7 @@ function TokensTab({ tokens, onRefresh, loading }: { tokens: any[]; onRefresh: (
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr style={{ borderBottom: `1px solid ${D.border}` }}>
-              {["Investor", "Email", "Created", "Expires", "Status", "Token prefix", ""].map(h => (
+              {["Investor", "Email", "Created", "Expires", "Status", ""].map(h => (
                 <th key={h} style={{ padding: "10px 20px", textAlign: "left" as const, fontSize: "0.7rem", color: D.muted, fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.08em" }}>{h}</th>
               ))}
             </tr>
@@ -429,11 +396,6 @@ function TokensTab({ tokens, onRefresh, loading }: { tokens: any[]; onRefresh: (
                     {t.expires_at ? new Date(t.expires_at).toLocaleString() : "—"}
                   </td>
                   <td style={{ padding: "12px 20px" }}><Badge color={expired ? D.red : D.green}>{expired ? "Expired" : "Active"}</Badge></td>
-                  <td style={{ padding: "12px 20px" }}>
-                    {t.token_hash
-                      ? <code style={{ fontSize: "0.72rem", color: D.muted, fontFamily: "monospace", letterSpacing: "0.04em" }}>{t.token_hash.slice(0,12)}…</code>
-                      : <span style={{ fontSize: "0.72rem", color: D.muted }}>—</span>}
-                  </td>
                   <td style={{ padding: "12px 20px" }}>
                     <Btn variant="danger" size="xs" disabled={revoking === t.investor_email} onClick={() => handleRevoke(t.investor_email)}>
                       <Trash2 style={{ width: 11, height: 11 }} />{revoking === t.investor_email ? "Revoking…" : "Revoke"}
@@ -533,7 +495,7 @@ export default function AdminUpgrade() {
   const [dataLoading, setDataLoading] = useState(false);
 
   const fetchAll = useCallback(async () => {
-    if (!supabase) return;
+    if (!supabase || !user) return;
     setDataLoading(true);
     try {
       // get_all_users uses SECURITY DEFINER to bypass RLS
@@ -567,7 +529,18 @@ export default function AdminUpgrade() {
     setDataLoading(false);
   }, []);
 
-  useEffect(() => { if (role === "admin") fetchAll(); }, [role, fetchAll]);
+  // Fetch as soon as we know the user is admin — covers both initial load and re-renders
+  useEffect(() => {
+    if (user?.role === "admin") fetchAll();
+  }, [user?.role, fetchAll]);
+
+  // Also fetch immediately on mount with a small delay to allow auth to settle
+  useEffect(() => {
+    const t = setTimeout(() => {
+      if (user?.role === "admin") fetchAll();
+    }, 500);
+    return () => clearTimeout(t);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (loading) {
     return (

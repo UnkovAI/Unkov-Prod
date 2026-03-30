@@ -76,14 +76,14 @@ function Badge({ children, color }: { children:React.ReactNode; color:string }) 
   return <span style={{ fontSize:"0.7rem", fontWeight:700, padding:"2px 7px", borderRadius:9999, backgroundColor:color+"22", color, border:`1px solid ${color}44`, whiteSpace:"nowrap" }}>{children}</span>;
 }
 function Btn({ children, onClick, variant="default", size="sm" }: { children:React.ReactNode; onClick?:()=>void; variant?:"default"|"primary"|"success"|"ghost"|"cta"; size?:"xs"|"sm"|"md" }) {
-  const c: Record<string,{bg:string;bd:string;tx:string}> = {
+  const variantStyles: Record<string,{bg:string;bd:string;tx:string}> = {
     default: { bg:"rgba(255,255,255,0.06)", bd:"rgba(255,255,255,0.1)", tx:S.soft },
     primary: { bg:"rgba(0,97,212,0.2)",    bd:"rgba(0,97,212,0.4)",   tx:"#60a5fa" },
     success: { bg:"rgba(5,150,105,0.15)",  bd:"rgba(5,150,105,0.35)", tx:"#34d399" },
     ghost:   { bg:"transparent",           bd:"transparent",           tx:S.muted },
     cta:     { bg:"#0061d4",               bd:"#0061d4",               tx:"#fff" },
   };
-  const col = c[variant];
+  const col = variantStyles[variant] ?? variantStyles["default"];
   const p = size==="xs"?"2px 8px":size==="sm"?"5px 12px":"8px 20px";
   return (
     <button onClick={onClick} style={{ padding:p, fontSize:size==="xs"?"0.72rem":size==="md"?"0.9375rem":"0.8125rem", fontWeight:600, borderRadius:7, border:`1px solid ${col.bd}`, backgroundColor:col.bg, color:col.tx, cursor:"pointer", display:"inline-flex", alignItems:"center", gap:"0.3rem", whiteSpace:"nowrap" }}

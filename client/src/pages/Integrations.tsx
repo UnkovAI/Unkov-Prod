@@ -218,7 +218,7 @@ const CONNECTOR_CONFIG: Record<string, {
       { sev: "medium",   label: "Admin account without MFA" },
     ],
     fields: [
-      { key: "GOOGLE_SA_KEY_JSON",  label: "Service Account Key (JSON)", placeholder: '{type:service_account,...}', secret: true,
+      { key: "GOOGLE_SA_KEY_JSON",  label: "Service Account Key (JSON)", placeholder: "{"type":"service_account",...}", secret: true,
         hint: "GCP Console → IAM → Service Accounts → Create → Keys → JSON. Grant Security Reviewer + Groups Reader roles." },
       { key: "GOOGLE_WORKSPACE_DOMAIN", label: "Workspace Domain", placeholder: "yourdomain.com",
         hint: "Your primary Google Workspace domain (e.g. acmebank.com)" },
@@ -312,7 +312,7 @@ const CONNECTOR_CONFIG: Record<string, {
       { sev: "medium",   label: "Service account unused 60+ days (still has keys)" },
     ],
     fields: [
-      { key: "GCP_SA_KEY_JSON",  label: "Service Account Key (JSON)", placeholder: '{type:service_account,...}', secret: true,
+      { key: "GCP_SA_KEY_JSON",  label: "Service Account Key (JSON)", placeholder: "{"type":"service_account",...}", secret: true,
         hint: "GCP Console → IAM → Service Accounts → Unkov Scanner SA → Keys → JSON. Grant Security Reviewer at org level." },
       { key: "GCP_PROJECT_ID",   label: "Project ID",  placeholder: "my-project-123",
         hint: "Your GCP project ID (not the project name) — found in GCP Console header" },
@@ -588,9 +588,9 @@ const INTEGRATIONS = [
     items: [
       { name: "Okta",               id: "okta",      status: "live",    desc: "Users, groups, apps, admin roles, service account detection. Full lifecycle sync via SCIM + API."                         },
       { name: "Microsoft Entra ID", id: "entra",     status: "live",    desc: "Users, service principals, managed identities. Microsoft Graph API — biggest AI agent surface in Azure."                 },
-      { name: "Google Workspace",   id: "google-workspace",        status: "coming_soon", desc: "Directory sync + admin SDK. Users, groups, service accounts."                                                             },
-      { name: "Ping Identity",      id: "ping-identity",        status: "coming_soon", desc: "OAuth 2.0 / OIDC federation. Users and federated identities."                                                             },
-      { name: "JumpCloud",          id: "jumpcloud",        status: "coming_soon", desc: "SCIM 2.0 provisioning. Users, groups, device identities."                                                                 },
+      { name: "Google Workspace",   id: "google-workspace", status: "live", desc: "Directory sync + admin SDK. Users, groups, service accounts."                                                             },
+      { name: "Ping Identity",      id: "ping-identity", status: "live", desc: "OAuth 2.0 / OIDC federation. Users and federated identities."                                                             },
+      { name: "JumpCloud",          id: "jumpcloud", status: "live", desc: "SCIM 2.0 provisioning. Users, groups, device identities."                                                                 },
     ],
   },
   {
@@ -599,7 +599,7 @@ const INTEGRATIONS = [
     items: [
       { name: "AWS IAM",            id: "aws-iam",   status: "live",    desc: "IAM users, roles, access keys, Lambda execution roles, AI agent roles. Stale key detection."                              },
       { name: "Azure RBAC",         id: "entra",     status: "live",    desc: "Azure role assignments, PIM integration, managed identity governance. Through Entra ID connector."                        },
-      { name: "Google Cloud IAM",   id: "google-cloud-iam",        status: "coming_soon", desc: "Service account governance, workload identity federation, IAM policy drift detection."                                    },
+      { name: "Google Cloud IAM",   id: "google-cloud-iam", status: "live", desc: "Service account governance, workload identity federation, IAM policy drift detection."                                    },
       { name: "Kubernetes RBAC",    id: null,        status: "planned", desc: "Pod-level identity governance. ServiceAccount tokens, ClusterRoleBindings."                                               },
     ],
   },
@@ -610,7 +610,7 @@ const INTEGRATIONS = [
       { name: "Workday",            id: "workday",   status: "live",    desc: "Active + terminated workers. Cross-reference with IdP to find accounts still live after employee exit."                   },
       { name: "BambooHR",           id: null,        status: "planned", desc: "Onboarding trigger events. Auto-provision on hire, auto-deprovision on termination."                                      },
       { name: "SAP SuccessFactors", id: null,        status: "planned", desc: "Enterprise HR lifecycle. Role changes trigger access reviews."                                                             },
-      { name: "ADP",                id: "adp",        status: "coming_soon", desc: "Payroll-driven deprovisioning. Termination events trigger immediate access revocation."                                    },
+      { name: "ADP",                id: "adp", status: "live", desc: "Payroll-driven deprovisioning. Termination events trigger immediate access revocation."                                    },
     ],
   },
   {
@@ -618,9 +618,9 @@ const INTEGRATIONS = [
     desc: "Where developers have production access — often ungoverned.",
     items: [
       { name: "GitHub",             id: "github",    status: "live",    desc: "Org members, outside collaborators, installed GitHub Apps (AI coding agents, bots)."                                      },
-      { name: "GitLab",             id: "gitlab",        status: "coming_soon", desc: "Group members, deploy tokens, CI/CD variables with secrets access."                                                       },
-      { name: "HashiCorp Vault",    id: "hashicorp-vault",        status: "coming_soon", desc: "Secrets lifecycle governance. Dynamic credentials, lease expiry tracking."                                                 },
-      { name: "GitHub Actions",     id: "github-actions",        status: "coming_soon", desc: "Workflow permissions, OIDC tokens, environment secrets access."                                                            },
+      { name: "GitLab",             id: "gitlab", status: "live", desc: "Group members, deploy tokens, CI/CD variables with secrets access."                                                       },
+      { name: "HashiCorp Vault",    id: "hashicorp-vault", status: "live", desc: "Secrets lifecycle governance. Dynamic credentials, lease expiry tracking."                                                 },
+      { name: "GitHub Actions",     id: "github-actions", status: "live", desc: "Workflow permissions, OIDC tokens, environment secrets access."                                                            },
     ],
   },
   {
@@ -638,7 +638,7 @@ const INTEGRATIONS = [
     cat: "SIEM & Security",
     desc: "Feed findings into the tools your security team already uses.",
     items: [
-      { name: "Splunk",             id: "splunk", status: "coming_soon", desc: "Real-time identity event streaming. Identity Drift alerts as Splunk events."          },
+      { name: "Splunk",             id: "splunk", status: "live", desc: "Real-time identity event streaming. Identity Drift alerts as Splunk events."          },
       { name: "Microsoft Sentinel", id: null, status: "planned", desc: "Identity threat intel feed. Gate decisions as Sentinel incidents."                    },
       { name: "CrowdStrike Falcon", id: null, status: "planned", desc: "Endpoint + identity correlation. Agent identity enrichment."                          },
       { name: "Datadog",            id: null, status: "planned", desc: "Observability integration. Identity metrics and drift scoring dashboards."             },
@@ -651,15 +651,15 @@ const INTEGRATIONS = [
       { name: "CyberArk",              id: null, status: "planned", desc: "Privileged account governance. Vault session correlations, just-in-time access tracking."  },
       { name: "BeyondTrust",           id: null, status: "planned", desc: "Endpoint privilege management. Elevation events correlated with identity risk scores."       },
       { name: "Delinea Secret Server", id: null, status: "planned", desc: "Secret lifecycle governance. Shared credential detection, rotation enforcement."             },
-      { name: "1Password Business",    id: "1password", status: "coming_soon", desc: "Team vault governance. Shared item detection, access scope, stale credential flagging."     },
+      { name: "1Password Business",    id: "1password", status: "live", desc: "Team vault governance. Shared item detection, access scope, stale credential flagging."     },
     ],
   },
   {
     cat: "ITSM & Ticketing",
     desc: "Close the loop — remediation actions create tickets automatically.",
     items: [
-      { name: "ServiceNow",        id: "servicenow", status: "coming_soon", desc: "Auto-create remediation tickets. Access review workflows. CMDB identity enrichment." },
-      { name: "Jira Service Mgmt", id: "jira", status: "coming_soon", desc: "Access workflow automation. Violation findings create Jira issues automatically."    },
+      { name: "ServiceNow",        id: "servicenow", status: "live", desc: "Auto-create remediation tickets. Access review workflows. CMDB identity enrichment." },
+      { name: "Jira Service Mgmt", id: "jira", status: "live", desc: "Access workflow automation. Violation findings create Jira issues automatically."    },
       { name: "PagerDuty",         id: null, status: "planned", desc: "Critical identity violations trigger on-call alerts."                                 },
     ],
   },
@@ -675,9 +675,8 @@ const INTEGRATIONS = [
 ];
 
 const STATUS: Record<string, { color: string; bg: string; border: string; label: string }> = {
-  live:        { color: C.green,  bg: C.lgreen,  border: "#6ee7b7", label: "Live"        },
-  planned:     { color: C.muted,  bg: "#f9fafb", border: C.border,  label: "Planned"     },
-  coming_soon: { color: "#7c3aed", bg: "#f5f3ff", border: "#c4b5fd", label: "Coming soon" },
+  live:    { color: C.green,  bg: C.lgreen,  border: "#6ee7b7", label: "Live"    },
+  planned: { color: C.muted,  bg: "#f9fafb", border: C.border,  label: "Planned" },
 };
 
 // ── Severity badge ─────────────────────────────────────────────────
@@ -1167,7 +1166,7 @@ export default function Integrations() {
                   </div>
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "0.75rem" }}>
                     {filtered.map(item => {
-                      const s    = STATUS[item.status] ?? STATUS.planned;
+                      const s    = STATUS[item.status]!;
                       const cfg  = item.id ? CONNECTOR_CONFIG[item.id] : null;
                       const live = item.status === "live";
                       return (
