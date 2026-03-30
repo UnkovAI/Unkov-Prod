@@ -576,7 +576,7 @@ function UpgradeBanner() {
         <div style={{ fontSize:"0.8125rem", color:S.muted }}>Audit trail · Policies · Integrations · Incidents · ROI &amp; MSP — unlocked when you sign.</div>
       </div>
       <Btn variant="cta" size="md" onClick={()=>navigate("/early-access")}>
-        Request contract <ChevronRight style={{width:14,height:14}}/>
+        Unlock full access <ChevronRight style={{width:14,height:14}}/>
       </Btn>
     </div>
   );
@@ -675,13 +675,14 @@ export default function DemoDashboard() {
                 {user.role === "admin" && (
                   <Btn onClick={()=>navigate("/admin/upgrade")} variant="default" size="sm">Admin</Btn>
                 )}
+                <Btn onClick={()=>navigate("/dashboard")} variant="ghost" size="sm">Dashboard</Btn>
                 <Btn onClick={()=>navigate("/")} variant="ghost" size="sm">← Home</Btn>
-                <Btn onClick={async()=>{await logout();navigate("/login");}} variant="default" size="md">Sign out</Btn>
+                <Btn onClick={async()=>{await logout();navigate("/login");}} variant="default" size="sm">Sign out</Btn>
               </>
             ) : (
               <>
                 <Btn onClick={()=>navigate("/")} variant="ghost" size="sm">← Home</Btn>
-                <Btn onClick={()=>navigate("/login")} variant="primary" size="md">Sign in</Btn>
+                <Btn onClick={()=>navigate("/login")} variant="primary" size="sm">Sign in</Btn>
               </>
             )}
           </div>

@@ -1454,7 +1454,6 @@ export default function Dashboard() {
                 {user.role === "admin" && (
                   <Btn onClick={()=>navigate("/admin/upgrade")} variant="default" size="sm">Admin</Btn>
                 )}
-                <Btn onClick={()=>navigate("/demo/dashboard")} variant="ghost" size="sm">Demo</Btn>
                 <Btn onClick={()=>navigate("/")} variant="ghost" size="sm">← Home</Btn>
                 <Btn onClick={async()=>{await logout();navigate("/login");}} variant="default" size="md">Sign out</Btn>
               </div>
