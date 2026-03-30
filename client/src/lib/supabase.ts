@@ -80,11 +80,18 @@ export const createInvestorToken = async (name: string, email: string, hours: nu
 
 export const revokeInvestorToken = async (email: string) => {
   if (!supabase) throw new Error("Supabase is not configured");
-  const { data, error } = await supabase.rpc('revoke_investor_token', {
-    p_email: email
-  });
-  if (error) throw error;
-  return data;
+  // Try the RPC function first
+  const { data, error } = await supabase.rpc('revoke_investor_token', { p_email: email });
+  if (!error) return data;
+  // RPC failed — log and try direct table update as fallback
+  console.warn("[Unkov] revoke_investor_token RPC failed:", error.message, "— trying direct update");
+  const { error: updateError } = await supabase
+    .from('investor_tokens')
+    .update({ status: 'revoked' })
+    .eq('investor_email', email.trim().toLowerCase())
+    .eq('status', 'active');
+  if (updateError) throw new Error(`Revoke failed: ${updateError.message}`);
+  return true;
 };
 
 export const validateInvestorToken = async (email: string, token: string) => {

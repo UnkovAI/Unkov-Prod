@@ -675,8 +675,9 @@ const INTEGRATIONS = [
 ];
 
 const STATUS: Record<string, { color: string; bg: string; border: string; label: string }> = {
-  live:    { color: C.green,  bg: C.lgreen,  border: "#6ee7b7", label: "Live"    },
-  planned: { color: C.muted,  bg: "#f9fafb", border: C.border,  label: "Planned" },
+  live:        { color: C.green,  bg: C.lgreen,  border: "#6ee7b7", label: "Live"        },
+  planned:     { color: C.muted,  bg: "#f9fafb", border: C.border,  label: "Planned"     },
+  coming_soon: { color: "#7c3aed", bg: "#f5f3ff", border: "#c4b5fd", label: "Coming soon" },
 };
 
 // ── Severity badge ─────────────────────────────────────────────────
@@ -1166,7 +1167,7 @@ export default function Integrations() {
                   </div>
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "0.75rem" }}>
                     {filtered.map(item => {
-                      const s    = STATUS[item.status]!;
+                      const s    = STATUS[item.status] ?? STATUS.planned;
                       const cfg  = item.id ? CONNECTOR_CONFIG[item.id] : null;
                       const live = item.status === "live";
                       return (
