@@ -16,18 +16,36 @@ export default function ResetPassword() {
 
   useEffect(() => {
     if (!supabase) { setError("Auth service unavailable."); return; }
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        if ((event === "PASSWORD_RECOVERY" || event === "SIGNED_IN") && session) {
-          setReady(true);
-        }
+
+    async function init() {
+      // 1. PKCE flow: Supabase sends ?code= in the URL
+      const code = new URLSearchParams(window.location.search).get("code");
+      if (code) {
+        const { error } = await supabase!.auth.exchangeCodeForSession(code);
+        if (error) { setError("Reset link is invalid or has expired. Please request a new one."); return; }
+        setReady(true);
+        return;
       }
-    );
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) setReady(true);
-    });
-    return () => subscription.unsubscribe();
-  }, []);
+      // 2. Implicit flow: token in URL hash
+      if (window.location.hash.includes("access_token")) {
+        const { data: { session } } = await supabase!.auth.getSession();
+        if (session) { setReady(true); return; }
+      }
+      // 3. Already have session (came from AuthContext redirect)
+      const { data: { session } } = await supabase!.auth.getSession();
+      if (session) { setReady(true); return; }
+      // 4. Fallback: wait for auth state change
+      const { data: { subscription } } = supabase!.auth.onAuthStateChange(
+        (_event, session) => { if (session) { setReady(true); subscription.unsubscribe(); } }
+      );
+      setTimeout(() => {
+        subscription.unsubscribe();
+        setError("Reset link is invalid or expired. Please request a new one.");
+      }, 8000);
+    }
+
+    init();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
