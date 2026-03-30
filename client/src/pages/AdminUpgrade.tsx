@@ -587,7 +587,7 @@ export default function AdminUpgrade() {
           </Btn>
           <Btn onClick={() => navigate("/dashboard")} variant="ghost" size="sm">Dashboard</Btn>
           <Btn onClick={() => navigate("/demo/dashboard")} variant="ghost" size="sm">Demo</Btn>
-          <Btn onClick={async () => { await logout(); navigate("/login"); }} variant="default" size="sm">
+          <Btn onClick={async () => { await logout(); navigate("/login"); }} variant="default" size="md">
             <LogOut style={{ width: 13, height: 13 }} /> Sign out
           </Btn>
         </div>

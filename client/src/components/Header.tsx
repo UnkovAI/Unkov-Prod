@@ -159,7 +159,7 @@ export default function Header() {
             {/* Direct links */}
             {[{ label: "Pricing", href: "/pricing" }, { label: "Integrations", href: "/integrations" }].map(link => (
               <button key={link.label} onClick={() => go(link.href)}
-                style={{ padding: "0.4rem 0.75rem", fontSize: "0.8125rem", fontWeight: 450, color: "#3d3d52", backgroundColor: "transparent", borderRadius: "0.5rem", border: "none", cursor: "pointer", whiteSpace: "nowrap", transition: "color 0.12s, background-color 0.12s", letterSpacing: "-0.01em" }}
+                style={{ padding: "0.4rem 0.875rem", fontSize: "0.8125rem", fontWeight: 450, color: "#3d3d52", backgroundColor: "transparent", borderRadius: "0.5rem", border: "none", cursor: "pointer", whiteSpace: "nowrap", transition: "color 0.12s, background-color 0.12s", letterSpacing: "-0.01em" }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#00297a"; el.style.backgroundColor = "#eeeae4"; el.style.fontWeight = "600"; }}
                 onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#3d3d52"; el.style.backgroundColor = "transparent"; el.style.fontWeight = "450"; }}>
                 {link.label}
@@ -169,7 +169,18 @@ export default function Header() {
 
           {/* Right CTAs */}
           <div className="hidden md:flex" style={{ alignItems: "center", gap: "0.25rem", flexShrink: 0 }}>
-            {!user && (
+            {user ? (
+              <button
+                onClick={() => go(user.role === "admin" ? "/admin/upgrade" : dashboardPath)}
+                title={user.role === "admin" ? "Admin console" : "Dashboard"}
+                style={{ width: 30, height: 30, borderRadius: "50%", backgroundColor: "#00297a", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", border: "none", flexShrink: 0 }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = "0.75"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}>
+                <span style={{ fontSize: "0.625rem", fontWeight: 800, color: "#fff", letterSpacing: "0.05em" }}>
+                  {user.role === "admin" ? "AD" : user.role === "paying_customer" ? "PR" : "PL"}
+                </span>
+              </button>
+            ) : (
               <button onClick={() => go("/login")}
                 style={{ display: "flex", alignItems: "center", gap: "0.3rem", fontSize: "0.875rem", fontWeight: 500, color: "#6b7280", backgroundColor: "transparent", padding: "0.35rem 0.625rem", borderRadius: "0.5rem", border: "none", cursor: "pointer", whiteSpace: "nowrap", transition: "color 0.12s, background-color 0.12s" }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#0a0f1e"; el.style.backgroundColor = "#eeeae4"; }}
@@ -311,8 +322,8 @@ export default function Header() {
               </div>
             ))}
             <div style={{ paddingTop: "1.5rem", display: "flex", flexDirection: "column", gap: "0.625rem" }}>
-              {(!user || user.role === "pilot_customer") && (<button onClick={() => go("/demo/dashboard")} style={{ width: "100%", textAlign: "center", fontSize: "0.9375rem", fontWeight: 500, color: "#0061d4", border: "1px solid #c0d7f5", backgroundColor: "transparent", cursor: "pointer", padding: "0.75rem", borderRadius: "9999px" }}>Live demo</button>)}
-              <button onClick={() => go(user ? (user.role === "admin" ? "/admin/upgrade" : dashboardPath) : "/login")} style={{ width: "100%", textAlign: "center", fontSize: "0.9375rem", fontWeight: 500, color: "#4a4a5e", border: "1px solid #d8d3cc", backgroundColor: "transparent", cursor: "pointer", padding: "0.75rem", borderRadius: "9999px" }}>{user ? (user.role === "admin" ? "Admin console" : user.role === "paying_customer" ? "Dashboard" : "") : "Log in"}</button>
+              <button onClick={() => go("/demo/dashboard")} style={{ width: "100%", textAlign: "center", fontSize: "0.9375rem", fontWeight: 500, color: "#0061d4", border: "1px solid #c0d7f5", backgroundColor: "transparent", cursor: "pointer", padding: "0.75rem", borderRadius: "9999px" }}>Live demo</button>
+              <button onClick={() => go(user ? (user.role === "admin" ? "/admin/upgrade" : dashboardPath) : "/login")} style={{ width: "100%", textAlign: "center", fontSize: "0.9375rem", fontWeight: 500, color: "#4a4a5e", border: "1px solid #d8d3cc", backgroundColor: "transparent", cursor: "pointer", padding: "0.75rem", borderRadius: "9999px" }}>{user ? (user.role === "admin" ? "Admin console" : "Dashboard") : "Log in"}</button>
               <button onClick={() => go("/early-access")} style={{ width: "100%", textAlign: "center", fontSize: "0.9375rem", fontWeight: 600, color: "#ffffff", border: "none", backgroundColor: "#00297a", cursor: "pointer", padding: "0.75rem", borderRadius: "9999px" }}>Apply for pilot</button>
             </div>
           </div>

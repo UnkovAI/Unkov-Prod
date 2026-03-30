@@ -52,7 +52,7 @@ export const createInvestorToken = async (name: string, email: string, hours: nu
   if (!supabase) throw new Error("Supabase is not configured");
   // Use integer explicitly — JS numbers are floats and cause Postgres overload ambiguity
   const hoursInt = Math.round(hours) as unknown as number;
-  const { data, error } = await supabase.rpc('create_investor_token', {
+  const { data, error } = await supabase.rpc('create_investor_token_v2', {
     p_name: name,
     p_email: email,
     p_hours_valid: hoursInt,
