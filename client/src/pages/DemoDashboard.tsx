@@ -651,7 +651,7 @@ export default function DemoDashboard() {
       <div style={{ paddingTop:68, minHeight:"100vh" }}>
 
         {/* Top bar */}
-        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"0.75rem 2rem", borderBottom:`1px solid ${S.border}`, flexWrap:"wrap", gap:"0.75rem" }}>
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"0.75rem 2rem", borderBottom:`1px solid ${S.border}`, gap:"0.75rem", minWidth:0 }}>
           <div>
             <div style={{ display:"flex", alignItems:"center", gap:"0.625rem" }}>
               <div style={{ fontSize:"0.72rem", color:S.muted, textTransform:"uppercase" as const, letterSpacing:"0.12em" }}>Identity Command Center</div>
@@ -661,7 +661,7 @@ export default function DemoDashboard() {
             <h1 style={{ fontSize:"1.25rem", fontWeight:800, color:"#f1f5f9", marginTop:2 }}>Acme Financial Corp</h1>
           </div>
           <PhaseStepper activePhase={activePhase}/>
-          <div style={{ display:"flex", gap:"0.5rem", alignItems:"center" }}>
+          <div style={{ display:"flex", gap:"0.5rem", alignItems:"center", marginLeft:"auto", flexShrink:0 }}>
             <DeployTimer startTime={startTime}/>
             <Btn onClick={()=>dlCSV("pilot-identities.csv", DEMO_IDENTITIES.map(id=>({id:id.id,name:id.name,type:id.type,dept:id.dept,risk:id.risk,status:id.status,lastActive:id.lastActive,accessCount:id.accessCount})))} variant="default" size="sm">
               <Download style={{width:11,height:11}}/> CSV
