@@ -569,29 +569,32 @@ function PolicyPreview() {
 // ─── Upgrade CTA banner ───────────────────────────────────────────
 function UpgradeBanner() {
   return (
-    <div style={{ margin:"0 0 1.25rem", padding:"1rem 1.5rem", backgroundColor:"rgba(0,97,212,0.08)", border:"1px solid rgba(0,97,212,0.25)", borderRadius:12, display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"0.75rem" }}>
+    <div style={{ margin:"0 0 1.25rem", padding:"1.25rem 1.5rem", background:"linear-gradient(135deg, rgba(0,41,122,0.4) 0%, rgba(0,97,212,0.2) 100%)", border:"1px solid rgba(0,97,212,0.35)", borderRadius:12, display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"0.75rem" }}>
       <div>
-        <div style={{ fontSize:"0.9375rem", fontWeight:700, color:"#60a5fa", marginBottom:"0.25rem" }}>Pilot active — 5 advanced tabs locked</div>
-        <div style={{ fontSize:"0.8125rem", color:S.muted }}>Audit trail · Policies · Integrations · Incidents · ROI &amp; MSP — unlocked when you sign.</div>
+        <div style={{ fontSize:"0.9375rem", fontWeight:700, color:"#f1f5f9", marginBottom:"0.25rem" }}>You're seeing 1 of 9 tabs — this is your environment.</div>
+        <div style={{ fontSize:"0.8125rem", color:S.soft }}>Sign a contract to unlock Analyze · Remediate · Monitor · Audit trail · Policies · Integrations · Incidents · ROI &amp; MSP.</div>
       </div>
-      <Btn variant="cta" size="md" onClick={()=>navigate("/early-access")}>
-        Request contract <ChevronRight style={{width:14,height:14}}/>
-      </Btn>
+      <div style={{ display:"flex", gap:"0.5rem", flexShrink:0 }}>
+        <Btn variant="cta" size="md" onClick={()=>navigate("/early-access")}>
+          Get full access <ChevronRight style={{width:14,height:14}}/>
+        </Btn>
+        <Btn variant="ghost" size="sm" onClick={()=>navigate("/contact")}>Talk to us</Btn>
+      </div>
     </div>
   );
 }
 
 // ─── Main demo dashboard ──────────────────────────────────────────
 const DEMO_TABS = [
-  { id:"discover",   label:"Discover",   icon:Search,        locked:false, phase:"discover"  },
-  { id:"analyze",    label:"Analyze",    icon:Zap,           locked:false, phase:"analyze"   },
-  { id:"remediate",  label:"Remediate",  icon:Shield,        locked:false, phase:"remediate" },
-  { id:"monitor",    label:"Monitor",    icon:CheckCircle,   locked:false, phase:"monitor"   },
-  { id:"audit",      label:"Audit trail",icon:FileText,      locked:true,  phase:""          },
-  { id:"policies",   label:"Policies",   icon:Settings as any, locked:true, phase:""         },
-  { id:"integrations",label:"Integrations",icon:ExternalLink,       locked:true,  phase:""          },
-  { id:"incidents",  label:"Incidents",  icon:AlertTriangle, locked:true,  phase:""          },
-  { id:"roi",        label:"ROI & MSP",  icon:TrendingDown,  locked:true,  phase:""          },
+  { id:"discover",    label:"Discover",     icon:Search,          locked:false, phase:"discover"  },
+  { id:"analyze",     label:"Analyze",      icon:Zap,             locked:true,  phase:""          },
+  { id:"remediate",   label:"Remediate",    icon:Shield,          locked:true,  phase:""          },
+  { id:"monitor",     label:"Monitor",      icon:CheckCircle,     locked:true,  phase:""          },
+  { id:"audit",       label:"Audit trail",  icon:FileText,        locked:true,  phase:""          },
+  { id:"policies",    label:"Policies",     icon:Settings as any, locked:true,  phase:""          },
+  { id:"integrations",label:"Integrations", icon:ExternalLink,    locked:true,  phase:""          },
+  { id:"incidents",   label:"Incidents",    icon:AlertTriangle,   locked:true,  phase:""          },
+  { id:"roi",         label:"ROI & MSP",    icon:TrendingDown,    locked:true,  phase:""          },
 ];
 
 const LOCK_REASONS: Record<string,string> = {
@@ -674,7 +677,9 @@ export default function DemoDashboard() {
                 {user.role === "admin" && (
                   <Btn onClick={()=>navigate("/admin/upgrade")} variant="default" size="sm">Admin</Btn>
                 )}
-                <Btn onClick={()=>navigate("/dashboard")} variant="ghost" size="sm">Dashboard</Btn>
+                <Btn onClick={()=>navigate("/early-access")} variant="cta" size="md">
+                  Unlock full access <ChevronRight style={{width:13,height:13}}/>
+                </Btn>
                 <Btn onClick={()=>navigate("/")} variant="ghost" size="sm">← Home</Btn>
                 <Btn onClick={async()=>{await logout();navigate("/login");}} variant="default" size="sm">Sign out</Btn>
               </>

@@ -92,7 +92,7 @@ function Router() {
       {/* pilot_customer sees a preview with upgrade prompt. */}
       <Route path="/dashboard">
         {() => (
-          <ProtectedRoute>
+          <ProtectedRoute requiredRole="paying_customer">
             <Dashboard />
           </ProtectedRoute>
         )}
