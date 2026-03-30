@@ -137,7 +137,7 @@ export default function Header() {
                   style={{
                     display: "flex", alignItems: "center", gap: "0.25rem",
                     padding: "0.4rem 0.75rem",
-                    fontSize: "0.875rem", fontWeight: activeGroup === group.label ? 600 : 450,
+                    fontSize: "0.9375rem", fontWeight: activeGroup === group.label ? 600 : 450,
                     color: activeGroup === group.label ? "#00297a" : "#3d3d52",
                     backgroundColor: activeGroup === group.label ? "#eeeae4" : "transparent",
                     borderRadius: "0.5rem", border: "none", cursor: "pointer",
@@ -159,7 +159,7 @@ export default function Header() {
             {/* Direct links */}
             {[{ label: "Pricing", href: "/pricing" }, { label: "Integrations", href: "/integrations" }].map(link => (
               <button key={link.label} onClick={() => go(link.href)}
-                style={{ padding: "0.4rem 0.875rem", fontSize: "0.8125rem", fontWeight: 450, color: "#3d3d52", backgroundColor: "transparent", borderRadius: "0.5rem", border: "none", cursor: "pointer", whiteSpace: "nowrap", transition: "color 0.12s, background-color 0.12s", letterSpacing: "-0.01em" }}
+                style={{ padding: "0.4rem 0.75rem", fontSize: "0.8125rem", fontWeight: 450, color: "#3d3d52", backgroundColor: "transparent", borderRadius: "0.5rem", border: "none", cursor: "pointer", whiteSpace: "nowrap", transition: "color 0.12s, background-color 0.12s", letterSpacing: "-0.01em" }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#00297a"; el.style.backgroundColor = "#eeeae4"; el.style.fontWeight = "600"; }}
                 onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#3d3d52"; el.style.backgroundColor = "transparent"; el.style.fontWeight = "450"; }}>
                 {link.label}
@@ -189,14 +189,12 @@ export default function Header() {
                 Log in
               </button>
             )}
-            {(!user || user.role === "pilot_customer") && (
-              <button onClick={() => go("/demo/dashboard")}
-                style={{ fontSize: "0.875rem", fontWeight: 500, color: "#0061d4", padding: "0.4rem 1rem", borderRadius: "9999px", border: "1px solid #c0d7f5", backgroundColor: "transparent", cursor: "pointer", whiteSpace: "nowrap", transition: "background-color 0.12s, border-color 0.12s" }}
-                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = "#e8f0fe"; el.style.borderColor = "#93c2f0"; }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = "transparent"; el.style.borderColor = "#c0d7f5"; }}>
-                Live demo
-              </button>
-            )}
+            <button onClick={() => go("/demo/dashboard")}
+              style={{ fontSize: "0.875rem", fontWeight: 500, color: "#0061d4", padding: "0.4rem 1rem", borderRadius: "9999px", border: "1px solid #c0d7f5", backgroundColor: "transparent", cursor: "pointer", whiteSpace: "nowrap", transition: "background-color 0.12s, border-color 0.12s" }}
+              onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = "#e8f0fe"; el.style.borderColor = "#93c2f0"; }}
+              onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = "transparent"; el.style.borderColor = "#c0d7f5"; }}>
+              Live demo
+            </button>
             <button onClick={() => go("/early-access")}
               style={{ fontSize: "0.875rem", fontWeight: 600, color: "#ffffff", padding: "0.5rem 1.125rem", borderRadius: "9999px", border: "none", backgroundColor: "#00297a", cursor: "pointer", whiteSpace: "nowrap", transition: "background-color 0.12s" }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "#001f5c"; }}
