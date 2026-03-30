@@ -50,15 +50,32 @@ export const isSupabaseConfigured = !!supabase;
 
 export const createInvestorToken = async (name: string, email: string, hours: number = 24) => {
   if (!supabase) throw new Error("Supabase is not configured");
-  // Use integer explicitly — JS numbers are floats and cause Postgres overload ambiguity
-  const hoursInt = Math.round(hours) as unknown as number;
-  const { data, error } = await supabase.rpc('create_investor_token_v2', {
-    p_name: name,
-    p_email: email,
-    p_hours_valid: hoursInt,
-  });
-  if (error) throw error;
-  return data;
+
+  // Generate token client-side — no RPC needed, no overload ambiguity
+  const hoursInt  = Math.round(hours);
+  const expiresAt = new Date(Date.now() + hoursInt * 60 * 60 * 1000).toISOString();
+
+  const rawBytes  = crypto.getRandomValues(new Uint8Array(32));
+  const rawToken  = Array.from(rawBytes).map(b => b.toString(16).padStart(2, "0")).join("");
+
+  const hashBuffer = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(rawToken));
+  const tokenHash  = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, "0")).join("");
+
+  const { error } = await supabase
+    .from("investor_tokens")
+    .insert({
+      investor_name:  name.trim(),
+      investor_email: email.trim().toLowerCase(),
+      token_hash:     tokenHash,
+      expires_at:     expiresAt,
+    });
+
+  if (error) {
+    console.error("[Unkov] createInvestorToken:", error);
+    throw new Error(error.message || "Failed to create token");
+  }
+
+  return rawToken;   // Raw token shown once to admin — never stored
 };
 
 export const revokeInvestorToken = async (email: string) => {

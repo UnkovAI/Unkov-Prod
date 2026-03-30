@@ -218,7 +218,7 @@ const CONNECTOR_CONFIG: Record<string, {
       { sev: "medium",   label: "Admin account without MFA" },
     ],
     fields: [
-      { key: "GOOGLE_SA_KEY_JSON",  label: "Service Account Key (JSON)", placeholder: "{"type":"service_account",...}", secret: true,
+      { key: "GOOGLE_SA_KEY_JSON",  label: "Service Account Key (JSON)", placeholder: '{type:service_account,...}', secret: true,
         hint: "GCP Console → IAM → Service Accounts → Create → Keys → JSON. Grant Security Reviewer + Groups Reader roles." },
       { key: "GOOGLE_WORKSPACE_DOMAIN", label: "Workspace Domain", placeholder: "yourdomain.com",
         hint: "Your primary Google Workspace domain (e.g. acmebank.com)" },
@@ -312,7 +312,7 @@ const CONNECTOR_CONFIG: Record<string, {
       { sev: "medium",   label: "Service account unused 60+ days (still has keys)" },
     ],
     fields: [
-      { key: "GCP_SA_KEY_JSON",  label: "Service Account Key (JSON)", placeholder: "{"type":"service_account",...}", secret: true,
+      { key: "GCP_SA_KEY_JSON",  label: "Service Account Key (JSON)", placeholder: '{type:service_account,...}', secret: true,
         hint: "GCP Console → IAM → Service Accounts → Unkov Scanner SA → Keys → JSON. Grant Security Reviewer at org level." },
       { key: "GCP_PROJECT_ID",   label: "Project ID",  placeholder: "my-project-123",
         hint: "Your GCP project ID (not the project name) — found in GCP Console header" },
