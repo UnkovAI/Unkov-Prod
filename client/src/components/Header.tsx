@@ -169,13 +169,31 @@ export default function Header() {
 
           {/* Right CTAs */}
           <div className="hidden md:flex" style={{ alignItems: "center", gap: "0.25rem", flexShrink: 0 }}>
-            <button onClick={() => go(user ? dashboardPath : "/login")}
-              style={{ display: "flex", alignItems: "center", gap: "0.3rem", fontSize: "0.875rem", fontWeight: 500, color: "#6b7280", backgroundColor: "transparent", padding: "0.35rem 0.625rem", borderRadius: "0.5rem", border: "none", cursor: "pointer", whiteSpace: "nowrap", transition: "color 0.12s, background-color 0.12s" }}
-              onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#0a0f1e"; el.style.backgroundColor = "#eeeae4"; }}
-              onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#6b7280"; el.style.backgroundColor = "transparent"; }}>
-              <LogIn style={{ width: 12, height: 12 }} />
-              {user ? (user.avatarInitials && user.avatarInitials !== "??" ? user.avatarInitials : user.email.slice(0,2).toUpperCase()) : "Log in"}
-            </button>
+            {user ? (
+              <button
+                onClick={() => go(user.role === "admin" ? "/admin/upgrade" : dashboardPath)}
+                title={`${user.email} — ${user.role}`}
+                style={{ display: "flex", alignItems: "center", gap: "0.5rem", padding: "0.25rem 0.625rem 0.25rem 0.25rem", borderRadius: "9999px", border: "1px solid #dcd6ce", backgroundColor: "transparent", cursor: "pointer", transition: "background-color 0.12s, border-color 0.12s" }}
+                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = "#eeeae4"; el.style.borderColor = "#b8b0a6"; }}
+                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = "transparent"; el.style.borderColor = "#dcd6ce"; }}>
+                <div style={{ width: 26, height: 26, borderRadius: "50%", backgroundColor: "#00297a", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.65rem", fontWeight: 700, color: "#ffffff", flexShrink: 0 }}>
+                  {user.name && user.name !== user.email
+                    ? user.name.split(" ").map((n: string) => n[0]).join("").toUpperCase().slice(0, 2)
+                    : user.email.slice(0, 2).toUpperCase()}
+                </div>
+                <span style={{ fontSize: "0.8125rem", fontWeight: 500, color: "#3d3d52", maxWidth: 90, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  {user.name && user.name !== user.email ? user.name.split(" ")[0] : user.email.split("@")[0]}
+                </span>
+              </button>
+            ) : (
+              <button onClick={() => go("/login")}
+                style={{ display: "flex", alignItems: "center", gap: "0.3rem", fontSize: "0.875rem", fontWeight: 500, color: "#6b7280", backgroundColor: "transparent", padding: "0.35rem 0.625rem", borderRadius: "0.5rem", border: "none", cursor: "pointer", whiteSpace: "nowrap", transition: "color 0.12s, background-color 0.12s" }}
+                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#0a0f1e"; el.style.backgroundColor = "#eeeae4"; }}
+                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color = "#6b7280"; el.style.backgroundColor = "transparent"; }}>
+                <LogIn style={{ width: 12, height: 12 }} />
+                Log in
+              </button>
+            )}
             <button onClick={() => go("/demo/dashboard")}
               style={{ fontSize: "0.875rem", fontWeight: 500, color: "#0061d4", padding: "0.4rem 1rem", borderRadius: "9999px", border: "1px solid #c0d7f5", backgroundColor: "transparent", cursor: "pointer", whiteSpace: "nowrap", transition: "background-color 0.12s, border-color 0.12s" }}
               onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.backgroundColor = "#e8f0fe"; el.style.borderColor = "#93c2f0"; }}
@@ -308,7 +326,7 @@ export default function Header() {
             ))}
             <div style={{ paddingTop: "1.5rem", display: "flex", flexDirection: "column", gap: "0.625rem" }}>
               <button onClick={() => go("/demo/dashboard")} style={{ width: "100%", textAlign: "center", fontSize: "0.9375rem", fontWeight: 500, color: "#0061d4", border: "1px solid #c0d7f5", backgroundColor: "transparent", cursor: "pointer", padding: "0.75rem", borderRadius: "9999px" }}>Live demo</button>
-              <button onClick={() => go(user ? dashboardPath : "/login")} style={{ width: "100%", textAlign: "center", fontSize: "0.9375rem", fontWeight: 500, color: "#4a4a5e", border: "1px solid #d8d3cc", backgroundColor: "transparent", cursor: "pointer", padding: "0.75rem", borderRadius: "9999px" }}>{user ? "Open dashboard" : "Log in"}</button>
+              <button onClick={() => go(user ? (user.role === "admin" ? "/admin/upgrade" : dashboardPath) : "/login")} style={{ width: "100%", textAlign: "center", fontSize: "0.9375rem", fontWeight: 500, color: "#4a4a5e", border: "1px solid #d8d3cc", backgroundColor: "transparent", cursor: "pointer", padding: "0.75rem", borderRadius: "9999px" }}>{user ? (user.role === "admin" ? "Admin console" : "Open dashboard") : "Log in"}</button>
               <button onClick={() => go("/early-access")} style={{ width: "100%", textAlign: "center", fontSize: "0.9375rem", fontWeight: 600, color: "#ffffff", border: "none", backgroundColor: "#00297a", cursor: "pointer", padding: "0.75rem", borderRadius: "9999px" }}>Apply for pilot</button>
             </div>
           </div>
