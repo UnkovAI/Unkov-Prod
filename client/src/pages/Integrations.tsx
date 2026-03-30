@@ -218,7 +218,7 @@ const CONNECTOR_CONFIG: Record<string, {
       { sev: "medium",   label: "Admin account without MFA" },
     ],
     fields: [
-      { key: "GOOGLE_SA_KEY_JSON",  label: "Service Account Key (JSON)", placeholder: "{"type":"service_account",...}", secret: true,
+      { key: "GOOGLE_SA_KEY_JSON",  label: "Service Account Key (JSON)", placeholder: '{type:service_account,...}', secret: true,
         hint: "GCP Console → IAM → Service Accounts → Create → Keys → JSON. Grant Security Reviewer + Groups Reader roles." },
       { key: "GOOGLE_WORKSPACE_DOMAIN", label: "Workspace Domain", placeholder: "yourdomain.com",
         hint: "Your primary Google Workspace domain (e.g. acmebank.com)" },
@@ -312,7 +312,7 @@ const CONNECTOR_CONFIG: Record<string, {
       { sev: "medium",   label: "Service account unused 60+ days (still has keys)" },
     ],
     fields: [
-      { key: "GCP_SA_KEY_JSON",  label: "Service Account Key (JSON)", placeholder: "{"type":"service_account",...}", secret: true,
+      { key: "GCP_SA_KEY_JSON",  label: "Service Account Key (JSON)", placeholder: '{type:service_account,...}', secret: true,
         hint: "GCP Console → IAM → Service Accounts → Unkov Scanner SA → Keys → JSON. Grant Security Reviewer at org level." },
       { key: "GCP_PROJECT_ID",   label: "Project ID",  placeholder: "my-project-123",
         hint: "Your GCP project ID (not the project name) — found in GCP Console header" },
@@ -588,9 +588,9 @@ const INTEGRATIONS = [
     items: [
       { name: "Okta",               id: "okta",      status: "live",    desc: "Users, groups, apps, admin roles, service account detection. Full lifecycle sync via SCIM + API."                         },
       { name: "Microsoft Entra ID", id: "entra",     status: "live",    desc: "Users, service principals, managed identities. Microsoft Graph API — biggest AI agent surface in Azure."                 },
-      { name: "Google Workspace",   id: "google-workspace", status: "live", desc: "Directory sync + admin SDK. Users, groups, service accounts."                                                             },
-      { name: "Ping Identity",      id: "ping-identity", status: "live", desc: "OAuth 2.0 / OIDC federation. Users and federated identities."                                                             },
-      { name: "JumpCloud",          id: "jumpcloud", status: "live", desc: "SCIM 2.0 provisioning. Users, groups, device identities."                                                                 },
+      { name: "Google Workspace",   id: "google-workspace",        status: "live", desc: "Directory sync + admin SDK. Users, groups, service accounts."                                                             },
+      { name: "Ping Identity",      id: "ping-identity",        status: "live", desc: "OAuth 2.0 / OIDC federation. Users and federated identities."                                                             },
+      { name: "JumpCloud",          id: "jumpcloud",        status: "live", desc: "SCIM 2.0 provisioning. Users, groups, device identities."                                                                 },
     ],
   },
   {
@@ -599,7 +599,7 @@ const INTEGRATIONS = [
     items: [
       { name: "AWS IAM",            id: "aws-iam",   status: "live",    desc: "IAM users, roles, access keys, Lambda execution roles, AI agent roles. Stale key detection."                              },
       { name: "Azure RBAC",         id: "entra",     status: "live",    desc: "Azure role assignments, PIM integration, managed identity governance. Through Entra ID connector."                        },
-      { name: "Google Cloud IAM",   id: "google-cloud-iam", status: "live", desc: "Service account governance, workload identity federation, IAM policy drift detection."                                    },
+      { name: "Google Cloud IAM",   id: "google-cloud-iam",        status: "live", desc: "Service account governance, workload identity federation, IAM policy drift detection."                                    },
       { name: "Kubernetes RBAC",    id: null,        status: "planned", desc: "Pod-level identity governance. ServiceAccount tokens, ClusterRoleBindings."                                               },
     ],
   },
@@ -610,7 +610,7 @@ const INTEGRATIONS = [
       { name: "Workday",            id: "workday",   status: "live",    desc: "Active + terminated workers. Cross-reference with IdP to find accounts still live after employee exit."                   },
       { name: "BambooHR",           id: null,        status: "planned", desc: "Onboarding trigger events. Auto-provision on hire, auto-deprovision on termination."                                      },
       { name: "SAP SuccessFactors", id: null,        status: "planned", desc: "Enterprise HR lifecycle. Role changes trigger access reviews."                                                             },
-      { name: "ADP",                id: "adp", status: "live", desc: "Payroll-driven deprovisioning. Termination events trigger immediate access revocation."                                    },
+      { name: "ADP",                id: "adp",        status: "live", desc: "Payroll-driven deprovisioning. Termination events trigger immediate access revocation."                                    },
     ],
   },
   {
@@ -618,9 +618,9 @@ const INTEGRATIONS = [
     desc: "Where developers have production access — often ungoverned.",
     items: [
       { name: "GitHub",             id: "github",    status: "live",    desc: "Org members, outside collaborators, installed GitHub Apps (AI coding agents, bots)."                                      },
-      { name: "GitLab",             id: "gitlab", status: "live", desc: "Group members, deploy tokens, CI/CD variables with secrets access."                                                       },
-      { name: "HashiCorp Vault",    id: "hashicorp-vault", status: "live", desc: "Secrets lifecycle governance. Dynamic credentials, lease expiry tracking."                                                 },
-      { name: "GitHub Actions",     id: "github-actions", status: "live", desc: "Workflow permissions, OIDC tokens, environment secrets access."                                                            },
+      { name: "GitLab",             id: "gitlab",        status: "live", desc: "Group members, deploy tokens, CI/CD variables with secrets access."                                                       },
+      { name: "HashiCorp Vault",    id: "hashicorp-vault",        status: "live", desc: "Secrets lifecycle governance. Dynamic credentials, lease expiry tracking."                                                 },
+      { name: "GitHub Actions",     id: "github-actions",        status: "live", desc: "Workflow permissions, OIDC tokens, environment secrets access."                                                            },
     ],
   },
   {

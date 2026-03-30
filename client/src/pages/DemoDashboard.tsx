@@ -80,6 +80,7 @@ function Btn({ children, onClick, variant="default", size="sm" }: { children:Rea
     default: { bg:"rgba(255,255,255,0.06)", bd:"rgba(255,255,255,0.1)", tx:S.soft },
     primary: { bg:"rgba(0,97,212,0.2)",    bd:"rgba(0,97,212,0.4)",   tx:"#60a5fa" },
     success: { bg:"rgba(5,150,105,0.15)",  bd:"rgba(5,150,105,0.35)", tx:"#34d399" },
+    cta:     { bg:"#0061d4",               bd:"#0061d4",               tx:"#fff" },
     ghost:   { bg:"transparent",           bd:"transparent",           tx:S.muted },
     cta:     { bg:"#0061d4",               bd:"#0061d4",               tx:"#fff" },
   };

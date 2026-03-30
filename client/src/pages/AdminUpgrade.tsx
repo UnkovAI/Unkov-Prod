@@ -292,16 +292,19 @@ function TokensTab({ tokens, onRefresh, loading }: { tokens: any[]; onRefresh: (
   const [newHours, setNewHours] = useState(24);
   const [createError, setCreateError] = useState("");
   const [createSuccess, setCreateSuccess] = useState("");
+  const [newTokenValue, setNewTokenValue] = useState<string | null>(null);
+  const [newTokenEmail, setNewTokenEmail] = useState("");
+  const [copied, setCopied] = useState(false);
 
   const handleCreate = async () => {
     if (!newName.trim() || !newEmail.trim()) { setCreateError("Name and email are required."); return; }
     setCreateError(""); setCreating(true);
     try {
-      await createInvestorToken(newName.trim(), newEmail.trim(), newHours);
-      setCreateSuccess(`Token created for ${newEmail}`);
+      const rawToken = await createInvestorToken(newName.trim(), newEmail.trim(), newHours);
+      setNewTokenValue(rawToken as string);
+      setNewTokenEmail(newEmail.trim());
       setNewName(""); setNewEmail(""); setNewHours(24);
       await onRefresh();
-      setTimeout(() => setCreateSuccess(""), 4000);
     } catch (e: any) { setCreateError(e?.message ?? "Failed to create token."); }
     setCreating(false);
   };
@@ -346,10 +349,32 @@ function TokensTab({ tokens, onRefresh, loading }: { tokens: any[]; onRefresh: (
               <span style={{ fontSize: "0.8125rem", color: "#fca5a5" }}>{createError}</span>
             </div>
           )}
-          {createSuccess && (
-            <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 12px", backgroundColor: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.25)", borderRadius: 8, marginBottom: 12 }}>
-              <CheckCircle style={{ width: 14, height: 14, color: D.green, flexShrink: 0 }} />
-              <span style={{ fontSize: "0.8125rem", color: "#86efac" }}>{createSuccess}</span>
+          {newTokenValue && (
+            <div style={{ backgroundColor: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.3)", borderRadius: 10, padding: 16, marginBottom: 12 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+                <CheckCircle style={{ width: 15, height: 15, color: D.green, flexShrink: 0 }} />
+                <span style={{ fontSize: "0.875rem", fontWeight: 700, color: "#86efac" }}>Token created — copy it now. It will never be shown again.</span>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+                <code style={{ flex: 1, padding: "8px 12px", backgroundColor: "rgba(0,0,0,0.4)", borderRadius: 6, fontSize: "0.75rem", color: "#e2e8f0", fontFamily: "monospace", wordBreak: "break-all" as const }}>
+                  {newTokenValue}
+                </code>
+                <Btn variant="primary" size="sm" onClick={() => { navigator.clipboard.writeText(newTokenValue!); setCopied(true); setTimeout(() => setCopied(false), 2000); }}>
+                  {copied ? "Copied!" : "Copy token"}
+                </Btn>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+                <span style={{ fontSize: "0.75rem", color: D.muted, flexShrink: 0 }}>Login link:</span>
+                <code style={{ flex: 1, padding: "6px 10px", backgroundColor: "rgba(0,0,0,0.3)", borderRadius: 6, fontSize: "0.7rem", color: "#94a3b8", fontFamily: "monospace", wordBreak: "break-all" as const }}>
+                  {`${window.location.origin}/investor-gate?email=${encodeURIComponent(newTokenEmail)}&token=${newTokenValue}`}
+                </code>
+                <Btn variant="ghost" size="sm" onClick={() => { navigator.clipboard.writeText(`${window.location.origin}/investor-gate?email=${encodeURIComponent(newTokenEmail)}&token=${newTokenValue}`); setCopied(true); setTimeout(() => setCopied(false), 2000); }}>
+                  {copied ? "✓" : "Copy link"}
+                </Btn>
+              </div>
+              <div style={{ textAlign: "right" as const }}>
+                <Btn variant="ghost" size="xs" onClick={() => { setNewTokenValue(null); setNewTokenEmail(""); }}>Dismiss</Btn>
+              </div>
             </div>
           )}
           <Btn onClick={handleCreate} variant="primary" size="sm" disabled={creating}>
@@ -495,7 +520,7 @@ export default function AdminUpgrade() {
   const [dataLoading, setDataLoading] = useState(false);
 
   const fetchAll = useCallback(async () => {
-    if (!supabase || !user) return;
+    if (!supabase) return;
     setDataLoading(true);
     try {
       // get_all_users uses SECURITY DEFINER to bypass RLS
@@ -529,16 +554,12 @@ export default function AdminUpgrade() {
     setDataLoading(false);
   }, []);
 
-  // Fetch as soon as we know the user is admin — covers both initial load and re-renders
   useEffect(() => {
     if (user?.role === "admin") fetchAll();
   }, [user?.role, fetchAll]);
 
-  // Also fetch immediately on mount with a small delay to allow auth to settle
   useEffect(() => {
-    const t = setTimeout(() => {
-      if (user?.role === "admin") fetchAll();
-    }, 500);
+    const t = setTimeout(() => { if (user?.role === "admin") fetchAll(); }, 300);
     return () => clearTimeout(t);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
