@@ -650,41 +650,49 @@ export default function DemoDashboard() {
       <Header/>
       <div style={{ paddingTop:68, minHeight:"100vh" }}>
 
-        {/* Top bar */}
-        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"0.75rem 2rem", borderBottom:`1px solid ${S.border}`, gap:"0.75rem", minWidth:0 }}>
-          <div>
-            <div style={{ display:"flex", alignItems:"center", gap:"0.625rem" }}>
-              <div style={{ fontSize:"0.72rem", color:S.muted, textTransform:"uppercase" as const, letterSpacing:"0.12em" }}>Identity Command Center</div>
-              <span style={{ fontSize:"0.7rem", fontWeight:700, padding:"2px 8px", borderRadius:9999, backgroundColor:"rgba(0,97,212,0.2)", color:"#60a5fa", border:"1px solid rgba(0,97,212,0.35)" }}>PILOT MODE</span>
-              <span style={{ display:"flex", alignItems:"center", gap:"0.3rem", fontSize:"0.7rem", fontWeight:700, padding:"2px 8px", borderRadius:9999, backgroundColor:"rgba(52,211,153,0.15)", color:"#34d399", border:"1px solid rgba(52,211,153,0.3)" }}><span style={{ width:5, height:5, borderRadius:"50%", backgroundColor:"#34d399", display:"inline-block", animation:"pulse2 2s infinite" }}/> Live</span>
+        {/* Top bar — row 1: title + nav buttons */}
+        <div style={{ padding:"0.625rem 2rem", borderBottom:`1px solid ${S.border}` }}>
+          <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", gap:"1rem" }}>
+            {/* Left: title */}
+            <div style={{ minWidth:0 }}>
+              <div style={{ display:"flex", alignItems:"center", gap:"0.5rem", flexWrap:"wrap" }}>
+                <div style={{ fontSize:"0.7rem", color:S.muted, textTransform:"uppercase" as const, letterSpacing:"0.12em" }}>Identity Command Center</div>
+                <span style={{ fontSize:"0.68rem", fontWeight:700, padding:"2px 7px", borderRadius:9999, backgroundColor:"rgba(0,97,212,0.2)", color:"#60a5fa", border:"1px solid rgba(0,97,212,0.35)", flexShrink:0 }}>PILOT MODE</span>
+                <span style={{ display:"flex", alignItems:"center", gap:"0.25rem", fontSize:"0.68rem", fontWeight:700, padding:"2px 7px", borderRadius:9999, backgroundColor:"rgba(52,211,153,0.15)", color:"#34d399", border:"1px solid rgba(52,211,153,0.3)", flexShrink:0 }}><span style={{ width:5, height:5, borderRadius:"50%", backgroundColor:"#34d399", display:"inline-block", animation:"pulse2 2s infinite" }}/> Live</span>
+              </div>
+              <h1 style={{ fontSize:"1.125rem", fontWeight:800, color:"#f1f5f9", marginTop:2, whiteSpace:"nowrap" as const }}>Acme Financial Corp</h1>
             </div>
-            <h1 style={{ fontSize:"1.25rem", fontWeight:800, color:"#f1f5f9", marginTop:2 }}>Acme Financial Corp</h1>
+            {/* Right: nav buttons */}
+            <div style={{ display:"flex", gap:"0.375rem", alignItems:"center", flexShrink:0 }}>
+              {user ? (
+                <>
+                  {user.role === "admin" && (
+                    <Btn onClick={()=>navigate("/admin/upgrade")} variant="default" size="sm">Admin</Btn>
+                  )}
+                  <Btn onClick={()=>navigate("/")} variant="ghost" size="sm">← Home</Btn>
+                  <Btn onClick={async()=>{await logout();navigate("/login");}} variant="default" size="md">Sign out</Btn>
+                </>
+              ) : (
+                <>
+                  <Btn onClick={()=>navigate("/")} variant="ghost" size="sm">← Home</Btn>
+                  <Btn onClick={()=>navigate("/login")} variant="primary" size="sm">Sign in</Btn>
+                </>
+              )}
+            </div>
           </div>
-          <PhaseStepper activePhase={activePhase}/>
-          <div style={{ display:"flex", gap:"0.5rem", alignItems:"center", marginLeft:"auto", flexShrink:0 }}>
-            <DeployTimer startTime={startTime}/>
-            <Btn onClick={()=>dlCSV("pilot-identities.csv", DEMO_IDENTITIES.map(id=>({id:id.id,name:id.name,type:id.type,dept:id.dept,risk:id.risk,status:id.status,lastActive:id.lastActive,accessCount:id.accessCount})))} variant="default" size="sm">
-              <Download style={{width:11,height:11}}/> CSV
-            </Btn>
-            <Btn onClick={()=>dlJSON("pilot-export.json", {identities:DEMO_IDENTITIES,auditLog:DEMO_EVENTS,accessDecisions:DEMO_ACCESS,exportedAt:new Date().toISOString()})} variant="default" size="sm">
-              <Download style={{width:11,height:11}}/> JSON
-            </Btn>
-            <div style={{ width:1, height:20, backgroundColor:"rgba(255,255,255,0.1)" }}/>
-            {user ? (
-              <>
-                {user.role === "admin" && (
-                  <Btn onClick={()=>navigate("/admin/upgrade")} variant="default" size="sm">Admin</Btn>
-                )}
-                <Btn onClick={()=>navigate("/dashboard")} variant="ghost" size="sm">Dashboard</Btn>
-                <Btn onClick={()=>navigate("/")} variant="ghost" size="sm">← Home</Btn>
-                <Btn onClick={async()=>{await logout();navigate("/login");}} variant="default" size="sm">Sign out</Btn>
-              </>
-            ) : (
-              <>
-                <Btn onClick={()=>navigate("/")} variant="ghost" size="sm">← Home</Btn>
-                <Btn onClick={()=>navigate("/login")} variant="primary" size="sm">Sign in</Btn>
-              </>
-            )}
+          {/* Row 2: phase stepper + timer + export */}
+          <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginTop:"0.5rem", gap:"0.75rem", flexWrap:"wrap" as const }}>
+            <PhaseStepper activePhase={activePhase}/>
+            <div style={{ display:"flex", gap:"0.375rem", alignItems:"center", flexShrink:0 }}>
+              <DeployTimer startTime={startTime}/>
+              <div style={{ width:1, height:16, backgroundColor:"rgba(255,255,255,0.1)" }}/>
+              <Btn onClick={()=>dlCSV("pilot-identities.csv", DEMO_IDENTITIES.map(id=>({id:id.id,name:id.name,type:id.type,dept:id.dept,risk:id.risk,status:id.status,lastActive:id.lastActive,accessCount:id.accessCount})))} variant="default" size="sm">
+                <Download style={{width:11,height:11}}/> CSV
+              </Btn>
+              <Btn onClick={()=>dlJSON("pilot-export.json", {identities:DEMO_IDENTITIES,auditLog:DEMO_EVENTS,accessDecisions:DEMO_ACCESS,exportedAt:new Date().toISOString()})} variant="default" size="sm">
+                <Download style={{width:11,height:11}}/> JSON
+              </Btn>
+            </div>
           </div>
         </div>
 
@@ -696,13 +704,13 @@ export default function DemoDashboard() {
             const isLocked = t.locked;
             return (
               <button key={t.id} onClick={() => setTab(t.id)}
-                style={{ display:"flex", alignItems:"center", gap:"0.3rem", padding:"0.75rem 1rem", fontSize:"0.875rem", fontWeight:600, color:isActive?"#60a5fa":isLocked?"#334155":S.muted, border:"none", borderBottom:`2px solid ${isActive?"#60a5fa":"transparent"}`, background:"none", cursor:"pointer", whiteSpace:"nowrap", transition:"color .15s, border-color .15s", opacity:isLocked?0.6:1 }}>
+                style={{ display:"flex", alignItems:"center", gap:"0.3rem", padding:"0.75rem 1rem", fontSize:"0.875rem", fontWeight:600, color:isActive?"#60a5fa":isLocked?"#475569":S.muted, border:"none", borderBottom:`2px solid ${isActive?"#60a5fa":"transparent"}`, background:"none", cursor:"not-allowed", whiteSpace:"nowrap", transition:"color .15s, border-color .15s", opacity:isLocked?0.45:1 }}>
                 {isLocked
-                  ? <LockIcon style={{width:11,height:11,color:"#334155"}}/>
+                  ? <LockIcon style={{width:11,height:11,color:"#475569"}}/>
                   : <Icon style={{width:13,height:13}}/>
                 }
                 {t.label}
-                {isLocked && <span style={{ fontSize:"0.65rem", fontWeight:700, padding:"1px 5px", borderRadius:4, backgroundColor:"rgba(0,97,212,0.15)", color:"#60a5fa", marginLeft:2 }}>Contract</span>}
+                {isLocked && <span style={{ fontSize:"0.6rem", fontWeight:500, padding:"1px 5px", borderRadius:4, backgroundColor:"rgba(255,255,255,0.05)", color:"#475569", marginLeft:2, letterSpacing:"0.02em" }}>Pro</span>}
               </button>
             );
           })}
