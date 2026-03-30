@@ -671,12 +671,10 @@ export default function DemoDashboard() {
             <div style={{ width:1, height:20, backgroundColor:"rgba(255,255,255,0.1)" }}/>
             {user ? (
               <>
-                <div
-                  title={`${user.email} — click to go to ${user.role === "admin" ? "admin console" : "dashboard"}`}
-                  onClick={() => navigate(user.role === "admin" ? "/admin/upgrade" : "/dashboard")}
-                  style={{ width:30, height:30, borderRadius:"50%", backgroundColor:"rgba(245,158,11,0.2)", border:"1px solid rgba(245,158,11,0.35)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"0.72rem", fontWeight:700, color:"#fbbf24", flexShrink:0, userSelect:"none" as const, cursor:"pointer" }}>
-                  {user.name ? user.name.split(" ").map((n: string) => n[0]).join("").toUpperCase().slice(0,2) : user.email.slice(0,2).toUpperCase()}
-                </div>
+                {user.role === "admin" && (
+                  <Btn onClick={()=>navigate("/admin/upgrade")} variant="default" size="sm">Admin</Btn>
+                )}
+                <Btn onClick={()=>navigate("/dashboard")} variant="ghost" size="sm">Dashboard</Btn>
                 <Btn onClick={()=>navigate("/")} variant="ghost" size="sm">← Home</Btn>
                 <Btn onClick={async()=>{await logout();navigate("/login");}} variant="default" size="sm">Sign out</Btn>
               </>

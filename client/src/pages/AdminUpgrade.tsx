@@ -581,11 +581,12 @@ export default function AdminUpgrade() {
           <Badge color={D.yellow}>admin</Badge>
           {dataLoading && <div style={{ width: 14, height: 14, border: "2px solid rgba(255,255,255,0.1)", borderTopColor: D.blue, borderRadius: "50%", animation: "spin 0.75s linear infinite" }} />}
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <span style={{ fontSize: "0.8125rem", color: D.muted }}>{user.email}</span>
-          <Btn onClick={() => navigate("/dashboard")} variant="ghost" size="sm">
-            <Home style={{ width: 13, height: 13 }} /> Dashboard
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <Btn onClick={() => navigate("/")} variant="ghost" size="sm">
+            <Home style={{ width: 13, height: 13 }} /> Home
           </Btn>
+          <Btn onClick={() => navigate("/dashboard")} variant="ghost" size="sm">Dashboard</Btn>
+          <Btn onClick={() => navigate("/demo/dashboard")} variant="ghost" size="sm">Demo</Btn>
           <Btn onClick={async () => { await logout(); navigate("/login"); }} variant="default" size="sm">
             <LogOut style={{ width: 13, height: 13 }} /> Sign out
           </Btn>
