@@ -60,7 +60,6 @@ const nav = [
         items: [
           { icon: Users,    label: "About Us",      desc: "Mission, values, and the team",                href: "/company",        tag: null   },
           { icon: Gauge,    label: "For Investors", desc: "Pitch deck, data room, roadmap",               href: "/investor-gate",  tag: null   },
-          { icon: Activity, label: "Live Demo",     desc: "Pilot-mode dashboard — real data format",      href: "/demo/dashboard", tag: "Demo" },
         ],
         cta: { label: "Apply for pilot", href: "/early-access" },
       },

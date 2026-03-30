@@ -89,6 +89,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
+        if (event === "PASSWORD_RECOVERY") {
+          setUser(null);
+          window.location.href = "/reset-password";
+          return;
+        }
         if (event === "SIGNED_IN" && session?.user) {
           await resolveUser(session.user);
         } else if (event === "SIGNED_OUT") {

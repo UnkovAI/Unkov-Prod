@@ -42,7 +42,7 @@ export default function Login() {
     const { supabase } = await import("@/lib/supabase");
     if (!supabase) { setError("Auth service unavailable."); return; }
     await supabase.auth.resetPasswordForEmail(email.trim(), {
-      redirectTo: `${window.location.origin}/login`,
+      redirectTo: `${window.location.origin}/reset-password`,
     });
     setError("");
     alert(`Password reset email sent to ${email}. Check your inbox.`);

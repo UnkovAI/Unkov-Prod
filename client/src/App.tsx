@@ -23,6 +23,7 @@ import Integrations       from "./pages/Integrations";
 import EarlyAccess        from "./pages/EarlyAccess";
 import FreeTrial          from "./pages/FreeTrial";
 import InvestorGate       from "./pages/InvestorGate";
+import ResetPassword      from "./pages/ResetPassword";
 import PitchDeck          from "./pages/PitchDeck";
 import SolutionBFSI       from "./pages/SolutionBFSI";
 import SolutionHealthcare from "./pages/SolutionHealthcare";
@@ -68,6 +69,7 @@ function Router() {
       <Route path="/solutions/bfsi"        component={SolutionBFSI} />
       <Route path="/solutions/healthcare"  component={SolutionHealthcare} />
       <Route path="/investor-gate"         component={InvestorGate} />
+      <Route path="/reset-password"         component={ResetPassword} />
       <Route path="/for-investors"         component={ForInvestors} />
       <Route path="/pitch-deck"            component={PitchDeck} />
 
