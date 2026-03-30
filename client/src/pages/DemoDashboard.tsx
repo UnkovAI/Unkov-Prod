@@ -660,6 +660,7 @@ export default function DemoDashboard() {
             </div>
             <h1 style={{ fontSize:"1.25rem", fontWeight:800, color:"#f1f5f9", marginTop:2 }}>Acme Financial Corp</h1>
           </div>
+          <PhaseStepper activePhase={activePhase}/>
           <div style={{ display:"flex", gap:"0.5rem", alignItems:"center" }}>
             <DeployTimer startTime={startTime}/>
             <Btn onClick={()=>dlCSV("pilot-identities.csv", DEMO_IDENTITIES.map(id=>({id:id.id,name:id.name,type:id.type,dept:id.dept,risk:id.risk,status:id.status,lastActive:id.lastActive,accessCount:id.accessCount})))} variant="default" size="sm">
@@ -695,13 +696,13 @@ export default function DemoDashboard() {
             const isLocked = t.locked;
             return (
               <button key={t.id} onClick={() => setTab(t.id)}
-                style={{ display:"flex", alignItems:"center", gap:"0.3rem", padding:"0.75rem 1rem", fontSize:"0.875rem", fontWeight:600, color:isActive?"#60a5fa":isLocked?"#64748b":S.muted, border:"none", borderBottom:`2px solid ${isActive?"#60a5fa":"transparent"}`, background:"none", cursor:isLocked?"not-allowed":"pointer", whiteSpace:"nowrap", transition:"color .15s, border-color .15s", opacity:isLocked?0.4:1 }}>
+                style={{ display:"flex", alignItems:"center", gap:"0.3rem", padding:"0.75rem 1rem", fontSize:"0.875rem", fontWeight:600, color:isActive?"#60a5fa":isLocked?"#64748b":S.muted, border:"none", borderBottom:`2px solid ${isActive?"#60a5fa":"transparent"}`, background:"none", cursor:isLocked?"not-allowed":"pointer", whiteSpace:"nowrap", transition:"color .15s, border-color .15s", opacity:isLocked?0.38:1 }}>
                 {isLocked
                   ? <LockIcon style={{width:11,height:11,color:"#64748b"}}/>
                   : <Icon style={{width:13,height:13}}/>
                 }
                 {t.label}
-                {isLocked && <span style={{ fontSize:"0.6rem", fontWeight:500, padding:"1px 4px", borderRadius:3, backgroundColor:"rgba(255,255,255,0.06)", color:"#64748b", marginLeft:2 }}>Pro</span>}
+                {isLocked && <span style={{ fontSize:"0.6rem", fontWeight:400, padding:"1px 4px", borderRadius:3, backgroundColor:"rgba(255,255,255,0.04)", color:"#64748b", marginLeft:2 }}>Pro</span>}
               </button>
             );
           })}
