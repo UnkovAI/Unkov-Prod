@@ -196,13 +196,14 @@ function UsersTab({ users, onRefresh, loading }: { users: any[]; onRefresh: () =
   const upgradeRole = async (userId: string, newRole: string) => {
     if (!supabase) return;
     setUpgrading(userId);
-    const { error } = await supabase
-      .from("users")
-      .update({ role: newRole })
-      .eq("id", userId);
+    // Uses SECURITY DEFINER function to bypass RLS (admin-only operation)
+    const { error } = await supabase.rpc("admin_set_user_role", {
+      p_user_id: userId,
+      p_role: newRole,
+    });
     if (error) {
       console.error("Role update failed:", error);
-      alert(`Failed to update role: ${error.message}`);
+      alert(`Role update failed: ${error.message}\n\nMake sure you have run the admin_set_user_role SQL function in Supabase.`);
     }
     await onRefresh();
     setUpgrading(null);
