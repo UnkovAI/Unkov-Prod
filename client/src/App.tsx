@@ -138,6 +138,24 @@ function Router() {
 }
 
 function App() {
+  // Detect Supabase password recovery tokens in URL — must happen before routing
+  // so the tokens aren't lost when the router renders a different page
+  const isRecovery = typeof window !== "undefined" && (
+    window.location.hash.includes("type=recovery") ||
+    (window.location.hash.includes("access_token") && window.location.hash.includes("type=recovery")) ||
+    new URLSearchParams(window.location.search).get("type") === "recovery"
+  );
+
+  if (isRecovery) {
+    return (
+      <ErrorBoundary>
+        <AuthProvider>
+          <ResetPassword />
+        </AuthProvider>
+      </ErrorBoundary>
+    );
+  }
+
   return (
     <ErrorBoundary>
       <AuthProvider>

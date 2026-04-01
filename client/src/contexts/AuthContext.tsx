@@ -90,7 +90,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         if (event === "PASSWORD_RECOVERY") {
-          window.location.href = "/reset-password";
+          // Don't redirect here — it causes a page reload that destroys the session.
+          // ResetPassword.tsx detects this event itself when it's mounted.
           return;
         }
         if (event === "SIGNED_IN" && session?.user) {

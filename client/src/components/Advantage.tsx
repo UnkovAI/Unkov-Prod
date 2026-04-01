@@ -8,7 +8,8 @@ const rows = [
   { cap: "Deployment",           legacy: "Months of professional services",     unkov: "< 30 minutes, zero-touch" },
   { cap: "Authorization model",  legacy: "Static role assignments",             unkov: "Inline identity gate — agent verified before acting" },
   { cap: "Network intelligence", legacy: "Siloed, per-customer only",           unkov: "Cross-tenant Bot Reputation Score" },
-  { cap: "Identity root",        legacy: "Software layer only",                 unkov: "Hardware-rooted (TPM / Secure Enclave)" },
+  { cap: "AI tool calls",        legacy: "No visibility — providers called directly",   unkov: "AI Proxy — every LLM call gated + logged" },
+  { cap: "Risk scoring",         legacy: "Rule-based, nightly refresh",                 unkov: "Weighted model, real-time event updates" },
   { cap: "Compliance",           legacy: "Manual audit scrambles",              unkov: "System of Record — one-click export" },
   { cap: "NHI governance",       legacy: "Afterthought / bolt-on",              unkov: "Native, first-class from day one" },
 ];
@@ -32,11 +33,11 @@ const anchors = [
   },
   {
     number: "03",
-    title: "Hardware Identity — Technical Depth Moat",
-    color: "#0061d4",
-    bg: "#eff6ff",
-    body: "Competitors stop at the software layer. Unkov roots AI agent identity in the TPM or Secure Enclave of the server — creating a Physical Identity for digital bots. This prevents Agent Cloning and Sleeper Agent attacks that every software-only tool misses. No named competitor has announced this capability.",
-    quote: "We're the only platform that gives AI agents a physical identity.",
+    title: "AI Proxy — LLM Control Moat",
+    color: "#7c3aed",
+    bg: "#faf5ff",
+    body: "Unkov holds the AI provider keys (OpenAI, Anthropic, Azure). Clients route AI tool calls through Unkov instead of the provider directly. Once embedded, clients cannot call AI providers without Unkov in the execution path. Every call logged. Ungoverned AI agents blocked before they invoke a model.",
+    quote: "We become the mandatory checkpoint between every AI agent and every AI model.",
   },
   {
     number: "04",
@@ -49,11 +50,11 @@ const anchors = [
 ];
 
 const competitors = [
-  { name: "Okta",           moat: "Human Identity",               unkovWin: "Agent Social Fabric + Hardware-Rooted Identity" },
+  { name: "Okta",           moat: "Human Identity",               unkovWin: "Agent Identity Graph + AI Proxy + Inline Gate" },
   { name: "Entro / Astrix", moat: "NHI Discovery alerts",         unkovWin: "Intent Engine prediction + Autonomous remediation" },
   { name: "Vanta / Drata",  moat: "Static compliance checklists", unkovWin: "Autonomous Kill-Switch + Compliance-as-Byproduct" },
   { name: "Torq / Gomboc",  moat: "Reactive remediation",         unkovWin: "Predictive prevention + Identity Gate lock-in" },
-  { name: "Strata.io",      moat: "Identity orchestration",        unkovWin: "Graph-native + Hardware-Rooted + Network Effect" },
+  { name: "Strata.io",      moat: "Identity orchestration",        unkovWin: "Graph-native + AI Proxy + Network Effect" },
 ];
 
 export default function Advantage() {
@@ -68,7 +69,7 @@ export default function Advantage() {
           <span className="section-label">Competitive Moat</span>
           <h2 className="section-heading" style={{ marginBottom: "0.875rem" }}>Four moats. Each unbreakable on its own.</h2>
           <p className="section-sub">
-            Integration depth, data gravity, and hardware identity — architectural advantages legacy vendors cannot replicate without rebuilding from the ground up.
+            Integration depth, data gravity, and AI proxy control — architectural advantages legacy vendors cannot replicate without rebuilding from the ground up.
           </p>
         </div>
 
@@ -106,7 +107,7 @@ export default function Advantage() {
               {[
                 { title: "Identity Gate creates operational lock-in", body: "Once Unkov is the authorization layer for AI agents, removing it means halting operations — stronger than any data or workflow integration." },
                 { title: "Network effect compounds every quarter",      body: "Cross-tenant Bot Reputation Scores mean every new customer makes existing customers safer. You cannot buy this with engineering alone." },
-                { title: "Hardware identity is an 18-month lead",       body: "TPM and Secure Enclave integration is an engineering platform. No named competitor has announced this capability." },
+                { title: "AI Proxy creates irreversible lock-in",       body: "Once clients route AI calls through Unkov, removing it breaks all AI tooling. No competitor currently offers identity-gated LLM proxy control." },
                 { title: "Compliance gravity is the stickiest lock-in", body: "CFOs don't cancel the tool that made them pass their audit. Security spend converts to a protected compliance budget line." },
               ].map((item, i) => (
                 <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
@@ -166,7 +167,7 @@ export default function Advantage() {
         {/* Summary pull quote */}
         <div style={{ background: "linear-gradient(135deg, #00297a 0%, #0041a8 100%)", borderRadius: "1rem", padding: "2.5rem", textAlign: "center" }}>
           <p style={{ fontSize: "1.125rem", fontWeight: 700, color: "#ffffff", letterSpacing: "-0.02em", marginBottom: "0.75rem", lineHeight: 1.4 }}>
-            "The moat is not a feature. It is integration depth, data gravity, and hardware identity."
+            "The moat is not a feature. It is integration depth, data gravity, and AI proxy lock-in."
           </p>
           <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.65)", maxWidth: "520px", margin: "0 auto", lineHeight: 1.7 }}>
             Four compounding moats — each grows stronger with every customer, every deployment, every quarter.

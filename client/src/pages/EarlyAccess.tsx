@@ -97,7 +97,7 @@ export default function EarlyAccess() {
                   {[
                     "Bot Reputation Network — cross-sector threat intelligence that gets smarter with every customer",
                     "Defined success metrics — agreed before deployment starts",
-                    "Hardware-rooted identity (TPM/Secure Enclave) — prevents Agent Cloning and Sleeper Agent attacks",
+                    "AI Proxy — every LLM call (OpenAI, Anthropic, Azure) gated with identity context before reaching the model",
                     "45+ ghost bots with Admin access discovered per environment",
                   ].map((item, i) => (
                     <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", marginBottom: "0.5rem" }}>

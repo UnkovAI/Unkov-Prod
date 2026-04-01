@@ -15,15 +15,15 @@ export default function AgenticShift() {
             The identity gate your<br />AI agents cannot bypass.
           </h2>
           <p style={{ fontSize: "1.0625rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.8, maxWidth: "480px", margin: "0 auto 3.5rem" }}>
-            Unkov operates in four continuous phases: Discover maps every identity in your environment. Analyze scores risk and predicts access needs using peer-clone ML. Remediate purges orphans and kills toxic links automatically. Monitor collects compliance evidence as a byproduct of normal operation — no manual assembly required.
+            Connectors pull every identity from 20 systems. The risk engine scores each one in real time — behavior, permissions, and graph relationships combined. The AI Proxy gates every LLM call. The enforcement gate blocks or allows at login, at every API request, and at every AI tool invocation.
           </p>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", backgroundColor: "rgba(255,255,255,0.1)", borderRadius: "1rem", overflow: "hidden" }}>
             {[
-              { num: "01", label: "Identity Gate",           sub: "Every agent authorized before it acts"       },
-              { num: "02", label: "Inline Enforcement",      sub: "Sits between agent and resource — always"    },
-              { num: "03", label: "Hardware-Rooted ID",      sub: "Cryptographic agent fingerprinting"          },
-              { num: "04", label: "Compliance System of Record", sub: "Audit-ready for SEC, HHS, and PCI"      },
+              { num: "01", label: "Identity Gate",              sub: "Every agent authorized before it acts"    },
+              { num: "02", label: "Risk Engine",                sub: "behavior×0.4 + permission×0.3 + graph×0.3"},
+              { num: "03", label: "AI Proxy",                   sub: "Every LLM call routed through Unkov"      },
+              { num: "04", label: "Compliance System of Record", sub: "Audit-ready for SEC, HHS, and PCI"       },
             ].map((s, i) => (
               <div key={i} style={{ padding: "2rem 1.5rem", backgroundColor: "rgba(255,255,255,0.04)", textAlign: "center", transition: "background-color 0.18s" }}
                 onMouseEnter={e => (e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.09)")}

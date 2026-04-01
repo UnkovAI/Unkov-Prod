@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import InvestorResources from "@/components/InvestorResources";
-import { CheckCircle, ArrowRight, Mail, DollarSign, Shield, Users, TrendingUp, Globe, AlertTriangle, Zap, Brain, BarChart3 } from "lucide-react";
+import { CheckCircle, ArrowRight, Mail, DollarSign, Shield, Users, TrendingUp, Globe, AlertTriangle, Zap, Brain, BarChart3, Radio } from "lucide-react";
 import { useEffect } from "react";
 import { useLocation } from "wouter";
 
@@ -56,8 +56,8 @@ const buyers = [
 const acquirers = [
   { tier: "Tier 1 — Cloud Providers",     cos: ["Amazon Web Services", "Microsoft Azure", "Google Cloud"],       note: "Unkov's deep AWS-native architecture and cloud-first deployment model make it a natural fit for cloud provider portfolio expansion. Identity governance is a key cloud-native service gap." },
   { tier: "Tier 1.5 — Healthcare Systems", cos: ["Epic Systems", "Oracle Health", "Meditech"], note: "Patient Data Lineage — prove which AI agent touched which patient record and why — creates an unbreakable HIPAA compliance moat. HHS System of Record status is the highest-value lock-in in regulated healthcare." },
-  { tier: "Tier 2 — Security Platforms",  cos: ["Palo Alto Networks", "CrowdStrike", "Zscaler"],                 note: "Building comprehensive security platforms with track records of acquiring best-in-class point solutions to complete their portfolios." },
-  { tier: "Tier 3 — Enterprise Software", cos: ["ServiceNow", "Salesforce", "SailPoint / Okta"],                 note: "Both ServiceNow and Salesforce have invested significantly in identity and governance workflows. SailPoint/Okta would acquire to defend market share against graph-native competition. Entro, Astrix, and Strata.io validate the NHI governance market but lack Unkov's identity gate moat and hardware identity depth." },
+  { tier: "Tier 2 — Security Platforms",   cos: ["Palo Alto Networks", "CrowdStrike", "Zscaler"],                 note: "Building comprehensive security platforms with track records of acquiring best-in-class point solutions. Unkov's AI Proxy fills the LLM governance gap none of them currently address — a natural bolt-on to SASE and XDR platforms." },
+  { tier: "Tier 3 — Enterprise Software", cos: ["ServiceNow", "Salesforce", "SailPoint / Okta"],                 note: "Both ServiceNow and Salesforce have invested significantly in identity and governance workflows. SailPoint/Okta would acquire to defend market share against graph-native + AI proxy competition. Entro, Astrix, and Strata.io validate the NHI governance market but lack Unkov's identity gate lock-in and AI proxy control." },
 ];
 
 const gtm = [
@@ -83,16 +83,17 @@ const competitive = [
   { cap: "NHI governance", unkov: "Native, first-class",            legacy: "Afterthought / bolt-on"            },
   { cap: "Authorization model", unkov: "Inline identity gate — every agent verified before acting", legacy: "Static role assignments"            },
   { cap: "Network intel",    unkov: "Cross-tenant Bot Reputation",    legacy: "Siloed, per-customer only"          },
-  { cap: "Identity root",    unkov: "Hardware TPM / Secure Enclave", legacy: "Software layer only"                },
+  { cap: "AI tool calls",    unkov: "AI Proxy — every LLM call gated + logged", legacy: "No visibility — providers called directly"  },
+  { cap: "Risk scoring",     unkov: "Weighted model, real-time event updates",   legacy: "Rule-based, nightly refresh"                },
   { cap: "Compliance",     unkov: "Continuous evidence collection", legacy: "Point-in-time audit scrambles"     },
 ];
 
 const swot = [
   { type: "Strengths", color: "#059669", bg: "#f0fdf4", border: "#bbf7d0", items: [
     "Graph-native architecture — structurally impossible for legacy vendors to replicate without a complete rebuild of their data foundation",
-    "First-mover in Agentic AI Governance category with pilot validation",
+    "AI Proxy creates irreversible lock-in — once clients route AI calls through Unkov, removing it breaks all AI tooling",
+    "First-mover in Agentic AI Governance + AI Proxy control category with pilot validation",
     "Zero-touch deployment removes the biggest enterprise sales objection",
-    "Intent Engine improves with every identity interaction — compounding accuracy advantage",
   ]},
   { type: "Weaknesses", color: "#d97706", bg: "#fffbeb", border: "#fde68a", items: [
     "Pre-revenue — validation is pilot-stage, not production-scale",
@@ -103,6 +104,8 @@ const swot = [
   { type: "Opportunities", color: "#0061d4", bg: "#eff6ff", border: "#bfdbfe", items: [
     "Mandatory AI inventories for enterprises by late 2026 create urgent compliance demand",
     "5.2:1 NHI-to-human ratio creates an ungoverned attack surface legacy tools cannot address",
+    "No competitor currently offers an AI Proxy that gates LLM calls with identity context — first-mover window",
+    "Hardware-rooted identity (TPM/Secure Enclave) is a planned Year 2 moat no competitor has announced",
     "MSP channel provides mid-market distribution at low CAC with white-label margins",
     "AWS Marketplace procurement removes typical 12-month enterprise sales cycle friction",
   ]},
@@ -239,10 +242,10 @@ export default function ForInvestors() {
             </div>
             <div className="grid md:grid-cols-2 gap-5 mb-8">
               {[
-                { icon: Brain,     n: "01", color: "#0061d4", title: "Discover — Identity Graph Engine",  desc: "Zero-touch API scan builds a live AI-native relationship graph — mapping every human, bot, service account, and AI agent plus every resource they touch. Live Identity Drift dashboard in under 30 minutes.", access: "Read-Only / Auditor" },
-                { icon: Zap,       n: "02", color: "#10b981", title: "Analyze — Intent Engine",           desc: "ML performs Peer-Clone analysis to predict exactly what access each identity needs before it is requested. New hires onboarded in under 10 minutes with zero IT intervention.", access: "Telemetry & Metadata Access" },
-                { icon: Shield,    n: "03", color: "#f59e0b", title: "Remediate — Autonomous Engine",    desc: "Findings become automated actions — Kill-Switch on rogue bots, orphan purge, toxic link revocation. Configurable from recommend-only to fully autonomous. Human-in-the-loop routing for high-stakes actions.", access: "Restricted Write (scoped)" },
-                { icon: BarChart3, n: "04", color: "#8b5cf6", title: "Monitor — Continuous Loop",        desc: "Governance runs 24/7 as a background process. Continuous drift detection, anomaly scoring, and automated compliance evidence collection for SOC 2, HIPAA, and PCI DSS 4.0.", access: "Continuous Auditor / Event Stream" },
+                { icon: Brain,     n: "01", color: "#0061d4", title: "Discover — Identity Graph",      desc: "Zero-touch scan across 20 connectors builds a live Neptune identity graph — every human, bot, AI agent, and service account mapped as nodes with typed edges. Live dashboard in under 30 minutes.", access: "Read-Only / Auditor" },
+                { icon: Zap,       n: "02", color: "#10b981", title: "Analyze — Risk Engine",          desc: "Every identity scored continuously: risk = behavior×0.4 + permission×0.3 + graph×0.3. Real-time events from Okta webhooks, CloudTrail, and GitHub update scores as they happen. Claude agents explain every finding.", access: "Telemetry & Metadata Access" },
+                { icon: Radio,     n: "03", color: "#f59e0b", title: "Enforce — AI Proxy + Gate",      desc: "AI Proxy routes all LLM calls (OpenAI, Anthropic, Azure) through Unkov — identity checked before every model invocation. Okta inline hook and AWS Lambda authorizer enforce at login and API layer.", access: "Restricted Write (scoped)" },
+                { icon: BarChart3, n: "04", color: "#8b5cf6", title: "Monitor — Compliance Record",    desc: "Every gate decision, AI proxy call, and approved action logged immutably. One-click export for PCI DSS 4.0, HIPAA, and SOC 2. Continuous evidence collection — not a quarterly project.", access: "Continuous Auditor / Event Stream" },
               ].map((p, i) => {
                 const Icon = p.icon;
                 return (
@@ -338,10 +341,10 @@ export default function ForInvestors() {
                 },
                 {
                   num: "M3", color: "#A855F7", bg: "#F5E8FD", border: "#A855F7",
-                  title: "Hardware-Level Identity",
-                  sub: "12–18 Month Technical Lead",
-                  body: "Unkov roots AI agent identity in the TPM or Secure Enclave of the server — creating a Physical Identity for digital bots. Prevents Agent Cloning and Sleeper Agent attacks that software-only tools miss entirely. No named competitor has announced this capability.",
-                  quote: "\"We are the only platform that gives AI agents a physical identity.\""
+                  title: "AI Proxy — LLM Control Moat",
+                  sub: "Every AI Tool Call Gated",
+                  body: "Unkov holds AI provider keys (OpenAI, Anthropic, Azure). Clients route all LLM calls through Unkov instead of the provider directly. Once embedded, clients cannot invoke AI models without Unkov in the path — every call logged with identity context, ungoverned agents blocked before they reach the model.",
+                  quote: "\"We become the mandatory checkpoint between every AI agent and every AI model.\""
                 },
                 {
                   num: "M4", color: "#F59E0B", bg: "#FDF5E8", border: "#F59E0B",
@@ -362,16 +365,17 @@ export default function ForInvestors() {
                 </div>
               ))}
             </div>
-            {/* Healthcare callout */}
-            <div className="card p-6 max-w-3xl" style={{ borderLeft: "4px solid #10b981", borderColor: "#10b981", backgroundColor: "#f0fdf4" }}>
-              <div className="text-xs font-bold uppercase tracking-widest text-[#059669] mb-2">Healthcare Vertical — Patient Data Lineage</div>
-              <p className="text-sm text-[#374151] leading-relaxed mb-3">Unkov's deepest vertical moat: prove exactly which AI agent touched which patient record, when, and why. This answers HHS auditors, HIPAA § 164.312(a) enforcement, and every hospital CISO who cannot currently answer "what AI has accessed our ePHI today and should it have?"</p>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {["Agent-level ePHI access proof", "One-click HHS export", "Real-time HIPAA § 164.312(a) audit trail", "Auto orphan purge on staff departure", "$7.42M avg breach cost — highest vertical ROI"].map(pt => (
-                  <div key={pt} className="flex items-start gap-2 text-xs text-[#374151]">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#059669] shrink-0 mt-1" />{pt}
+            {/* Future roadmap — hardware identity */}
+            <div className="card p-5 max-w-3xl mt-4" style={{ borderColor: "#c4b5fd", backgroundColor: "#faf5ff" }}>
+              <div className="flex items-start gap-3">
+                <span style={{ fontSize: "1.25rem", flexShrink: 0 }}>🔮</span>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-xs font-bold text-[#7c3aed] uppercase tracking-wider">Future Roadmap — Hardware-Level Identity</span>
+                    <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ backgroundColor: "#ede9fe", color: "#7c3aed" }}>Year 2 · Post Series A</span>
                   </div>
-                ))}
+                  <p className="text-xs text-[#374151] leading-relaxed">Unkov will root AI agent identity in the TPM or Secure Enclave of the host server — creating a cryptographic physical fingerprint for every agent that cannot be spoofed in software. Prevents Agent Cloning and Sleeper Agent attacks that every software-only tool misses. No named competitor has announced this capability. Requires platform infrastructure build-out planned for Year 2.</p>
+                </div>
               </div>
             </div>
           </div>

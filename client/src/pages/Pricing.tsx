@@ -101,7 +101,7 @@ export default function Pricing() {
               Pricing that scales with<br />your agent footprint
             </h1>
             <p style={{ fontSize: "1.125rem", color: "#3d4759", lineHeight: 1.7, marginBottom: "2.5rem" }}>
-              Node-based pricing that grows with your AI agents and non-human identities — not your headcount. Every pilot starts with defined success metrics and zero professional services. The identity gate, inline enforcement, hardware-rooted agent identity, and compliance system of record are included at every tier.
+              Node-based pricing that grows with your AI agents and non-human identities — not your headcount. Every pilot starts with defined success metrics and zero professional services. The identity gate, AI proxy control, inline enforcement, and compliance system of record are included at every tier.
             </p>
             <div style={{ display: "flex", alignItems: "center", gap: "clamp(1rem,2vw,2rem)", flexWrap: "wrap" }}>
               {[["< 30 min", "Zero-touch deployment"], ["5.2:1", "Agent-to-human ratio we govern"], ["2", "Plan tiers — pilot or production"]].map(([v, l]) => (

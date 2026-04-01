@@ -153,7 +153,7 @@ export default function Company() {
             <div className="max-w-xl mb-6">
               <span className="section-label">Long-Term Vision</span>
               <h2 className="text-2xl font-bold text-[#1d1d1f] mb-3">The identity gate for the agentic enterprise</h2>
-              <p className="text-[#3d4759] leading-relaxed">The end-state is a world where every identity — human, bot, or AI agent — is governed inline before it can act. Unkov becomes the gate every enterprise's agentic workforce depends on. No manual reviews. No orphaned accounts. No AI agent operating without authorization. Four compounding moats: identity gate lock-in, cross-sector network intelligence, hardware-rooted agent identity, and compliance system of record. Governance as infrastructure.</p>
+              <p className="text-[#3d4759] leading-relaxed">The end-state is a world where every identity — human, bot, or AI agent — is governed inline before it can act. Unkov becomes the gate every enterprise's agentic workforce depends on. No manual reviews. No orphaned accounts. No AI agent calling a model or acting on a system without authorization. Four compounding moats: identity gate lock-in, AI proxy control, cross-sector network intelligence, and compliance system of record. Governance as infrastructure.</p>
             </div>
             <div className="grid md:grid-cols-2 gap-5">
               <div className="card p-7" style={{ borderColor: "#dcd6ce" }}>
@@ -180,8 +180,8 @@ export default function Company() {
                 <div className="space-y-2">
                   {[
                     ["Today",      "Identity Gate live — pilot customers running in BFSI and healthcare"],
-                    ["Near-term",  "Bot Reputation Network + Compliance System of Record"],
-                    ["Long-term",  "Hardware TPM identity + SEC/HHS System of Record + Patient Data Lineage + Global 2000 standard"],
+                    ["Near-term",  "AI Proxy control + Bot Reputation Network + Compliance System of Record"],
+                    ["Long-term",  "Hardware-rooted identity (Year 2 roadmap) + SEC/HHS System of Record + Patient Data Lineage + Global 2000 standard"],
                   ].map(([y, d]) => (
                     <div key={y} className="flex items-start gap-3 text-sm">
                       <span className="font-bold shrink-0 text-xs" style={{ color: "#00297a", minWidth: 72 }}>{y}</span>

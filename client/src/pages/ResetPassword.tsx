@@ -17,35 +17,37 @@ export default function ResetPassword() {
   useEffect(() => {
     if (!supabase) { setError("Auth service unavailable."); return; }
 
-    async function init() {
-      // 1. PKCE flow: Supabase sends ?code= in the URL
-      const code = new URLSearchParams(window.location.search).get("code");
-      if (code) {
-        const { error } = await supabase!.auth.exchangeCodeForSession(code);
-        if (error) { setError("Reset link is invalid or has expired. Please request a new one."); return; }
-        setReady(true);
-        return;
-      }
-      // 2. Implicit flow: token in URL hash
-      if (window.location.hash.includes("access_token")) {
-        const { data: { session } } = await supabase!.auth.getSession();
-        if (session) { setReady(true); return; }
-      }
-      // 3. Already have session (came from AuthContext redirect)
-      const { data: { session } } = await supabase!.auth.getSession();
-      if (session) { setReady(true); return; }
-      // 4. Fallback: wait for auth state change
-      const { data: { subscription } } = supabase!.auth.onAuthStateChange(
-        (_event, session) => { if (session) { setReady(true); subscription.unsubscribe(); } }
-      );
-      setTimeout(() => {
-        subscription.unsubscribe();
-        setError("Reset link is invalid or expired. Please request a new one.");
-      }, 8000);
-    }
+    // Supabase processes the URL hash automatically (detectSessionInUrl: true)
+    // and fires onAuthStateChange with PASSWORD_RECOVERY when the token is valid.
+    // We listen for that event, and also check for an existing session immediately.
 
-    init();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (event === "PASSWORD_RECOVERY" && session) {
+          setReady(true);
+        }
+        // Also handle SIGNED_IN in case the event already fired before we subscribed
+        if (event === "SIGNED_IN" && session && window.location.hash.includes("type=recovery")) {
+          setReady(true);
+        }
+      }
+    );
+
+    // Check immediately — Supabase may have already processed the token
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) setReady(true);
+    });
+
+    // Safety timeout — show error if nothing happens in 10s
+    const timeout = setTimeout(() => {
+      setError("Reset link is invalid or has expired. Please request a new one from the login page.");
+    }, 10000);
+
+    return () => {
+      subscription.unsubscribe();
+      clearTimeout(timeout);
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
