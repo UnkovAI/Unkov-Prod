@@ -14,18 +14,18 @@ export default function AgenticShift() {
           <h2 style={{ fontSize: "clamp(1.875rem,4vw,3rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.035em", color: "#ffffff", marginBottom: "1.25rem" }}>
             The identity gate your<br />AI agents cannot bypass.
           </h2>
-          <p style={{ fontSize: "1.0625rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.8, maxWidth: "480px", margin: "0 auto 3.5rem" }}>
+          <p style={{ fontSize: "clamp(0.9375rem, 2.5vw, 1.0625rem)", color: "rgba(255,255,255,0.6)", lineHeight: 1.8, maxWidth: "480px", margin: "0 auto clamp(2rem, 5vw, 3.5rem)" }}>
             Connectors pull every identity from 20 systems. The risk engine scores each one in real time — behavior, permissions, and graph relationships combined. The AI Proxy gates every LLM call. The enforcement gate blocks or allows at login, at every API request, and at every AI tool invocation.
           </p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", backgroundColor: "rgba(255,255,255,0.1)", borderRadius: "1rem", overflow: "hidden" }}>
+          <div className="agentic-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", backgroundColor: "rgba(255,255,255,0.1)", borderRadius: "1rem", overflow: "hidden" }}>
             {[
               { num: "01", label: "Identity Gate",              sub: "Every agent authorized before it acts"    },
               { num: "02", label: "Risk Engine",                sub: "Continuous scoring across 3 risk dimensions" },
               { num: "03", label: "AI Proxy",                   sub: "Every LLM call routed through Unkov"      },
               { num: "04", label: "Compliance System of Record", sub: "Audit-ready for SEC, HHS, and PCI"       },
             ].map((s, i) => (
-              <div key={i} style={{ padding: "2rem 1.5rem", backgroundColor: "rgba(255,255,255,0.04)", textAlign: "center", transition: "background-color 0.18s" }}
+              <div key={i} style={{ padding: "clamp(1rem,3vw,2rem) clamp(0.75rem,2vw,1.5rem)", backgroundColor: "rgba(255,255,255,0.04)", textAlign: "center", transition: "background-color 0.18s" }}
                 onMouseEnter={e => (e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.09)")}
                 onMouseLeave={e => (e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.04)")}>
                 <div style={{ fontSize: "0.6875rem", fontWeight: 800, color: "rgba(255,255,255,0.3)", letterSpacing: "0.12em", marginBottom: "0.75rem" }}>{s.num}</div>

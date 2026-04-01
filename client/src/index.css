@@ -349,6 +349,48 @@ html, html.dark, html[class~="dark"], body, body.dark {
   .card, .card-dynamic { padding: 1.25rem !important; }
   table { display: block !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
   .btn-primary, .btn-ghost { width: 100% !important; justify-content: center !important; }
+
+  /* ── Landing page — AgenticShift 4-col → 2x2 grid ── */
+  .agentic-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* ── Landing page — Hero, CTA, WhyUnkov buttons → full-width stack ── */
+  .hero-buttons,
+  .cta-buttons,
+  .why-buttons {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .hero-buttons > *,
+  .cta-buttons > *,
+  .why-buttons > * {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  /* ── Hero — reduce top padding so content isn't buried ── */
+  .grid-hero {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* ── WhyUnkov — ensure cards go single column on small screens ── */
+  .why-cards {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* ── AgenticShift — on very small phones, still 2-col but tighter ── */
+  .agentic-grid {
+    grid-template-columns: 1fr 1fr !important;
+    font-size: 0.8rem !important;
+  }
+  .agentic-grid > div > div:last-child {
+    font-size: 0.65rem !important;
+  }
 }
 
 @media (max-width: 480px) {

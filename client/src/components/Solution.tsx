@@ -7,7 +7,7 @@ export default function Solution() {
       number: "01",
       title: "Discover",
       subtitle: "Identity Graph",
-      description: "Maps every identity — human, service account, API key, and AI agent — across all 20 connected systems. Every relationship is mapped so you can see who has access to what, who is connected to whom, and how a compromised account could move laterally.",
+      description: "Maps every identity — human, service account, API key, and AI agent — across all 20 connected systems. Every relationship is mapped so you can see who has access to what, how a compromised account could move laterally, and what was touched when something goes wrong.",
       features: ["20 connectors — Okta, AWS, Entra, GitHub + 16 more", "Live identity graph — every relationship mapped in real time", "Cross-system deduplication — one person, one record across all sources"],
     },
     {
@@ -23,8 +23,8 @@ export default function Solution() {
       number: "03",
       title: "Enforce",
       subtitle: "The Gate",
-      description: "Every AI tool call is identity-checked before reaching any provider. Every login is verified in real time before access is granted. Every API call is evaluated before it executes. Each request gets a decision — ALLOW, REVIEW, or BLOCK — in the execution path, before any action occurs.",
-      features: ["AI Proxy: every LLM call identity-checked before it reaches the provider", "Login enforcement: every authentication verified before access is granted", "API enforcement: every API call evaluated — ALLOW, REVIEW, or BLOCK"],
+      description: "Every AI tool call is identity-checked before reaching any provider. Every login is verified in real time before access is granted. Every API call is evaluated before it executes. Each request gets a decision — ALLOW, REVIEW, or BLOCK — before any action occurs.",
+      features: ["AI Proxy: every LLM call identity-checked before reaching the provider", "Login enforcement: every authentication verified before access is granted", "API enforcement: every request evaluated before execution"],
     },
     {
       icon: Activity,

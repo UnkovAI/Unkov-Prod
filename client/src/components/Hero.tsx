@@ -6,8 +6,8 @@ export default function Hero() {
 
   return (
     <section style={{
-      paddingTop: "7rem",
-      paddingBottom: "5rem",
+      paddingTop: "clamp(4.5rem, 10vw, 7rem)",
+      paddingBottom: "clamp(3rem, 6vw, 5rem)",
       backgroundColor: "#faf9f7",
       overflow: "hidden",
       position: "relative",
@@ -24,18 +24,18 @@ export default function Hero() {
               <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#00297a", letterSpacing: "0.06em", textTransform: "uppercase" }}>AI Identity Governance</span>
             </div>
 
-            <h1 style={{ fontSize: "clamp(2.25rem, 4vw, 3.5rem)", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.035em", color: "#0a0f1e", marginBottom: "1.375rem" }}>
+            <h1 style={{ fontSize: "clamp(1.75rem, 4vw, 3.5rem)", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.035em", color: "#0a0f1e", marginBottom: "1.25rem" }}>
               The identity gate between<br />
               <span style={{ background: "linear-gradient(90deg, #0061d4 0%, #00297a 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                 humans, AI agents, and everything they can touch.
               </span>
             </h1>
 
-            <p style={{ fontSize: "1.0625rem", color: "#3d4759", lineHeight: 1.75, marginBottom: "2.25rem", maxWidth: "30rem" }}>
+            <p style={{ fontSize: "clamp(0.9375rem, 2.5vw, 1.0625rem)", color: "#3d4759", lineHeight: 1.75, marginBottom: "1.75rem", maxWidth: "30rem" }}>
               Before any AI agent acts, Unkov verifies it for you — authorizing requests in real time and logging them automatically so you stay in control of every identity at scale.
             </p>
 
-            <div style={{ display: "flex", gap: "0.875rem", flexWrap: "wrap", marginBottom: "3rem" }}>
+            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginBottom: "2.5rem" }} className="hero-buttons">
               <button onClick={() => navigate("/early-access")} className="btn-primary"
                 style={{ fontSize: "0.9375rem", padding: "0.8rem 1.875rem", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
                 Apply for Pilot <ArrowRight style={{ width: 16, height: 16 }} />

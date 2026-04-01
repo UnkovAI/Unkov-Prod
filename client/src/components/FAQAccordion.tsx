@@ -24,7 +24,7 @@ const faqs = [
   },
   {
     q: "How does Unkov handle AI agents and service accounts?",
-    a: "Each AI agent and service account gets a cryptographic identity token on first connection. Unkov tracks every resource that token touches, scores drift in real time, and revokes access automatically the moment behaviour falls outside the peer-clone baseline — no ticket, no manual review, no delay.",
+    a: "Each AI agent and service account gets a verified identity on first connection. Unkov tracks every resource it touches, scores risk in real time, and revokes access automatically the moment behaviour falls outside its expected pattern — no ticket, no manual review, no delay.",
   },
 ];
 

@@ -18,7 +18,7 @@ const moats = [
     number: "03", color: "#059669", bg: "#f0fdf4", border: "#6ee7b7",
     title: "Real-time, not nightly",
     outcome: "Risk scores update in seconds, not 24 hours",
-    body: "A privilege escalation at 9am shouldn't go undetected until 2am the next day. Events from across your identity systems feed the risk engine continuously. When an identity's score jumps to critical, an incident is created immediately and the gate can block or challenge the next request in milliseconds.",
+    body: "A privilege escalation at 9am shouldn't go undetected until 2am the next day. Events from across your identity systems feed the risk engine continuously — in seconds, not hours. When an identity's score jumps to critical, an incident is created immediately and the gate can block or challenge the next request before damage occurs.",
   },
   {
     number: "04", color: "#d97706", bg: "#fffbeb", border: "#fde68a",
@@ -59,14 +59,15 @@ export default function WhyUnkov() {
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = `0 8px 28px ${m.color}18`; (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = "none"; (e.currentTarget as HTMLElement).style.transform = "none"; }}
             >
-              <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "1rem" }}>
-                <span style={{ fontSize: "0.65rem", fontWeight: 800, color: m.color, letterSpacing: "0.1em" }}>{m.number}</span>
-                <span style={{ fontSize: "0.9375rem", fontWeight: 700, color: "#111827" }}>{m.title}</span>
+              <div style={{ marginBottom: "1.125rem" }}>
+                <div style={{ fontSize: "0.625rem", fontWeight: 800, color: m.color, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.4rem" }}>{m.number}</div>
+                <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", lineHeight: 1.3 }}>{m.title}</div>
               </div>
-              <div style={{ display: "inline-block", fontSize: "0.75rem", fontWeight: 700, color: m.color, backgroundColor: "#ffffff", border: `1px solid ${m.border}`, borderRadius: "9999px", padding: "0.2rem 0.75rem", marginBottom: "0.875rem" }}>
+              <div style={{ display: "inline-flex", alignItems: "center", fontSize: "0.75rem", fontWeight: 600, color: m.color, backgroundColor: "#ffffff", border: `1px solid ${m.border}`, borderRadius: "9999px", padding: "0.25rem 0.875rem", marginBottom: "1rem" }}>
                 {m.outcome}
               </div>
-              <p style={{ fontSize: "0.875rem", color: "#374151", lineHeight: 1.75 }}>{m.body}</p>
+              <div style={{ width: "100%", height: "1px", backgroundColor: m.border, opacity: 0.5, marginBottom: "1rem" }} />
+              <p style={{ fontSize: "0.875rem", color: "#374151", lineHeight: 1.8 }}>{m.body}</p>
             </div>
           ))}
         </div>
@@ -74,7 +75,7 @@ export default function WhyUnkov() {
         {/* Comparison table */}
         <div style={{ marginBottom: "2rem" }}>
           <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: "1.25rem" }}>How Unkov compares to the incumbent approach</h3>
-          <div style={{ border: "1px solid #e5e7eb", borderRadius: "0.875rem", overflow: "hidden" }}>
+          <div style={{ border: "1px solid #e5e7eb", borderRadius: "0.875rem", overflowX: "auto", WebkitOverflowScrolling: "touch" } as React.CSSProperties}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.875rem" }}>
               <thead>
                 <tr style={{ backgroundColor: "#f0ece6", borderBottom: "1px solid #dcd6ce" }}>
@@ -96,7 +97,7 @@ export default function WhyUnkov() {
           </div>
         </div>
 
-        <div style={{ display: "flex", gap: "0.875rem", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }} className="why-buttons">
           <button
             onClick={() => navigate("/features")}
             className="btn-primary"

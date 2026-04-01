@@ -70,7 +70,7 @@ const modules = [
       "Automated purging of orphaned accounts",
       "Instant revocation of toxic privilege combinations",
       "Configurable escalation — recommend to autonomous",
-      "Okta deactivate · AWS key delete · Entra disable · GitHub remove collaborator",
+      "Connects to your existing identity systems to revoke access automatically",
     ],
     stat: "90%", statL: "Reduction in manual review",
   },

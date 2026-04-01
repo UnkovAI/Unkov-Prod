@@ -14,7 +14,7 @@ const items = [
   {
     q: "Now — Q2 2026", phase: "Design Partner Phase", status: "current",
     title: "Identity gate + AI Proxy live — onboarding pilot customers",
-    desc: "The identity gate is live. Connectors pull every identity from 20 systems. The risk engine scores each one continuously across three dimensions. The gate enforces decisions in real time — at login, at every API call, and at every AI tool invocation. Every AI tool call routes through Unkov before reaching the provider.",
+    desc: "The identity gate is live. Connectors pull every identity from 20 systems. The risk engine scores each one continuously across three dimensions. The enforcement gate makes decisions in real time — at login, at every API call, and at every AI tool invocation. Every AI tool call routes through Unkov before reaching the provider.",
     features: [
       "Identity gate — inline authorization layer, every agent verified before acting",
       "AI Proxy — every AI tool call identity-checked before reaching the model provider",
