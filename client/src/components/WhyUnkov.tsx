@@ -18,7 +18,7 @@ const moats = [
     number: "03", color: "#059669", bg: "#f0fdf4", border: "#6ee7b7",
     title: "Real-time, not nightly",
     outcome: "Risk scores update in seconds, not 24 hours",
-    body: "A privilege escalation at 9am shouldn't go undetected until 2am the next day. Okta webhooks, AWS CloudTrail via Kinesis, and GitHub webhooks feed the risk engine continuously. When an identity's score jumps to critical, an incident is created immediately — and the gate can block or challenge the next request in milliseconds.",
+    body: "A privilege escalation at 9am shouldn't go undetected until 2am the next day. Events from across your identity systems feed the risk engine continuously. When an identity's score jumps to critical, an incident is created immediately and the gate can block or challenge the next request in milliseconds.",
   },
   {
     number: "04", color: "#d97706", bg: "#fffbeb", border: "#fde68a",

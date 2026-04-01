@@ -21,7 +21,7 @@ export default function AgenticShift() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", backgroundColor: "rgba(255,255,255,0.1)", borderRadius: "1rem", overflow: "hidden" }}>
             {[
               { num: "01", label: "Identity Gate",              sub: "Every agent authorized before it acts"    },
-              { num: "02", label: "Risk Engine",                sub: "behavior×0.4 + permission×0.3 + graph×0.3"},
+              { num: "02", label: "Risk Engine",                sub: "Continuous scoring across 3 risk dimensions" },
               { num: "03", label: "AI Proxy",                   sub: "Every LLM call routed through Unkov"      },
               { num: "04", label: "Compliance System of Record", sub: "Audit-ready for SEC, HHS, and PCI"       },
             ].map((s, i) => (

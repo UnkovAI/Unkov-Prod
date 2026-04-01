@@ -20,7 +20,7 @@ const modules = [
     desc: "Every AI agent, service account, and human identity passes through Unkov before it can act. No API call, no data access, no workflow trigger without a verified identity. The identity graph maps every node and relationship — so when something breaks, you see exactly how the blast radius propagates.",
     caps: [
       "Inline agent interception before every execution",
-      "Neptune identity graph — every human, bot, AI agent mapped as nodes and edges",
+      "Live identity graph — every human, bot, AI agent, and service account mapped",
       "Path queries: 'find all AI agents with access to PHI'",
       "Orphaned account and ghost agent discovery",
       "Identity Drift scoring across your full environment",
@@ -35,8 +35,8 @@ const modules = [
     anchorId: "risk-engine",
     desc: "Every identity receives a composite risk score computed from three dimensions: behavior (what it's doing), permissions (what it can do), and graph proximity (who it's connected to). Real-time events — logins, key changes, privilege escalations — update scores instantly. Claude-powered agents explain every finding in plain English.",
     caps: [
-      "risk = behavior × 0.4 + permission × 0.3 + graph × 0.3",
-      "Real-time score updates from Okta webhooks, CloudTrail, GitHub events",
+      "Continuous risk scoring across behavior, permissions, and relationships",
+      "Risk scores update in real time as events happen across your environment",
       "Unusual time +20 · New geo +30 · Admin access +40 · Path to PHI +50",
       "3 Claude agents: risk explainer, anomaly detector, CISO executive summary",
       "Conversational interface: 'show me all AI agents that accessed PHI this week'",
@@ -50,8 +50,8 @@ const modules = [
     anchorId: "ai-proxy",
     desc: "The AI Proxy routes all calls to OpenAI, Anthropic, and Azure OpenAI through Unkov first. Clients point to your endpoint instead of the provider directly. Unkov holds the AI provider keys — clients never do. Every call is logged with identity context. Ungoverned AI agents are blocked before they can invoke a model.",
     caps: [
-      "POST /ai-proxy/openai/* — identity check before every GPT call",
-      "POST /ai-proxy/anthropic/* — identity check before every Claude call",
+      "Every OpenAI, Anthropic, and Azure call identity-checked before reaching the provider",
+      "Your team points AI tools at Unkov — Unkov holds the provider keys",
       "Unkov holds provider API keys — clients are never exposed",
       "Rate limiting per identity per hour",
       "High-risk AI agents blocked from calling AI providers",

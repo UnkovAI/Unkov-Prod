@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import {
   Menu, X, ChevronDown, ArrowRight,
-  GitBranch, BrainCircuit, ShieldCheck, Activity, Gauge,
+  Radio, GitBranch, BrainCircuit, ShieldCheck, Activity, Gauge,
   Landmark, Stethoscope, Bot, Building2, BookOpen, FileText,
   Code2, Newspaper, Users, LogIn,
 } from "lucide-react";
@@ -19,10 +19,11 @@ const nav = [
         headingDesc: "Inline enforcement between every identity and everything it can touch.",
         headingHref: "/features",
         items: [
-          { icon: GitBranch,    label: "Identity Social Fabric",      desc: "Real-time graph of every human, bot, and AI agent",     href: "/features#identity-social-fabric",       tag: null      },
-          { icon: BrainCircuit, label: "Intent Engine",               desc: "ML predicts access needs from peer-clone behavior",      href: "/features#intent-engine",               tag: null      },
-          { icon: ShieldCheck,  label: "Autonomous Remediation",      desc: "Kill-switch, orphan purge, toxic link revocation",       href: "/features#autonomous-remediation-engine", tag: null    },
-          { icon: Activity,     label: "Compliance System of Record", desc: "PCI DSS 4.0, HIPAA, SOC 2 — one-click audit export",    href: "/features#compliance",                  tag: "Q4 2026" },
+          { icon: GitBranch,    label: "Identity Gate",              desc: "Every identity authorized before it can act",                    href: "/features#identity-gate",  tag: null      },
+          { icon: BrainCircuit, label: "Risk Engine",                desc: "Continuous scoring across behavior, permissions, relationships",    href: "/features#risk-engine",    tag: null      },
+          { icon: Radio,        label: "AI Proxy",                   desc: "Every AI tool call governed before reaching the model",            href: "/features#ai-proxy",       tag: null      },
+          { icon: ShieldCheck,  label: "Autonomous Kill-Switch",     desc: "Instant revocation when risk crosses a policy line",               href: "/features#kill-switch",    tag: null      },
+          { icon: Activity,     label: "Compliance System of Record", desc: "PCI DSS 4.0, HIPAA, SOC 2 — one-click audit export",            href: "/features#compliance",     tag: "Q4 2026" },
         ],
         cta: { label: "All features", href: "/features" },
       },
