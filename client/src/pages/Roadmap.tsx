@@ -107,7 +107,7 @@ export default function Roadmap() {
         {/* Hero */}
         <section style={{ background: "linear-gradient(135deg, #00297a 0%, #0041a8 60%, #0061d4 100%)", padding: "clamp(3rem,6vw,7rem) 0" }}>
           <div className="container mx-auto px-10" style={{ maxWidth: "860px" }}>
-            <span style={{ display: "inline-block", fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: "1.25rem", padding: "0.25rem 1rem", borderRadius: "9999px", border: "1px solid rgba(255,255,255,0.15)" }}>Product Roadmap</span>
+            <span style={{ display: "inline-block", fontSize: "1rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: "1.25rem", padding: "0.25rem 1rem", borderRadius: "9999px", border: "1px solid rgba(255,255,255,0.15)" }}>Product Roadmap</span>
             <h1 style={{ fontSize: "clamp(2rem,5vw,3.5rem)", fontWeight: 800, color: "#ffffff", letterSpacing: "-0.035em", lineHeight: 1.05, marginBottom: "1.25rem" }}>
               From gate to autonomous enforcement.
             </h1>
@@ -120,8 +120,8 @@ export default function Roadmap() {
               {moats.map((m, i) => (
                 <div key={i} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.375rem 1rem", borderRadius: "9999px", backgroundColor: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)" }}>
                   <span style={{ fontSize: "0.65rem", fontWeight: 800, color: "rgba(255,255,255,0.5)", letterSpacing: "0.1em" }}>{m.num}</span>
-                  <span style={{ fontSize: "0.8125rem", fontWeight: 600, color: "#ffffff" }}>{m.title}</span>
-                  <span style={{ fontSize: "0.6875rem", color: "rgba(255,255,255,0.45)" }}>{m.timing}</span>
+                  <span style={{ fontSize: "1.0625rem", fontWeight: 600, color: "#ffffff" }}>{m.title}</span>
+                  <span style={{ fontSize: "1.0625rem", color: "rgba(255,255,255,0.45)" }}>{m.timing}</span>
                 </div>
               ))}
             </div>
@@ -141,22 +141,22 @@ export default function Roadmap() {
                     <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.25rem", flexWrap: "wrap" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", padding: "0.25rem 0.875rem", borderRadius: "9999px", backgroundColor: sc.badge }}>
                         <div style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: sc.dot }} />
-                        <span style={{ fontSize: "0.75rem", fontWeight: 700, color: sc.dot, letterSpacing: "0.06em" }}>{sc.label}</span>
+                        <span style={{ fontSize: "1rem", fontWeight: 700, color: sc.dot, letterSpacing: "0.06em" }}>{sc.label}</span>
                       </div>
-                      <span style={{ fontSize: "0.8125rem", fontWeight: 600, color: "#6b7280" }}>{item.q}</span>
-                      <span style={{ fontSize: "0.8125rem", color: "#9ca3af" }}>·</span>
-                      <span style={{ fontSize: "0.8125rem", color: "#9ca3af" }}>{item.phase}</span>
+                      <span style={{ fontSize: "1.0625rem", fontWeight: 600, color: "#6b7280" }}>{item.q}</span>
+                      <span style={{ fontSize: "1.0625rem", color: "#9ca3af" }}>·</span>
+                      <span style={{ fontSize: "1.0625rem", color: "#9ca3af" }}>{item.phase}</span>
                     </div>
 
                     <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "#0a0f1e", marginBottom: "0.875rem", letterSpacing: "-0.025em" }}>{item.title}</h3>
-                    <p style={{ fontSize: "0.9375rem", color: "#374151", lineHeight: 1.75, marginBottom: "1.5rem" }}>{item.desc}</p>
+                    <p style={{ fontSize: "1.0625rem", color: "#374151", lineHeight: 1.75, marginBottom: "1.5rem" }}>{item.desc}</p>
 
                     {/* Features */}
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "0.5rem", marginBottom: item.cta || item.milestone ? "1.5rem" : 0 }}>
                       {item.features.map((f, fi) => (
                         <div key={fi} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
                           <CheckCircle style={{ width: 14, height: 14, color: item.status === "current" ? "#0061d4" : "#d1d5db", flexShrink: 0, marginTop: 3 }} />
-                          <span style={{ fontSize: "0.875rem", color: item.status === "current" ? "#374151" : "#6b7280", lineHeight: 1.5 }}>{f}</span>
+                          <span style={{ fontSize: "1rem", color: item.status === "current" ? "#374151" : "#6b7280", lineHeight: 1.5 }}>{f}</span>
                         </div>
                       ))}
                     </div>
@@ -170,14 +170,14 @@ export default function Roadmap() {
                               ? <Clock style={{ width: 14, height: 14, color: "#0061d4" }} />
                               : <Zap style={{ width: 14, height: 14, color: "#d97706" }} />
                             }
-                            <span style={{ fontSize: "0.8125rem", fontWeight: 600, color: item.status === "current" ? "#0061d4" : "#d97706" }}>Milestone: {item.milestone}</span>
+                            <span style={{ fontSize: "1.0625rem", fontWeight: 600, color: item.status === "current" ? "#0061d4" : "#d97706" }}>Milestone: {item.milestone}</span>
                           </div>
                         )}
                         {item.cta && (
                           <button
                             onClick={() => navigate(item.cta!.href)}
                             className="btn-primary"
-                            style={{ fontSize: "0.875rem", padding: "0.625rem 1.375rem", display: "inline-flex", alignItems: "center", gap: "0.375rem" }}
+                            style={{ fontSize: "1rem", padding: "0.625rem 1.375rem", display: "inline-flex", alignItems: "center", gap: "0.375rem" }}
                           >
                             {item.cta.label} <ArrowRight style={{ width: 14, height: 14 }} />
                           </button>

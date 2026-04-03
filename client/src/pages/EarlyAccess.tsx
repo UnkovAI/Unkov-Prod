@@ -44,7 +44,7 @@ export default function EarlyAccess() {
           <div className="container mx-auto px-10" style={{ position: "relative", zIndex: 1, maxWidth: "760px", textAlign: "center" }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.3rem 1rem", borderRadius: "9999px", backgroundColor: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.25)", marginBottom: "1.5rem" }}>
               <div style={{ width: 7, height: 7, borderRadius: "50%", backgroundColor: "#6ee7b7" }} />
-              <span style={{ fontSize: "0.8125rem", fontWeight: 600, color: "rgba(255,255,255,0.9)" }}>Now onboarding BFSI & healthcare pilot customers</span>
+              <span style={{ fontSize: "1.0625rem", fontWeight: 600, color: "rgba(255,255,255,0.9)" }}>Now onboarding BFSI & healthcare pilot customers</span>
             </div>
             <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.25rem)", fontWeight: 700, color: "#ffffff", letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "1.25rem" }}>
               Apply for early access.<br />Be the first to gate your AI agents.
@@ -57,7 +57,7 @@ export default function EarlyAccess() {
               {stats.map(([v, l]) => (
                 <div key={l} style={{ textAlign: "center" }}>
                   <div style={{ fontSize: "1.75rem", fontWeight: 800, color: "#ffffff", letterSpacing: "-0.04em" }}>{v}</div>
-                  <div style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.55)", marginTop: "0.125rem" }}>{l}</div>
+                  <div style={{ fontSize: "1rem", color: "rgba(255,255,255,0.55)", marginTop: "0.125rem" }}>{l}</div>
                 </div>
               ))}
             </div>
@@ -72,7 +72,7 @@ export default function EarlyAccess() {
               {/* Left — perks */}
               <div>
                 <h2 style={{ fontSize: "1.5rem", fontWeight: 700, color: "#1d1d1f", letterSpacing: "-0.02em", marginBottom: "0.5rem" }}>What you get</h2>
-                <p style={{ fontSize: "0.9375rem", color: "#6b7280", marginBottom: "2rem" }}>Early access members get founding pricing and direct support from the team.</p>
+                <p style={{ fontSize: "1.0625rem", color: "#6b7280", marginBottom: "2rem" }}>Early access members get founding pricing and direct support from the team.</p>
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
                   {perks.map((perk, i) => {
@@ -83,8 +83,8 @@ export default function EarlyAccess() {
                           <Icon style={{ width: 18, height: 18, color: "#0061d4" }} />
                         </div>
                         <div>
-                          <div style={{ fontSize: "0.9375rem", fontWeight: 600, color: "#1d1d1f", marginBottom: "0.25rem" }}>{perk.title}</div>
-                          <div style={{ fontSize: "0.875rem", color: "#6b7280", lineHeight: 1.7 }}>{perk.desc}</div>
+                          <div style={{ fontSize: "1.0625rem", fontWeight: 600, color: "#1d1d1f", marginBottom: "0.25rem" }}>{perk.title}</div>
+                          <div style={{ fontSize: "1rem", color: "#6b7280", lineHeight: 1.7 }}>{perk.desc}</div>
                         </div>
                       </div>
                     );
@@ -93,7 +93,7 @@ export default function EarlyAccess() {
 
                 {/* Social proof */}
                 <div style={{ marginTop: "2.5rem", padding: "1.25rem", backgroundColor: "#ffffff", border: "1px solid #e5e7eb", borderRadius: "0.875rem" }}>
-                  <div style={{ fontSize: "0.8125rem", fontWeight: 700, color: "#059669", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.625rem" }}>Pilot Results</div>
+                  <div style={{ fontSize: "1.0625rem", fontWeight: 700, color: "#059669", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.625rem" }}>Pilot Results</div>
                   {[
                     "Bot Reputation Network — cross-sector threat intelligence that gets smarter with every customer",
                     "Defined success metrics — agreed before deployment starts",
@@ -102,7 +102,7 @@ export default function EarlyAccess() {
                   ].map((item, i) => (
                     <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", marginBottom: "0.5rem" }}>
                       <CheckCircle style={{ width: 14, height: 14, color: "#059669", flexShrink: 0, marginTop: 2 }} />
-                      <span style={{ fontSize: "0.875rem", color: "#374151" }}>{item}</span>
+                      <span style={{ fontSize: "1rem", color: "#374151" }}>{item}</span>
                     </div>
                   ))}
                 </div>
@@ -116,25 +116,25 @@ export default function EarlyAccess() {
                       <CheckCircle style={{ width: 28, height: 28, color: "#059669" }} />
                     </div>
                     <h3 style={{ fontSize: "1.125rem", fontWeight: 700, color: "#1d1d1f", marginBottom: "0.5rem" }}>You're on the list!</h3>
-                    <p style={{ fontSize: "0.9375rem", color: "#6b7280", lineHeight: 1.7, marginBottom: "1.5rem" }}>
+                    <p style={{ fontSize: "1.0625rem", color: "#6b7280", lineHeight: 1.7, marginBottom: "1.5rem" }}>
                       We'll be in touch within one business day to set up your Zero-Touch Observation Mode. Check your email client — your request has been pre-filled.
                     </p>
                     <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "1rem" }}>
-                      <a href="/login" style={{ display: "block", textAlign: "center", padding: "0.75rem 1.5rem", backgroundColor: "#0061d4", color: "#fff", fontWeight: 700, fontSize: "0.9375rem", borderRadius: "0.75rem", textDecoration: "none", transition: "background .15s" }}
+                      <a href="/login" style={{ display: "block", textAlign: "center", padding: "0.75rem 1.5rem", backgroundColor: "#0061d4", color: "#fff", fontWeight: 700, fontSize: "1.0625rem", borderRadius: "0.75rem", textDecoration: "none", transition: "background .15s" }}
                         onMouseEnter={e => (e.currentTarget.style.backgroundColor="#00297a")}
                         onMouseLeave={e => (e.currentTarget.style.backgroundColor="#0061d4")}>
                         Sign in to view the live dashboard →
                       </a>
-                      <p style={{ fontSize: "0.8rem", color: "#9ca3af", textAlign: "center" }}>Sign in with your pilot credentials to access the live dashboard.</p>
+                      <p style={{ fontSize: "1rem", color: "#9ca3af", textAlign: "center" }}>Sign in with your pilot credentials to access the live dashboard.</p>
                     </div>
-                    <button onClick={() => setSubmitted(false)} style={{ fontSize: "0.875rem", color: "#0061d4", fontWeight: 600, background: "none", border: "none", cursor: "pointer" }}>
+                    <button onClick={() => setSubmitted(false)} style={{ fontSize: "1rem", color: "#0061d4", fontWeight: 600, background: "none", border: "none", cursor: "pointer" }}>
                       Submit another request
                     </button>
                   </div>
                 ) : (
                   <>
                     <h3 style={{ fontSize: "1.125rem", fontWeight: 700, color: "#1d1d1f", marginBottom: "0.375rem" }}>Apply for a Pilot</h3>
-                    <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: "1.5rem" }}>We review every application. Ideal for enterprises with 500+ employees.</p>
+                    <p style={{ fontSize: "1rem", color: "#6b7280", marginBottom: "1.5rem" }}>We review every application. Ideal for enterprises with 500+ employees.</p>
 
                     <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.875rem" }}>
                       {[
@@ -144,13 +144,13 @@ export default function EarlyAccess() {
                         { key: "role",    label: "Your Role",           placeholder: "CISO, IT VP, CTO...", type: "text" },
                       ].map(f => (
                         <div key={f.key}>
-                          <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 600, color: "#374151", marginBottom: "0.375rem" }}>{f.label}</label>
+                          <label style={{ display: "block", fontSize: "1.0625rem", fontWeight: 600, color: "#374151", marginBottom: "0.375rem" }}>{f.label}</label>
                           <input
                             type={f.type}
                             placeholder={f.placeholder}
                             value={(form as any)[f.key]}
                             onChange={e => setForm(p => ({ ...p, [f.key]: e.target.value }))}
-                            style={{ width: "100%", padding: "0.625rem 0.875rem", border: "1px solid #d1d5db", borderRadius: "0.75rem", fontSize: "0.9375rem", color: "#1d1d1f", backgroundColor: "#fafafa", outline: "none", boxSizing: "border-box" }}
+                            style={{ width: "100%", padding: "0.625rem 0.875rem", border: "1px solid #d1d5db", borderRadius: "0.75rem", fontSize: "1.0625rem", color: "#1d1d1f", backgroundColor: "#fafafa", outline: "none", boxSizing: "border-box" }}
                             onFocus={e => e.target.style.borderColor = "#0061d4"}
                             onBlur={e => e.target.style.borderColor = "#d1d5db"}
                           />
@@ -159,11 +159,11 @@ export default function EarlyAccess() {
 
                       {/* Team size */}
                       <div>
-                        <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 600, color: "#374151", marginBottom: "0.375rem" }}>Company Size</label>
+                        <label style={{ display: "block", fontSize: "1.0625rem", fontWeight: 600, color: "#374151", marginBottom: "0.375rem" }}>Company Size</label>
                         <select
                           value={form.size}
                           onChange={e => setForm(p => ({ ...p, size: e.target.value }))}
-                          style={{ width: "100%", padding: "0.625rem 0.875rem", border: "1px solid #d1d5db", borderRadius: "0.75rem", fontSize: "0.9375rem", color: form.size ? "#1d1d1f" : "#9ca3af", backgroundColor: "#fafafa", outline: "none" }}>
+                          style={{ width: "100%", padding: "0.625rem 0.875rem", border: "1px solid #d1d5db", borderRadius: "0.75rem", fontSize: "1.0625rem", color: form.size ? "#1d1d1f" : "#9ca3af", backgroundColor: "#fafafa", outline: "none" }}>
                           <option value="">Select size...</option>
                           <option>500–1,000 employees</option>
                           <option>1,000–5,000 employees</option>
@@ -176,11 +176,11 @@ export default function EarlyAccess() {
                         type="submit"
                         disabled={!canSubmit || loading}
                         className="btn-primary"
-                        style={{ marginTop: "0.5rem", padding: "0.875rem", fontSize: "0.9375rem", opacity: canSubmit && !loading ? 1 : 0.5 }}>
+                        style={{ marginTop: "0.5rem", padding: "0.875rem", fontSize: "1.0625rem", opacity: canSubmit && !loading ? 1 : 0.5 }}>
                         {loading ? "Submitting..." : (<>Apply for a Pilot <ArrowRight style={{ width: 16, height: 16 }} /></>)}
                       </button>
 
-                      <p style={{ fontSize: "0.75rem", color: "#9ca3af", textAlign: "center" }}>
+                      <p style={{ fontSize: "1rem", color: "#9ca3af", textAlign: "center" }}>
                         No credit card required. We review every application. We'll be in touch within one business day.
                       </p>
                     </form>

@@ -70,8 +70,8 @@ export default function ProductDemo() {
                     <SI style={{ width: 15, height: 15, color: isActive ? "#ffffff" : "#6b7280" }} />
                   </div>
                   <div>
-                    <div style={{ fontSize: "0.875rem", fontWeight: 700, color: isActive ? "#1a1a2e" : "#6b7280", transition: "color 0.2s", letterSpacing: "-0.01em" }}>{s.number} — {s.title}</div>
-                    <div style={{ fontSize: "0.75rem", color: isActive ? "#4a5568" : "#9ca3af", marginTop: "1px" }}>{s.subtitle}</div>
+                    <div style={{ fontSize: "1rem", fontWeight: 700, color: isActive ? "#1a1a2e" : "#6b7280", transition: "color 0.2s", letterSpacing: "-0.01em" }}>{s.number} — {s.title}</div>
+                    <div style={{ fontSize: "1rem", color: isActive ? "#4a5568" : "#9ca3af", marginTop: "1px" }}>{s.subtitle}</div>
                   </div>
                 </button>
               );
@@ -86,15 +86,15 @@ export default function ProductDemo() {
               </div>
               <div>
                 <div style={{ fontSize: "1rem", fontWeight: 700, color: "#1a1a2e", letterSpacing: "-0.01em" }}>{step.title}</div>
-                <div style={{ fontSize: "0.75rem", color: "#6b7280" }}>{step.subtitle}</div>
+                <div style={{ fontSize: "1rem", color: "#6b7280" }}>{step.subtitle}</div>
               </div>
             </div>
-            <p style={{ fontSize: "0.9375rem", color: "#3d4759", lineHeight: 1.75, marginBottom: "1.5rem" }}>{step.desc}</p>
+            <p style={{ fontSize: "1.0625rem", color: "#3d4759", lineHeight: 1.75, marginBottom: "1.5rem" }}>{step.desc}</p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
               {step.points.map((pt, i) => (
                 <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.625rem" }}>
                   <div style={{ width: 5, height: 5, borderRadius: "50%", backgroundColor: step.color, flexShrink: 0 }} />
-                  <span style={{ fontSize: "0.875rem", color: "#1a1a2e" }}>{pt}</span>
+                  <span style={{ fontSize: "1rem", color: "#1a1a2e" }}>{pt}</span>
                 </div>
               ))}
             </div>

@@ -76,9 +76,9 @@ export default function AIExplainability() {
       <div style={{ paddingTop: 60, minHeight: "100vh" }}>
         <div style={{ padding: "1.25rem 2rem", borderBottom: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
           <div>
-            <div style={{ fontSize: "0.875rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "0.25rem" }}>AI Transparency</div>
+            <div style={{ fontSize: "1rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "0.25rem" }}>AI Transparency</div>
             <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "#f1f5f9", marginBottom: "0.25rem" }}>Decision Explainability Panel</h1>
-            <p style={{ color: "#64748b", fontSize: "0.85rem" }}>Every AI decision is fully auditable — see exactly why Unkov approved, blocked, or remediated each event.</p>
+            <p style={{ color: "#64748b", fontSize: "1.0625rem" }}>Every AI decision is fully auditable — see exactly why Unkov approved, blocked, or remediated each event.</p>
           </div>
           <div style={{ display: "flex", gap: "0.75rem", flexShrink: 0 }}>
             {[{ label: "Auto-Approved", value: "1,243", color: "#10b981" }, { label: "Blocked", value: "47", color: "#ef4444" }, { label: "Remediated", value: "12", color: "#f59e0b" }].map((m) => (
@@ -93,30 +93,30 @@ export default function AIExplainability() {
         <div style={{ display: "grid", gridTemplateColumns: "320px 1fr", minHeight: "calc(100vh - 220px)" }}>
           {/* Sidebar: decision list */}
           <div style={{ borderRight: "1px solid rgba(255,255,255,0.06)", padding: "1.5rem" }}>
-            <div style={{ fontSize: "0.8125rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "1rem" }}>Recent AI Decisions</div>
+            <div style={{ fontSize: "1.0625rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "1rem" }}>Recent AI Decisions</div>
             {DECISIONS.map((dec, i) => {
               const s = DECISION_STYLES[dec.decision];
               return (
                 <button key={dec.id} onClick={() => setSelected(i)}
                   style={{ width: "100%", textAlign: "left", padding: "1rem", borderRadius: 10, border: `1px solid ${selected === i ? s.border : "rgba(255,255,255,0.06)"}`, backgroundColor: selected === i ? s.bg : "transparent", cursor: "pointer", marginBottom: "0.75rem", transition: "all 0.15s" }}>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.5rem" }}>
-                    <span style={{ fontSize: "0.875rem", fontFamily: "monospace", color: "#64748b" }}>{dec.id}</span>
-                    <span style={{ fontSize: "0.8125rem", fontWeight: 700, color: s.text, backgroundColor: s.bg, border: `1px solid ${s.border}`, padding: "0.1rem 0.5rem", borderRadius: 9999 }}>{dec.decision}</span>
+                    <span style={{ fontSize: "1rem", fontFamily: "monospace", color: "#64748b" }}>{dec.id}</span>
+                    <span style={{ fontSize: "1.0625rem", fontWeight: 700, color: s.text, backgroundColor: s.bg, border: `1px solid ${s.border}`, padding: "0.1rem 0.5rem", borderRadius: 9999 }}>{dec.decision}</span>
                   </div>
-                  <div style={{ fontSize: "0.8rem", color: "#94a3b8", marginBottom: "0.25rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{dec.user}</div>
-                  <div style={{ fontSize: "0.875rem", color: "#475569" }}>→ {dec.resource}</div>
-                  <div style={{ fontSize: "0.68rem", color: "#374151", marginTop: "0.375rem" }}>{dec.timestamp}</div>
+                  <div style={{ fontSize: "1rem", color: "#94a3b8", marginBottom: "0.25rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{dec.user}</div>
+                  <div style={{ fontSize: "1rem", color: "#475569" }}>→ {dec.resource}</div>
+                  <div style={{ fontSize: "1.0625rem", color: "#374151", marginTop: "0.375rem" }}>{dec.timestamp}</div>
                 </button>
               );
             })}
 
             {/* Stats */}
             <div style={{ marginTop: "1rem", padding: "1rem", backgroundColor: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 10 }}>
-              <div style={{ fontSize: "0.8125rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.75rem" }}>Today's Decisions</div>
+              <div style={{ fontSize: "1.0625rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.75rem" }}>Today's Decisions</div>
               {[["Auto-Approved", "1,243", "#10b981"], ["Blocked", "47", "#ef4444"], ["Remediated", "12", "#f59e0b"]].map(([l, v, c]) => (
                 <div key={l} style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
-                  <span style={{ fontSize: "0.9375rem", color: "#64748b" }}>{l}</span>
-                  <span style={{ fontSize: "0.9375rem", fontWeight: 700, color: c as string }}>{v}</span>
+                  <span style={{ fontSize: "1.0625rem", color: "#64748b" }}>{l}</span>
+                  <span style={{ fontSize: "1.0625rem", fontWeight: 700, color: c as string }}>{v}</span>
                 </div>
               ))}
             </div>
@@ -133,23 +133,23 @@ export default function AIExplainability() {
                   </div>
                   <div>
                     <div style={{ fontSize: "1.25rem", fontWeight: 800, color: "#f1f5f9" }}>Decision {d.id}</div>
-                    <div style={{ fontSize: "0.9375rem", color: "#64748b" }}>{d.timestamp} · Confidence: <span style={{ color: ds.text, fontWeight: 700 }}>{d.confidence}%</span></div>
+                    <div style={{ fontSize: "1.0625rem", color: "#64748b" }}>{d.timestamp} · Confidence: <span style={{ color: ds.text, fontWeight: 700 }}>{d.confidence}%</span></div>
                   </div>
                 </div>
                 <div style={{ display: "flex", gap: "1.5rem" }}>
-                  <div><div style={{ fontSize: "0.8125rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.08em" }}>Identity</div><div style={{ fontSize: "0.85rem", color: "#94a3b8", fontFamily: "monospace" }}>{d.user}</div></div>
-                  <div><div style={{ fontSize: "0.8125rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.08em" }}>Resource</div><div style={{ fontSize: "0.85rem", color: "#94a3b8" }}>{d.resource}</div></div>
+                  <div><div style={{ fontSize: "1.0625rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.08em" }}>Identity</div><div style={{ fontSize: "1.0625rem", color: "#94a3b8", fontFamily: "monospace" }}>{d.user}</div></div>
+                  <div><div style={{ fontSize: "1.0625rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.08em" }}>Resource</div><div style={{ fontSize: "1.0625rem", color: "#94a3b8" }}>{d.resource}</div></div>
                 </div>
               </div>
               <div style={{ textAlign: "center", padding: "1.25rem 2rem", backgroundColor: ds.bg, border: `1px solid ${ds.border}`, borderRadius: 12 }}>
-                <div style={{ fontSize: "0.8125rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.375rem" }}>Verdict</div>
+                <div style={{ fontSize: "1.0625rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.375rem" }}>Verdict</div>
                 <div style={{ fontSize: "1.5rem", fontWeight: 900, color: ds.text }}>{d.decision}</div>
               </div>
             </div>
 
             {/* Reasoning factors */}
             <div style={{ marginBottom: "2rem" }}>
-              <div style={{ fontSize: "0.9375rem", color: "#64748b", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+              <div style={{ fontSize: "1.0625rem", color: "#64748b", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                 <BrainCircuit style={{ width: 14, height: 14 }} /> AI Reasoning Factors
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
@@ -161,8 +161,8 @@ export default function AIExplainability() {
                       <div style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: r.positive ? "#10b981" : "#ef4444", flexShrink: 0 }} />
                       <div style={{ flex: 1 }}>
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                          <span style={{ fontSize: "0.875rem", fontWeight: 600, color: "#e2e8f0" }}>{r.factor}</span>
-                          <span style={{ fontSize: "0.9375rem", fontWeight: 700, color: r.positive ? "#10b981" : "#ef4444" }}>Weight: {r.weight}%</span>
+                          <span style={{ fontSize: "1rem", fontWeight: 600, color: "#e2e8f0" }}>{r.factor}</span>
+                          <span style={{ fontSize: "1.0625rem", fontWeight: 700, color: r.positive ? "#10b981" : "#ef4444" }}>Weight: {r.weight}%</span>
                         </div>
                         {/* Weight bar */}
                         <div style={{ marginTop: "0.375rem", height: 4, backgroundColor: "rgba(255,255,255,0.05)", borderRadius: 2, overflow: "hidden" }}>
@@ -172,7 +172,7 @@ export default function AIExplainability() {
                       {expanded.includes(i) ? <ChevronDown style={{ width: 14, height: 14, color: "#475569" }} /> : <ChevronRight style={{ width: 14, height: 14, color: "#475569" }} />}
                     </button>
                     {expanded.includes(i) && (
-                      <div style={{ padding: "0 1rem 0.875rem 2.75rem", fontSize: "0.8rem", color: "#94a3b8", borderTop: "1px solid rgba(255,255,255,0.04)", paddingTop: "0.75rem" }}>
+                      <div style={{ padding: "0 1rem 0.875rem 2.75rem", fontSize: "1rem", color: "#94a3b8", borderTop: "1px solid rgba(255,255,255,0.04)", paddingTop: "0.75rem" }}>
                         {r.detail}
                       </div>
                     )}
@@ -184,16 +184,16 @@ export default function AIExplainability() {
             {/* Policy refs + audit */}
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.25rem" }}>
               <div style={{ backgroundColor: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 10, padding: "1.25rem" }}>
-                <div style={{ fontSize: "0.875rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.75rem" }}>Policy References</div>
+                <div style={{ fontSize: "1rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.75rem" }}>Policy References</div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
                   {d.policy_refs.map(p => (
-                    <span key={p} style={{ padding: "0.25rem 0.625rem", backgroundColor: "#0061d415", border: "1px solid #0061d430", borderRadius: 6, fontSize: "0.875rem", color: "#60a5fa", fontFamily: "monospace" }}>{p}</span>
+                    <span key={p} style={{ padding: "0.25rem 0.625rem", backgroundColor: "#0061d415", border: "1px solid #0061d430", borderRadius: 6, fontSize: "1rem", color: "#60a5fa", fontFamily: "monospace" }}>{p}</span>
                   ))}
                 </div>
               </div>
               <div style={{ backgroundColor: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 10, padding: "1.25rem" }}>
-                <div style={{ fontSize: "0.875rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.75rem" }}>Audit Trail</div>
-                <div style={{ fontSize: "0.8rem", color: "#94a3b8" }}>{d.audit_trail}</div>
+                <div style={{ fontSize: "1rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.75rem" }}>Audit Trail</div>
+                <div style={{ fontSize: "1rem", color: "#94a3b8" }}>{d.audit_trail}</div>
               </div>
             </div>
           </div>

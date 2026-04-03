@@ -21,7 +21,7 @@ export default function Hero() {
           <div>
             <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.3rem 0.875rem", borderRadius: "9999px", backgroundColor: "#e8f0fe", border: "1px solid #bfcfee", marginBottom: "1.75rem" }}>
               <div style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: "#0061d4" }} />
-              <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#00297a", letterSpacing: "0.06em", textTransform: "uppercase" }}>AI Identity Governance</span>
+              <span style={{ fontSize: "1rem", fontWeight: 700, color: "#00297a", letterSpacing: "0.06em", textTransform: "uppercase" }}>AI Identity Governance</span>
             </div>
 
             <h1 style={{ fontSize: "clamp(1.75rem, 4vw, 3.5rem)", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.035em", color: "#0a0f1e", marginBottom: "1.25rem" }}>
@@ -37,11 +37,11 @@ export default function Hero() {
 
             <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginBottom: "2.5rem" }} className="hero-buttons">
               <button onClick={() => navigate("/early-access")} className="btn-primary"
-                style={{ fontSize: "0.9375rem", padding: "0.8rem 1.875rem", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                style={{ fontSize: "1.0625rem", padding: "0.8rem 1.875rem", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
                 Apply for Pilot <ArrowRight style={{ width: 16, height: 16 }} />
               </button>
               <button onClick={() => navigate("/login")}
-                style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.8rem 1.5rem", borderRadius: "9999px", border: "1.5px solid #c0d7f5", backgroundColor: "transparent", color: "#0061d4", fontWeight: 600, fontSize: "0.9375rem", cursor: "pointer", transition: "all 0.15s" }}
+                style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.8rem 1.5rem", borderRadius: "9999px", border: "1.5px solid #c0d7f5", backgroundColor: "transparent", color: "#0061d4", fontWeight: 600, fontSize: "1.0625rem", cursor: "pointer", transition: "all 0.15s" }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "#e8f0fe"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "transparent"; }}>
                 See live demo
@@ -56,11 +56,11 @@ export default function Hero() {
             <div style={{ backgroundColor: "#ffffff", border: "1px solid #d8dde6", borderRadius: "1.25rem", padding: "1.75rem", boxShadow: "0 20px 60px rgba(0,41,122,0.1), 0 4px 16px rgba(0,0,0,0.04)" }}>
               <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: "1.25rem" }}>
                 <div>
-                  <div style={{ fontSize: "0.6875rem", fontWeight: 700, color: "#9ca3af", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.25rem" }}>Identity Drift Score</div>
+                  <div style={{ fontSize: "1.0625rem", fontWeight: 700, color: "#9ca3af", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.25rem" }}>Identity Drift Score</div>
                   <div style={{ fontSize: "2.25rem", fontWeight: 800, color: "#1d1d1f", letterSpacing: "-0.04em", lineHeight: 1 }}>87 <span style={{ fontSize: "1rem", color: "#9ca3af", fontWeight: 500 }}>/100</span></div>
                 </div>
                 <div style={{ padding: "0.325rem 0.75rem", borderRadius: "9999px", backgroundColor: "#d1fae5", border: "1px solid #6ee7b7" }}>
-                  <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#059669" }}>↑ 12 pts</span>
+                  <span style={{ fontSize: "1rem", fontWeight: 700, color: "#059669" }}>↑ 12 pts</span>
                 </div>
               </div>
               <div style={{ display: "flex", gap: "3px", alignItems: "flex-end", height: "2.75rem", marginBottom: "0.5rem" }}>
@@ -69,8 +69,8 @@ export default function Hero() {
                 ))}
               </div>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <span style={{ fontSize: "0.6875rem", color: "#d1d5db" }}>30 days ago</span>
-                <span style={{ fontSize: "0.6875rem", color: "#d1d5db" }}>Today</span>
+                <span style={{ fontSize: "1.0625rem", color: "#d1d5db" }}>30 days ago</span>
+                <span style={{ fontSize: "1.0625rem", color: "#d1d5db" }}>Today</span>
               </div>
             </div>
             {[
@@ -81,8 +81,8 @@ export default function Hero() {
               <div key={item.label} style={{ backgroundColor: "#ffffff", border: "1px solid #e5e7eb", borderRadius: "0.875rem", padding: "0.875rem 1.125rem", display: "flex", alignItems: "center", justifyContent: "space-between", boxShadow: "0 2px 8px rgba(0,0,0,0.04)", transition: "box-shadow 0.2s, transform 0.15s" }}
                 onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.08)"; e.currentTarget.style.transform = "translateY(-1px)"; }}
                 onMouseLeave={e => { e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.04)"; e.currentTarget.style.transform = "none"; }}>
-                <span style={{ fontSize: "0.875rem", color: "#374151", fontWeight: 500 }}>{item.label}</span>
-                <span style={{ fontSize: "0.9375rem", fontWeight: 800, color: item.color, backgroundColor: item.bg, border: `1px solid ${item.border}`, padding: "0.125rem 0.625rem", borderRadius: "0.625rem" }}>{item.val}</span>
+                <span style={{ fontSize: "1rem", color: "#374151", fontWeight: 500 }}>{item.label}</span>
+                <span style={{ fontSize: "1.0625rem", fontWeight: 800, color: item.color, backgroundColor: item.bg, border: `1px solid ${item.border}`, padding: "0.125rem 0.625rem", borderRadius: "0.625rem" }}>{item.val}</span>
               </div>
             ))}
           </div>

@@ -128,7 +128,7 @@ export default function DemoHub() {
           {/* Background glow */}
           <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 600, height: 300, background: "radial-gradient(ellipse, rgba(0,97,212,0.12) 0%, transparent 70%)", pointerEvents: "none" }} />
 
-          <div style={{ fontSize: "0.875rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: "1rem" }}>Interactive Product Experience</div>
+          <div style={{ fontSize: "1rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: "1rem" }}>Interactive Product Experience</div>
           <h1 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 900, color: "#f1f5f9", marginBottom: "1rem", lineHeight: 1.15 }}>
             The Unkov Demo Hub
           </h1>
@@ -145,7 +145,7 @@ export default function DemoHub() {
             ].map(s => (
               <div key={s.label} style={{ textAlign: "center", padding: "0.75rem 1.5rem", backgroundColor: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 10 }}>
                 <div style={{ fontSize: "1.5rem", fontWeight: 900, color: s.color }}>{s.val}</div>
-                <div style={{ fontSize: "0.8125rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.08em" }}>{s.label}</div>
+                <div style={{ fontSize: "1.0625rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.08em" }}>{s.label}</div>
               </div>
             ))}
           </div>
@@ -182,17 +182,17 @@ export default function DemoHub() {
                   </div>
 
                   <div style={{ fontSize: "1.05rem", fontWeight: 800, color: "#f1f5f9", marginBottom: "0.2rem" }}>{demo.title}</div>
-                  <div style={{ fontSize: "0.875rem", color: demo.color, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "0.75rem" }}>{demo.subtitle}</div>
-                  <div style={{ fontSize: "0.82rem", color: "#94a3b8", lineHeight: 1.55, marginBottom: "1rem" }}>{demo.desc}</div>
+                  <div style={{ fontSize: "1rem", color: demo.color, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "0.75rem" }}>{demo.subtitle}</div>
+                  <div style={{ fontSize: "1.0625rem", color: "#94a3b8", lineHeight: 1.55, marginBottom: "1rem" }}>{demo.desc}</div>
 
                   {/* Stats */}
                   <div style={{ display: "flex", flexWrap: "wrap", gap: "0.375rem", marginBottom: "1rem" }}>
                     {demo.stats.map(s => (
-                      <span key={s} style={{ fontSize: "0.68rem", color: "#475569", backgroundColor: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 9999, padding: "0.2rem 0.625rem" }}>{s}</span>
+                      <span key={s} style={{ fontSize: "1.0625rem", color: "#475569", backgroundColor: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 9999, padding: "0.2rem 0.625rem" }}>{s}</span>
                     ))}
                   </div>
 
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontSize: "0.8rem", fontWeight: 600, color: demo.color }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontSize: "1rem", fontWeight: 600, color: demo.color }}>
                     Launch Demo <ChevronRight style={{ width: 14, height: 14 }} />
                   </div>
                 </button>
@@ -204,17 +204,17 @@ export default function DemoHub() {
         {/* Apply for Pilot CTA */}
         <div style={{ margin: "0 2rem 3rem", padding: "2.5rem", backgroundColor: "rgba(0,41,122,0.15)", border: "1px solid rgba(0,97,212,0.2)", borderRadius: 18, display: "flex", alignItems: "center", justifyContent: "space-between", gap: "2rem", flexWrap: "wrap" }}>
           <div>
-            <div style={{ fontSize: "0.875rem", color: "#60a5fa", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "0.5rem" }}>Ready to go live?</div>
+            <div style={{ fontSize: "1rem", color: "#60a5fa", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "0.5rem" }}>Ready to go live?</div>
             <div style={{ fontSize: "1.5rem", fontWeight: 900, color: "#f1f5f9", marginBottom: "0.5rem" }}>Want a personalized walkthrough?</div>
-            <div style={{ fontSize: "0.9rem", color: "#94a3b8" }}>Our team will tailor a 30-minute demo to your exact environment and use case.</div>
+            <div style={{ fontSize: "1rem", color: "#94a3b8" }}>Our team will tailor a 30-minute demo to your exact environment and use case.</div>
           </div>
           <div style={{ display: "flex", gap: "0.75rem", flexShrink: 0, flexWrap: "wrap" }}>
             <a href="/early-access"
-              style={{ padding: "0.75rem 1.5rem", backgroundColor: "#0061d4", border: "none", borderRadius: 10, color: "#fff", fontWeight: 700, fontSize: "0.9rem", textDecoration: "none" }}>
+              style={{ padding: "0.75rem 1.5rem", backgroundColor: "#0061d4", border: "none", borderRadius: 10, color: "#fff", fontWeight: 700, fontSize: "1rem", textDecoration: "none" }}>
               Apply for Pilot →
             </a>
             <a href="/contact"
-              style={{ padding: "0.75rem 1.25rem", backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 10, color: "#e2e8f0", fontWeight: 600, fontSize: "0.85rem", textDecoration: "none" }}>
+              style={{ padding: "0.75rem 1.25rem", backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 10, color: "#e2e8f0", fontWeight: 600, fontSize: "1.0625rem", textDecoration: "none" }}>
               Contact Us
             </a>
           </div>

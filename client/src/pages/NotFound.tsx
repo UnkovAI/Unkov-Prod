@@ -33,7 +33,7 @@ export default function NotFound() {
           <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}>
             <button
               onClick={() => navigate("/")}
-              style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.5rem", backgroundColor: "#00297a", color: "#fff", border: "none", borderRadius: "9999px", cursor: "pointer", fontWeight: 600, fontSize: "0.9375rem", transition: "background .15s" }}
+              style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.5rem", backgroundColor: "#00297a", color: "#fff", border: "none", borderRadius: "9999px", cursor: "pointer", fontWeight: 600, fontSize: "1.0625rem", transition: "background .15s" }}
               onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#001f5c")}
               onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#00297a")}
             >
@@ -41,7 +41,7 @@ export default function NotFound() {
             </button>
             <button
               onClick={() => navigate("/login")}
-              style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.5rem", backgroundColor: "transparent", color: "#0061d4", border: "1.5px solid #c0d7f5", borderRadius: "9999px", cursor: "pointer", fontWeight: 600, fontSize: "0.9375rem", transition: "all .15s" }}
+              style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.5rem", backgroundColor: "transparent", color: "#0061d4", border: "1.5px solid #c0d7f5", borderRadius: "9999px", cursor: "pointer", fontWeight: 600, fontSize: "1.0625rem", transition: "all .15s" }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "#e8f0fe"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "transparent"; }}
             >

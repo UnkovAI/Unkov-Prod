@@ -16,8 +16,8 @@ export default function Market() {
           ].map((m, i) => (
             <div key={i} className="card" style={{ padding: "1.75rem", borderColor: m.hi ? "#c2d4f8" : "#dcd6ce", backgroundColor: m.hi ? "#e8f0fe" : "#ffffff" }}>
               <div style={{ fontSize: "1.875rem", fontWeight: 800, letterSpacing: "-0.04em", color: m.hi ? "#00297a" : "#1d1d1f", marginBottom: "0.25rem" }}>{m.v}</div>
-              <div style={{ fontSize: "0.875rem", fontWeight: 600, color: "#3d3d5c", marginBottom: "0.375rem" }}>{m.l}</div>
-              <p style={{ fontSize: "0.8125rem", color: "#4a5568", lineHeight: 1.6 }}>{m.n}</p>
+              <div style={{ fontSize: "1rem", fontWeight: 600, color: "#3d3d5c", marginBottom: "0.375rem" }}>{m.l}</div>
+              <p style={{ fontSize: "1.0625rem", color: "#4a5568", lineHeight: 1.6 }}>{m.n}</p>
             </div>
           ))}
         </div>
@@ -30,8 +30,8 @@ export default function Market() {
           ].map((seg, i) => (
             <div key={i} className="card" style={{ padding: "1.5rem", borderColor: "#dcd6ce" }}>
               <span className="badge-blue" style={{ marginBottom: "0.875rem", display: "inline-flex" }}>{seg.label}</span>
-              <div style={{ fontSize: "0.9375rem", fontWeight: 600, color: "#1a1a2e", marginBottom: "0.5rem" }}>{seg.name}</div>
-              <p style={{ fontSize: "0.875rem", lineHeight: 1.7, color: "#3d4759" }}>{seg.desc}</p>
+              <div style={{ fontSize: "1.0625rem", fontWeight: 600, color: "#1a1a2e", marginBottom: "0.5rem" }}>{seg.name}</div>
+              <p style={{ fontSize: "1rem", lineHeight: 1.7, color: "#3d4759" }}>{seg.desc}</p>
             </div>
           ))}
         </div>

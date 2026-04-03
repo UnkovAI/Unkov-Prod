@@ -10,9 +10,9 @@ const moats = [
   },
   {
     number: "02", color: "#7c3aed", bg: "#faf5ff", border: "#c4b5fd",
-    title: "AI Proxy — you control the keys",
-    outcome: "Every LLM call gated before it reaches the model",
-    body: "Clients route AI tool calls through Unkov instead of directly to OpenAI or Anthropic. Unkov holds the provider keys. Every call is logged with identity context. Ungoverned AI agents are blocked before they can invoke a model. This is the fastest path to provable AI governance — one endpoint change gives you complete visibility and control.",
+    title: "AI Proxy — every LLM call governed",
+    outcome: "Every AI tool call gated before it reaches the model",
+    body: "AI tool calls pass through Unkov before reaching any model provider. Every call is verified against the calling identity, logged with full context, and blocked if the identity is ungoverned or risk-elevated. One integration gives you complete visibility and control over every AI invocation in your environment.",
   },
   {
     number: "03", color: "#059669", bg: "#f0fdf4", border: "#6ee7b7",
@@ -47,7 +47,7 @@ export default function WhyUnkov() {
           <span className="section-label">Why Unkov</span>
           <h2 className="section-heading">One control point.<br />Every AI agent, every action.</h2>
           <p style={{ fontSize: "1rem", color: "#4b5563", lineHeight: 1.8, marginTop: "0.875rem" }}>
-            Most security tools sit on the side — they watch, report, and alert after something has already happened. Unkov enforces before the action, not after. Four structural advantages make that defensible at scale.
+            Most security tools sit on the side — they watch, report, and alert after something has already happened. Unkov enforces before the action, not after. Here is what makes that structurally defensible at scale.
           </p>
         </div>
 
@@ -59,15 +59,32 @@ export default function WhyUnkov() {
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = `0 8px 28px ${m.color}18`; (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = "none"; (e.currentTarget as HTMLElement).style.transform = "none"; }}
             >
-              <div style={{ marginBottom: "1.125rem" }}>
-                <div style={{ fontSize: "0.625rem", fontWeight: 800, color: m.color, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.4rem" }}>{m.number}</div>
-                <div style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", lineHeight: 1.3 }}>{m.title}</div>
+              {/* Number + Title */}
+              <div style={{ marginBottom: "1rem" }}>
+                <div style={{ fontSize: "1rem", fontWeight: 800, color: m.color, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.5rem" }}>{m.number}</div>
+                <div style={{ fontSize: "1.125rem", fontWeight: 700, color: "#111827", lineHeight: 1.25 }}>{m.title}</div>
               </div>
-              <div style={{ display: "inline-flex", alignItems: "center", fontSize: "0.75rem", fontWeight: 600, color: m.color, backgroundColor: "#ffffff", border: `1px solid ${m.border}`, borderRadius: "9999px", padding: "0.25rem 0.875rem", marginBottom: "1rem" }}>
+
+              {/* Outcome badge — full width, prominent */}
+              <div style={{
+                width: "100%",
+                boxSizing: "border-box" as const,
+                fontSize: "1.0625rem",
+                fontWeight: 600,
+                color: m.color,
+                backgroundColor: "#ffffff",
+                border: `1.5px solid ${m.border}`,
+                borderRadius: "0.625rem",
+                padding: "0.6rem 1rem",
+                marginBottom: "1.25rem",
+                textAlign: "center" as const,
+                lineHeight: 1.45,
+              }}>
                 {m.outcome}
               </div>
+
               <div style={{ width: "100%", height: "1px", backgroundColor: m.border, opacity: 0.5, marginBottom: "1rem" }} />
-              <p style={{ fontSize: "0.875rem", color: "#374151", lineHeight: 1.8 }}>{m.body}</p>
+              <p style={{ fontSize: "1rem", color: "#374151", lineHeight: 1.8 }}>{m.body}</p>
             </div>
           ))}
         </div>
@@ -76,12 +93,12 @@ export default function WhyUnkov() {
         <div style={{ marginBottom: "2rem" }}>
           <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: "1.25rem" }}>How Unkov compares to the incumbent approach</h3>
           <div style={{ border: "1px solid #e5e7eb", borderRadius: "0.875rem", overflowX: "auto", WebkitOverflowScrolling: "touch" } as React.CSSProperties}>
-            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.875rem" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "1rem" }}>
               <thead>
                 <tr style={{ backgroundColor: "#f0ece6", borderBottom: "1px solid #dcd6ce" }}>
-                  <th style={{ textAlign: "left", padding: "0.75rem 1.25rem", fontSize: "0.75rem", fontWeight: 600, color: "#6b7280", textTransform: "uppercase", letterSpacing: "0.06em" }}>Area</th>
-                  <th style={{ textAlign: "left", padding: "0.75rem 1.25rem", fontSize: "0.75rem", fontWeight: 600, color: "#6b7280", textTransform: "uppercase", letterSpacing: "0.06em" }}>Incumbents</th>
-                  <th style={{ textAlign: "left", padding: "0.75rem 1.25rem", fontSize: "0.75rem", fontWeight: 700, color: "#00297a", textTransform: "uppercase", letterSpacing: "0.06em" }}>Unkov</th>
+                  <th style={{ textAlign: "left", padding: "0.75rem 1.25rem", fontSize: "1rem", fontWeight: 600, color: "#6b7280", textTransform: "uppercase", letterSpacing: "0.06em" }}>Area</th>
+                  <th style={{ textAlign: "left", padding: "0.75rem 1.25rem", fontSize: "1rem", fontWeight: 600, color: "#6b7280", textTransform: "uppercase", letterSpacing: "0.06em" }}>Incumbents</th>
+                  <th style={{ textAlign: "left", padding: "0.75rem 1.25rem", fontSize: "1rem", fontWeight: 700, color: "#00297a", textTransform: "uppercase", letterSpacing: "0.06em" }}>Unkov</th>
                 </tr>
               </thead>
               <tbody>
@@ -101,13 +118,13 @@ export default function WhyUnkov() {
           <button
             onClick={() => navigate("/features")}
             className="btn-primary"
-            style={{ fontSize: "0.9rem", padding: "0.75rem 1.5rem", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
+            style={{ fontSize: "1rem", padding: "0.75rem 1.5rem", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
           >
             See full platform <ArrowRight style={{ width: 15, height: 15 }} />
           </button>
           <button
             onClick={() => navigate("/early-access")}
-            style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.5rem", borderRadius: "9999px", border: "1.5px solid #bfcfee", backgroundColor: "transparent", color: "#0061d4", fontWeight: 600, fontSize: "0.9rem", cursor: "pointer", transition: "all 0.15s" }}
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.5rem", borderRadius: "9999px", border: "1.5px solid #bfcfee", backgroundColor: "transparent", color: "#0061d4", fontWeight: 600, fontSize: "1rem", cursor: "pointer", transition: "all 0.15s" }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "#e8f0fe"; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "transparent"; }}
           >

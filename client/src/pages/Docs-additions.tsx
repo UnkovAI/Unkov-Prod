@@ -22,14 +22,14 @@
         content: (
           <div>
             <p style={{ marginBottom: "0.75rem" }}>Every identity in Unkov receives a composite risk score from 0–100, computed across three weighted dimensions:</p>
-            <div style={{ background: S.code, borderRadius: 8, padding: "1rem 1.25rem", marginBottom: "1rem", fontFamily: "monospace", color: "#86efac", fontSize: "0.9rem" }}>
+            <div style={{ background: S.code, borderRadius: 8, padding: "1rem 1.25rem", marginBottom: "1rem", fontFamily: "monospace", color: "#86efac", fontSize: "1rem" }}>
               risk = behavior_score × 0.4 + permission_score × 0.3 + graph_score × 0.3
             </div>
-            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8125rem" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "1.0625rem" }}>
               <thead>
                 <tr style={{ borderBottom: `2px solid ${S.border}` }}>
                   {["Score Range", "Risk Level", "Action"].map(h => (
-                    <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "0.75rem" }}>{h}</th>
+                    <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "1rem" }}>{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -44,7 +44,7 @@
                   <tr key={range} style={{ borderBottom: `1px solid ${S.border}` }}>
                     <td style={{ padding: "0.625rem 0.75rem", fontWeight: 600, color: S.text, fontFamily: "monospace" }}>{range}</td>
                     <td style={{ padding: "0.625rem 0.75rem", fontWeight: 600, color: S.text }}>{level}</td>
-                    <td style={{ padding: "0.625rem 0.75rem", color: S.soft, fontSize: "0.8rem" }}>{action}</td>
+                    <td style={{ padding: "0.625rem 0.75rem", color: S.soft, fontSize: "1rem" }}>{action}</td>
                   </tr>
                 ))}
               </tbody>
@@ -56,11 +56,11 @@
         id: "risk-behavior",
         title: "Behavior signals (×0.4)",
         content: (
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8125rem" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "1.0625rem" }}>
             <thead>
               <tr style={{ borderBottom: `2px solid ${S.border}` }}>
                 {["Signal", "Points", "Source"].map(h => (
-                  <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "0.75rem" }}>{h}</th>
+                  <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "1rem" }}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -76,7 +76,7 @@
                 <tr key={signal} style={{ borderBottom: `1px solid ${S.border}` }}>
                   <td style={{ padding: "0.625rem 0.75rem", color: S.soft }}>{signal}</td>
                   <td style={{ padding: "0.625rem 0.75rem", fontWeight: 700, color: S.red, fontFamily: "monospace" }}>{pts}</td>
-                  <td style={{ padding: "0.625rem 0.75rem", color: S.muted, fontSize: "0.8rem" }}>{source}</td>
+                  <td style={{ padding: "0.625rem 0.75rem", color: S.muted, fontSize: "1rem" }}>{source}</td>
                 </tr>
               ))}
             </tbody>
@@ -87,11 +87,11 @@
         id: "risk-permission",
         title: "Permission signals (×0.3)",
         content: (
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8125rem" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "1.0625rem" }}>
             <thead>
               <tr style={{ borderBottom: `2px solid ${S.border}` }}>
                 {["Signal", "Points"].map(h => (
-                  <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "0.75rem" }}>{h}</th>
+                  <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "1rem" }}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -118,11 +118,11 @@
         content: (
           <div>
             <p style={{ marginBottom: "0.75rem" }}>Graph signals come from Neptune path queries. They capture risks that no per-identity rule can see — relationships between identities, paths to sensitive data, and lateral movement potential.</p>
-            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8125rem" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "1.0625rem" }}>
               <thead>
                 <tr style={{ borderBottom: `2px solid ${S.border}` }}>
                   {["Signal", "Points"].map(h => (
-                    <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "0.75rem" }}>{h}</th>
+                    <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "1rem" }}>{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -162,7 +162,7 @@
             <p style={{ marginBottom: "0.75rem" }}>The AI Proxy is the highest-leverage gate component. Every AI tool call — to OpenAI, Anthropic, or Azure OpenAI — routes through Unkov before reaching the provider.</p>
             <Note type="tip">Unkov holds the AI provider API keys. Clients point to your endpoint instead of the provider directly. Clients never hold provider keys.</Note>
             <h4 style={{ color: S.navy, marginTop: "1.25rem", marginBottom: "0.5rem" }}>Flow</h4>
-            <div style={{ background: S.code, borderRadius: 8, padding: "1rem 1.25rem", fontFamily: "monospace", color: "#86efac", fontSize: "0.85rem", lineHeight: 1.8 }}>
+            <div style={{ background: S.code, borderRadius: 8, padding: "1rem 1.25rem", fontFamily: "monospace", color: "#86efac", fontSize: "1.0625rem", lineHeight: 1.8 }}>
               {`Client app\n  → POST /ai-proxy/openai/v1/chat/completions\n  → Unkov: resolve identity from x-unkov-identity header\n  → Unkov: look up risk score in DynamoDB\n  → decision: ALLOW or BLOCK\n  → if ALLOW: forward to api.openai.com with Unkov's key\n  → log: identity + model + risk level + timestamp`}
             </div>
             <h4 style={{ color: S.navy, marginTop: "1.25rem", marginBottom: "0.5rem" }}>What it controls</h4>
@@ -226,11 +226,11 @@ const openai = new OpenAI({
         content: (
           <div>
             <Note type="info">The proxy starts in <strong>Observe Mode</strong> — all calls allowed, all calls logged. Enable enforce mode after validating identity resolution works correctly.</Note>
-            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8125rem", marginTop: "1rem" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "1.0625rem", marginTop: "1rem" }}>
               <thead>
                 <tr style={{ borderBottom: `2px solid ${S.border}` }}>
                   {["Condition", "Decision", "Response"].map(h => (
-                    <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "0.75rem" }}>{h}</th>
+                    <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "1rem" }}>{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -244,11 +244,11 @@ const openai = new OpenAI({
                   ["All other cases",                                  "ALLOW",    "Forward to provider, log with risk level"],
                 ].map(([cond, dec, resp]) => (
                   <tr key={cond} style={{ borderBottom: `1px solid ${S.border}` }}>
-                    <td style={{ padding: "0.625rem 0.75rem", color: S.soft, fontSize: "0.8rem" }}>{cond}</td>
+                    <td style={{ padding: "0.625rem 0.75rem", color: S.soft, fontSize: "1rem" }}>{cond}</td>
                     <td style={{ padding: "0.625rem 0.75rem" }}>
-                      <span style={{ fontSize: "0.75rem", fontWeight: 700, color: dec === "ALLOW" ? S.green : S.red, background: dec === "ALLOW" ? S.lgreen : S.lred, padding: "2px 8px", borderRadius: 9999 }}>{dec}</span>
+                      <span style={{ fontSize: "1rem", fontWeight: 700, color: dec === "ALLOW" ? S.green : S.red, background: dec === "ALLOW" ? S.lgreen : S.lred, padding: "2px 8px", borderRadius: 9999 }}>{dec}</span>
                     </td>
-                    <td style={{ padding: "0.625rem 0.75rem", color: S.muted, fontSize: "0.8rem" }}>{resp}</td>
+                    <td style={{ padding: "0.625rem 0.75rem", color: S.muted, fontSize: "1rem" }}>{resp}</td>
                   </tr>
                 ))}
               </tbody>
@@ -314,7 +314,7 @@ const openai = new OpenAI({
             },
             {
               title: "Add Lambda trigger on the Kinesis stream",
-              body: <><p style={{ marginBottom: "0.5rem" }}>The Lambda handler is exported from <code style={{ background: "#f1f5f9", padding: "1px 6px", borderRadius: 4, fontSize: "0.8rem" }}>src/pipeline/event-pipeline.ts</code>:</p>
+              body: <><p style={{ marginBottom: "0.5rem" }}>The Lambda handler is exported from <code style={{ background: "#f1f5f9", padding: "1px 6px", borderRadius: 4, fontSize: "1rem" }}>src/pipeline/event-pipeline.ts</code>:</p>
                 <Code lang="bash">{`# Lambda function: unkov-event-processor
 # Handler: dist/pipeline/event-pipeline.kinesisHandler
 # Trigger: Kinesis stream (batch size: 100)`}</Code>
@@ -327,11 +327,11 @@ const openai = new OpenAI({
         id: "pipeline-signals",
         title: "Real-time signal table",
         content: (
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8125rem" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "1.0625rem" }}>
             <thead>
               <tr style={{ borderBottom: `2px solid ${S.border}` }}>
                 {["Event", "Source", "Risk impact"].map(h => (
-                  <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "0.75rem" }}>{h}</th>
+                  <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "1rem" }}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -349,7 +349,7 @@ const openai = new OpenAI({
                 <tr key={event} style={{ borderBottom: `1px solid ${S.border}` }}>
                   <td style={{ padding: "0.625rem 0.75rem", fontFamily: "monospace", fontSize: "0.78rem", color: S.text }}>{event}</td>
                   <td style={{ padding: "0.625rem 0.75rem", color: S.soft }}>{source}</td>
-                  <td style={{ padding: "0.625rem 0.75rem", color: S.red, fontSize: "0.8rem", fontWeight: 600 }}>{impact}</td>
+                  <td style={{ padding: "0.625rem 0.75rem", color: S.red, fontSize: "1rem", fontWeight: 600 }}>{impact}</td>
                 </tr>
               ))}
             </tbody>
@@ -373,11 +373,11 @@ const openai = new OpenAI({
           <div>
             <p style={{ marginBottom: "0.75rem" }}>The identity graph uses Amazon Neptune (Gremlin). Every identity from every connector becomes a node. Every relationship becomes a typed, directional edge.</p>
             <h4 style={{ color: S.navy, marginTop: "1rem", marginBottom: "0.5rem" }}>Node types</h4>
-            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8125rem", marginBottom: "1rem" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "1.0625rem", marginBottom: "1rem" }}>
               <thead>
                 <tr style={{ borderBottom: `2px solid ${S.border}` }}>
                   {["Node", "Represents"].map(h => (
-                    <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "0.75rem" }}>{h}</th>
+                    <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "1rem" }}>{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -391,7 +391,7 @@ const openai = new OpenAI({
                   ["Session",        "Active sessions from real-time pipeline"],
                 ].map(([node, rep]) => (
                   <tr key={node} style={{ borderBottom: `1px solid ${S.border}` }}>
-                    <td style={{ padding: "0.625rem 0.75rem", fontFamily: "monospace", fontWeight: 600, color: S.blue, fontSize: "0.85rem" }}>{node}</td>
+                    <td style={{ padding: "0.625rem 0.75rem", fontFamily: "monospace", fontWeight: 600, color: S.blue, fontSize: "1.0625rem" }}>{node}</td>
                     <td style={{ padding: "0.625rem 0.75rem", color: S.soft }}>{rep}</td>
                   </tr>
                 ))}
@@ -475,11 +475,11 @@ const openai = new OpenAI({
         title: "Authentication",
         content: (
           <div>
-            <p style={{ marginBottom: "0.75rem" }}>All endpoints require a Bearer token matching the <code style={{ background: "#f1f5f9", padding: "1px 6px", borderRadius: 4, fontSize: "0.8rem" }}>DASHBOARD_API_KEY</code> stored in SSM.</p>
+            <p style={{ marginBottom: "0.75rem" }}>All endpoints require a Bearer token matching the <code style={{ background: "#f1f5f9", padding: "1px 6px", borderRadius: 4, fontSize: "1rem" }}>DASHBOARD_API_KEY</code> stored in SSM.</p>
             <Code lang="bash">{`curl http://localhost:4000/api/health \\
   -H "Authorization: Bearer YOUR_DASHBOARD_API_KEY" \\
   -H "x-customer-id: your-customer-id"`}</Code>
-            <Note type="info">In local dev, the default key is <code style={{ background: "#f1f5f9", padding: "1px 6px", borderRadius: 4, fontSize: "0.8rem" }}>dev-key</code> — no auth required. Always set a real key before production.</Note>
+            <Note type="info">In local dev, the default key is <code style={{ background: "#f1f5f9", padding: "1px 6px", borderRadius: 4, fontSize: "1rem" }}>dev-key</code> — no auth required. Always set a real key before production.</Note>
           </div>
         ),
       },
@@ -487,11 +487,11 @@ const openai = new OpenAI({
         id: "api-core",
         title: "Core endpoints",
         content: (
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8125rem" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "1.0625rem" }}>
             <thead>
               <tr style={{ borderBottom: `2px solid ${S.border}` }}>
                 {["Method", "Endpoint", "Purpose"].map(h => (
-                  <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "0.75rem" }}>{h}</th>
+                  <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "1rem" }}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -522,10 +522,10 @@ const openai = new OpenAI({
               ].map(([method, endpoint, purpose]) => (
                 <tr key={endpoint} style={{ borderBottom: `1px solid ${S.border}` }}>
                   <td style={{ padding: "0.5rem 0.75rem" }}>
-                    <span style={{ fontSize: "0.7rem", fontWeight: 700, padding: "2px 6px", borderRadius: 4, backgroundColor: method === "GET" ? "#e0f2fe" : "#fef3c7", color: method === "GET" ? "#0369a1" : "#92400e" }}>{method}</span>
+                    <span style={{ fontSize: "1rem", fontWeight: 700, padding: "2px 6px", borderRadius: 4, backgroundColor: method === "GET" ? "#e0f2fe" : "#fef3c7", color: method === "GET" ? "#0369a1" : "#92400e" }}>{method}</span>
                   </td>
-                  <td style={{ padding: "0.5rem 0.75rem", fontFamily: "monospace", fontSize: "0.8rem", color: S.blue }}>{endpoint}</td>
-                  <td style={{ padding: "0.5rem 0.75rem", color: S.soft, fontSize: "0.8rem" }}>{purpose}</td>
+                  <td style={{ padding: "0.5rem 0.75rem", fontFamily: "monospace", fontSize: "1rem", color: S.blue }}>{endpoint}</td>
+                  <td style={{ padding: "0.5rem 0.75rem", color: S.soft, fontSize: "1rem" }}>{purpose}</td>
                 </tr>
               ))}
             </tbody>

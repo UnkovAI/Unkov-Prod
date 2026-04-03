@@ -63,11 +63,11 @@ export default function RiskHeatmap() {
       <Header />
       <div style={{ paddingTop: 60, minHeight: "100vh" }}>
         <div style={{ padding: "2rem 2rem 1rem", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-          <div style={{ fontSize: "0.875rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "0.5rem" }}>Risk Intelligence</div>
+          <div style={{ fontSize: "1rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "0.5rem" }}>Risk Intelligence</div>
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
             <div>
               <h1 style={{ fontSize: "1.75rem", fontWeight: 800, color: "#f1f5f9", marginBottom: "0.5rem" }}>Identity Risk Heatmap</h1>
-              <p style={{ color: "#64748b", fontSize: "0.9rem" }}>Cross-department × resource access risk scores. Red = immediate remediation required.</p>
+              <p style={{ color: "#64748b", fontSize: "1rem" }}>Cross-department × resource access risk scores. Red = immediate remediation required.</p>
             </div>
             <div style={{ display: "flex", gap: "1.5rem" }}>
               {[
@@ -77,7 +77,7 @@ export default function RiskHeatmap() {
               ].map(s => (
                 <div key={s.label} style={{ textAlign: "right" }}>
                   <div style={{ fontSize: "1.75rem", fontWeight: 800, color: s.color }}>{s.val}</div>
-                  <div style={{ fontSize: "0.8125rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.06em" }}>{s.label}</div>
+                  <div style={{ fontSize: "1.0625rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.06em" }}>{s.label}</div>
                 </div>
               ))}
             </div>
@@ -89,7 +89,7 @@ export default function RiskHeatmap() {
           <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1.5rem" }}>
             {["all", "critical", "high"].map(f => (
               <button key={f} onClick={() => setFilter(f)}
-                style={{ padding: "0.4rem 1rem", borderRadius: 9999, fontSize: "0.9375rem", fontWeight: 600, border: "1px solid", borderColor: filter === f ? "#60a5fa40" : "rgba(255,255,255,0.08)", backgroundColor: filter === f ? "#60a5fa10" : "transparent", color: filter === f ? "#60a5fa" : "#64748b", cursor: "pointer", transition: "all 0.15s", textTransform: "capitalize" }}>
+                style={{ padding: "0.4rem 1rem", borderRadius: 9999, fontSize: "1.0625rem", fontWeight: 600, border: "1px solid", borderColor: filter === f ? "#60a5fa40" : "rgba(255,255,255,0.08)", backgroundColor: filter === f ? "#60a5fa10" : "transparent", color: filter === f ? "#60a5fa" : "#64748b", cursor: "pointer", transition: "all 0.15s", textTransform: "capitalize" }}>
                 {f === "all" ? "All Risks" : f === "critical" ? "Critical Only" : "High+"}
               </button>
             ))}
@@ -101,9 +101,9 @@ export default function RiskHeatmap() {
             <table style={{ borderCollapse: "collapse", width: "100%", minWidth: 800 }}>
               <thead>
                 <tr>
-                  <th style={{ padding: "0.875rem 1rem", textAlign: "left", fontSize: "0.875rem", color: "#475569", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", borderBottom: "1px solid rgba(255,255,255,0.06)", minWidth: 110 }}>Dept → Resource</th>
+                  <th style={{ padding: "0.875rem 1rem", textAlign: "left", fontSize: "1rem", color: "#475569", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", borderBottom: "1px solid rgba(255,255,255,0.06)", minWidth: 110 }}>Dept → Resource</th>
                   {RESOURCES.map(res => (
-                    <th key={res} style={{ padding: "0.875rem 0.625rem", textAlign: "center", fontSize: "0.8125rem", color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", borderBottom: "1px solid rgba(255,255,255,0.06)", minWidth: 90 }}>
+                    <th key={res} style={{ padding: "0.875rem 0.625rem", textAlign: "center", fontSize: "1.0625rem", color: "#64748b", fontWeight: 600, letterSpacing: "0.05em", borderBottom: "1px solid rgba(255,255,255,0.06)", minWidth: 90 }}>
                       {res}
                     </th>
                   ))}
@@ -112,7 +112,7 @@ export default function RiskHeatmap() {
               <tbody>
                 {filteredData.map((row, ri) => (
                   <tr key={row.dept} style={{ borderBottom: ri < filteredData.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none" }}>
-                    <td style={{ padding: "0.625rem 1rem", fontSize: "0.82rem", fontWeight: 600, color: "#94a3b8", whiteSpace: "nowrap" }}>{row.dept}</td>
+                    <td style={{ padding: "0.625rem 1rem", fontSize: "1.0625rem", fontWeight: 600, color: "#94a3b8", whiteSpace: "nowrap" }}>{row.dept}</td>
                     {row.scores.map((cell, ci) => {
                       const c = riskColor(cell.val);
                       const dim = cell.val === 0 && filter !== "all";
@@ -127,7 +127,7 @@ export default function RiskHeatmap() {
                             border: `1px solid ${dim ? "rgba(255,255,255,0.04)" : c + "40"}`,
                             transition: "all 0.15s",
                           }}>
-                            <span style={{ fontSize: "0.9375rem", fontWeight: 700, color: dim ? "#1e2433" : c }}>
+                            <span style={{ fontSize: "1.0625rem", fontWeight: 700, color: dim ? "#1e2433" : c }}>
                               {dim ? "-" : cell.val}
                             </span>
                           </div>
@@ -142,15 +142,15 @@ export default function RiskHeatmap() {
             {/* Hover tooltip */}
             {hoveredCell && (
               <div style={{ position: "fixed", left: mousePos.x + 14, top: mousePos.y + 14, backgroundColor: "rgba(10,15,30,0.95)", border: `1px solid ${riskColor(hoveredCell.val)}40`, borderRadius: 10, padding: "0.875rem 1rem", zIndex: 9999, backdropFilter: "blur(10px)", minWidth: 200, pointerEvents: "none" }}>
-                <div style={{ fontSize: "0.9375rem", color: "#94a3b8", marginBottom: "0.5rem" }}>{hoveredCell.dept} → {hoveredCell.res}</div>
+                <div style={{ fontSize: "1.0625rem", color: "#94a3b8", marginBottom: "0.5rem" }}>{hoveredCell.dept} → {hoveredCell.res}</div>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.375rem" }}>
                   <div style={{ width: 10, height: 10, borderRadius: "50%", backgroundColor: riskColor(hoveredCell.val) }} />
                   <span style={{ fontSize: "1.1rem", fontWeight: 800, color: riskColor(hoveredCell.val) }}>{hoveredCell.val}</span>
-                  <span style={{ fontSize: "0.875rem", fontWeight: 700, color: riskColor(hoveredCell.val), textTransform: "uppercase" }}>{riskLabel(hoveredCell.val)}</span>
+                  <span style={{ fontSize: "1rem", fontWeight: 700, color: riskColor(hoveredCell.val), textTransform: "uppercase" }}>{riskLabel(hoveredCell.val)}</span>
                 </div>
-                <div style={{ fontSize: "0.875rem", color: "#64748b" }}>Monthly accesses: <span style={{ color: "#94a3b8" }}>{hoveredCell.access_count}</span></div>
+                <div style={{ fontSize: "1rem", color: "#64748b" }}>Monthly accesses: <span style={{ color: "#94a3b8" }}>{hoveredCell.access_count}</span></div>
                 {hoveredCell.val >= 65 && (
-                  <div style={{ marginTop: "0.5rem", fontSize: "0.875rem", color: "#fca5a5", backgroundColor: "#ef444415", borderRadius: 5, padding: "0.375rem 0.5rem" }}>
+                  <div style={{ marginTop: "0.5rem", fontSize: "1rem", color: "#fca5a5", backgroundColor: "#ef444415", borderRadius: 5, padding: "0.375rem 0.5rem" }}>
                     ⚠ Unkov recommends auto-remediation
                   </div>
                 )}
@@ -160,7 +160,7 @@ export default function RiskHeatmap() {
 
           {/* Legend */}
           <div style={{ display: "flex", gap: "2rem", marginTop: "1.25rem", alignItems: "center" }}>
-            <div style={{ fontSize: "0.875rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.08em" }}>Risk Scale:</div>
+            <div style={{ fontSize: "1rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.08em" }}>Risk Scale:</div>
             {[
               { label: "Safe 0–24", color: "#10b981" },
               { label: "Low 25–44", color: "#84cc16" },
@@ -170,7 +170,7 @@ export default function RiskHeatmap() {
             ].map(l => (
               <div key={l.label} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                 <div style={{ width: 12, height: 12, borderRadius: 3, backgroundColor: l.color + "40", border: `1px solid ${l.color}` }} />
-                <span style={{ fontSize: "0.875rem", color: "#64748b" }}>{l.label}</span>
+                <span style={{ fontSize: "1rem", color: "#64748b" }}>{l.label}</span>
               </div>
             ))}
           </div>

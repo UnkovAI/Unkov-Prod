@@ -64,7 +64,7 @@ export default function Blog() {
         <div style={{ paddingTop: 60, minHeight: "100vh" }}>
           <div style={{ maxWidth: "720px", margin: "0 auto", padding: "3rem 1.5rem 6rem" }}>
             <button onClick={() => setOpen(null)}
-              style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.875rem", fontWeight: 600, color: "#00297a", background: "none", border: "none", cursor: "pointer", marginBottom: "2.5rem", padding: 0 }}>
+              style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "1rem", fontWeight: 600, color: "#00297a", background: "none", border: "none", cursor: "pointer", marginBottom: "2.5rem", padding: 0 }}>
               <ArrowLeft className="w-4 h-4" /> Back to blog
             </button>
             <span className="text-xs font-semibold px-3 py-1 rounded-full"
@@ -74,7 +74,7 @@ export default function Blog() {
             <h1 style={{ fontSize: "clamp(1.375rem,3.5vw,2.25rem)", fontWeight: 600, color: "#1a1a2e", lineHeight: 1.2, margin: "1.25rem 0 1rem", letterSpacing: "-0.025em" }}>
               {open.title}
             </h1>
-            <div style={{ display: "flex", alignItems: "center", gap: "clamp(0.75rem,1.5vw,1.5rem)", flexWrap: "wrap", fontSize: "0.875rem", color: "#6b7280", marginBottom: "2.5rem", paddingBottom: "2rem", borderBottom: "1px solid #e5e7eb" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "clamp(0.75rem,1.5vw,1.5rem)", flexWrap: "wrap", fontSize: "1rem", color: "#6b7280", marginBottom: "2.5rem", paddingBottom: "2rem", borderBottom: "1px solid #e5e7eb" }}>
               <span style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}><Calendar className="w-4 h-4" />{open.date}</span>
               <span style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}><Clock className="w-4 h-4" />{open.readTime}</span>
             </div>
@@ -106,7 +106,7 @@ export default function Blog() {
             {/* Category filter pills */}
             <div style={{ display: "flex", gap: "0.625rem", flexWrap: "wrap" }}>
               {["All", "Thought Leadership", "Case Study", "Compliance", "Education"].map((cat) => (
-                <span key={cat} onClick={() => setActiveCat(cat)} style={{ padding: "0.375rem 1rem", borderRadius: "9999px", fontSize: "0.8125rem", fontWeight: 600, backgroundColor: activeCat === cat ? "#111827" : "#f3f4f6", color: activeCat === cat ? "#fff" : "#374151", cursor: "pointer", border: "1px solid transparent", transition: "all 0.15s" }}>
+                <span key={cat} onClick={() => setActiveCat(cat)} style={{ padding: "0.375rem 1rem", borderRadius: "9999px", fontSize: "1.0625rem", fontWeight: 600, backgroundColor: activeCat === cat ? "#111827" : "#f3f4f6", color: activeCat === cat ? "#fff" : "#374151", cursor: "pointer", border: "1px solid transparent", transition: "all 0.15s" }}>
                   {cat}
                 </span>
               ))}
@@ -124,17 +124,17 @@ export default function Blog() {
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#e5e7eb"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}>
               <div style={{ padding: "2.5rem 2.75rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
-                  <span style={{ padding: "0.25rem 0.875rem", borderRadius: "9999px", fontSize: "0.9375rem", fontWeight: 700, backgroundColor: catBg[featured.category], color: catColor[featured.category] }}>{featured.category}</span>
-                  <span style={{ fontSize: "0.9375rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#6b7280" }}>Featured</span>
+                  <span style={{ padding: "0.25rem 0.875rem", borderRadius: "9999px", fontSize: "1.0625rem", fontWeight: 700, backgroundColor: catBg[featured.category], color: catColor[featured.category] }}>{featured.category}</span>
+                  <span style={{ fontSize: "1.0625rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#6b7280" }}>Featured</span>
                 </div>
                 <h2 style={{ fontSize: "1.625rem", fontWeight: 600, color: "#111827", letterSpacing: "-0.02em", lineHeight: 1.3, marginBottom: "0.875rem", maxWidth: "600px" }}>{featured.title}</h2>
                 <p style={{ fontSize: "1rem", color: "#6b7280", lineHeight: 1.7, marginBottom: "1.75rem", maxWidth: "560px" }}>{featured.excerpt}</p>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "clamp(0.75rem,1.5vw,1.5rem)", flexWrap: "wrap", fontSize: "0.875rem", color: "#6b7280" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "clamp(0.75rem,1.5vw,1.5rem)", flexWrap: "wrap", fontSize: "1rem", color: "#6b7280" }}>
                     <span style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}><Calendar className="w-3.5 h-3.5" />{featured.date}</span>
                     <span style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}><Clock className="w-3.5 h-3.5" />{featured.readTime}</span>
                   </div>
-                  <span style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontSize: "0.875rem", fontWeight: 700, color: "#00297a" }}>
+                  <span style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontSize: "1rem", fontWeight: 700, color: "#00297a" }}>
                     Read article <ArrowRight className="w-4 h-4" />
                   </span>
                 </div>
@@ -148,15 +148,15 @@ export default function Blog() {
                   onClick={() => setOpen(p)}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#00297a"; (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 16px rgba(0,41,122,0.07)"; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#e5e7eb"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}>
-                  <span style={{ padding: "0.2rem 0.75rem", borderRadius: "9999px", fontSize: "0.875rem", fontWeight: 700, backgroundColor: catBg[p.category] || "#e8f0fe", color: catColor[p.category] || "#00297a", marginBottom: "1rem", display: "inline-block" }}>{p.category}</span>
+                  <span style={{ padding: "0.2rem 0.75rem", borderRadius: "9999px", fontSize: "1rem", fontWeight: 700, backgroundColor: catBg[p.category] || "#e8f0fe", color: catColor[p.category] || "#00297a", marginBottom: "1rem", display: "inline-block" }}>{p.category}</span>
                   <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", lineHeight: 1.45, marginBottom: "0.625rem", letterSpacing: "-0.01em" }}>{p.title}</h3>
-                  <p style={{ fontSize: "0.875rem", color: "#6b7280", lineHeight: 1.7, marginBottom: "1.25rem" }}>{p.excerpt}</p>
+                  <p style={{ fontSize: "1rem", color: "#6b7280", lineHeight: 1.7, marginBottom: "1.25rem" }}>{p.excerpt}</p>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: "1rem", borderTop: "1px solid #f3f4f6" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "1rem", fontSize: "0.8rem", color: "#6b7280" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "1rem", fontSize: "1rem", color: "#6b7280" }}>
                       <span style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}><Calendar className="w-3 h-3" />{p.date}</span>
                       <span style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}><Clock className="w-3 h-3" />{p.readTime}</span>
                     </div>
-                    <span style={{ display: "flex", alignItems: "center", gap: "0.25rem", fontSize: "0.8rem", fontWeight: 700, color: "#00297a" }}>
+                    <span style={{ display: "flex", alignItems: "center", gap: "0.25rem", fontSize: "1rem", fontWeight: 700, color: "#00297a" }}>
                       Read <ArrowRight className="w-3.5 h-3.5" />
                     </span>
                   </div>

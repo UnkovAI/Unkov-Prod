@@ -62,7 +62,7 @@ export default function Company() {
             <div className="max-w-3xl">
               <span className="section-label">Our Story</span>
               <h2 className="text-2xl font-bold text-[#1d1d1f] mb-6">Built to solve a problem legacy tools can't see</h2>
-              <div className="space-y-5 text-[#3d4759] leading-relaxed" style={{ fontSize: "0.9375rem" }}>
+              <div className="space-y-5 text-[#3d4759] leading-relaxed" style={{ fontSize: "1.0625rem" }}>
                 <p>Unkov was founded to address a structural gap in enterprise security. Legacy IAM solutions like Okta and SailPoint were built for a world where humans controlled identity governance — defined by flat relational databases and manual approval queues. That world no longer exists.</p>
                 <p>With AI agents proliferating across enterprises at ratios as high as 5.2:1, the traditional human-in-the-loop model breaks down completely. You cannot manually review and approve access for thousands of AI agents. You need autonomous governance — and that's exactly what we built.</p>
                 <p>Unkov is the identity gate between every human, AI agent, and everything they can touch. No agent acts without a verified identity and an explicit authorization. Every decision is logged and audit-ready from day one — so your security, compliance, and IT teams always know what's happening, and regulators get what they need without a fire drill.</p>

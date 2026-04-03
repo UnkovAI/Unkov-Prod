@@ -107,7 +107,7 @@ export default function Pricing() {
               {[["< 30 min", "Zero-touch deployment"], ["5.2:1", "Agent-to-human ratio we govern"], ["2", "Plan tiers — pilot or production"]].map(([v, l]) => (
                 <div key={l}>
                   <div style={{ fontSize: "1.5rem", fontWeight: 600, color: "#00297a", letterSpacing: "-0.03em" }}>{v}</div>
-                  <div style={{ fontSize: "0.8rem", color: "#6b7280", marginTop: "0.125rem" }}>{l}</div>
+                  <div style={{ fontSize: "1.0625rem", color: "#6b7280", marginTop: "0.125rem" }}>{l}</div>
                 </div>
               ))}
             </div>
@@ -142,26 +142,26 @@ export default function Pricing() {
                     }`}
                   >
                     {plan.badge && (
-                      <div className="text-white text-xs font-bold text-center py-2 tracking-wider"
+                      <div className="text-white text-sm font-bold text-center py-2.5 tracking-wider"
                         style={{ backgroundColor: "#00297a" }}>
                         {plan.badge.toUpperCase()}
                       </div>
                     )}
                     <div className="p-6 flex flex-col flex-1">
 
-                      <h3 className="text-base font-bold text-[#1d1d1f] mb-1">{plan.name}</h3>
-                      <p className="text-xs font-mono text-[#3d4759] mb-4">{plan.nodes}</p>
+                      <h3 className="text-lg font-bold text-[#1d1d1f] mb-2">{plan.name}</h3>
+                      <p className="text-sm font-mono text-[#3d4759] mb-4">{plan.nodes}</p>
 
                       <div className="flex items-baseline gap-1 mb-1">
-                        <span className="text-2xl font-bold text-[#1d1d1f]">{plan.acv}</span>
-                        <span className="text-xs text-[#3d4759]">{plan.avcSub}</span>
+                        <span className="text-3xl font-bold text-[#1d1d1f]">{plan.acv}</span>
+                        <span className="text-sm text-[#3d4759]">{plan.avcSub}</span>
                       </div>
-                      <p className="text-xs text-[#3d4759] mb-5 leading-relaxed">{plan.description}</p>
+                      <p className="text-sm text-[#3d4759] mb-6 leading-relaxed">{plan.description}</p>
 
                       <a
                         href={plan.ctaHref}
                         onClick={plan.ctaHref === "/contact" ? (e) => { e.preventDefault(); window.location.href = "/contact"; } : undefined}
-                        className={`flex items-center justify-center gap-1.5 py-2.5 rounded-lg font-semibold text-xs mb-6 transition-colors ${
+                        className={`flex items-center justify-center gap-1.5 py-3 rounded-lg font-semibold text-sm mb-6 transition-colors ${
                           plan.ctaStyle === "primary"
                             ? "text-white"
                             : "border border-[#d8dde6] text-[#3d4759] hover:border-[#b8c4d8]"
@@ -174,8 +174,8 @@ export default function Pricing() {
                       <div className="space-y-2.5 flex-1">
                         {plan.features.map((f, fi) => (
                           <div key={fi} className="flex items-start gap-2">
-                            <CheckCircle className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: "#00297a" }} />
-                            <span className="text-xs text-[#3d4759] leading-relaxed">{f}</span>
+                            <CheckCircle className="w-4.5 h-4.5 shrink-0 mt-0.5" style={{ color: "#00297a" }} />
+                            <span className="text-sm text-[#3d4759] leading-relaxed">{f}</span>
                           </div>
                         ))}
                       </div>
@@ -211,14 +211,14 @@ export default function Pricing() {
                     <div key={i} className="flex items-start gap-3">
                       <CheckCircle className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "#00297a" }} />
                       <div>
-                        <div className="text-sm font-semibold text-[#1d1d1f]">{item.title}</div>
-                        <p className="text-sm text-[#3d4759]">{item.body}</p>
+                        <div className="text-base font-semibold text-[#1d1d1f]">{item.title}</div>
+                        <p className="text-base text-[#3d4759]">{item.body}</p>
                       </div>
                     </div>
                   ))}
                 </div>
                 <div className="mt-8 pt-8 border-t border-[#d8dde6]">
-                  <p className="text-xs text-[#3d4759] mb-1">Prefer email?</p>
+                  <p className="text-sm text-[#3d4759] mb-1">Prefer email?</p>
                   <a href="mailto:sales@unkov.com"
                     className="flex items-center gap-2 text-sm font-semibold text-[#00297a] hover:underline">
                     <Mail className="w-4 h-4" /> sales@unkov.com
@@ -239,7 +239,7 @@ export default function Pricing() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4">
-                    <h3 className="text-base font-bold text-[#1d1d1f] mb-6">Get a Custom Quote</h3>
+                    <h3 className="text-lg font-bold text-[#1d1d1f] mb-6">Get a Custom Quote</h3>
                     {[
                       { key: "name", label: "Full Name", placeholder: "Jane Smith", type: "text", required: true },
                       { key: "email", label: "Work Email", placeholder: "jane@company.com", type: "email", required: true },
@@ -247,7 +247,7 @@ export default function Pricing() {
                       { key: "nodes", label: "Estimated Identity Nodes", placeholder: "e.g. 5,000 employees + 200 bots", type: "text", required: false },
                     ].map((f) => (
                       <div key={f.key}>
-                        <label className="block text-xs font-semibold text-[#3d4759] mb-1.5">
+                        <label className="block text-sm font-semibold text-[#3d4759] mb-1.5">
                           {f.label}{f.required && <span className="text-red-400 ml-0.5">*</span>}
                         </label>
                         <input
@@ -262,7 +262,7 @@ export default function Pricing() {
                       </div>
                     ))}
                     <div>
-                      <label className="block text-xs font-semibold text-[#3d4759] mb-1.5">
+                      <label className="block text-sm font-semibold text-[#3d4759] mb-1.5">
                         How can we help? <span className="text-red-400">*</span>
                       </label>
                       <textarea
@@ -298,8 +298,8 @@ export default function Pricing() {
             <div className="grid md:grid-cols-2 gap-x-14 gap-y-8 max-w-4xl">
               {faqs.map((faq, i) => (
                 <div key={i}>
-                  <h3 className="text-sm font-semibold text-[#1d1d1f] mb-2">{faq.q}</h3>
-                  <p className="text-sm text-[#3d4759] leading-relaxed">{faq.a}</p>
+                  <h3 className="text-base font-semibold text-[#1d1d1f] mb-2">{faq.q}</h3>
+                  <p className="text-base text-[#3d4759] leading-relaxed">{faq.a}</p>
                 </div>
               ))}
             </div>

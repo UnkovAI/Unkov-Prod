@@ -26,9 +26,9 @@ export default function Problem() {
                 onMouseLeave={e => { e.currentTarget.style.boxShadow = "0 1px 4px rgba(0,0,0,0.04)"; e.currentTarget.style.transform = "translateX(0)"; }}>
                 <div style={{ minWidth: "7rem" }}>
                   <span style={{ fontSize: "clamp(1.375rem,3.5vw,2rem)", fontWeight: 800, color: p.color, letterSpacing: "-0.04em", lineHeight: 1 }}>{p.value}</span>
-                  <span style={{ fontSize: "0.8125rem", fontWeight: 600, color: p.color, marginLeft: "0.25rem" }}>{p.unit}</span>
+                  <span style={{ fontSize: "1.0625rem", fontWeight: 600, color: p.color, marginLeft: "0.25rem" }}>{p.unit}</span>
                 </div>
-                <span style={{ fontSize: "0.9375rem", color: "#374151", fontWeight: 500, lineHeight: 1.45 }}>{p.label}</span>
+                <span style={{ fontSize: "1.0625rem", color: "#374151", fontWeight: 500, lineHeight: 1.45 }}>{p.label}</span>
               </div>
             ))}
           </div>

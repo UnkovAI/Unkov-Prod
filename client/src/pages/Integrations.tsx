@@ -812,7 +812,7 @@ function CopyBtn({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
   return (
     <button onClick={() => { navigator.clipboard?.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
-      style={{ display: "flex", alignItems: "center", gap: 4, fontSize: "0.7rem",
+      style={{ display: "flex", alignItems: "center", gap: 4, fontSize: "1rem",
         color: copied ? C.green : C.muted, background: "none", border: "none",
         cursor: "pointer", padding: "2px 6px", borderRadius: 4, flexShrink: 0 }}>
       {copied ? <CheckCircle style={{ width: 11, height: 11 }} /> : <Copy style={{ width: 11, height: 11 }} />}
@@ -883,11 +883,11 @@ function ConnectorModal({ connectorId, onClose }: { connectorId: string; onClose
             <button key={s} onClick={() => i < step + 1 && setStep(i)}
               style={{ display: "flex", alignItems: "center", gap: "0.375rem",
                 padding: "0.3rem 0.75rem", borderRadius: 9999, border: "none",
-                fontSize: "0.75rem", fontWeight: 600, cursor: i <= step ? "pointer" : "default",
+                fontSize: "1rem", fontWeight: 600, cursor: i <= step ? "pointer" : "default",
                 backgroundColor: i === step ? C.navy : i < step ? C.lnavy : "#f3f4f6",
                 color: i === step ? "#fff" : i < step ? C.navy : C.muted,
                 transition: "all 0.15s", flexShrink: 0 }}>
-              {i < step ? <CheckCircle style={{ width: 11, height: 11 }} /> : <span style={{ fontSize: "0.7rem" }}>{i + 1}</span>}
+              {i < step ? <CheckCircle style={{ width: 11, height: 11 }} /> : <span style={{ fontSize: "1rem" }}>{i + 1}</span>}
               {s}
             </button>
           ))}
@@ -914,7 +914,7 @@ function ConnectorModal({ connectorId, onClose }: { connectorId: string; onClose
               </div>
 
               <div style={{ marginBottom: "1.25rem" }}>
-                <div style={{ fontSize: "0.8rem", fontWeight: 700, color: C.text,
+                <div style={{ fontSize: "1rem", fontWeight: 700, color: C.text,
                   textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "0.5rem" }}>
                   What gets discovered
                 </div>
@@ -922,13 +922,13 @@ function ConnectorModal({ connectorId, onClose }: { connectorId: string; onClose
                   <div key={i} style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start",
                     padding: "0.375rem 0", borderBottom: i < cfg.what.length - 1 ? `1px solid ${C.border}` : "none" }}>
                     <ChevronRight style={{ width: 13, height: 13, color: C.blue, flexShrink: 0, marginTop: 2 }} />
-                    <span style={{ fontSize: "0.875rem", color: C.soft }}>{w}</span>
+                    <span style={{ fontSize: "1rem", color: C.soft }}>{w}</span>
                   </div>
                 ))}
               </div>
 
               <div style={{ marginBottom: "1.5rem" }}>
-                <div style={{ fontSize: "0.8rem", fontWeight: 700, color: C.text,
+                <div style={{ fontSize: "1rem", fontWeight: 700, color: C.text,
                   textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "0.5rem" }}>
                   What gets flagged
                 </div>
@@ -938,7 +938,7 @@ function ConnectorModal({ connectorId, onClose }: { connectorId: string; onClose
                       padding: "0.5rem 0.75rem", background: "#f9fafb", borderRadius: 8,
                       border: `1px solid ${C.border}` }}>
                       <SevBadge sev={f.sev} />
-                      <span style={{ fontSize: "0.8125rem", color: C.soft }}>{f.label}</span>
+                      <span style={{ fontSize: "1.0625rem", color: C.soft }}>{f.label}</span>
                     </div>
                   ))}
                 </div>
@@ -948,14 +948,14 @@ function ConnectorModal({ connectorId, onClose }: { connectorId: string; onClose
                 <button onClick={() => setStep(1)}
                   style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
                     gap: "0.5rem", padding: "0.75rem 1.25rem", backgroundColor: C.navy,
-                    color: "#fff", fontWeight: 700, fontSize: "0.9375rem",
+                    color: "#fff", fontWeight: 700, fontSize: "1.0625rem",
                     borderRadius: 9999, border: "none", cursor: "pointer" }}>
                   Connect {cfg.name} <ArrowRight style={{ width: 16, height: 16 }} />
                 </button>
                 <a href={cfg.docsPath}
                   style={{ display: "flex", alignItems: "center", gap: "0.375rem",
                     padding: "0.75rem 1.125rem", color: C.blue, fontWeight: 600,
-                    fontSize: "0.875rem", border: `1px solid #bfcfee`, borderRadius: 9999,
+                    fontSize: "1rem", border: `1px solid #bfcfee`, borderRadius: 9999,
                     backgroundColor: C.lnavy, textDecoration: "none" }}>
                   <ExternalLink style={{ width: 13, height: 13 }} /> Docs
                 </a>
@@ -966,7 +966,7 @@ function ConnectorModal({ connectorId, onClose }: { connectorId: string; onClose
           {/* ── Step 1: Prerequisites ── */}
           {step === 1 && (
             <div>
-              <p style={{ fontSize: "0.9rem", color: C.soft, marginBottom: "1.25rem", lineHeight: 1.65 }}>
+              <p style={{ fontSize: "1rem", color: C.soft, marginBottom: "1.25rem", lineHeight: 1.65 }}>
                 Before connecting {cfg.name}, you need read-only API credentials. Unkov never writes to your identity systems — it only reads.
               </p>
 
@@ -976,17 +976,17 @@ function ConnectorModal({ connectorId, onClose }: { connectorId: string; onClose
                     border: `1px solid ${C.border}`, borderRadius: 10 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.375rem" }}>
                       <span style={{ width: 20, height: 20, borderRadius: "50%", background: C.navy,
-                        color: "#fff", fontSize: "0.7rem", fontWeight: 700,
+                        color: "#fff", fontSize: "1rem", fontWeight: 700,
                         display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                         {i + 1}
                       </span>
-                      <span style={{ fontSize: "0.875rem", fontWeight: 700, color: C.text }}>{field.label}</span>
+                      <span style={{ fontSize: "1rem", fontWeight: 700, color: C.text }}>{field.label}</span>
                       {field.secret && (
                         <span style={{ fontSize: "0.65rem", padding: "1px 6px", borderRadius: 9999,
                           background: C.lamber, color: C.amber, fontWeight: 700 }}>SECRET</span>
                       )}
                     </div>
-                    <p style={{ fontSize: "0.8125rem", color: C.muted, lineHeight: 1.55, margin: 0, paddingLeft: "1.75rem" }}>
+                    <p style={{ fontSize: "1.0625rem", color: C.muted, lineHeight: 1.55, margin: 0, paddingLeft: "1.75rem" }}>
                       {field.hint}
                     </p>
                   </div>
@@ -998,7 +998,7 @@ function ConnectorModal({ connectorId, onClose }: { connectorId: string; onClose
                 background: C.lgreen, border: `1px solid #6ee7b7`, borderRadius: 10,
                 marginBottom: "1.5rem" }}>
                 <Shield style={{ width: 15, height: 15, color: C.green, flexShrink: 0, marginTop: 2 }} />
-                <div style={{ fontSize: "0.8125rem", color: "#065f46", lineHeight: 1.55 }}>
+                <div style={{ fontSize: "1.0625rem", color: "#065f46", lineHeight: 1.55 }}>
                   <strong>Read-only credentials only.</strong> Unkov never creates, modifies, or deletes anything in {cfg.name}. Minimum permissions required — never admin.
                 </div>
               </div>
@@ -1007,22 +1007,22 @@ function ConnectorModal({ connectorId, onClose }: { connectorId: string; onClose
                 cursor: "pointer", marginBottom: "1.5rem" }}>
                 <input type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)}
                   style={{ marginTop: 3, flexShrink: 0, accentColor: C.navy }} />
-                <span style={{ fontSize: "0.875rem", color: C.soft, lineHeight: 1.55 }}>
-                  I have the credentials ready and understand they will be stored only in my local <code style={{ fontSize: "0.8rem", background: "#f1f5f9", padding: "1px 4px", borderRadius: 4 }}>.env</code> file, never sent to Unkov servers.
+                <span style={{ fontSize: "1rem", color: C.soft, lineHeight: 1.55 }}>
+                  I have the credentials ready and understand they will be stored only in my local <code style={{ fontSize: "1rem", background: "#f1f5f9", padding: "1px 4px", borderRadius: 4 }}>.env</code> file, never sent to Unkov servers.
                 </span>
               </label>
 
               <div style={{ display: "flex", gap: "0.75rem" }}>
                 <button onClick={() => setStep(0)}
                   style={{ padding: "0.75rem 1.25rem", color: C.muted, background: "#f3f4f6",
-                    border: "none", borderRadius: 9999, cursor: "pointer", fontWeight: 600, fontSize: "0.875rem" }}>
+                    border: "none", borderRadius: 9999, cursor: "pointer", fontWeight: 600, fontSize: "1rem" }}>
                   Back
                 </button>
                 <button onClick={() => agreed && setStep(2)} disabled={!agreed}
                   style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
                     gap: "0.5rem", padding: "0.75rem 1.25rem",
                     backgroundColor: agreed ? C.navy : "#d1d5db",
-                    color: "#fff", fontWeight: 700, fontSize: "0.9375rem",
+                    color: "#fff", fontWeight: 700, fontSize: "1.0625rem",
                     borderRadius: 9999, border: "none", cursor: agreed ? "pointer" : "default" }}>
                   I have my credentials <ArrowRight style={{ width: 16, height: 16 }} />
                 </button>
@@ -1033,15 +1033,15 @@ function ConnectorModal({ connectorId, onClose }: { connectorId: string; onClose
           {/* ── Step 2: Add credentials ── */}
           {step === 2 && (
             <div>
-              <p style={{ fontSize: "0.875rem", color: C.soft, marginBottom: "1.25rem", lineHeight: 1.6 }}>
-                Fill in your credentials below. This generates the exact lines to paste into your engine <code style={{ fontSize: "0.8rem", background: "#f1f5f9", padding: "1px 5px", borderRadius: 4 }}>.env</code> file — nothing is sent anywhere.
+              <p style={{ fontSize: "1rem", color: C.soft, marginBottom: "1.25rem", lineHeight: 1.6 }}>
+                Fill in your credentials below. This generates the exact lines to paste into your engine <code style={{ fontSize: "1rem", background: "#f1f5f9", padding: "1px 5px", borderRadius: 4 }}>.env</code> file — nothing is sent anywhere.
               </p>
 
               {/* Input fields */}
               <div style={{ display: "flex", flexDirection: "column", gap: "0.875rem", marginBottom: "1.25rem" }}>
                 {cfg.fields.map(field => (
                   <div key={field.key}>
-                    <label style={{ display: "block", fontSize: "0.8125rem", fontWeight: 600,
+                    <label style={{ display: "block", fontSize: "1.0625rem", fontWeight: 600,
                       color: C.text, marginBottom: "0.375rem" }}>
                       {field.label}
                       {field.secret && <span style={{ marginLeft: 6, fontSize: "0.65rem",
@@ -1054,7 +1054,7 @@ function ConnectorModal({ connectorId, onClose }: { connectorId: string; onClose
                         value={values[field.key] ?? ""}
                         onChange={e => setValues(v => ({ ...v, [field.key]: e.target.value }))}
                         style={{ width: "100%", padding: field.secret ? "0.6875rem 2.5rem 0.6875rem 0.875rem" : "0.6875rem 0.875rem",
-                          fontSize: "0.875rem", border: `1px solid ${C.border}`, borderRadius: 8,
+                          fontSize: "1rem", border: `1px solid ${C.border}`, borderRadius: 8,
                           backgroundColor: "#fafafa", color: C.text, outline: "none",
                           fontFamily: "monospace", boxSizing: "border-box" }}
                         onFocus={e => (e.target.style.borderColor = C.blue)}
@@ -1069,7 +1069,7 @@ function ConnectorModal({ connectorId, onClose }: { connectorId: string; onClose
                         </button>
                       )}
                     </div>
-                    <p style={{ fontSize: "0.75rem", color: C.muted, marginTop: "0.3rem", margin: "0.3rem 0 0" }}>
+                    <p style={{ fontSize: "1rem", color: C.muted, marginTop: "0.3rem", margin: "0.3rem 0 0" }}>
                       {field.hint}
                     </p>
                   </div>
@@ -1081,14 +1081,14 @@ function ConnectorModal({ connectorId, onClose }: { connectorId: string; onClose
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between",
                   background: "#0f172a", borderRadius: "8px 8px 0 0",
                   padding: "0.375rem 0.875rem", borderBottom: "1px solid #334155" }}>
-                  <span style={{ fontSize: "0.72rem", color: "#64748b", fontFamily: "monospace" }}>
+                  <span style={{ fontSize: "1rem", color: "#64748b", fontFamily: "monospace" }}>
                     Add to unkov-engine/.env
                   </span>
                   <CopyBtn text={envBlock} />
                 </div>
                 <pre style={{ background: C.code, color: "#86efac", margin: 0,
                   padding: "0.875rem 1rem", borderRadius: "0 0 8px 8px",
-                  fontSize: "0.8125rem", fontFamily: "monospace", overflowX: "auto" }}>
+                  fontSize: "1.0625rem", fontFamily: "monospace", overflowX: "auto" }}>
                   {cfg.fields.map(f => (
                     <div key={f.key}>
                       <span style={{ color: "#93c5fd" }}>{f.key}</span>
@@ -1107,14 +1107,14 @@ function ConnectorModal({ connectorId, onClose }: { connectorId: string; onClose
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between",
                   background: "#0f172a", borderRadius: "8px 8px 0 0",
                   padding: "0.375rem 0.875rem", borderBottom: "1px solid #334155" }}>
-                  <span style={{ fontSize: "0.72rem", color: "#64748b", fontFamily: "monospace" }}>
+                  <span style={{ fontSize: "1rem", color: "#64748b", fontFamily: "monospace" }}>
                     Then run in your terminal (unkov-engine/)
                   </span>
                   <CopyBtn text={cmdBlock} />
                 </div>
                 <pre style={{ background: C.code, color: "#86efac", margin: 0,
                   padding: "0.875rem 1rem", borderRadius: "0 0 8px 8px",
-                  fontSize: "0.8125rem", fontFamily: "monospace" }}>
+                  fontSize: "1.0625rem", fontFamily: "monospace" }}>
                   {cfg.commands.map((cmd, i) => (
                     <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                       <span style={{ color: "#475569" }}>$</span>
@@ -1127,14 +1127,14 @@ function ConnectorModal({ connectorId, onClose }: { connectorId: string; onClose
               <div style={{ display: "flex", gap: "0.75rem" }}>
                 <button onClick={() => setStep(1)}
                   style={{ padding: "0.75rem 1.25rem", color: C.muted, background: "#f3f4f6",
-                    border: "none", borderRadius: 9999, cursor: "pointer", fontWeight: 600, fontSize: "0.875rem" }}>
+                    border: "none", borderRadius: 9999, cursor: "pointer", fontWeight: 600, fontSize: "1rem" }}>
                   Back
                 </button>
                 <button onClick={() => setStep(3)} disabled={!allFilled}
                   style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
                     gap: "0.5rem", padding: "0.75rem 1.25rem",
                     backgroundColor: allFilled ? C.green : "#d1d5db",
-                    color: "#fff", fontWeight: 700, fontSize: "0.9375rem",
+                    color: "#fff", fontWeight: 700, fontSize: "1.0625rem",
                     borderRadius: 9999, border: "none", cursor: allFilled ? "pointer" : "default" }}>
                   I've added these to .env <ArrowRight style={{ width: 16, height: 16 }} />
                 </button>
@@ -1153,7 +1153,7 @@ function ConnectorModal({ connectorId, onClose }: { connectorId: string; onClose
               <h3 style={{ fontSize: "1.25rem", fontWeight: 700, color: C.text, marginBottom: "0.5rem" }}>
                 {cfg.name} configured
               </h3>
-              <p style={{ fontSize: "0.9375rem", color: C.muted, lineHeight: 1.65, marginBottom: "1.75rem", maxWidth: "360px", margin: "0 auto 1.75rem" }}>
+              <p style={{ fontSize: "1.0625rem", color: C.muted, lineHeight: 1.65, marginBottom: "1.75rem", maxWidth: "360px", margin: "0 auto 1.75rem" }}>
                 Run the commands in your terminal. The scanner will discover identities and load them into your dashboard.
               </p>
 
@@ -1162,8 +1162,8 @@ function ConnectorModal({ connectorId, onClose }: { connectorId: string; onClose
                 {cfg.commands.map((cmd, i) => (
                   <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.625rem",
                     padding: "0.3rem 0", borderBottom: i < cfg.commands.length - 1 ? "1px solid #1e3a5f" : "none" }}>
-                    <span style={{ fontSize: "0.75rem", color: "#64748b", fontFamily: "monospace" }}>{String(i + 1).padStart(2, "0")}</span>
-                    <span style={{ fontSize: "0.8125rem", color: "#86efac", fontFamily: "monospace", flex: 1 }}>{cmd}</span>
+                    <span style={{ fontSize: "1rem", color: "#64748b", fontFamily: "monospace" }}>{String(i + 1).padStart(2, "0")}</span>
+                    <span style={{ fontSize: "1.0625rem", color: "#86efac", fontFamily: "monospace", flex: 1 }}>{cmd}</span>
                     <CopyBtn text={cmd} />
                   </div>
                 ))}
@@ -1172,18 +1172,18 @@ function ConnectorModal({ connectorId, onClose }: { connectorId: string; onClose
               <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}>
                 <a href="/dashboard" style={{ display: "flex", alignItems: "center", gap: "0.5rem",
                   padding: "0.75rem 1.5rem", backgroundColor: C.navy, color: "#fff",
-                  fontWeight: 700, fontSize: "0.9375rem", borderRadius: 9999, textDecoration: "none" }}>
+                  fontWeight: 700, fontSize: "1.0625rem", borderRadius: 9999, textDecoration: "none" }}>
                   Open dashboard <ArrowRight style={{ width: 15, height: 15 }} />
                 </a>
                 <a href={cfg.docsPath} style={{ display: "flex", alignItems: "center", gap: "0.375rem",
                   padding: "0.75rem 1.25rem", color: C.blue, fontWeight: 600,
-                  fontSize: "0.875rem", border: `1px solid #bfcfee`, borderRadius: 9999,
+                  fontSize: "1rem", border: `1px solid #bfcfee`, borderRadius: 9999,
                   backgroundColor: C.lnavy, textDecoration: "none" }}>
                   <ExternalLink style={{ width: 13, height: 13 }} /> Full docs
                 </a>
                 <button onClick={onClose}
                   style={{ padding: "0.75rem 1.25rem", color: C.muted, background: "#f3f4f6",
-                    border: "none", borderRadius: 9999, cursor: "pointer", fontWeight: 600, fontSize: "0.875rem" }}>
+                    border: "none", borderRadius: 9999, cursor: "pointer", fontWeight: 600, fontSize: "1rem" }}>
                   Close
                 </button>
               </div>
@@ -1238,7 +1238,7 @@ export default function Integrations() {
               ].map(s => (
                 <div key={s.label}>
                   <div style={{ fontSize: "1.625rem", fontWeight: 600, color: s.color, letterSpacing: "-0.025em" }}>{s.val}</div>
-                  <div style={{ fontSize: "0.8rem", color: C.muted, marginTop: "0.125rem" }}>{s.label}</div>
+                  <div style={{ fontSize: "1rem", color: C.muted, marginTop: "0.125rem" }}>{s.label}</div>
                 </div>
               ))}
             </div>
@@ -1251,7 +1251,7 @@ export default function Integrations() {
             <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
               {["all", "live", "planned"].map(f => (
                 <button key={f} onClick={() => setFilter(f)}
-                  style={{ padding: "0.375rem 1rem", borderRadius: "9999px", fontSize: "0.8125rem",
+                  style={{ padding: "0.375rem 1rem", borderRadius: "9999px", fontSize: "1.0625rem",
                     fontWeight: 600, cursor: "pointer", border: "1px solid", transition: "all 0.15s",
                     backgroundColor: filter === f ? C.navy : C.white,
                     color: filter === f ? "#fff" : "#374151",
@@ -1273,7 +1273,7 @@ export default function Integrations() {
                 <div key={cat.cat} style={{ marginBottom: "2.5rem" }}>
                   <div style={{ marginBottom: "1rem" }}>
                     <h2 style={{ fontSize: "1.0625rem", fontWeight: 700, color: C.text, marginBottom: "0.25rem" }}>{cat.cat}</h2>
-                    <p style={{ fontSize: "0.875rem", color: C.muted }}>{cat.desc}</p>
+                    <p style={{ fontSize: "1rem", color: C.muted }}>{cat.desc}</p>
                   </div>
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "0.75rem" }}>
                     {filtered.map(item => {
@@ -1308,12 +1308,12 @@ export default function Integrations() {
                                   {cfg.logoText}
                                 </div>
                               )}
-                              <span style={{ fontSize: "0.9375rem", fontWeight: 700, color: C.text,
+                              <span style={{ fontSize: "1.0625rem", fontWeight: 700, color: C.text,
                                 overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                                 {item.name}
                               </span>
                             </div>
-                            <span style={{ fontSize: "0.6875rem", fontWeight: 700, padding: "0.15rem 0.6rem",
+                            <span style={{ fontSize: "1.0625rem", fontWeight: 700, padding: "0.15rem 0.6rem",
                               borderRadius: "9999px", backgroundColor: s.bg, color: s.color,
                               border: `1px solid ${s.border}`, flexShrink: 0 }}>
                               {s.label}
@@ -1321,7 +1321,7 @@ export default function Integrations() {
                           </div>
 
                           {/* Description */}
-                          <p style={{ fontSize: "0.8125rem", color: "#4a5568", lineHeight: 1.65, marginBottom: live ? "0.875rem" : 0 }}>
+                          <p style={{ fontSize: "1.0625rem", color: "#4a5568", lineHeight: 1.65, marginBottom: live ? "0.875rem" : 0 }}>
                             {item.desc}
                           </p>
 
@@ -1338,7 +1338,7 @@ export default function Integrations() {
                           )}
                           {item.status === "planned" && (
                             <div style={{ paddingTop: "0.875rem", borderTop: `1px solid #f3f4f6` }}>
-                              <span style={{ fontSize: "0.75rem", color: "#9ca3af",
+                              <span style={{ fontSize: "1rem", color: "#9ca3af",
                                 display: "flex", alignItems: "center", gap: "0.25rem" }}>
                                 <Clock style={{ width: 12, height: 12 }} /> Vote for this connector
                               </span>
@@ -1376,8 +1376,8 @@ export default function Integrations() {
                   borderRadius: "0.875rem", padding: "1.5rem" }}>
                   <div style={{ fontSize: "0.65rem", fontWeight: 800, color: C.blue,
                     letterSpacing: "0.1em", marginBottom: "0.5rem" }}>{s.step}</div>
-                  <div style={{ fontSize: "0.9375rem", fontWeight: 700, color: C.text, marginBottom: "0.375rem" }}>{s.title}</div>
-                  <p style={{ fontSize: "0.8125rem", color: "#4a5568", lineHeight: 1.65 }}>{s.desc}</p>
+                  <div style={{ fontSize: "1.0625rem", fontWeight: 700, color: C.text, marginBottom: "0.375rem" }}>{s.title}</div>
+                  <p style={{ fontSize: "1.0625rem", color: "#4a5568", lineHeight: 1.65 }}>{s.desc}</p>
                 </div>
               ))}
             </div>
@@ -1398,12 +1398,12 @@ export default function Integrations() {
               <button onClick={() => navigate("/early-access")}
                 style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem",
                   backgroundColor: C.navy, color: "#fff", fontWeight: 700,
-                  fontSize: "0.9375rem", padding: "0.75rem 1.75rem", borderRadius: "9999px", border: "none", cursor: "pointer" }}>
+                  fontSize: "1.0625rem", padding: "0.75rem 1.75rem", borderRadius: "9999px", border: "none", cursor: "pointer" }}>
                 Apply for pilot <ArrowRight style={{ width: 16, height: 16 }} />
               </button>
               <a href="mailto:info@unkov.com"
                 style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem",
-                  color: C.navy, fontWeight: 600, fontSize: "0.9375rem",
+                  color: C.navy, fontWeight: 600, fontSize: "1.0625rem",
                   padding: "0.75rem 1.75rem", borderRadius: "9999px",
                   border: "1px solid #c2d4f8", backgroundColor: C.lnavy, textDecoration: "none" }}>
                 Request an integration

@@ -50,7 +50,7 @@ export default function FAQAccordion() {
               </button>
               {open === i && (
                 <div style={{ paddingBottom: "1.375rem" }}>
-                  <p style={{ fontSize: "0.9375rem", color: "#4a5568", lineHeight: 1.8 }}>{faq.a}</p>
+                  <p style={{ fontSize: "1.0625rem", color: "#4a5568", lineHeight: 1.8 }}>{faq.a}</p>
                 </div>
               )}
             </div>

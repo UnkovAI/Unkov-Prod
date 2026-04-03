@@ -49,8 +49,8 @@ export default function InvestorsSection() {
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                 </div>
                 <div style={{ fontSize: "1rem", fontWeight: 700, color: "#065f46", marginBottom: "0.375rem" }}>Message sent!</div>
-                <p style={{ fontSize: "0.875rem", color: "#047857", marginBottom: "1.25rem" }}>We'll get back to you within one business day.</p>
-                <button onClick={() => setSubmitted(false)} style={{ fontSize: "0.875rem", fontWeight: 600, color: "#059669", background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>Send another message</button>
+                <p style={{ fontSize: "1rem", color: "#047857", marginBottom: "1.25rem" }}>We'll get back to you within one business day.</p>
+                <button onClick={() => setSubmitted(false)} style={{ fontSize: "1rem", fontWeight: 600, color: "#059669", background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>Send another message</button>
               </div>
             ) : (
             <form onSubmit={handleSubmit} className="space-y-4">

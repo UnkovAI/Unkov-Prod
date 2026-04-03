@@ -242,9 +242,9 @@ export default function AttackPaths() {
       <div style={{ paddingTop: 60, minHeight: "100vh" }}>
         <div style={{ padding: "1.25rem 2rem", borderBottom: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
           <div>
-            <div style={{ fontSize: "0.875rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "0.25rem" }}>Attack Path Intelligence</div>
+            <div style={{ fontSize: "1rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "0.25rem" }}>Attack Path Intelligence</div>
             <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "#f1f5f9", marginBottom: "0.25rem" }}>Identity Attack Surface Visualizer</h1>
-            <p style={{ color: "#64748b", fontSize: "0.85rem" }}>See exactly how attackers traverse your identity graph — and how Unkov blocks each path automatically.</p>
+            <p style={{ color: "#64748b", fontSize: "1.0625rem" }}>See exactly how attackers traverse your identity graph — and how Unkov blocks each path automatically.</p>
           </div>
           <div style={{ display: "flex", gap: "0.75rem", flexShrink: 0 }}>
             {[{ label: "Paths detected", value: "3", color: "#ef4444" }, { label: "Blast radius", value: "$6.2M", color: "#f59e0b" }, { label: "Auto-blocked", value: "100%", color: "#10b981" }].map((m) => (
@@ -259,23 +259,23 @@ export default function AttackPaths() {
         <div style={{ display: "grid", gridTemplateColumns: "300px 1fr", minHeight: "calc(100vh - 250px)" }}>
           {/* Sidebar */}
           <div style={{ borderRight: "1px solid rgba(255,255,255,0.06)", padding: "1.5rem" }}>
-            <div style={{ fontSize: "0.8125rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "1rem" }}>Detected Attack Paths</div>
+            <div style={{ fontSize: "1.0625rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "1rem" }}>Detected Attack Paths</div>
             {ATTACK_PATHS.map((p, i) => (
               <button key={p.id} onClick={() => setSelected(i)}
                 style={{ width: "100%", textAlign: "left", padding: "1rem", borderRadius: 10, border: `1px solid ${selected === i ? SEV_COLORS[p.severity] + "40" : "rgba(255,255,255,0.06)"}`, backgroundColor: selected === i ? SEV_COLORS[p.severity] + "10" : "transparent", cursor: "pointer", marginBottom: "0.75rem", transition: "all 0.15s" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
                   <div style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: SEV_COLORS[p.severity] }} />
-                  <span style={{ fontSize: "0.8125rem", fontWeight: 700, color: SEV_COLORS[p.severity], textTransform: "uppercase", letterSpacing: "0.08em" }}>{p.severity}</span>
+                  <span style={{ fontSize: "1.0625rem", fontWeight: 700, color: SEV_COLORS[p.severity], textTransform: "uppercase", letterSpacing: "0.08em" }}>{p.severity}</span>
                 </div>
-                <div style={{ fontSize: "0.85rem", fontWeight: 600, color: "#e2e8f0", marginBottom: "0.25rem" }}>{p.name}</div>
-                <div style={{ fontSize: "0.9375rem", color: "#64748b" }}>Blast radius: <span style={{ color: SEV_COLORS[p.severity], fontWeight: 600 }}>{p.blast_radius}</span></div>
+                <div style={{ fontSize: "1.0625rem", fontWeight: 600, color: "#e2e8f0", marginBottom: "0.25rem" }}>{p.name}</div>
+                <div style={{ fontSize: "1.0625rem", color: "#64748b" }}>Blast radius: <span style={{ color: SEV_COLORS[p.severity], fontWeight: 600 }}>{p.blast_radius}</span></div>
               </button>
             ))}
 
             <div style={{ marginTop: "1.5rem", padding: "1rem", backgroundColor: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.2)", borderRadius: 10 }}>
-              <div style={{ fontSize: "0.875rem", color: "#10b981", fontWeight: 700, marginBottom: "0.5rem" }}>UNKOV COVERAGE</div>
+              <div style={{ fontSize: "1rem", color: "#10b981", fontWeight: 700, marginBottom: "0.5rem" }}>UNKOV COVERAGE</div>
               <div style={{ fontSize: "2rem", fontWeight: 800, color: "#10b981" }}>100%</div>
-              <div style={{ fontSize: "0.9375rem", color: "#64748b" }}>All 3 paths auto-blocked with zero manual intervention</div>
+              <div style={{ fontSize: "1.0625rem", color: "#64748b" }}>All 3 paths auto-blocked with zero manual intervention</div>
             </div>
           </div>
 
@@ -286,15 +286,15 @@ export default function AttackPaths() {
             {/* Controls + info */}
             <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "1.25rem 2rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: "0.85rem", fontWeight: 600, color: "#e2e8f0", marginBottom: "0.25rem" }}>{path.name}</div>
-                <div style={{ fontSize: "0.8rem", color: "#64748b", marginBottom: "0.5rem" }}>{path.description}</div>
+                <div style={{ fontSize: "1.0625rem", fontWeight: 600, color: "#e2e8f0", marginBottom: "0.25rem" }}>{path.name}</div>
+                <div style={{ fontSize: "1rem", color: "#64748b", marginBottom: "0.5rem" }}>{path.description}</div>
                 <div style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
                   <Shield style={{ width: 14, height: 14, color: "#10b981", marginTop: 2, flexShrink: 0 }} />
-                  <div style={{ fontSize: "0.9375rem", color: "#10b981" }}><strong>Unkov fix:</strong> {path.remediation}</div>
+                  <div style={{ fontSize: "1.0625rem", color: "#10b981" }}><strong>Unkov fix:</strong> {path.remediation}</div>
                 </div>
               </div>
               <button onClick={() => setBlocked(b => !b)}
-                style={{ display: "flex", alignItems: "center", gap: "0.625rem", padding: "0.75rem 1.5rem", borderRadius: 10, border: "none", backgroundColor: blocked ? "#10b98120" : "#ef444420", borderColor: blocked ? "#10b981" : "#ef4444", color: blocked ? "#10b981" : "#ef4444", fontWeight: 700, fontSize: "0.85rem", cursor: "pointer", transition: "all 0.2s", outline: `1px solid ${blocked ? "#10b98140" : "#ef444440"}` }}>
+                style={{ display: "flex", alignItems: "center", gap: "0.625rem", padding: "0.75rem 1.5rem", borderRadius: 10, border: "none", backgroundColor: blocked ? "#10b98120" : "#ef444420", borderColor: blocked ? "#10b981" : "#ef4444", color: blocked ? "#10b981" : "#ef4444", fontWeight: 700, fontSize: "1.0625rem", cursor: "pointer", transition: "all 0.2s", outline: `1px solid ${blocked ? "#10b98140" : "#ef444440"}` }}>
                 {blocked ? <Lock style={{ width: 16, height: 16 }} /> : <Unlock style={{ width: 16, height: 16 }} />}
                 {blocked ? "Path Blocked ✓" : "Simulate Block"}
               </button>

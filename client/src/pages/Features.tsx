@@ -108,7 +108,7 @@ const comp: CompRow[] = [
 function Cell({ v }: { v: boolean | string }) {
   if (v === true)  return <CheckCircle className="w-4 h-4 mx-auto" style={{ color: "#0061d4" }} />;
   if (v === false) return <X className="w-4 h-4 mx-auto" style={{ color: "#d1ccc5" }} />;
-  return <span style={{ fontSize: "0.8125rem", color: M, fontWeight: 500 }}>{v}</span>;
+  return <span style={{ fontSize: "1.0625rem", color: M, fontWeight: 500 }}>{v}</span>;
 }
 
 export default function Features() {
@@ -133,7 +133,7 @@ export default function Features() {
         {/* Hero */}
         <section style={{ backgroundColor: A, padding: "clamp(3rem,6vw,6rem) 0" }}>
           <div className="container mx-auto px-10" style={{ maxWidth: "860px" }}>
-            <span style={{ display: "inline-block", fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: "1.25rem", padding: "0.25rem 1rem", borderRadius: "9999px", border: "1px solid rgba(255,255,255,0.15)" }}>Platform</span>
+            <span style={{ display: "inline-block", fontSize: "1rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: "1.25rem", padding: "0.25rem 1rem", borderRadius: "9999px", border: "1px solid rgba(255,255,255,0.15)" }}>Platform</span>
             <h1 style={{ fontSize: "clamp(2rem,5vw,3.5rem)", fontWeight: 800, color: W, letterSpacing: "-0.035em", lineHeight: 1.05, marginBottom: "1.25rem" }}>
               Five modules. One gate.<br />Nothing acts without a decision.
             </h1>
@@ -176,8 +176,8 @@ export default function Features() {
                         <MIcon style={{ width: 18, height: 18, color: isActive ? m.color : "#9ca3af" }} />
                       </div>
                       <div>
-                        <div style={{ fontSize: "0.6875rem", fontWeight: 700, color: isActive ? m.color : "#9ca3af", letterSpacing: "0.08em", marginBottom: "0.125rem" }}>{m.n}</div>
-                        <div style={{ fontSize: "0.9375rem", fontWeight: 700, color: isActive ? H : M }}>{m.title}</div>
+                        <div style={{ fontSize: "1.0625rem", fontWeight: 700, color: isActive ? m.color : "#9ca3af", letterSpacing: "0.08em", marginBottom: "0.125rem" }}>{m.n}</div>
+                        <div style={{ fontSize: "1.0625rem", fontWeight: 700, color: isActive ? H : M }}>{m.title}</div>
                       </div>
                     </button>
                   );
@@ -191,20 +191,20 @@ export default function Features() {
                     <Icon style={{ width: 24, height: 24, color: mod.color }} />
                   </div>
                   <div>
-                    <div style={{ fontSize: "0.75rem", fontWeight: 700, color: mod.color, letterSpacing: "0.08em", textTransform: "uppercase" }}>{mod.n} · {mod.sub}</div>
+                    <div style={{ fontSize: "1rem", fontWeight: 700, color: mod.color, letterSpacing: "0.08em", textTransform: "uppercase" }}>{mod.n} · {mod.sub}</div>
                     <div style={{ fontSize: "1.375rem", fontWeight: 800, color: H }}>{mod.title}</div>
                   </div>
                   <div style={{ marginLeft: "auto", textAlign: "right" }}>
                     <div style={{ fontSize: "1.75rem", fontWeight: 800, color: mod.color, letterSpacing: "-0.04em" }}>{mod.stat}</div>
-                    <div style={{ fontSize: "0.75rem", color: S }}>{mod.statL}</div>
+                    <div style={{ fontSize: "1rem", color: S }}>{mod.statL}</div>
                   </div>
                 </div>
-                <p style={{ fontSize: "0.9375rem", color: S, lineHeight: 1.75, marginBottom: "1.5rem" }}>{mod.desc}</p>
+                <p style={{ fontSize: "1.0625rem", color: S, lineHeight: 1.75, marginBottom: "1.5rem" }}>{mod.desc}</p>
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                   {mod.caps.map((cap, ci) => (
                     <div key={ci} style={{ display: "flex", alignItems: "flex-start", gap: "0.625rem" }}>
                       <div style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: mod.color, marginTop: "0.5rem", flexShrink: 0 }} />
-                      <span style={{ fontSize: "0.875rem", color: M, lineHeight: 1.6 }}>{cap}</span>
+                      <span style={{ fontSize: "1rem", color: M, lineHeight: 1.6 }}>{cap}</span>
                     </div>
                   ))}
                 </div>
@@ -222,11 +222,11 @@ export default function Features() {
             </div>
             <div style={{ border: "1px solid #dcd6ce", borderRadius: "1rem", overflow: "hidden" }}>
               <div style={{ overflowX: "auto" }}>
-                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.875rem" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "1rem" }}>
                   <thead>
                     <tr style={{ backgroundColor: "#f0ece6", borderBottom: "1px solid #dcd6ce" }}>
                       {["Capability", "Unkov", "Okta", "SailPoint", "CyberArk", "Astrix", "Zscaler"].map((h, i) => (
-                        <th key={i} style={{ textAlign: i === 0 ? "left" : "center", padding: "0.75rem 1rem", fontSize: "0.75rem", fontWeight: i === 1 ? 700 : 600, color: i === 1 ? A : "#6b7280", textTransform: "uppercase", letterSpacing: "0.06em", whiteSpace: "nowrap" }}>{h}</th>
+                        <th key={i} style={{ textAlign: i === 0 ? "left" : "center", padding: "0.75rem 1rem", fontSize: "1rem", fontWeight: i === 1 ? 700 : 600, color: i === 1 ? A : "#6b7280", textTransform: "uppercase", letterSpacing: "0.06em", whiteSpace: "nowrap" }}>{h}</th>
                       ))}
                     </tr>
                   </thead>

@@ -49,7 +49,7 @@ export default function InvestorGate() {
             <span style={{ color: "#00c6e0" }}>U</span>nkov
           </span>
         </button>
-        <button onClick={() => navigate("/")} style={{ fontSize: "0.8125rem", color: "rgba(255,255,255,0.5)", background: "none", border: "none", cursor: "pointer" }}>← Back to home</button>
+        <button onClick={() => navigate("/")} style={{ fontSize: "1.0625rem", color: "rgba(255,255,255,0.5)", background: "none", border: "none", cursor: "pointer" }}>← Back to home</button>
       </div>
       <div className="flex-1 flex items-center justify-center p-6">
         <div className="w-full max-w-md bg-white/5 border border-white/10 p-8 rounded-2xl backdrop-blur-xl">

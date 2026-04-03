@@ -69,7 +69,7 @@ export default function ThreatFeed() {
         {/* Header */}
         <div style={{ padding: "1.5rem 2rem", borderBottom: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <div>
-            <div style={{ fontSize: "0.875rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "0.25rem" }}>Threat Intelligence</div>
+            <div style={{ fontSize: "1rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "0.25rem" }}>Threat Intelligence</div>
             <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "#f1f5f9" }}>Identity Threat Feed</h1>
           </div>
           <div style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
@@ -80,11 +80,11 @@ export default function ThreatFeed() {
             ].map(s => (
               <div key={s.label} style={{ textAlign: "right" }}>
                 <div style={{ fontSize: "1.5rem", fontWeight: 800, color: s.color }}>{s.val}</div>
-                <div style={{ fontSize: "0.8125rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.06em" }}>{s.label}</div>
+                <div style={{ fontSize: "1.0625rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.06em" }}>{s.label}</div>
               </div>
             ))}
             <button onClick={() => setLive(l => !l)}
-              style={{ display: "flex", alignItems: "center", gap: "0.5rem", padding: "0.5rem 1rem", borderRadius: 9999, border: `1px solid ${live ? "rgba(16,185,129,0.3)" : "rgba(255,255,255,0.1)"}`, backgroundColor: live ? "rgba(16,185,129,0.08)" : "transparent", color: live ? "#10b981" : "#64748b", fontSize: "0.9375rem", fontWeight: 600, cursor: "pointer" }}>
+              style={{ display: "flex", alignItems: "center", gap: "0.5rem", padding: "0.5rem 1rem", borderRadius: 9999, border: `1px solid ${live ? "rgba(16,185,129,0.3)" : "rgba(255,255,255,0.1)"}`, backgroundColor: live ? "rgba(16,185,129,0.08)" : "transparent", color: live ? "#10b981" : "#64748b", fontSize: "1.0625rem", fontWeight: 600, cursor: "pointer" }}>
               <div style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: live ? "#10b981" : "#475569", animation: live ? "pulse3 2s infinite" : "none" }} />
               {live ? "Live" : "Paused"}
             </button>
@@ -97,13 +97,13 @@ export default function ThreatFeed() {
             const s = f === "all" ? { color: "#60a5fa", bg: "#60a5fa10" } : SEVERITIES[f as keyof typeof SEVERITIES];
             return (
               <button key={f} onClick={() => setFilter(f)}
-                style={{ padding: "0.35rem 0.875rem", borderRadius: 9999, fontSize: "0.9375rem", fontWeight: 600, border: `1px solid ${filter === f ? s.color + "40" : "rgba(255,255,255,0.08)"}`, backgroundColor: filter === f ? s.bg : "transparent", color: filter === f ? s.color : "#64748b", cursor: "pointer", transition: "all 0.15s", textTransform: "capitalize" }}>
+                style={{ padding: "0.35rem 0.875rem", borderRadius: 9999, fontSize: "1.0625rem", fontWeight: 600, border: `1px solid ${filter === f ? s.color + "40" : "rgba(255,255,255,0.08)"}`, backgroundColor: filter === f ? s.bg : "transparent", color: filter === f ? s.color : "#64748b", cursor: "pointer", transition: "all 0.15s", textTransform: "capitalize" }}>
                 {f === "all" ? "All Threats" : s.label}
               </button>
             );
           })}
           <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search technique or actor..."
-            style={{ marginLeft: "auto", padding: "0.5rem 1rem", backgroundColor: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, color: "#e2e8f0", fontSize: "0.82rem", outline: "none", width: 260 }} />
+            style={{ marginLeft: "auto", padding: "0.5rem 1rem", backgroundColor: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, color: "#e2e8f0", fontSize: "1.0625rem", outline: "none", width: 260 }} />
         </div>
 
         {/* Threat table */}
@@ -112,7 +112,7 @@ export default function ThreatFeed() {
             <thead>
               <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
                 {["ID", "Severity", "Technique / Tactic", "Threat Actor", "Target Sector", "Source", "CVSS", "Unkov Status", "Detected"].map(h => (
-                  <th key={h} style={{ padding: "0.625rem 0.875rem", textAlign: "left", fontSize: "0.8125rem", color: "#475569", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>{h}</th>
+                  <th key={h} style={{ padding: "0.625rem 0.875rem", textAlign: "left", fontSize: "1.0625rem", color: "#475569", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -123,30 +123,30 @@ export default function ThreatFeed() {
                   <tr key={t.id} style={{ borderBottom: "1px solid rgba(255,255,255,0.03)", transition: "background 0.1s" }}
                     onMouseEnter={e => (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(255,255,255,0.02)"}
                     onMouseLeave={e => (e.currentTarget as HTMLElement).style.backgroundColor = "transparent"}>
-                    <td style={{ padding: "0.75rem 0.875rem", fontSize: "0.9375rem", fontFamily: "monospace", color: "#64748b" }}>{t.id}</td>
+                    <td style={{ padding: "0.75rem 0.875rem", fontSize: "1.0625rem", fontFamily: "monospace", color: "#64748b" }}>{t.id}</td>
                     <td style={{ padding: "0.75rem 0.875rem" }}>
-                      <span style={{ padding: "0.2rem 0.625rem", borderRadius: 9999, fontSize: "0.8125rem", fontWeight: 700, backgroundColor: sev.bg, color: sev.color }}>{sev.label}</span>
+                      <span style={{ padding: "0.2rem 0.625rem", borderRadius: 9999, fontSize: "1.0625rem", fontWeight: 700, backgroundColor: sev.bg, color: sev.color }}>{sev.label}</span>
                     </td>
                     <td style={{ padding: "0.75rem 0.875rem", maxWidth: 260 }}>
-                      <div style={{ fontSize: "0.82rem", color: "#e2e8f0", marginBottom: "0.2rem" }}>{t.technique}</div>
-                      <div style={{ fontSize: "0.875rem", color: "#64748b" }}>{t.tactic}</div>
+                      <div style={{ fontSize: "1.0625rem", color: "#e2e8f0", marginBottom: "0.2rem" }}>{t.technique}</div>
+                      <div style={{ fontSize: "1rem", color: "#64748b" }}>{t.tactic}</div>
                     </td>
-                    <td style={{ padding: "0.75rem 0.875rem", fontSize: "0.8rem", color: "#94a3b8", whiteSpace: "nowrap" }}>{t.actor}</td>
-                    <td style={{ padding: "0.75rem 0.875rem", fontSize: "0.9375rem", color: "#64748b", whiteSpace: "nowrap" }}>{t.target}</td>
-                    <td style={{ padding: "0.75rem 0.875rem", fontSize: "0.875rem", color: "#475569", whiteSpace: "nowrap" }}>{t.source}</td>
-                    <td style={{ padding: "0.75rem 0.875rem", fontSize: "0.82rem", fontWeight: 700, color: parseFloat(t.cvss) >= 8.5 ? "#ef4444" : parseFloat(t.cvss) >= 7 ? "#f97316" : "#f59e0b" }}>{t.cvss}</td>
+                    <td style={{ padding: "0.75rem 0.875rem", fontSize: "1rem", color: "#94a3b8", whiteSpace: "nowrap" }}>{t.actor}</td>
+                    <td style={{ padding: "0.75rem 0.875rem", fontSize: "1.0625rem", color: "#64748b", whiteSpace: "nowrap" }}>{t.target}</td>
+                    <td style={{ padding: "0.75rem 0.875rem", fontSize: "1rem", color: "#475569", whiteSpace: "nowrap" }}>{t.source}</td>
+                    <td style={{ padding: "0.75rem 0.875rem", fontSize: "1.0625rem", fontWeight: 700, color: parseFloat(t.cvss) >= 8.5 ? "#ef4444" : parseFloat(t.cvss) >= 7 ? "#f97316" : "#f59e0b" }}>{t.cvss}</td>
                     <td style={{ padding: "0.75rem 0.875rem" }}>
                       {t.unkov_blocked ? (
-                        <div style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontSize: "0.875rem", color: "#10b981" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontSize: "1rem", color: "#10b981" }}>
                           <Shield style={{ width: 12, height: 12 }} /> Auto-Blocked
                         </div>
                       ) : (
-                        <div style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontSize: "0.875rem", color: "#f59e0b" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontSize: "1rem", color: "#f59e0b" }}>
                           <AlertTriangle style={{ width: 12, height: 12 }} /> Monitoring
                         </div>
                       )}
                     </td>
-                    <td style={{ padding: "0.75rem 0.875rem", fontSize: "0.875rem", color: "#475569", whiteSpace: "nowrap" }}>{timeAgo(t.timestamp)}</td>
+                    <td style={{ padding: "0.75rem 0.875rem", fontSize: "1rem", color: "#475569", whiteSpace: "nowrap" }}>{timeAgo(t.timestamp)}</td>
                   </tr>
                 );
               })}

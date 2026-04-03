@@ -217,9 +217,9 @@ export default function GovernanceLoop() {
       <div style={{ paddingTop: 60, minHeight: "100vh" }}>
         <div style={{ padding: "1.25rem 2rem", borderBottom: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
           <div>
-            <div style={{ fontSize: "0.875rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "0.25rem" }}>Platform Core</div>
+            <div style={{ fontSize: "1rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "0.25rem" }}>Platform Core</div>
             <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "#f1f5f9", marginBottom: "0.25rem" }}>Governance Loop Animation</h1>
-            <p style={{ color: "#64748b", fontSize: "0.85rem" }}>The continuous Discover → Analyze → Remediate cycle runs autonomously 24/7.</p>
+            <p style={{ color: "#64748b", fontSize: "1.0625rem" }}>The continuous Discover → Analyze → Remediate cycle runs autonomously 24/7.</p>
           </div>
           <div style={{ display: "flex", gap: "0.75rem", flexShrink: 0 }}>
             {[{ label: "Identities governed", value: "1,247", color: "#60a5fa" }, { label: "Decisions automated", value: "98%", color: "#10b981" }, { label: "Orphans purged", value: "134", color: "#f59e0b" }, { label: "Compliance", value: "94%", color: "#8b5cf6" }].map((m) => (
@@ -238,9 +238,9 @@ export default function GovernanceLoop() {
 
             {/* Active phase details overlay */}
             <div style={{ position: "absolute", bottom: "2rem", left: "50%", transform: "translateX(-50%)", textAlign: "center", backgroundColor: "rgba(10,15,30,0.9)", border: `1px solid ${active.color}30`, borderRadius: 14, padding: "1.25rem 2rem", backdropFilter: "blur(10px)", minWidth: 340 }}>
-              <div style={{ fontSize: "0.8125rem", color: active.color, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "0.5rem" }}>Active Phase</div>
+              <div style={{ fontSize: "1.0625rem", color: active.color, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "0.5rem" }}>Active Phase</div>
               <div style={{ fontSize: "1.1rem", fontWeight: 800, color: "#f1f5f9", marginBottom: "0.5rem" }}>{active.title}</div>
-              <div style={{ fontSize: "0.9375rem", color: "#64748b", lineHeight: 1.5 }}>{active.desc}</div>
+              <div style={{ fontSize: "1.0625rem", color: "#64748b", lineHeight: 1.5 }}>{active.desc}</div>
               <div style={{ display: "flex", gap: "1.5rem", marginTop: "0.875rem", justifyContent: "center" }}>
                 {active.metrics.map(m => (
                   <div key={m.label} style={{ textAlign: "center" }}>
@@ -256,27 +256,27 @@ export default function GovernanceLoop() {
           <div style={{ borderLeft: "1px solid rgba(255,255,255,0.06)", padding: "1.5rem", overflowY: "auto" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.25rem" }}>
               <div style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: "#10b981", animation: "pulse4 2s infinite" }} />
-              <div style={{ fontSize: "0.8125rem", color: "#10b981", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em" }}>Live Governance Actions</div>
+              <div style={{ fontSize: "1.0625rem", color: "#10b981", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em" }}>Live Governance Actions</div>
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
               {actionLog.map((entry, i) => (
                 <div key={i} style={{ padding: "0.625rem 0.875rem", backgroundColor: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)", borderRadius: 8, opacity: Math.max(0.3, 1 - i * 0.06), transition: "opacity 0.3s" }}>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.25rem" }}>
-                    <span style={{ fontSize: "0.8125rem", fontWeight: 700, color: entry.color, backgroundColor: entry.color + "15", padding: "0.1rem 0.5rem", borderRadius: 9999 }}>{entry.phase}</span>
-                    <span style={{ fontSize: "0.8125rem", fontFamily: "monospace", color: "#374151" }}>{entry.time}</span>
+                    <span style={{ fontSize: "1.0625rem", fontWeight: 700, color: entry.color, backgroundColor: entry.color + "15", padding: "0.1rem 0.5rem", borderRadius: 9999 }}>{entry.phase}</span>
+                    <span style={{ fontSize: "1.0625rem", fontFamily: "monospace", color: "#374151" }}>{entry.time}</span>
                   </div>
-                  <div style={{ fontSize: "0.9375rem", color: i === 0 ? "#94a3b8" : "#4b5563" }}>{entry.action}</div>
+                  <div style={{ fontSize: "1.0625rem", color: i === 0 ? "#94a3b8" : "#4b5563" }}>{entry.action}</div>
                 </div>
               ))}
             </div>
 
             {/* Manual phase selector */}
             <div style={{ marginTop: "1.5rem" }}>
-              <div style={{ fontSize: "0.8125rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.75rem" }}>Jump to Phase</div>
+              <div style={{ fontSize: "1.0625rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.75rem" }}>Jump to Phase</div>
               {PHASES.map((p, i) => (
                 <button key={p.id} onClick={() => setActivePhase(i)}
-                  style={{ width: "100%", textAlign: "left", padding: "0.75rem 1rem", borderRadius: 8, border: `1px solid ${activePhase === i ? p.color + "40" : "rgba(255,255,255,0.06)"}`, backgroundColor: activePhase === i ? p.color + "10" : "transparent", color: activePhase === i ? p.color : "#64748b", fontSize: "0.82rem", fontWeight: 600, cursor: "pointer", marginBottom: "0.5rem", transition: "all 0.15s" }}>
+                  style={{ width: "100%", textAlign: "left", padding: "0.75rem 1rem", borderRadius: 8, border: `1px solid ${activePhase === i ? p.color + "40" : "rgba(255,255,255,0.06)"}`, backgroundColor: activePhase === i ? p.color + "10" : "transparent", color: activePhase === i ? p.color : "#64748b", fontSize: "1.0625rem", fontWeight: 600, cursor: "pointer", marginBottom: "0.5rem", transition: "all 0.15s" }}>
                   {p.label} — {p.title}
                 </button>
               ))}

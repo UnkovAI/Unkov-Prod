@@ -14,6 +14,15 @@ html, html.dark, html[class~="dark"], body, body.dark {
   --border: #e1e4e8 !important;
   --muted: #f6f8fa !important;
   --muted-foreground: #57606a !important;
+
+  /* ── Solution page responsive grids ── */
+  @media (max-width: 768px) {
+    .solution-pain-grid  { grid-template-columns: 1fr !important; }
+    .solution-stat-grid  { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+  @media (max-width: 480px) {
+    .solution-stat-grid  { grid-template-columns: 1fr !important; }
+  }
 }
 
 @import "tailwindcss";
@@ -132,10 +141,10 @@ html, html.dark, html[class~="dark"], body, body.dark {
 @layer components {
 
   /* ── Text scale ── */
-  .text-xs   { font-size: 0.75rem   !important; line-height: 1.55  !important; }
-  .text-sm   { font-size: 0.875rem  !important; line-height: 1.6   !important; }
-  .text-base { font-size: 1rem      !important; line-height: 1.7   !important; }
-  .text-lg   { font-size: 1.125rem  !important; line-height: 1.65  !important; }
+  .text-xs   { font-size: 0.875rem  !important; line-height: 1.6   !important; }
+  .text-sm   { font-size: 1rem      !important; line-height: 1.65  !important; }
+  .text-base { font-size: 1.0625rem !important; line-height: 1.7   !important; }
+  .text-lg   { font-size: 1.1875rem !important; line-height: 1.65  !important; }
 
   /* ── Container ── */
   .container {
@@ -161,9 +170,9 @@ html, html.dark, html[class~="dark"], body, body.dark {
   /* ── Section labels ── */
   .section-label {
     display: inline-block;
-    font-size: 0.6875rem;
+    font-size: 0.8125rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #0061d4;
     margin-bottom: 0.875rem;

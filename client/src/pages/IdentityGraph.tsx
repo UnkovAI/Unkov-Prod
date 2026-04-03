@@ -188,13 +188,13 @@ export default function IdentityGraph() {
         <div style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", padding: "1rem 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", backgroundColor: "rgba(10,15,30,0.95)" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "clamp(0.75rem,1.5vw,1.5rem)", flexWrap: "wrap" }}>
             <div>
-              <div style={{ fontSize: "0.875rem", color: "#cbd5e1", textTransform: "uppercase", letterSpacing: "0.1em" }}>Identity Graph</div>
+              <div style={{ fontSize: "1rem", color: "#cbd5e1", textTransform: "uppercase", letterSpacing: "0.1em" }}>Identity Graph</div>
               <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#e2e8f0" }}>Live Social Fabric — Acme Corp</div>
             </div>
             <div style={{ display: "flex", gap: "0.5rem" }}>
               {["all", ...NODE_TYPES.map(n => n.type)].map(f => (
                 <button key={f} onClick={() => setSelectedFilter(f)}
-                  style={{ padding: "0.3rem 0.75rem", borderRadius: 9999, fontSize: "0.9375rem", fontWeight: 600, border: "1px solid", borderColor: selectedFilter === f ? "#0061d4" : "rgba(255,255,255,0.1)", backgroundColor: selectedFilter === f ? "#0061d420" : "transparent", color: selectedFilter === f ? "#60a5fa" : "#cbd5e1", cursor: "pointer", transition: "all 0.15s", textTransform: "capitalize" }}>
+                  style={{ padding: "0.3rem 0.75rem", borderRadius: 9999, fontSize: "1.0625rem", fontWeight: 600, border: "1px solid", borderColor: selectedFilter === f ? "#0061d4" : "rgba(255,255,255,0.1)", backgroundColor: selectedFilter === f ? "#0061d420" : "transparent", color: selectedFilter === f ? "#60a5fa" : "#cbd5e1", cursor: "pointer", transition: "all 0.15s", textTransform: "capitalize" }}>
                   {f}
                 </button>
               ))}
@@ -209,7 +209,7 @@ export default function IdentityGraph() {
             ].map(s => (
               <div key={s.label} style={{ textAlign: "right" }}>
                 <div style={{ fontSize: "1.4rem", fontWeight: 800, color: s.color }}>{s.val}</div>
-                <div style={{ fontSize: "0.8rem", color: "#cbd5e1", textTransform: "uppercase", letterSpacing: "0.08em" }}>{s.label}</div>
+                <div style={{ fontSize: "1rem", color: "#cbd5e1", textTransform: "uppercase", letterSpacing: "0.08em" }}>{s.label}</div>
               </div>
             ))}
           </div>
@@ -221,12 +221,12 @@ export default function IdentityGraph() {
 
           {/* Legend */}
           <div style={{ position: "absolute", bottom: "1.5rem", left: "1.5rem", backgroundColor: "rgba(10,15,30,0.85)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "1rem 1.25rem", backdropFilter: "blur(10px)" }}>
-            <div style={{ fontSize: "0.8rem", color: "#cbd5e1", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.9375rem" }}>Node Types</div>
+            <div style={{ fontSize: "1rem", color: "#cbd5e1", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.9375rem" }}>Node Types</div>
             {NODE_TYPES.map(n => (
               <div key={n.type} style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "0.5rem" }}>
                 <div style={{ width: 10, height: 10, borderRadius: "50%", backgroundColor: n.color, boxShadow: `0 0 6px ${n.color}` }} />
-                <div style={{ fontSize: "0.8rem", color: "#cbd5e1" }}>{n.label}</div>
-                <div style={{ fontSize: "0.8rem", color: n.color, fontWeight: 700, marginLeft: "auto", paddingLeft: "1rem" }}>{n.count}</div>
+                <div style={{ fontSize: "1rem", color: "#cbd5e1" }}>{n.label}</div>
+                <div style={{ fontSize: "1rem", color: n.color, fontWeight: 700, marginLeft: "auto", paddingLeft: "1rem" }}>{n.count}</div>
               </div>
             ))}
           </div>
@@ -236,13 +236,13 @@ export default function IdentityGraph() {
             <div style={{ position: "absolute", top: "1.5rem", right: "1.5rem", backgroundColor: "rgba(10,15,30,0.92)", border: `1px solid ${hoveredNode.color}40`, borderRadius: 12, padding: "1rem 1.25rem", backdropFilter: "blur(10px)", minWidth: 220 }}>
               <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.9375rem" }}>
                 <div style={{ width: 10, height: 10, borderRadius: "50%", backgroundColor: hoveredNode.color }} />
-                <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "#e2e8f0" }}>{hoveredNode.label}</div>
+                <div style={{ fontSize: "1.0625rem", fontWeight: 700, color: "#e2e8f0" }}>{hoveredNode.label}</div>
               </div>
-              <div style={{ fontSize: "0.9375rem", color: "#cbd5e1", marginBottom: "0.25rem" }}>Type: <span style={{ color: "#cbd5e1" }}>{hoveredNode.type}</span></div>
-              <div style={{ fontSize: "0.9375rem", color: "#cbd5e1", marginBottom: "0.25rem" }}>Connections: <span style={{ color: "#cbd5e1" }}>{hoveredNode.connections.length}</span></div>
-              <div style={{ fontSize: "0.9375rem", color: "#cbd5e1", marginBottom: "0.5rem" }}>Risk Score: <span style={{ color: hoveredNode.risk > 0.7 ? "#ef4444" : hoveredNode.risk > 0.4 ? "#f59e0b" : "#10b981" }}>{(hoveredNode.risk * 100).toFixed(0)}%</span></div>
+              <div style={{ fontSize: "1.0625rem", color: "#cbd5e1", marginBottom: "0.25rem" }}>Type: <span style={{ color: "#cbd5e1" }}>{hoveredNode.type}</span></div>
+              <div style={{ fontSize: "1.0625rem", color: "#cbd5e1", marginBottom: "0.25rem" }}>Connections: <span style={{ color: "#cbd5e1" }}>{hoveredNode.connections.length}</span></div>
+              <div style={{ fontSize: "1.0625rem", color: "#cbd5e1", marginBottom: "0.5rem" }}>Risk Score: <span style={{ color: hoveredNode.risk > 0.7 ? "#ef4444" : hoveredNode.risk > 0.4 ? "#f59e0b" : "#10b981" }}>{(hoveredNode.risk * 100).toFixed(0)}%</span></div>
               {hoveredNode.risk > 0.7 && (
-                <div style={{ backgroundColor: "#ef444420", border: "1px solid #ef444440", borderRadius: 6, padding: "0.375rem 0.625rem", fontSize: "0.875rem", color: "#fca5a5" }}>
+                <div style={{ backgroundColor: "#ef444420", border: "1px solid #ef444440", borderRadius: 6, padding: "0.375rem 0.625rem", fontSize: "1rem", color: "#fca5a5" }}>
                   ⚠ High-risk identity — remediation recommended
                 </div>
               )}
@@ -252,7 +252,7 @@ export default function IdentityGraph() {
           {/* Live badge */}
           <div style={{ position: "absolute", top: "1.5rem", left: "50%", transform: "translateX(-50%)", display: "flex", alignItems: "center", gap: "0.5rem", backgroundColor: "rgba(10,15,30,0.8)", border: "1px solid rgba(16,185,129,0.3)", borderRadius: 9999, padding: "0.375rem 1rem", backdropFilter: "blur(8px)" }}>
             <div style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: "#10b981", boxShadow: "0 0 6px #10b981", animation: "pulse 2s infinite" }} />
-            <span style={{ fontSize: "0.9375rem", color: "#10b981", fontWeight: 600 }}>LIVE — Updating every 2s</span>
+            <span style={{ fontSize: "1.0625rem", color: "#10b981", fontWeight: 600 }}>LIVE — Updating every 2s</span>
           </div>
         </div>
 
@@ -266,8 +266,8 @@ export default function IdentityGraph() {
             { label: "Ghost access eliminated", val: "$4.2M", unit: "breach value saved" },
           ].map(s => (
             <div key={s.label}>
-              <div style={{ fontSize: "1.1rem", fontWeight: 800, color: "#60a5fa" }}>{s.val} <span style={{ fontSize: "0.875rem", color: "#cbd5e1", fontWeight: 400 }}>{s.unit}</span></div>
-              <div style={{ fontSize: "0.8rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.06em" }}>{s.label}</div>
+              <div style={{ fontSize: "1.1rem", fontWeight: 800, color: "#60a5fa" }}>{s.val} <span style={{ fontSize: "1rem", color: "#cbd5e1", fontWeight: 400 }}>{s.unit}</span></div>
+              <div style={{ fontSize: "1rem", color: "#475569", textTransform: "uppercase", letterSpacing: "0.06em" }}>{s.label}</div>
             </div>
           ))}
         </div>

@@ -32,7 +32,7 @@ export default function Press() {
             {/* Outlet logos row */}
             <div style={{ display: "flex", alignItems: "center", gap: "clamp(1rem,2vw,2rem)", flexWrap: "wrap" }}>
               {coverage.map((c, i) => (
-                <span key={i} style={{ fontSize: "0.8125rem", fontWeight: 800, color: "#6b7280", letterSpacing: "-0.01em", textTransform: "uppercase" }}>{c.outlet}</span>
+                <span key={i} style={{ fontSize: "1.0625rem", fontWeight: 800, color: "#6b7280", letterSpacing: "-0.01em", textTransform: "uppercase" }}>{c.outlet}</span>
               ))}
             </div>
           </div>
@@ -42,7 +42,7 @@ export default function Press() {
 
           {/* Company fast facts */}
           <div style={{ backgroundColor: "#f0ece6", border: "1px solid #dcd6ce", borderRadius: "1rem", padding: "2rem 2.25rem", marginBottom: "3.5rem" }}>
-            <div style={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#6b7280", marginBottom: "1.25rem" }}>Company at a glance</div>
+            <div style={{ fontSize: "1rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#6b7280", marginBottom: "1.25rem" }}>Company at a glance</div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "1.5rem" }}>
               {[
                 { val: "Seed", label: "Funding stage" },
@@ -53,7 +53,7 @@ export default function Press() {
               ].map(f => (
                 <div key={f.label}>
                   <div style={{ fontSize: "1.5rem", fontWeight: 700, color: "#00297a", letterSpacing: "-0.025em" }}>{f.val}</div>
-                  <div style={{ fontSize: "0.8rem", color: "#6b7280", marginTop: "0.125rem" }}>{f.label}</div>
+                  <div style={{ fontSize: "1rem", color: "#6b7280", marginTop: "0.125rem" }}>{f.label}</div>
                 </div>
               ))}
             </div>
@@ -68,11 +68,11 @@ export default function Press() {
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#00297a"; (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 16px rgba(0,41,122,0.07)"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "#e5e7eb"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.875rem" }}>
-                  <span style={{ fontSize: "0.9375rem", fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", color: "#00297a" }}>{item.outlet}</span>
+                  <span style={{ fontSize: "1.0625rem", fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", color: "#00297a" }}>{item.outlet}</span>
                   <ExternalLink style={{ width: 14, height: 14, color: "#d1d5db" }} />
                 </div>
-                <p style={{ fontSize: "0.9375rem", fontWeight: 600, color: "#111827", lineHeight: 1.5, marginBottom: "0.75rem" }}>{item.title}</p>
-                <p style={{ fontSize: "0.8125rem", color: "#6b7280" }}>{item.date}</p>
+                <p style={{ fontSize: "1.0625rem", fontWeight: 600, color: "#111827", lineHeight: 1.5, marginBottom: "0.75rem" }}>{item.title}</p>
+                <p style={{ fontSize: "1.0625rem", color: "#6b7280" }}>{item.date}</p>
               </a>
             ))}
           </div>
@@ -82,11 +82,11 @@ export default function Press() {
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "3.5rem" }}>
             {releases.map((r, i) => (
               <div key={i} style={{ padding: "1.75rem 2rem", borderRadius: "0.875rem", border: "1px solid #e5e7eb", backgroundColor: "#ffffff" }}>
-                <p style={{ fontSize: "0.8125rem", color: "#6b7280", marginBottom: "0.5rem" }}>{r.date}</p>
+                <p style={{ fontSize: "1.0625rem", color: "#6b7280", marginBottom: "0.5rem" }}>{r.date}</p>
                 <h3 style={{ fontSize: "1.0625rem", fontWeight: 700, color: "#111827", lineHeight: 1.4, marginBottom: "0.875rem", letterSpacing: "-0.01em" }}>{r.title}</h3>
-                <p style={{ fontSize: "0.9rem", color: "#6b7280", lineHeight: 1.7, marginBottom: "1.125rem" }}>{r.summary}</p>
+                <p style={{ fontSize: "1rem", color: "#6b7280", lineHeight: 1.7, marginBottom: "1.125rem" }}>{r.summary}</p>
                 <a href={`mailto:press@unkov.com?subject=Press Release — ${encodeURIComponent(r.title)}`}
-                  style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem", fontSize: "0.875rem", fontWeight: 700, color: "#00297a", textDecoration: "none" }}>
+                  style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem", fontSize: "1rem", fontWeight: 700, color: "#00297a", textDecoration: "none" }}>
                   <Mail style={{ width: 14, height: 14 }} /> Request full release
                 </a>
               </div>
@@ -97,15 +97,15 @@ export default function Press() {
           <div className="grid md:grid-cols-2" style={{ gap: "1rem" }}>
             <div style={{ padding: "1.75rem 2rem", borderRadius: "0.875rem", border: "1px solid #e5e7eb", backgroundColor: "#ffffff" }}>
               <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: "0.625rem" }}>Brand Assets</h3>
-              <p style={{ fontSize: "0.875rem", color: "#6b7280", lineHeight: 1.7, marginBottom: "1.25rem" }}>Logo, brand guidelines, and product screenshots for editorial use.</p>
-              <a href="mailto:press@unkov.com?subject=Brand Assets Request" className="btn-primary" style={{ fontSize: "0.875rem" }}>
+              <p style={{ fontSize: "1rem", color: "#6b7280", lineHeight: 1.7, marginBottom: "1.25rem" }}>Logo, brand guidelines, and product screenshots for editorial use.</p>
+              <a href="mailto:press@unkov.com?subject=Brand Assets Request" className="btn-primary" style={{ fontSize: "1rem" }}>
                 <Download style={{ width: 14, height: 14 }} /> Request Press Kit
               </a>
             </div>
             <div style={{ padding: "1.75rem 2rem", borderRadius: "0.875rem", border: "1px solid #e5e7eb", backgroundColor: "#ffffff" }}>
               <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "#111827", marginBottom: "0.625rem" }}>Media Contact</h3>
-              <p style={{ fontSize: "0.875rem", color: "#6b7280", lineHeight: 1.7, marginBottom: "1.25rem" }}>For press inquiries, interview requests, or editorial questions.</p>
-              <a href="mailto:press@unkov.com" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", fontSize: "0.875rem", fontWeight: 700, color: "#00297a", textDecoration: "none", padding: "0.5rem 1.25rem", borderRadius: "0.75rem", border: "1.5px solid #00297a", transition: "all 0.15s" }}
+              <p style={{ fontSize: "1rem", color: "#6b7280", lineHeight: 1.7, marginBottom: "1.25rem" }}>For press inquiries, interview requests, or editorial questions.</p>
+              <a href="mailto:press@unkov.com" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", fontSize: "1rem", fontWeight: 700, color: "#00297a", textDecoration: "none", padding: "0.5rem 1.25rem", borderRadius: "0.75rem", border: "1.5px solid #00297a", transition: "all 0.15s" }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "#e8f0fe"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = "transparent"; }}>
                 <Mail style={{ width: 14, height: 14 }} /> press@unkov.com
@@ -115,8 +115,8 @@ export default function Press() {
 
           {/* About Unkov boilerplate */}
           <div style={{ marginTop: "3.5rem", paddingTop: "3rem", borderTop: "1px solid #e5e7eb" }}>
-            <div style={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#6b7280", marginBottom: "0.875rem" }}>About Unkov</div>
-            <p style={{ fontSize: "0.9375rem", color: "#374151", lineHeight: 1.75, maxWidth: "640px" }}>
+            <div style={{ fontSize: "1rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#6b7280", marginBottom: "0.875rem" }}>About Unkov</div>
+            <p style={{ fontSize: "1.0625rem", color: "#374151", lineHeight: 1.75, maxWidth: "640px" }}>
               Unkov is an AI-native identity governance platform built for the agentic enterprise. Every AI agent passes through Unkov before it acts — identity verified, action authorized, decision audited. Covers every human and non-human identity across BFSI and healthcare environments. Available as a standalone platform or as an intelligence layer on top of Okta, SailPoint, and Azure AD. Founded in 2025, seed-funded, headquartered remotely across the United States.
             </p>
           </div>

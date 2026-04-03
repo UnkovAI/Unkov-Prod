@@ -32,7 +32,7 @@ export default function SolutionBFSI() {
         <section style={{ background: "linear-gradient(135deg, #00297a 0%, #0041a8 60%, #0061d4 100%)", padding: "clamp(3rem,6vw,7rem) 0" }}>
           <div className="container mx-auto px-10" style={{ maxWidth: "860px" }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.3rem 1rem", borderRadius: "9999px", backgroundColor: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.18)", marginBottom: "1.75rem" }}>
-              <span style={{ fontSize: "0.75rem", fontWeight: 600, color: "rgba(255,255,255,0.85)", letterSpacing: "0.06em", textTransform: "uppercase" }}>Banking & Financial Services</span>
+              <span style={{ fontSize: "1rem", fontWeight: 600, color: "rgba(255,255,255,0.85)", letterSpacing: "0.06em", textTransform: "uppercase" }}>Banking & Financial Services</span>
             </div>
             <h1 style={{ fontSize: "clamp(2rem,5vw,3.25rem)", fontWeight: 700, color: "#ffffff", letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: "1.25rem", maxWidth: "32rem" }}>
               The identity gate between every human, AI agent, and everything they can touch.
@@ -53,16 +53,16 @@ export default function SolutionBFSI() {
               <span className="section-label">The Problem</span>
               <h2 className="section-heading">Your AI agents are operating.<br />Nobody's governing them.</h2>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.25rem" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem", alignItems: "stretch" }}>
               {pains.map((p, i) => {
                 const Icon = p.icon;
                 return (
-                  <div key={i} className="card" style={{ padding: "1.75rem", borderColor: "#dcd6ce" }}>
+                  <div key={i} className="card" style={{ padding: "1.75rem", borderColor: "#dcd6ce", display: "flex", flexDirection: "column" }}>
                     <div style={{ width: 36, height: 36, borderRadius: "0.625rem", backgroundColor: "#fff0f0", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem" }}>
                       <Icon style={{ width: 16, height: 16, color: "#dc2626" }} />
                     </div>
-                    <div style={{ fontSize: "0.9375rem", fontWeight: 700, color: "#1a1a2e", marginBottom: "0.625rem" }}>{p.title}</div>
-                    <p style={{ fontSize: "0.875rem", color: "#4a5568", lineHeight: 1.75 }}>{p.desc}</p>
+                    <div style={{ fontSize: "1.0625rem", fontWeight: 700, color: "#1a1a2e", marginBottom: "0.625rem" }}>{p.title}</div>
+                    <p style={{ fontSize: "1rem", color: "#4a5568", lineHeight: 1.75, flex: 1 }}>{p.desc}</p>
                   </div>
                 );
               })}
@@ -80,7 +80,7 @@ export default function SolutionBFSI() {
                 Sits inline between every AI agent and every financial action. No authorization, no execution. Live in 30 minutes — no rip-and-replace. PCI DSS 4.0 evidence collected continuously as a byproduct of normal operation.
               </p>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1rem", alignItems: "stretch" }}>
               {[
                 { v: "< 30 min", l: "Zero-touch deployment" },
                 { v: "90%", l: "Reduction in manual review" },
@@ -89,7 +89,7 @@ export default function SolutionBFSI() {
               ].map(({ v, l }) => (
                 <div key={l} className="card" style={{ padding: "1.5rem", textAlign: "center", borderColor: "#dcd6ce", backgroundColor: "#ffffff" }}>
                   <div style={{ fontSize: "1.75rem", fontWeight: 800, color: "#00297a", letterSpacing: "-0.04em", marginBottom: "0.375rem" }}>{v}</div>
-                  <div style={{ fontSize: "0.8125rem", color: "#4a5568" }}>{l}</div>
+                  <div style={{ fontSize: "1.0625rem", color: "#4a5568" }}>{l}</div>
                 </div>
               ))}
             </div>

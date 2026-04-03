@@ -53,7 +53,7 @@ export default function PitchDeck() {
         borderRadius: "50%", 
         animation: "spin 0.8s linear infinite" 
       }} />
-      <p style={{ color: "#94a3b8", fontSize: "0.9rem" }}>Verifying access & preparing download…</p>
+      <p style={{ color: "#94a3b8", fontSize: "1rem" }}>Verifying access & preparing download…</p>
       
       <style>{`
         @keyframes spin { 

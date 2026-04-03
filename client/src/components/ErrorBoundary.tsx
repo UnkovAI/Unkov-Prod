@@ -44,7 +44,7 @@ export default class ErrorBoundary extends Component<Props, State> {
               <h2 style={{ color: "#b91c1c", fontWeight: 700, fontSize: "1.1rem", marginBottom: "0.5rem" }}>
                 Something went wrong
               </h2>
-              <p style={{ color: "#7f1d1d", fontSize: "0.875rem", marginBottom: "1rem" }}>
+              <p style={{ color: "#7f1d1d", fontSize: "1rem", marginBottom: "1rem" }}>
                 Open browser DevTools (F12 → Console) to see the full error.
               </p>
               <pre style={{
@@ -52,7 +52,7 @@ export default class ErrorBoundary extends Component<Props, State> {
                 color: "#f8fafc",
                 borderRadius: 6,
                 padding: "1rem",
-                fontSize: "0.75rem",
+                fontSize: "1rem",
                 overflowX: "auto",
                 whiteSpace: "pre-wrap",
                 wordBreak: "break-word",
@@ -73,7 +73,7 @@ export default class ErrorBoundary extends Component<Props, State> {
                 border: "none",
                 borderRadius: 6,
                 cursor: "pointer",
-                fontSize: "0.875rem",
+                fontSize: "1rem",
                 fontWeight: 600,
               }}
             >

@@ -53,9 +53,9 @@ function Code({ children, lang = "bash" }: { children: string; lang?: string }) 
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between",
         backgroundColor: "#0f172a", borderRadius: "8px 8px 0 0",
         padding: "0.375rem 0.875rem", borderBottom: "1px solid #334155" }}>
-        <span style={{ fontSize: "0.75rem", color: "#64748b", fontFamily: "monospace" }}>{lang}</span>
+        <span style={{ fontSize: "1rem", color: "#64748b", fontFamily: "monospace" }}>{lang}</span>
         <button onClick={() => { navigator.clipboard?.writeText(children); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
-          style={{ display: "flex", alignItems: "center", gap: 4, fontSize: "0.7rem",
+          style={{ display: "flex", alignItems: "center", gap: 4, fontSize: "1rem",
             color: copied ? S.green : "#64748b", background: "none", border: "none",
             cursor: "pointer", padding: "2px 6px", borderRadius: 4 }}>
           {copied ? <CheckCircle style={{ width: 12, height: 12 }} /> : <Copy style={{ width: 12, height: 12 }} />}
@@ -63,7 +63,7 @@ function Code({ children, lang = "bash" }: { children: string; lang?: string }) 
         </button>
       </div>
       <pre style={{ backgroundColor: S.code, color: "#86efac", padding: "1rem 1.125rem",
-        borderRadius: "0 0 8px 8px", fontSize: "0.8125rem", lineHeight: 1.7,
+        borderRadius: "0 0 8px 8px", fontSize: "1.0625rem", lineHeight: 1.7,
         overflow: "auto", margin: 0, fontFamily: "'Fira Code', 'Cascadia Code', monospace",
         whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
         <code>{children}</code>
@@ -86,8 +86,8 @@ function Note({ type = "info", children }: { type?: "info" | "warning" | "tip" |
       borderRadius: 8, padding: "0.875rem 1rem", margin: "1rem 0",
       display: "flex", gap: "0.625rem", alignItems: "flex-start" }}>
       <div style={{ paddingTop: 2 }}>{s.icon}</div>
-      <div style={{ fontSize: "0.875rem", color: S.soft, lineHeight: 1.65 }}>
-        <strong style={{ color: S.text, display: "block", marginBottom: 2, fontSize: "0.8125rem" }}>{s.label}</strong>
+      <div style={{ fontSize: "1rem", color: S.soft, lineHeight: 1.65 }}>
+        <strong style={{ color: S.text, display: "block", marginBottom: 2, fontSize: "1.0625rem" }}>{s.label}</strong>
         {children}
       </div>
     </div>
@@ -102,12 +102,12 @@ function Steps({ items }: { items: { title: string; body: React.ReactNode }[] })
         <li key={i} style={{ display: "flex", gap: "1rem", marginBottom: "1.25rem" }}>
           <div style={{ flexShrink: 0, width: 28, height: 28, borderRadius: "50%",
             background: S.navy, color: S.white, display: "flex", alignItems: "center",
-            justifyContent: "center", fontSize: "0.8rem", fontWeight: 700, marginTop: 2 }}>
+            justifyContent: "center", fontSize: "1rem", fontWeight: 700, marginTop: 2 }}>
             {i + 1}
           </div>
           <div style={{ flex: 1 }}>
-            <div style={{ fontWeight: 600, color: S.text, marginBottom: "0.375rem", fontSize: "0.9375rem" }}>{step.title}</div>
-            <div style={{ color: S.soft, fontSize: "0.875rem", lineHeight: 1.7 }}>{step.body}</div>
+            <div style={{ fontWeight: 600, color: S.text, marginBottom: "0.375rem", fontSize: "1.0625rem" }}>{step.title}</div>
+            <div style={{ color: S.soft, fontSize: "1rem", lineHeight: 1.7 }}>{step.body}</div>
           </div>
         </li>
       ))}
@@ -132,9 +132,9 @@ function Perms({ rows }: { rows: [string, string, string][] }) {
           {rows.map(([perm, req, purpose], i) => (
             <tr key={i} style={{ backgroundColor: i % 2 === 0 ? S.white : S.bg }}>
               <td style={{ padding: "0.5rem 0.875rem", borderBottom: `1px solid ${S.border}`,
-                fontFamily: "monospace", fontSize: "0.8rem", color: S.blue }}>{perm}</td>
+                fontFamily: "monospace", fontSize: "1rem", color: S.blue }}>{perm}</td>
               <td style={{ padding: "0.5rem 0.875rem", borderBottom: `1px solid ${S.border}` }}>
-                <span style={{ fontSize: "0.75rem", fontWeight: 600, padding: "2px 8px",
+                <span style={{ fontSize: "1rem", fontWeight: 600, padding: "2px 8px",
                   borderRadius: 9999, background: req === "Required" ? S.lred : S.lgreen,
                   color: req === "Required" ? S.red : S.green }}>{req}</span>
               </td>
@@ -176,8 +176,8 @@ const CONNECTORS: DocConnector[] = [
               <li>All active and deprovisioned users (ghost account detection)</li>
               <li>Group memberships and admin role assignments</li>
               <li>App assignments and SSO access scopes</li>
-              <li>Service accounts (detected by login pattern: <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"0.8rem"}}>svc-</code>, <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"0.8rem"}}>bot-</code>, <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"0.8rem"}}>ai-</code>, etc.)</li>
-              <li>AI agents (detected by name: <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"0.8rem"}}>agent-</code>, <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"0.8rem"}}>copilot-</code>, <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"0.8rem"}}>gpt-</code>)</li>
+              <li>Service accounts (detected by login pattern: <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"1rem"}}>svc-</code>, <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"1rem"}}>bot-</code>, <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"1rem"}}>ai-</code>, etc.)</li>
+              <li>AI agents (detected by name: <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"1rem"}}>agent-</code>, <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"1rem"}}>copilot-</code>, <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"1rem"}}>gpt-</code>)</li>
               <li>Toxic privilege combinations (e.g. SUPER_ADMIN + payroll access)</li>
               <li>Drifted identities (no login beyond configurable threshold)</li>
             </ul>
@@ -229,7 +229,7 @@ npm run okta:scan:dry`}</Code>
               ["okta.logs.read",           "Optional",  "Last login enrichment for drift detection"],
               ["okta.users.manage",        "Never",     "Unkov does not write to Okta in read-only mode"],
             ]} />
-            <Note type="info">Unkov only ever reads. The <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"0.8rem"}}>okta.users.manage</code> scope is explicitly <strong>not</strong> required and should not be granted.</Note>
+            <Note type="info">Unkov only ever reads. The <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"1rem"}}>okta.users.manage</code> scope is explicitly <strong>not</strong> required and should not be granted.</Note>
           </div>
         ),
       },
@@ -248,11 +248,11 @@ npm run okta:scan:dry`}</Code>
                 { sev:"Medium",   label:"Service account without owner", desc:"Non-human identity with no owner email assigned." },
               ].map(f => (
                 <div key={f.label} style={{ border:`1px solid ${S.border}`, borderRadius:8, padding:"0.875rem" }}>
-                  <span style={{ fontSize:"0.7rem",fontWeight:700,padding:"2px 8px",borderRadius:9999,
+                  <span style={{ fontSize:"1rem",fontWeight:700,padding:"2px 8px",borderRadius:9999,
                     background: f.sev==="Critical"?"#fef2f2":f.sev==="High"?"#fffbeb":"#f3f4f6",
                     color: f.sev==="Critical"?S.red:f.sev==="High"?S.amber:"#374151" }}>{f.sev}</span>
-                  <div style={{fontWeight:600,color:S.text,marginTop:"0.5rem",fontSize:"0.875rem"}}>{f.label}</div>
-                  <div style={{color:S.muted,fontSize:"0.8125rem",marginTop:"0.25rem"}}>{f.desc}</div>
+                  <div style={{fontWeight:600,color:S.text,marginTop:"0.5rem",fontSize:"1rem"}}>{f.label}</div>
+                  <div style={{color:S.muted,fontSize:"1.0625rem",marginTop:"0.25rem"}}>{f.desc}</div>
                 </div>
               ))}
             </div>
@@ -263,14 +263,14 @@ npm run okta:scan:dry`}</Code>
         id: "okta-troubleshoot",
         title: "Troubleshooting",
         content: (
-          <div style={{fontSize:"0.875rem"}}>
+          <div style={{fontSize:"1rem"}}>
             {[
               { err:"Invalid token", fix:"Regenerate the token in Okta Admin → Security → API → Tokens. Tokens expire if you navigate away before copying." },
               { err:"Rate limit (429)", fix:"The scanner respects Okta's rate limit headers and retries automatically. For large orgs (5000+ users) the first scan may take 10–15 minutes." },
               { err:"Missing roles in output", fix:"Ensure the token user has okta.roles.read. Without it, admin role grants are not visible — service accounts may appear under-classified." },
             ].map(({err,fix}) => (
               <div key={err} style={{borderBottom:`1px solid ${S.border}`,paddingBottom:"0.75rem",marginBottom:"0.75rem"}}>
-                <code style={{background:"#f1f5f9",padding:"2px 8px",borderRadius:4,fontSize:"0.8rem",color:S.red}}>{err}</code>
+                <code style={{background:"#f1f5f9",padding:"2px 8px",borderRadius:4,fontSize:"1rem",color:S.red}}>{err}</code>
                 <p style={{color:S.soft,marginTop:"0.375rem",marginBottom:0}}>{fix}</p>
               </div>
             ))}
@@ -297,7 +297,7 @@ npm run okta:scan:dry`}</Code>
         content: (
           <div>
             <p>The AWS IAM connector is where the NHI-to-human ratio explodes. A typical enterprise with 500 employees has 200–400 IAM users and 2,000–5,000 IAM roles — most created automatically by Lambda, ECS, EKS, and AI/ML services like Bedrock and SageMaker.</p>
-            <Note type="tip">The connector uses the AWS SDK with your existing credentials — no new IAM user needed if you already have AWS access configured via <code style={{fontSize:"0.8rem",background:"#f1f5f9",padding:"1px 5px",borderRadius:4}}>aws configure</code>.</Note>
+            <Note type="tip">The connector uses the AWS SDK with your existing credentials — no new IAM user needed if you already have AWS access configured via <code style={{fontSize:"1rem",background:"#f1f5f9",padding:"1px 5px",borderRadius:4}}>aws configure</code>.</Note>
             <h4 style={{color:S.navy,marginTop:"1.25rem",marginBottom:"0.5rem"}}>What it discovers</h4>
             <ul style={{color:S.soft,lineHeight:2,paddingLeft:"1.25rem"}}>
               <li>All IAM users + their access keys (with key age — stale key detection)</li>
@@ -356,7 +356,7 @@ npm run aws:scan:dry   # preview only`}</Code>
     "Resource": "*"
   }]
 }`}</Code>
-            <Note type="info">Never grant <code style={{fontSize:"0.8rem",background:"#f1f5f9",padding:"1px 5px",borderRadius:4}}>iam:CreateUser</code>, <code style={{fontSize:"0.8rem",background:"#f1f5f9",padding:"1px 5px",borderRadius:4}}>iam:DeleteRole</code>, or any write action. Unkov is read-only.</Note>
+            <Note type="info">Never grant <code style={{fontSize:"1rem",background:"#f1f5f9",padding:"1px 5px",borderRadius:4}}>iam:CreateUser</code>, <code style={{fontSize:"1rem",background:"#f1f5f9",padding:"1px 5px",borderRadius:4}}>iam:DeleteRole</code>, or any write action. Unkov is read-only.</Note>
           </div>
         ),
       },
@@ -373,11 +373,11 @@ npm run aws:scan:dry   # preview only`}</Code>
               { sev:"Medium",   label:"Role unused 90–180 days", desc:"Likely stale — confirm with service owner before purging." },
             ].map(f => (
               <div key={f.label} style={{border:`1px solid ${S.border}`,borderRadius:8,padding:"0.875rem"}}>
-                <span style={{fontSize:"0.7rem",fontWeight:700,padding:"2px 8px",borderRadius:9999,
+                <span style={{fontSize:"1rem",fontWeight:700,padding:"2px 8px",borderRadius:9999,
                   background:f.sev==="Critical"?"#fef2f2":f.sev==="High"?"#fffbeb":"#f3f4f6",
                   color:f.sev==="Critical"?S.red:f.sev==="High"?S.amber:"#374151"}}>{f.sev}</span>
-                <div style={{fontWeight:600,color:S.text,marginTop:"0.5rem",fontSize:"0.875rem"}}>{f.label}</div>
-                <div style={{color:S.muted,fontSize:"0.8125rem",marginTop:"0.25rem"}}>{f.desc}</div>
+                <div style={{fontWeight:600,color:S.text,marginTop:"0.5rem",fontSize:"1rem"}}>{f.label}</div>
+                <div style={{color:S.muted,fontSize:"1.0625rem",marginTop:"0.25rem"}}>{f.desc}</div>
               </div>
             ))}
           </div>
@@ -492,7 +492,7 @@ ENTRA_CLIENT_SECRET=your-client-secret`}</Code>
             },
             {
               title: "Find your Workday tenant name",
-              body: <>Your tenant name is in your Workday URL: <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"0.8rem"}}>https://wd2.myworkday.com/<strong>your-tenant</strong>/d/home.htmld</code></>
+              body: <>Your tenant name is in your Workday URL: <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"1rem"}}>https://wd2.myworkday.com/<strong>your-tenant</strong>/d/home.htmld</code></>
             },
             {
               title: "Add credentials to .env",
@@ -543,7 +543,7 @@ WORKDAY_API_VERSION=v40.0`}</Code>
           <Steps items={[
             {
               title: "Generate a Personal Access Token (classic)",
-              body: <>GitHub → Settings → Developer settings → <strong>Personal access tokens → Tokens (classic) → Generate new token</strong>. Select: <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"0.8rem"}}>read:org</code>, <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"0.8rem"}}>read:user</code>, <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"0.8rem"}}>repo</code> (read-only). Set expiration to 90 days and rotate.</>
+              body: <>GitHub → Settings → Developer settings → <strong>Personal access tokens → Tokens (classic) → Generate new token</strong>. Select: <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"1rem"}}>read:org</code>, <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"1rem"}}>read:user</code>, <code style={{background:"#f1f5f9",padding:"1px 6px",borderRadius:4,fontSize:"1rem"}}>repo</code> (read-only). Set expiration to 90 days and rotate.</>
             },
             {
               title: "Add credentials to .env",
@@ -591,12 +591,12 @@ GITHUB_ORG=your-github-org`}</Code>
         title: "Current coverage via existing connectors",
         content: (
           <div>
-            <p style={{ marginBottom: "0.75rem", fontSize: "0.875rem", color: S.soft }}>These AI agents are already detected today through live connectors:</p>
-            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8125rem" }}>
+            <p style={{ marginBottom: "0.75rem", fontSize: "1rem", color: S.soft }}>These AI agents are already detected today through live connectors:</p>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "1.0625rem" }}>
               <thead>
                 <tr style={{ borderBottom: `2px solid ${S.border}` }}>
                   {["AI System", "Detected via", "What's captured"].map(h => (
-                    <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "0.75rem" }}>{h}</th>
+                    <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "1rem" }}>{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -610,7 +610,7 @@ GITHUB_ORG=your-github-org`}</Code>
                 ].map(([agent, via, what]) => (
                   <tr key={agent} style={{ borderBottom: `1px solid ${S.border}` }}>
                     <td style={{ padding: "0.625rem 0.75rem", fontWeight: 600, color: S.text }}>{agent}</td>
-                    <td style={{ padding: "0.625rem 0.75rem", color: S.blue, fontFamily: "monospace", fontSize: "0.8rem" }}>{via}</td>
+                    <td style={{ padding: "0.625rem 0.75rem", color: S.blue, fontFamily: "monospace", fontSize: "1rem" }}>{via}</td>
                     <td style={{ padding: "0.625rem 0.75rem", color: S.soft }}>{what}</td>
                   </tr>
                 ))}
@@ -644,11 +644,11 @@ GITHUB_ORG=your-github-org`}</Code>
         id: "compliance-frameworks",
         title: "Supported frameworks",
         content: (
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8125rem" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "1.0625rem" }}>
             <thead>
               <tr style={{ borderBottom: `2px solid ${S.border}` }}>
                 {["Framework", "Relevant Unkov controls", "Status"].map(h => (
-                  <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "0.75rem" }}>{h}</th>
+                  <th key={h} style={{ textAlign: "left", padding: "0.5rem 0.75rem", color: S.muted, fontWeight: 600, fontSize: "1rem" }}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -663,9 +663,9 @@ GITHUB_ORG=your-github-org`}</Code>
               ].map(([fw, controls, status]) => (
                 <tr key={fw} style={{ borderBottom: `1px solid ${S.border}` }}>
                   <td style={{ padding: "0.625rem 0.75rem", fontWeight: 600, color: S.text }}>{fw}</td>
-                  <td style={{ padding: "0.625rem 0.75rem", color: S.soft, fontSize: "0.8rem" }}>{controls}</td>
+                  <td style={{ padding: "0.625rem 0.75rem", color: S.soft, fontSize: "1rem" }}>{controls}</td>
                   <td style={{ padding: "0.625rem 0.75rem" }}>
-                    <span style={{ fontSize: "0.75rem", fontWeight: 600, color: status === "Live" ? S.green : S.amber, background: status === "Live" ? S.lgreen : S.lamber, padding: "2px 8px", borderRadius: 9999 }}>{status}</span>
+                    <span style={{ fontSize: "1rem", fontWeight: 600, color: status === "Live" ? S.green : S.amber, background: status === "Live" ? S.lgreen : S.lamber, padding: "2px 8px", borderRadius: 9999 }}>{status}</span>
                   </td>
                 </tr>
               ))}
@@ -727,7 +727,7 @@ export default function Docs() {
         <div style={{ backgroundColor: S.navy, padding: "2.5rem 0 2rem" }}>
           <div className="container mx-auto px-10" style={{ maxWidth: 1200 }}>
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem",
-              color: "#93c5fd", fontSize: "0.8rem", marginBottom: "0.75rem" }}>
+              color: "#93c5fd", fontSize: "1rem", marginBottom: "0.75rem" }}>
               <BookOpen style={{ width: 14, height: 14 }} />
               <span>Documentation</span>
             </div>
@@ -758,12 +758,12 @@ export default function Docs() {
                 placeholder="Search connectors…"
                 style={{ width: "100%", paddingLeft: 32, paddingRight: 12, paddingTop: 8,
                   paddingBottom: 8, border: `1px solid ${S.border}`, borderRadius: 8,
-                  fontSize: "0.875rem", backgroundColor: S.white, color: S.text, outline: "none" }}
+                  fontSize: "1rem", backgroundColor: S.white, color: S.text, outline: "none" }}
               />
             </div>
 
             <nav>
-              <div style={{ fontSize: "0.7rem", fontWeight: 700, color: S.muted,
+              <div style={{ fontSize: "1rem", fontWeight: 700, color: S.muted,
                 textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "0.5rem" }}>
                 Connectors
               </div>
@@ -777,11 +777,11 @@ export default function Docs() {
                     backgroundColor: activeConnector === connector.id ? S.lnavy : "transparent",
                     color: activeConnector === connector.id ? S.navy : S.soft,
                     fontWeight: activeConnector === connector.id ? 600 : 400,
-                    fontSize: "0.875rem", transition: "all 0.1s" }}>
+                    fontSize: "1rem", transition: "all 0.1s" }}>
                   {connector.icon}
                   <div style={{ flex: 1 }}>
                     <div>{connector.name}</div>
-                    <span style={{ fontSize: "0.7rem", fontWeight: 600, padding: "1px 6px",
+                    <span style={{ fontSize: "1rem", fontWeight: 600, padding: "1px 6px",
                       borderRadius: 9999, backgroundColor: "#f0fdf4", color: connector.badgeColor }}>
                       {connector.badge}
                     </span>
@@ -792,13 +792,13 @@ export default function Docs() {
 
               <div style={{ marginTop: "1.5rem", padding: "0.875rem", backgroundColor: S.lnavy,
                 borderRadius: 8, border: `1px solid ${S.border}` }}>
-                <div style={{ fontSize: "0.75rem", fontWeight: 600, color: S.navy, marginBottom: 4 }}>
+                <div style={{ fontSize: "1rem", fontWeight: 600, color: S.navy, marginBottom: 4 }}>
                   Need help?
                 </div>
-                <p style={{ fontSize: "0.75rem", color: S.muted, marginBottom: "0.5rem", lineHeight: 1.5 }}>
+                <p style={{ fontSize: "1rem", color: S.muted, marginBottom: "0.5rem", lineHeight: 1.5 }}>
                   Our team responds to connector questions within one business day.
                 </p>
-                <a href="/contact" style={{ fontSize: "0.75rem", color: S.blue, fontWeight: 600,
+                <a href="/contact" style={{ fontSize: "1rem", color: S.blue, fontWeight: 600,
                   textDecoration: "none", display: "flex", alignItems: "center", gap: 4 }}>
                   Contact support <ExternalLink style={{ width: 10, height: 10 }} />
                 </a>
@@ -817,19 +817,19 @@ export default function Docs() {
                 <h2 style={{ fontSize: "1.625rem", fontWeight: 700, color: S.text, marginBottom: "0.375rem" }}>
                   {current.name}
                 </h2>
-                <p style={{ color: S.muted, fontSize: "0.9375rem", lineHeight: 1.6, maxWidth: "36rem" }}>
+                <p style={{ color: S.muted, fontSize: "1.0625rem", lineHeight: 1.6, maxWidth: "36rem" }}>
                   {current.tagline}
                 </p>
                 <div style={{ display: "flex", gap: "0.5rem", marginTop: "0.75rem", flexWrap: "wrap" }}>
-                  <span style={{ fontSize: "0.75rem", fontWeight: 600, padding: "3px 10px",
+                  <span style={{ fontSize: "1rem", fontWeight: 600, padding: "3px 10px",
                     borderRadius: 9999, backgroundColor: S.lgreen, color: S.green }}>
                     ✓ {current.badge}
                   </span>
-                  <span style={{ fontSize: "0.75rem", fontWeight: 600, padding: "3px 10px",
+                  <span style={{ fontSize: "1rem", fontWeight: 600, padding: "3px 10px",
                     borderRadius: 9999, backgroundColor: "#f0f9ff", color: "#0369a1" }}>
                     Read-only
                   </span>
-                  <span style={{ fontSize: "0.75rem", fontWeight: 600, padding: "3px 10px",
+                  <span style={{ fontSize: "1rem", fontWeight: 600, padding: "3px 10px",
                     borderRadius: 9999, backgroundColor: S.lnavy, color: S.navy }}>
                     Zero downtime
                   </span>
@@ -847,7 +847,7 @@ export default function Docs() {
                     justifyContent: "space-between", padding: "0.875rem 1.125rem",
                     backgroundColor: expandedSections.has(section.id) ? S.lnavy : S.white,
                     border: "none", cursor: "pointer", textAlign: "left",
-                    color: S.text, fontWeight: 600, fontSize: "0.9375rem",
+                    color: S.text, fontWeight: 600, fontSize: "1.0625rem",
                     transition: "background 0.1s" }}>
                   <span>{section.title}</span>
                   {expandedSections.has(section.id)
@@ -856,7 +856,7 @@ export default function Docs() {
                 </button>
                 {expandedSections.has(section.id) && (
                   <div style={{ padding: "1.125rem 1.25rem", borderTop: `1px solid ${S.border}`,
-                    backgroundColor: S.white, lineHeight: 1.7, color: S.soft, fontSize: "0.9rem" }}>
+                    backgroundColor: S.white, lineHeight: 1.7, color: S.soft, fontSize: "1rem" }}>
                     {section.content}
                   </div>
                 )}
@@ -866,7 +866,7 @@ export default function Docs() {
             {/* Back to integrations */}
             <div style={{ marginTop: "2rem", paddingTop: "1.5rem", borderTop: `1px solid ${S.border}` }}>
               <a href="/integrations" style={{ display: "inline-flex", alignItems: "center", gap: 6,
-                fontSize: "0.875rem", color: S.blue, fontWeight: 600, textDecoration: "none" }}>
+                fontSize: "1rem", color: S.blue, fontWeight: 600, textDecoration: "none" }}>
                 ← Back to all integrations
               </a>
             </div>

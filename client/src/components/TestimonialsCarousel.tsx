@@ -35,8 +35,8 @@ export default function TestimonialsCarousel() {
             "{t.quote}"
           </blockquote>
 
-          <div style={{ fontSize: "0.9375rem", fontWeight: 700, color: "#1a1a2e", letterSpacing: "-0.01em" }}>{t.author}</div>
-          <div style={{ fontSize: "0.875rem", color: "#6b7280", marginTop: "0.25rem" }}>{t.title} · {t.company}</div>
+          <div style={{ fontSize: "1.0625rem", fontWeight: 700, color: "#1a1a2e", letterSpacing: "-0.01em" }}>{t.author}</div>
+          <div style={{ fontSize: "1rem", color: "#6b7280", marginTop: "0.25rem" }}>{t.title} · {t.company}</div>
 
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem", marginTop: "2.5rem" }}>
             <button

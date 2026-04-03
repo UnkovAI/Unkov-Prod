@@ -76,8 +76,8 @@ export default function Careers() {
                   { label: "Hiring pace",       val: "~5 roles open now"  },
                 ].map(r => (
                   <div key={r.label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.75rem 0", borderBottom: "1px solid #f0ece6" }}>
-                    <span style={{ fontSize: "0.875rem", color: "#6b7280" }}>{r.label}</span>
-                    <span style={{ fontSize: "0.875rem", fontWeight: 600, color: "#1a1a2e" }}>{r.val}</span>
+                    <span style={{ fontSize: "1rem", color: "#6b7280" }}>{r.label}</span>
+                    <span style={{ fontSize: "1rem", fontWeight: 600, color: "#1a1a2e" }}>{r.val}</span>
                   </div>
                 ))}
               </div>

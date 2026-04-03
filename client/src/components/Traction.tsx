@@ -23,8 +23,8 @@ export default function Traction() {
               onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 12px 40px ${s.color}1a`; e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.borderColor = s.color + "2a"; }}
               onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "none"; e.currentTarget.style.borderColor = "transparent"; }}>
               <div style={{ fontSize: "clamp(2rem,5vw,2.625rem)", fontWeight: 800, color: s.color, letterSpacing: "-0.04em", lineHeight: 1, marginBottom: "0.625rem" }}>{s.metric}</div>
-              <div style={{ fontSize: "0.9375rem", fontWeight: 600, color: "#111827", marginBottom: "0.375rem", lineHeight: 1.35 }}>{s.label}</div>
-              <div style={{ fontSize: "0.8125rem", color: "#6b7280" }}>{s.detail}</div>
+              <div style={{ fontSize: "1.0625rem", fontWeight: 600, color: "#111827", marginBottom: "0.375rem", lineHeight: 1.35 }}>{s.label}</div>
+              <div style={{ fontSize: "1.0625rem", color: "#6b7280" }}>{s.detail}</div>
             </div>
           ))}
         </div>
