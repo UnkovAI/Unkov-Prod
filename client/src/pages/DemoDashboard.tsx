@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useAuth } from "@/contexts/AuthContext";
 import { useDashboardData } from "@/hooks/useDashboardData";
-import { Shield, Users, Bot, AlertTriangle, Clock,  Download, Search, ChevronDown, CheckCircle, FileText, Lock as LockIcon, Zap, Eye, X, ArrowDownRight, ExternalLink, Activity, TrendingDown, RefreshCw, Play, ChevronRight, Settings, List } from "lucide-react";
+import { Shield, Users, Bot, AlertTriangle, Clock,  Download, Search, ChevronDown, CheckCircle, FileText, Lock as LockIcon, Zap, Eye, X, ArrowDownRight, ExternalLink, Activity, TrendingDown, RefreshCw, Play, ChevronRight, Settings } from "lucide-react";
 
 // ─── Design tokens ───────────────────────────────────────────────
 const S = {
@@ -182,17 +182,42 @@ function LockedView({ tabLabel, unlockReason, preview }: { tabLabel:string; unlo
     </div>
   );
 }
+
+
+// ─── Discover phase view ──────────────────────────────────────────
 function DiscoverView({ events }: { events: typeof DEMO_EVENTS }) {
   const shown = events.slice(-2000).reverse(); // last 2000 events
 
+  // Row for virtualized list
   const Row = ({ index, style }: { index: number; style: React.CSSProperties }) => {
     const e = shown[index];
     return (
-      <div style={{ ...style, padding: "0.625rem 0.875rem", display: "flex", gap: "0.75rem", backgroundColor: "rgba(255,255,255,0.02)", borderRadius: 8, border: `1px solid ${S.border}` }}>
-        <div style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: e.color, flexShrink: 0, marginTop: 5 }} />
+      <div
+        style={{
+          ...style,
+          padding: "0.625rem 0.875rem",
+          display: "flex",
+          gap: "0.75rem",
+          backgroundColor: "rgba(255,255,255,0.02)",
+          borderRadius: 8,
+          border: `1px solid ${S.border}`,
+        }}
+      >
+        <div
+          style={{
+            width: 6,
+            height: 6,
+            borderRadius: "50%",
+            backgroundColor: e.color,
+            flexShrink: 0,
+            marginTop: 5,
+          }}
+        />
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: "0.8125rem", color: S.text }}>{e.msg}</div>
-          <div style={{ fontSize: "0.7rem", color: S.muted, marginTop: 2 }}>{e.time} into deployment</div>
+          <div style={{ fontSize: "0.7rem", color: S.muted, marginTop: 2 }}>
+            {e.time} into deployment
+          </div>
         </div>
         <Badge color={phaseColor[e.phase]}>{e.phase}</Badge>
       </div>
@@ -201,23 +226,49 @@ function DiscoverView({ events }: { events: typeof DEMO_EVENTS }) {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-      {/* Live discovery feed header */}
+      {/* Identity Table */}
       <Card>
-        <div style={{ padding: "0.875rem 1.25rem", borderBottom: `1px solid ${S.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <span style={{ fontSize: "0.9375rem", fontWeight: 700, color: S.text }}>Discovery feed</span>
-          <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: "0.8125rem", color: "#34d399" }}>
-            <div style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: "#34d399", animation: "pulse2 2s infinite" }} /> Live
+        {/* … your existing Identity Table JSX … */}
+      </Card>
+
+      {/* Virtualized Live Discovery Feed */}
+      <Card>
+        <div
+          style={{
+            padding: "0.875rem 1.25rem",
+            borderBottom: `1px solid ${S.border}`,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <span style={{ fontSize: "0.9375rem", fontWeight: 700, color: S.text }}>
+            Discovery feed
+          </span>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 6,
+              fontSize: "0.8125rem",
+              color: "#34d399",
+            }}
+          >
+            <div
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: "50%",
+                backgroundColor: "#34d399",
+                animation: "pulse2 2s infinite",
+              }}
+            />{" "}
+            Live
           </div>
         </div>
 
-        {/* Virtualized list */}
         <div style={{ height: 600, padding: "0.875rem 1.25rem" }}>
-          <List
-            height={600}          // container height
-            itemCount={shown.length}
-            itemSize={60}         // approx row height
-            width="100%"
-          >
+          <List height={600} itemCount={shown.length} itemSize={60} width="100%">
             {Row}
           </List>
         </div>
