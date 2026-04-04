@@ -186,67 +186,137 @@ function LockedView({ tabLabel, unlockReason, preview }: { tabLabel:string; unlo
 // ─── Discover phase view ──────────────────────────────────────────
 function DiscoverView({ events }: { events: typeof DEMO_EVENTS }) {
   const shown = events.filter(e => e.phase === "Discover");
+
   return (
-    <div style={{ display:"flex", flexDirection:"column", gap:"1.25rem" }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
       {/* Identity fabric headline */}
-      <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(180px,1fr))", gap:"1rem" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))", gap: "1rem" }}>
         {[
-          { label:"Total identities found",  val:kTotal.toLocaleString(), sub:"Human + NHI + AI agents", color:"#60a5fa" },
-          { label:"Ghost bots (Admin scope)", val:String(kOrphans), sub:"Invisible to existing IAM", color:"#ef4444" },
-          { label:"Orphan accounts found",    val:"12",  sub:"Departed — still live accounts", color:"#f59e0b" },
-          { label:"AI agents ungoverned",     val:String(kAIAgents), sub:"No policy coverage", color:"#a78bfa" },
-          { label:"Toxic combinations",       val:String(kToxic), sub:"Create + approve same resource", color:"#ef4444" },
-          { label:"NHI:human ratio",          val:kRatio, sub:"Legacy IAM can't govern this", color:"#f59e0b" },
+          { label: "Total identities found", val: kTotal.toLocaleString(), sub: "Human + NHI + AI agents", color: "#60a5fa" },
+          { label: "Ghost bots (Admin scope)", val: String(kOrphans), sub: "Invisible to existing IAM", color: "#ef4444" },
+          { label: "Orphan accounts found", val: "12", sub: "Departed — still live accounts", color: "#f59e0b" },
+          { label: "AI agents ungoverned", val: String(kAIAgents), sub: "No policy coverage", color: "#a78bfa" },
+          { label: "Toxic combinations", val: String(kToxic), sub: "Create + approve same resource", color: "#ef4444" },
+          { label: "NHI:human ratio", val: kRatio, sub: "Legacy IAM can't govern this", color: "#f59e0b" },
         ].map(k => (
-          <Card key={k.label} style={{ padding:"1rem" }}>
-            <div style={{ fontSize:"1.75rem", fontWeight:800, color:k.color, lineHeight:1, marginBottom:"0.25rem" }}>{k.val}</div>
-            <div style={{ fontSize:"0.75rem", fontWeight:600, color:S.soft, marginBottom:"0.2rem" }}>{k.label}</div>
-            <div style={{ fontSize:"0.7rem", color:S.muted }}>{k.sub}</div>
+          <Card key={k.label} style={{ padding: "1rem" }}>
+            <div style={{ fontSize: "1.75rem", fontWeight: 800, color: k.color, lineHeight: 1, marginBottom: "0.25rem" }}>
+              {k.val}
+            </div>
+            <div style={{ fontSize: "0.75rem", fontWeight: 600, color: S.soft, marginBottom: "0.2rem" }}>
+              {k.label}
+            </div>
+            <div style={{ fontSize: "0.7rem", color: S.muted }}>{k.sub}</div>
           </Card>
         ))}
       </div>
+
       {/* Identity table */}
       <Card>
-        <div style={{ padding:"0.875rem 1.25rem", borderBottom:`1px solid ${S.border}`, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+        <div
+          style={{
+            padding: "0.875rem 1.25rem",
+            borderBottom: `1px solid ${S.border}`,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <div>
-            <span style={{ fontSize:"0.9375rem", fontWeight:700, color:S.text }}>Identity Social Fabric</span>
-            <span style={{ fontSize:"0.75rem", color:"#0061d4", marginLeft:"0.75rem", fontWeight:600 }}>● Live scan</span>
+            <span style={{ fontSize: "0.9375rem", fontWeight: 700, color: S.text }}>Identity Social Fabric</span>
+            <span style={{ fontSize: "0.75rem", color: "#0061d4", marginLeft: "0.75rem", fontWeight: 600 }}>● Live scan</span>
           </div>
-          <div style={{ display:"flex", gap:"0.375rem" }}>
-            <Btn onClick={()=>dlCSV("discover-identities.csv",DEMO_IDENTITIES.map(id=>({id:id.id,name:id.name,type:id.type,dept:id.dept,risk:id.risk,status:id.status,lastActive:id.lastActive})))} variant="ghost" size="xs"><Download style={{width:11,height:11}}/> CSV</Btn>
-            <Btn onClick={()=>dlJSON("discover-identities.json",DEMO_IDENTITIES)} variant="ghost" size="xs"><Download style={{width:11,height:11}}/> JSON</Btn>
+          <div style={{ display: "flex", gap: "0.375rem" }}>
+            <Btn
+              onClick={() =>
+                dlCSV(
+                  "discover-identities.csv",
+                  DEMO_IDENTITIES.map(id => ({
+                    id: id.id,
+                    name: id.name,
+                    type: id.type,
+                    dept: id.dept,
+                    risk: id.risk,
+                    status: id.status,
+                    lastActive: id.lastActive,
+                  }))
+                )
+              }
+              variant="ghost"
+              size="xs"
+            >
+              <Download style={{ width: 11, height: 11 }} /> CSV
+            </Btn>
+            <Btn onClick={() => dlJSON("discover-identities.json", DEMO_IDENTITIES)} variant="ghost" size="xs">
+              <Download style={{ width: 11, height: 11 }} /> JSON
+            </Btn>
           </div>
         </div>
-        <div style={{ overflowX:"auto" }}>
-          <table style={{ width:"100%", borderCollapse:"collapse", fontSize:"0.8125rem" }}>
+
+        <div style={{ overflowX: "auto" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8125rem" }}>
             <thead>
-              <tr style={{ borderBottom:`1px solid ${S.border}` }}>
-                {["Identity","Type","Dept","Risk score","Permissions","Last active","Status"].map(h=>(
-                  <th key={h} style={{ padding:"0.625rem 0.875rem", textAlign:"left", color:S.muted, fontWeight:600, fontSize:"0.7rem", textTransform:"uppercase" as const, letterSpacing:"0.08em", whiteSpace:"nowrap" as const }}>{h}</th>
+              <tr style={{ borderBottom: `1px solid ${S.border}` }}>
+                {["Identity", "Type", "Dept", "Risk score", "Permissions", "Last active", "Status"].map(h => (
+                  <th
+                    key={h}
+                    style={{
+                      padding: "0.625rem 0.875rem",
+                      textAlign: "left",
+                      color: S.muted,
+                      fontWeight: 600,
+                      fontSize: "0.7rem",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.08em",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {h}
+                  </th>
                 ))}
               </tr>
             </thead>
+
             <tbody>
-              {activeIds.map(id=>(
-                <tr key={id.id} style={{ borderBottom:`1px solid ${S.border}` }}>
-                  <td style={{ padding:"0.75rem 0.875rem" }}>
-                    <div style={{ fontWeight:600, color:S.text }}>{id.name}</div>
-                    <div style={{ fontSize:"0.7rem", color:S.muted }}>{id.id}</div>
+              {activeIds.map(id => (
+                <tr key={id.id} style={{ borderBottom: `1px solid ${S.border}` }}>
+                  <td style={{ padding: "0.75rem 0.875rem" }}>
+                    <div style={{ fontWeight: 600, color: S.text }}>{id.name}</div>
+                    <div style={{ fontSize: "0.7rem", color: S.muted }}>{id.id}</div>
                   </td>
-                  <td style={{ padding:"0.75rem 0.875rem" }}><Badge color={typeColor[id.type]}>{typeLabel[id.type]}</Badge></td>
-                  <td style={{ padding:"0.75rem 0.875rem", color:S.soft }}>{id.dept}</td>
-                  <td style={{ padding:"0.75rem 0.875rem" }}>
-                    <div style={{ display:"flex", alignItems:"center", gap:6 }}>
-                      <div style={{ width:52, height:5, backgroundColor:"rgba(255,255,255,0.06)", borderRadius:9999 }}>
-                        <div style={{ height:"100%", width:`${id.risk}%`, backgroundColor:id.risk>=70?"#ef4444":id.risk>=40?"#f59e0b":"#34d399", borderRadius:9999 }}/>
+                  <td style={{ padding: "0.75rem 0.875rem" }}>
+                    <Badge color={typeColor[id.type]}>{typeLabel[id.type]}</Badge>
+                  </td>
+                  <td style={{ padding: "0.75rem 0.875rem", color: S.soft }}>{id.dept}</td>
+                  <td style={{ padding: "0.75rem 0.875rem" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                      <div style={{ width: 52, height: 5, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 9999 }}>
+                        <div
+                          style={{
+                            height: "100%",
+                            width: `${id.risk}%`,
+                            backgroundColor: id.risk >= 70 ? "#ef4444" : id.risk >= 40 ? "#f59e0b" : "#34d399",
+                            borderRadius: 9999,
+                          }}
+                        />
                       </div>
-                      <span style={{ fontWeight:700, color:id.risk>=70?"#ef4444":id.risk>=40?"#f59e0b":"#34d399" }}>{id.risk}</span>
+                      <span style={{ fontWeight: 700, color: id.risk >= 70 ? "#ef4444" : id.risk >= 40 ? "#f59e0b" : "#34d399" }}>
+                        {id.risk}
+                      </span>
                     </div>
                   </td>
-                  <td style={{ padding:"0.75rem 0.875rem", color:S.muted }}>{id.accessCount} rights</td>
-                  <td style={{ padding:"0.75rem 0.875rem", color:id.lastActive.includes("d ago")?"#ef4444":S.soft, fontWeight:id.lastActive.includes("d ago")?700:400 }}>{id.lastActive}</td>
-                  <td style={{ padding:"0.75rem 0.875rem" }}>
-                    <Badge color={id.status==="active"?"#34d399":id.status==="orphan"?"#ef4444":"#f59e0b"}>{id.status}</Badge>
+                  <td style={{ padding: "0.75rem 0.875rem", color: S.muted }}>{id.accessCount} rights</td>
+                  <td
+                    style={{
+                      padding: "0.75rem 0.875rem",
+                      color: id.lastActive.includes("d ago") ? "#ef4444" : S.soft,
+                      fontWeight: id.lastActive.includes("d ago") ? 700 : 400,
+                    }}
+                  >
+                    {id.lastActive}
+                  </td>
+                  <td style={{ padding: "0.75rem 0.875rem" }}>
+                    <Badge color={id.status === "active" ? "#34d399" : id.status === "orphan" ? "#ef4444" : "#f59e0b"}>{id.status}</Badge>
                   </td>
                 </tr>
               ))}
@@ -254,6 +324,50 @@ function DiscoverView({ events }: { events: typeof DEMO_EVENTS }) {
           </table>
         </div>
       </Card>
+
+      {/* Live discovery feed */}
+      <Card>
+        <div
+          style={{
+            padding: "0.875rem 1.25rem",
+            borderBottom: `1px solid ${S.border}`,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <span style={{ fontSize: "0.9375rem", fontWeight: 700, color: S.text }}>Discovery feed</span>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: "0.8125rem", color: "#34d399" }}>
+            <div style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: "#34d399", animation: "pulse2 2s infinite" }} /> Live
+          </div>
+        </div>
+
+        <div style={{ padding: "0.875rem 1.25rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+          {shown.map((e, i) => (
+            <div
+              key={i}
+              style={{
+                display: "flex",
+                gap: "0.75rem",
+                padding: "0.625rem 0.875rem",
+                backgroundColor: "rgba(255,255,255,0.02)",
+                borderRadius: 8,
+                border: `1px solid ${S.border}`,
+              }}
+            >
+              <div style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: e.color, flexShrink: 0, marginTop: 5 }} />
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: "0.8125rem", color: S.text }}>{e.msg}</div>
+                <div style={{ fontSize: "0.7rem", color: S.muted, marginTop: 2 }}>{e.time} into deployment</div>
+              </div>
+              <Badge color={phaseColor[e.phase]}>{e.phase}</Badge>
+            </div>
+          ))}
+        </div>
+      </Card>
+    </div>
+  );
+}
       {/* Live discovery feed */}
       <Card>
         <div style={{ padding:"0.875rem 1.25rem", borderBottom:`1px solid ${S.border}`, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
