@@ -4,7 +4,15 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useAuth } from "@/contexts/AuthContext";
 import { useDashboardData } from "@/hooks/useDashboardData";
-import { Shield, Users, Bot, AlertTriangle, Clock,  Download, Search, ChevronDown, CheckCircle, FileText, Lock as LockIcon, Zap, Eye, X, ArrowDownRight, ExternalLink, Activity, TrendingDown, RefreshCw, Play, ChevronRight, Settings } from "lucide-react";
+import { Shield, Users, Bot, AlertTriangle, Clock, Download, Search, ChevronDown, CheckCircle, FileText, Lock as LockIcon, Zap, Eye, X, ArrowDownRight, ExternalLink, Activity, TrendingDown, RefreshCw, Play, ChevronRight, Settings } from "lucide-react";
+
+function List({ height, width, itemCount, itemSize, children }: { height:number; width:string|number; itemCount:number; itemSize:number; children:(args:{index:number;style:React.CSSProperties})=>React.ReactNode }) {
+  return (
+    <div style={{ height, width, overflowY: "auto" }}>
+      {Array.from({ length: itemCount }).map((_, index) => children({ index, style: { height: itemSize } }))}
+    </div>
+  );
+}
 
 // ─── Design tokens ───────────────────────────────────────────────
 const S = {
