@@ -21,7 +21,7 @@ export default function Hero() {
           <div>
             <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.3rem 0.875rem", borderRadius: "9999px", backgroundColor: "#e8f0fe", border: "1px solid #bfcfee", marginBottom: "1.75rem" }}>
               <div style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: "#0061d4" }} />
-              <span style={{ fontSize: "1rem", fontWeight: 700, color: "#00297a", letterSpacing: "0.06em", textTransform: "uppercase" }}>AI Identity Governance</span>
+              <span style={{ fontSize: "1rem", fontWeight: 700, color: "#00297a", letterSpacing: "0.06em", textTransform: "uppercase" }}>AI Identity Enforcement</span>
             </div>
 
             <h1 style={{ fontSize: "clamp(1.75rem, 4vw, 3.5rem)", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.035em", color: "#0a0f1e", marginBottom: "1.25rem" }}>

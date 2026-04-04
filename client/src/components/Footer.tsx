@@ -52,7 +52,7 @@ export default function Footer() {
           <div style={{ display: "flex", flexWrap: "wrap", gap: "1.5rem", alignItems: "center", justifyContent: "space-between" }}>
             <div>
               <div className="text-sm font-semibold mb-1" style={{ color: "#f6f8fa" }}>Stay Updated</div>
-              <p className="text-sm">Product roadmap, market insights, and agentic economy trends.</p>
+              <p className="text-sm" style={{ color: "#c8d4e8" }}>Product roadmap, market insights, and agentic economy trends.</p>
             </div>
             <form onSubmit={handleSubmit} style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
               <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
@@ -80,7 +80,7 @@ export default function Footer() {
               <LogoMark size={24} bgColor="#0f1729" />
               <span className="text-sm font-semibold" style={{ color: "#f6f8fa" }}><span style={{ color: "#00e5ff" }}>U</span>nkov</span>
             </div>
-            <p className="text-sm leading-relaxed max-w-xs">The identity gate between every human, AI agent, and everything they can touch.</p>
+            <p className="text-sm leading-relaxed max-w-xs" style={{ color: "#c8d4e8" }}>The identity gate between every human, AI agent, and everything they can touch.</p>
             <div className="flex gap-3 mt-5">
               {[
                 { Icon: Twitter,  href: "https://x.com/UnkovAI",                        label: "X (Twitter)" },
@@ -101,7 +101,7 @@ export default function Footer() {
           {/* Nav cols */}
           {cols.map((col) => (
             <div key={col.title}>
-              <div className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: "#5a6380" }}>{col.title}</div>
+              <div className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: "#8090b0" }}>{col.title}</div>
               <ul className="space-y-2.5">
                 {col.links.map((l) => (
                   <li key={l.label}>
