@@ -6,7 +6,7 @@ export default function Hero() {
 
   return (
     <section style={{
-      paddingTop: "clamp(4.5rem, 10vw, 7rem)",
+    paddingTop: "clamp(6.5rem, 14vw, 9rem)",
       paddingBottom: "clamp(3rem, 6vw, 5rem)",
       backgroundColor: "#faf9f7",
       overflow: "hidden",
